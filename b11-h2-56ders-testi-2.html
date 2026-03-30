@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cosas Prohibidas | B1.1 H2 5-6.Ders</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f0fa;
+  --surface:#ffffff;
+  --primary:#6c5ce7;
+  --primary-dark:#5a4bd1;
+  --primary-light:#a29bfe;
+  --accent:#fd79a8;
+  --accent2:#00cec9;
+  --accent3:#fdcb6e;
+  --text:#2d3436;
+  --muted:#636e72;
+  --border:#dfe6e9;
+  --ok:#00b894;
+  --err:#e17055;
+  --radius:16px;
+  --shadow:0 4px 24px rgba(108,92,231,0.13);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* Dekoratif arka plan */
+body::before{
+  content:'';position:fixed;top:0;left:0;width:100%;height:100%;
+  background:
+    radial-gradient(ellipse at 10% 20%,rgba(162,155,254,0.18) 0%,transparent 50%),
+    radial-gradient(ellipse at 90% 80%,rgba(253,121,168,0.12) 0%,transparent 50%),
+    radial-gradient(ellipse at 50% 50%,rgba(108,92,231,0.06) 0%,transparent 70%);
+  pointer-events:none;z-index:0;
+}
+
+.wrap{max-width:640px;margin:0 auto;padding:20px 16px 40px;position:relative;z-index:1;}
+
+/* INTRO */
+#intro{
+  background:var(--surface);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:36px 28px 32px;
+  border-top:5px solid var(--primary);
+  animation:fadeUp .5s ease;
+}
+.brand-bar{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
+.brand-dot{width:10px;height:10px;border-radius:50%;background:var(--primary);}
+.brand-dot:nth-child(2){background:var(--accent);}
+.brand-dot:nth-child(3){background:var(--accent3);}
+.brand-name{font-family:'Nunito',sans-serif;font-size:13px;color:var(--muted);font-weight:700;letter-spacing:.5px;}
+.intro-badge{
+  display:inline-block;background:linear-gradient(135deg,var(--primary),var(--primary-light));
+  color:#fff;font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;
+  padding:4px 12px;border-radius:20px;letter-spacing:1px;margin-bottom:14px;
+}
+#intro h1{font-family:'Nunito',sans-serif;font-size:26px;font-weight:900;color:var(--primary);margin-bottom:6px;}
+.intro-sub{font-size:14px;color:var(--muted);margin-bottom:4px;}
+.intro-desc{font-size:13px;color:var(--primary-light);font-weight:700;margin-bottom:24px;}
+
+.chip-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;}
+.chip{
+  padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;
+  background:rgba(108,92,231,0.09);color:var(--primary);
+}
+.chip.c2{background:rgba(253,121,168,0.1);color:var(--accent);}
+.chip.c3{background:rgba(0,206,201,0.1);color:var(--accent2);}
+
+.name-label{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:var(--primary);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+select.name-select{
+  width:100%;padding:12px 16px;border:2px solid var(--border);border-radius:12px;
+  font-family:'Nunito Sans',sans-serif;font-size:15px;color:var(--text);
+  background:#fff;cursor:pointer;outline:none;transition:border .2s;
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236c5ce7' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;
+}
+select.name-select:focus{border-color:var(--primary);}
+
+.start-btn{
+  width:100%;margin-top:20px;padding:15px;
+  background:linear-gradient(135deg,var(--primary),var(--primary-light));
+  color:#fff;border:none;border-radius:12px;
+  font-family:'Nunito',sans-serif;font-size:17px;font-weight:800;
+  cursor:pointer;transition:transform .15s,box-shadow .15s;
+  box-shadow:0 4px 16px rgba(108,92,231,0.35);
+  letter-spacing:.3px;
+}
+.start-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(108,92,231,0.45);}
+.start-btn:active{transform:translateY(0);}
+
+/* QUIZ */
+#quiz{display:none;}
+.top-bar{
+  background:var(--surface);border-radius:var(--radius);padding:14px 18px;
+  margin-bottom:14px;box-shadow:0 2px 12px rgba(108,92,231,0.08);
+  display:flex;align-items:center;gap:12px;
+}
+.prog-wrap{flex:1;height:8px;background:rgba(108,92,231,0.12);border-radius:4px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:4px;transition:width .4s ease;}
+.prog-label{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:var(--primary);white-space:nowrap;}
+.score-bar{display:flex;gap:16px;padding:0 2px;}
+.sc{font-size:13px;font-weight:700;}
+.sc.ok{color:var(--ok);}
+.sc.err{color:var(--err);}
+
+.q-card{
+  background:var(--surface);border-radius:var(--radius);
+  padding:26px 24px 22px;box-shadow:var(--shadow);
+  border-left:4px solid var(--primary);
+  animation:fadeUp .3s ease;
+}
+.q-num{
+  font-family:'Nunito',sans-serif;font-size:11px;font-weight:900;
+  color:var(--primary-light);letter-spacing:1.5px;margin-bottom:6px;
+}
+.q-type-badge{
+  display:inline-block;padding:3px 10px;border-radius:10px;
+  font-size:11px;font-weight:800;letter-spacing:.5px;margin-bottom:12px;
+  background:rgba(108,92,231,0.1);color:var(--primary);
+}
+.q-text{font-size:16px;font-weight:700;line-height:1.5;margin-bottom:18px;color:var(--text);}
+
+.choices{display:flex;flex-direction:column;gap:9px;}
+.choice-btn{
+  display:flex;align-items:center;gap:12px;padding:12px 16px;
+  border:2px solid var(--border);border-radius:12px;background:#fff;
+  cursor:pointer;text-align:left;font-family:'Nunito Sans',sans-serif;
+  font-size:14px;font-weight:600;color:var(--text);
+  transition:border-color .15s,background .15s,transform .1s;
+}
+.choice-btn:hover:not(:disabled){border-color:var(--primary-light);background:rgba(108,92,231,0.04);transform:translateX(3px);}
+.cletter{
+  width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;
+  font-family:'Nunito',sans-serif;font-size:13px;font-weight:900;
+  background:rgba(108,92,231,0.1);color:var(--primary);flex-shrink:0;
+}
+.choice-btn.ok{border-color:var(--ok);background:rgba(0,184,148,0.06);}
+.choice-btn.ok .cletter{background:var(--ok);color:#fff;}
+.choice-btn.err{border-color:var(--err);background:rgba(225,112,85,0.06);}
+.choice-btn.err .cletter{background:var(--err);color:#fff;}
+
+.explanation{
+  margin-top:14px;padding:14px 16px;border-radius:12px;
+  font-size:13px;line-height:1.6;display:none;
+}
+.explanation.show{display:block;}
+.exp-ok{background:rgba(0,184,148,0.08);border-left:3px solid var(--ok);}
+.exp-err{background:rgba(225,112,85,0.08);border-left:3px solid var(--err);}
+.exp-es{display:block;margin-top:6px;color:var(--primary);font-weight:700;}
+.exp-tr{display:block;margin-top:2px;color:var(--muted);}
+.exp-en{display:block;margin-top:2px;color:var(--accent2);font-style:italic;}
+
+.nav-row{display:flex;gap:8px;margin-top:18px;}
+.nav-btn{
+  padding:9px 18px;border-radius:10px;border:2px solid var(--border);
+  background:#fff;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;
+  color:var(--muted);cursor:pointer;transition:all .15s;
+}
+.nav-btn:hover:not(:disabled){border-color:var(--primary);color:var(--primary);}
+.nav-btn:disabled{opacity:.4;cursor:not-allowed;}
+.nav-btn.primary{
+  margin-left:auto;background:var(--primary);border-color:var(--primary);color:#fff;
+}
+.nav-btn.primary:hover{background:var(--primary-dark);border-color:var(--primary-dark);}
+
+/* RESULT */
+#result{display:none;}
+.result-card{
+  background:var(--surface);border-radius:var(--radius);
+  padding:32px 28px;box-shadow:var(--shadow);
+  text-align:center;border-top:5px solid var(--primary);
+  animation:fadeUp .5s ease;
+}
+.result-emoji{font-size:52px;margin-bottom:8px;}
+.result-badge{
+  display:inline-block;background:rgba(108,92,231,0.1);color:var(--primary);
+  font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;
+  padding:4px 12px;border-radius:20px;letter-spacing:1px;margin-bottom:12px;
+}
+.score-big{
+  font-family:'Nunito',sans-serif;font-size:64px;font-weight:900;
+  color:var(--primary);line-height:1;margin-bottom:4px;
+}
+.score-big span{font-size:28px;color:var(--primary-light);}
+.score-row{display:flex;justify-content:center;gap:24px;margin:16px 0 20px;}
+.score-item{text-align:center;}
+.score-item .val{font-family:'Nunito',sans-serif;font-size:28px;font-weight:900;}
+.score-item .lbl{font-size:12px;color:var(--muted);margin-top:2px;}
+.val.ok{color:var(--ok);}
+.val.err{color:var(--err);}
+
+.name-confirm-box{margin:20px 0 16px;}
+.name-confirm-box label{
+  font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;
+  color:var(--primary);display:flex;align-items:center;gap:6px;margin-bottom:8px;
+}
+.confirm-row{display:flex;flex-direction:column;gap:10px;}
+select#studentName{
+  flex:1;padding:11px 14px;border:2px solid var(--border);border-radius:10px;
+  font-size:14px;font-family:'Nunito Sans',sans-serif;color:var(--text);
+  background:#fff;outline:none;cursor:pointer;
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236c5ce7' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 10px center;
+}
+select#studentName:focus{border-color:var(--primary);}
+.confirm-btn{
+  padding:11px 20px;background:var(--primary);color:#fff;border:none;
+  border-radius:10px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;
+  cursor:pointer;transition:background .15s;white-space:nowrap;
+width:100%;}
+.confirm-btn:hover{background:var(--primary-dark);}
+.confirm-btn:disabled{opacity:.5;cursor:not-allowed;}
+#sendStatus{font-size:13px;color:var(--muted);margin-top:6px;min-height:18px;}
+.summary-card{
+  background:linear-gradient(135deg,rgba(108,92,231,0.07),rgba(162,155,254,0.05));
+  border:1px solid rgba(108,92,231,0.15);border-radius:12px;
+  padding:16px;margin-top:14px;text-align:left;display:none;
+}
+.summary-card p{font-size:13px;margin-bottom:4px;}
+.summary-card strong{color:var(--primary);}
+
+.submit-cta{
+  background:linear-gradient(135deg,rgba(253,121,168,0.1),rgba(253,203,110,0.1));
+  border:2px dashed rgba(253,121,168,0.4);border-radius:14px;
+  padding:16px;margin-bottom:16px;text-align:center;
+}
+.submit-hint{
+  font-family:'Nunito',sans-serif;font-size:15px;font-weight:900;
+  color:var(--accent);margin-bottom:4px;
+}
+.submit-hint2{font-size:12px;color:var(--muted);}
+.submit-big{
+  width:100%;padding:16px;font-size:17px!important;
+  background:linear-gradient(135deg,var(--accent),#e84393)!important;
+  border-color:transparent!important;
+  box-shadow:0 4px 20px rgba(253,121,168,0.4)!important;
+  letter-spacing:.3px;
+}
+.submit-big:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(253,121,168,0.5)!important;}
+.submit-big:disabled{background:var(--ok)!important;box-shadow:none!important;transform:none!important;}
+
+.tilde-warn{
+  background:linear-gradient(135deg,rgba(253,203,110,0.15),rgba(253,121,168,0.08));
+  border:2px solid rgba(253,203,110,0.5);border-radius:12px;
+  padding:12px 16px;margin-bottom:16px;font-size:13px;
+  color:var(--text);line-height:1.5;
+}
+.tilde-chars{
+  display:block;margin-top:6px;font-size:15px;font-weight:800;
+  color:var(--primary);letter-spacing:3px;font-family:'Nunito',sans-serif;
+}
+.multi-hint{
+  background:rgba(0,206,201,0.08);border-left:3px solid var(--accent2);
+  border-radius:8px;padding:8px 12px;margin-bottom:12px;
+  font-size:12px;color:var(--accent2);font-weight:700;
+}
+.fill-wrap{display:flex;gap:8px;margin-bottom:4px;flex-wrap:wrap;}
+.fill-input{
+  flex:1;min-width:200px;padding:12px 16px;border:2px solid var(--border);
+  border-radius:12px;font-size:15px;font-family:'Nunito Sans',sans-serif;
+  color:var(--text);outline:none;transition:border .2s;
+}
+.fill-input:focus{border-color:var(--primary);}
+.fill-submit{
+  padding:12px 20px;background:var(--primary);color:#fff;border:none;
+  border-radius:12px;font-family:'Nunito',sans-serif;font-size:14px;
+  font-weight:800;cursor:pointer;white-space:nowrap;
+}
+.fill-submit:hover{background:var(--primary-dark);}
+.fill-submit:disabled{opacity:.5;cursor:not-allowed;}
+
+.intro-tilde-box{
+  background:linear-gradient(135deg,rgba(253,203,110,0.12),rgba(253,121,168,0.06));
+  border:2px dashed rgba(253,203,110,0.5);border-radius:12px;
+  padding:14px 16px;margin-bottom:20px;text-align:center;
+}
+.badge-fill{background:rgba(0,206,201,0.1);color:var(--accent2);}
+.result-actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;}
+.btn-review,.btn-retry{
+  flex:1;padding:12px;border-radius:12px;border:none;
+  font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;
+  transition:all .15s;
+}
+.btn-review{background:rgba(108,92,231,0.1);color:var(--primary);}
+.btn-review:hover{background:rgba(108,92,231,0.18);}
+.btn-retry{background:var(--primary);color:#fff;box-shadow:0 4px 12px rgba(108,92,231,0.3);}
+.btn-retry:hover{background:var(--primary-dark);}
+
+/* REVIEW */
+#reviewSection{display:none;margin-top:16px;}
+.review-item{
+  background:var(--surface);border-radius:12px;padding:16px 18px;
+  margin-bottom:10px;border-left:4px solid var(--err);
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+.review-item .ri-num{font-size:11px;color:var(--err);font-weight:800;letter-spacing:1px;margin-bottom:4px;}
+.review-item .ri-q{font-size:14px;font-weight:700;margin-bottom:8px;}
+.review-item .ri-wrong{font-size:13px;color:var(--err);}
+.review-item .ri-correct{font-size:13px;color:var(--ok);font-weight:700;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+.warn-box{background:#fff8e1;border:1px solid #ffcc02;border-radius:8px;padding:8px 12px;font-size:12px;color:#7a6000;margin-bottom:10px;text-align:center;font-family:'Nunito',sans-serif;}
+.finish-btn-sm{background:var(--primary);color:#fff;border:none;border-radius:8px;padding:6px 14px;font-size:12px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- INTRO -->
+<div id="intro">
+  <div class="brand-bar">
+    <div class="brand-dot"></div><div class="brand-dot"></div><div class="brand-dot"></div>
+    <span class="brand-name">@ispanyolcacim · Profe Hazel</span>
+  </div>
+  <div class="intro-badge">ÖDEV · A1.2</div>
+  <h1>Cosas Prohibidas en Mi Casa</h1>
+  <div class="intro-sub">Imperativo Negativo — tú / usted / ustedes</div>
+  <div class="intro-desc">100 soru &middot; Boşluk doldurma</div>
+  <div class="warn-box" style="margin-top:12px;">⚠️ Lütfen <strong>küçük harfle</strong> yazın! Tildelere dikkat: á, é, í, ó, ú, ñ</div>
+  <div class="chip-row">
+    <span class="chip">no + subjuntivo</span>
+    <span class="chip c2">tú / usted / ustedes</span>
+    <span class="chip c3">B1.1</span>
+  </div>
+  
+  <div class="intro-tilde-box">
+    <div style="font-family:'Nunito',sans-serif;font-size:14px;font-weight:900;color:#e17055;margin-bottom:6px;">⚠️ Tildelere dikkat ediniz!</div>
+    <div style="font-size:13px;color:var(--muted);margin-bottom:8px;">Tilde koyması gereken yere koymazsanız cevabınız <strong>yanlış</strong> sayılır.</div>
+    <div style="font-size:16px;font-weight:800;color:var(--primary);letter-spacing:4px;font-family:'Nunito',sans-serif;">á · é · í · ó · ú · ñ · ü</div>
+    <div style="font-size:11px;color:var(--muted);margin-top:6px;">Yukarıdaki harfleri kopyalayabilirsiniz.</div>
+  </div>
+<div class="name-label">👤 Adınızı seçin</div>
+  <select id="introName" class="name-select">
+    <option value="">— Adınızı seçin —</option>
+    <option value="Gencay Agocuk">Gencay Agocuk</option>
+    <option value="Ufuk Aydın">Ufuk Aydın</option>
+    <option value="Pelinsu Damgacı">Pelinsu Damgacı</option>
+    <option value="Kübra Bulut">Kübra Bulut</option>
+    <option value="Ceylin Öz">Ceylin Öz</option>
+    <option value="Simge Güler">Simge Güler</option>
+    <option value="Esra Özçeşmeci">Esra Özçeşmeci</option>
+    <option value="Kayhan Açan">Kayhan Açan</option>
+    <option value="Nur O. Demirci">Nur O. Demirci</option>
+    <option value="Umre Gül">Umre Gül</option>
+    <option value="Nihan Karagedik">Nihan Karagedik</option>
+    <option value="Deneme Öğrencisi">Deneme Öğrencisi</option>
+  </select>
+  <button class="start-btn" onclick="startQuiz()">Teste Başla →</button>
+</div>
+
+<!-- QUIZ -->
+<div id="quiz">
+  <div class="top-bar">
+    <div class="prog-wrap"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+    <div class="prog-label" id="progLabel">1 / 100</div>
+    <div class="score-bar">
+      <span class="sc ok">✓ <span id="sCorrect">0</span></span>
+      <span class="sc err">✗ <span id="sWrong">0</span></span>
+    
+      <button class="finish-btn-sm" onclick="showResult()">Testi Bitir →</button>
+      </div>
+  </div>
+  <div id="qArea"></div>
+</div>
+
+<!-- RESULT -->
+<div id="result">
+  <div class="result-card">
+    <div class="result-emoji">🎉</div>
+    <div class="result-badge">ÖDEV · A1.2</div>
+    <div class="score-big" id="scoreBig">0<span>/100</span></div>
+    <div class="score-row">
+      <div class="score-item"><div class="val ok" id="rCorrect">0</div><div class="lbl">✓ Doğru</div></div>
+      <div class="score-item"><div class="val err" id="rWrong">0</div><div class="lbl">✗ Yanlış</div></div>
+      <div class="score-item"><div class="val" id="rPuan" style="color:var(--primary)">0</div><div class="lbl">Puan</div></div>
+    </div>
+
+    <div class="submit-cta" id="submitCta">
+      <p class="submit-hint">⚠️ Ödeviniz henüz teslim edilmedi!</p>
+      <p class="submit-hint2">Adınızı seçip butona tıklayana kadar ödev sisteme işlenmez.</p>
+    </div>
+    <div class="name-confirm-box">
+      <label>👤 Adınızı seçin</label>
+      <div class="confirm-row">
+        <select id="studentName">
+    <option value="">— Adınızı seçin —</option>
+    <option value="Gencay Agocuk">Gencay Agocuk</option>
+    <option value="Ufuk Aydın">Ufuk Aydın</option>
+    <option value="Pelinsu Damgacı">Pelinsu Damgacı</option>
+    <option value="Kübra Bulut">Kübra Bulut</option>
+    <option value="Ceylin Öz">Ceylin Öz</option>
+    <option value="Simge Güler">Simge Güler</option>
+    <option value="Esra Özçeşmeci">Esra Özçeşmeci</option>
+    <option value="Kayhan Açan">Kayhan Açan</option>
+    <option value="Nur O. Demirci">Nur O. Demirci</option>
+    <option value="Umre Gül">Umre Gül</option>
+    <option value="Nihan Karagedik">Nihan Karagedik</option>
+    <option value="Deneme Öğrencisi">Deneme Öğrencisi</option>
+  </select>
+        <button class="confirm-btn submit-big" id="confirmBtn" onclick="confirmName()">📬 ÖDEVİ TESLİM ET</button>
+      </div>
+      <div id="sendStatus"></div>
+    </div>
+
+    <div class="summary-card" id="summaryCard">
+      <p>👤 <strong id="summaryName"></strong></p>
+      <p>📚 <strong id="summaryOdev"></strong></p>
+      <p>🏆 Puan: <strong id="sumPuan"></strong>/100 &nbsp;·&nbsp; ✓ <strong id="sumDogru"></strong> &nbsp;·&nbsp; ✗ <strong id="sumYanlis"></strong></p>
+      <p style="color:var(--ok);font-weight:700;margin-top:6px;">✅ Ödeviniz teslim edildi!</p>
+    </div>
+
+    <div class="result-actions">
+      <button class="btn-review" onclick="toggleReview()">🔍 Hatalarımı gözden geçir</button>
+      <button class="btn-retry" onclick="retryQuiz()">🔄 Testi Tekrar Çöz</button>
+    </div>
+  </div>
+  <div id="reviewSection"></div>
+</div>
+
+</div><!-- /wrap -->
+
+<script>
+const SCRIPT_URL='https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
+const ODEV_ADI="H2 – 5-6.Ders";
+const GROUPS={
+  'Gencay Agocuk':'B1.1',
+  'Ufuk Aydın':'B1.1',
+  'Pelinsu Damgacı':'B1.1',
+  'Kübra Bulut':'B1.1',
+  'Ceylin Öz':'B1.1',
+  'Simge Güler':'B1.1',
+  'Esra Özçeşmeci':'B1.1',
+  'Kayhan Açan':'B1.1',
+  'Nur O. Demirci':'B1.1',
+  'Umre Gül':'B1.1',
+  'Nihan Karagedik':'B1.1',
+  'Deneme Öğrencisi':'B1.1'
+};
+
+const Q=[
+{t:"fill",q:"\u00a1No __________ los zapatos en la sala!\nPorque nosotros los dejamos en el zapatero para mantener la casa limpia.\n(dejar \u2014 t\u00fa)",a:["dejes"],exp:"dejar \u2192 negatif emir (subjuntivo): no dejes. | \ud83c\uddea\ud83c\uddf8 \u00a1No dejes los zapatos en la sala! | \ud83c\uddf9\ud83c\uddf7 Ayakkab\u0131lar\u0131n\u0131 salonda b\u0131rakma! | \ud83c\uddec\ud83c\udde7 Don't leave your shoes in the living room!",es:"\u00a1No dejes los zapatos en la sala!",tr:"Ayakkab\u0131lar\u0131n\u0131 salonda b\u0131rakma!",en:"Don't leave your shoes in the living room!"},
+{t:"fill",q:"\u00a1No __________ la luz encendida!\nPorque queremos ahorrar electricidad.\n(dejar \u2014 t\u00fa)",a:["dejes"],exp:"dejar \u2192 no dejes (subjuntivo). | \ud83c\uddea\ud83c\uddf8 \u00a1No dejes la luz encendida! | \ud83c\uddf9\ud83c\uddf7 I\u015f\u0131\u011f\u0131 a\u00e7\u0131k b\u0131rakma! | \ud83c\uddec\ud83c\udde7 Don't leave the light on!",es:"\u00a1No dejes la luz encendida!",tr:"I\u015f\u0131\u011f\u0131 a\u00e7\u0131k b\u0131rakma!",en:"Don't leave the light on!"},
+{t:"fill",q:"\u00a1No __________ la puerta abierta!\nPorque entra el fr\u00edo.\n(dejar \u2014 t\u00fa)",a:["dejes"],exp:"dejar \u2192 no dejes. | \ud83c\uddea\ud83c\uddf8 \u00a1No dejes la puerta abierta! | \ud83c\uddf9\ud83c\uddf7 Kap\u0131y\u0131 a\u00e7\u0131k b\u0131rakma! | \ud83c\uddec\ud83c\udde7 Don't leave the door open!",es:"\u00a1No dejes la puerta abierta!",tr:"Kap\u0131y\u0131 a\u00e7\u0131k b\u0131rakma!",en:"Don't leave the door open!"},
+{t:"fill",q:"\u00a1No __________ comida en tu habitaci\u00f3n!\nPorque atrae insectos.\n(dejar \u2014 t\u00fa)",a:["dejes"],exp:"dejar \u2192 no dejes. | \ud83c\uddea\ud83c\uddf8 \u00a1No dejes comida en tu habitaci\u00f3n! | \ud83c\uddf9\ud83c\uddf7 Odanda yemek b\u0131rakma! | \ud83c\uddec\ud83c\udde7 Don't leave food in your room!",es:"\u00a1No dejes comida en tu habitaci\u00f3n!",tr:"Odanda yemek b\u0131rakma!",en:"Don't leave food in your room!"},
+{t:"fill",q:"\u00a1No __________ en el sof\u00e1 con ropa sucia!\nPorque el sof\u00e1 se ensucia.\n(sentarse \u2014 t\u00fa)",a:["te sientes"],exp:"sentarse \u2192 d\u00f6n\u00fc\u015fl\u00fc fiil, no te sientes. | \ud83c\uddea\ud83c\uddf8 \u00a1No te sientes en el sof\u00e1 con ropa sucia! | \ud83c\uddf9\ud83c\uddf7 Kirli k\u0131yafetle kanepeye oturma! | \ud83c\uddec\ud83c\udde7 Don't sit on the sofa with dirty clothes!",es:"\u00a1No te sientes en el sof\u00e1 con ropa sucia!",tr:"Kirli k\u0131yafetle kanepeye oturma!",en:"Don't sit on the sofa with dirty clothes!"},
+{t:"fill",q:"\u00a1No __________ la televisi\u00f3n muy alta!\nPorque los vecinos se molestan.\n(poner \u2014 t\u00fa)",a:["pongas"],exp:"poner \u2192 no pongas (subjuntivo, yo pongo \u2192 pong+as). | \ud83c\uddea\ud83c\uddf8 \u00a1No pongas la televisi\u00f3n muy alta! | \ud83c\uddf9\ud83c\uddf7 Televizyonu \u00e7ok a\u00e7ma! | \ud83c\uddec\ud83c\udde7 Don't put the TV too loud!",es:"\u00a1No pongas la televisi\u00f3n muy alta!",tr:"Televizyonu \u00e7ok a\u00e7ma!",en:"Don't put the TV too loud!"},
+{t:"fill",q:"\u00a1No __________ tarde por la noche!\nPorque todos est\u00e1n durmiendo.\n(hacer ruido \u2014 t\u00fa)",a:["hagas ruido"],exp:"hacer \u2192 no hagas (subjuntivo, yo hago \u2192 hag+as). Tam ifade: hagas ruido. | \ud83c\uddea\ud83c\uddf8 \u00a1No hagas ruido tarde por la noche! | \ud83c\uddf9\ud83c\uddf7 Gece ge\u00e7 saatte g\u00fcr\u00fclt\u00fc yapma! | \ud83c\uddec\ud83c\udde7 Don't make noise late at night!",es:"\u00a1No hagas ruido tarde por la noche!",tr:"Gece ge\u00e7 saatte g\u00fcr\u00fclt\u00fc yapma!",en:"Don't make noise late at night!"},
+{t:"fill",q:"\u00a1No __________ los platos sucios en la mesa!\nPorque la cocina debe estar limpia.\n(dejar \u2014 t\u00fa)",a:["dejes"],exp:"dejar \u2192 no dejes. | \ud83c\uddea\ud83c\uddf8 \u00a1No dejes los platos sucios en la mesa! | \ud83c\uddf9\ud83c\uddf7 Kirli tabaklar\u0131 masada b\u0131rakma! | \ud83c\uddec\ud83c\udde7 Don't leave dirty dishes on the table!",es:"\u00a1No dejes los platos sucios en la mesa!",tr:"Kirli tabaklar\u0131 masada b\u0131rakma!",en:"Don't leave dirty dishes on the table!"},
+{t:"fill",q:"\u00a1No __________ la basura en el suelo!\nPorque es antihigi\u00e9nico.\n(tirar \u2014 t\u00fa)",a:["tires"],exp:"tirar \u2192 no tires (subjuntivo). | \ud83c\uddea\ud83c\uddf8 \u00a1No tires la basura en el suelo! | \ud83c\uddf9\ud83c\uddf7 \u00c7\u00f6p\u00fc yere atma! | \ud83c\uddec\ud83c\udde7 Don't throw trash on the floor!",es:"\u00a1No tires la basura en el suelo!",tr:"\u00c7\u00f6p\u00fc yere atma!",en:"Don't throw trash on the floor!"},
+{t:"fill",q:"\u00a1No __________ la nevera abierta!\nPorque se pierde el fr\u00edo.\n(dejar \u2014 t\u00fa)",a:["dejes"],exp:"dejar \u2192 no dejes. | \ud83c\uddea\ud83c\uddf8 \u00a1No dejes la nevera abierta! | \ud83c\uddf9\ud83c\uddf7 Buzdolab\u0131n\u0131 a\u00e7\u0131k b\u0131rakma! | \ud83c\uddec\ud83c\udde7 Don't leave the fridge open!",es:"\u00a1No dejes la nevera abierta!",tr:"Buzdolab\u0131n\u0131 a\u00e7\u0131k b\u0131rakma!",en:"Don't leave the fridge open!"},
+{t:"fill",q:"\u00a1No __________ sin lavar las manos!\nPorque es importante la higiene.\n(comer \u2014 t\u00fa)",a:["comas"],exp:"comer \u2192 no comas (subjuntivo, yo como \u2192 com+as). | \ud83c\uddea\ud83c\uddf8 \u00a1No comas sin lavar las manos! | \ud83c\uddf9\ud83c\uddf7 Ellerini y\u0131kamadan yeme! | \ud83c\uddec\ud83c\udde7 Don't eat without washing your hands!",es:"\u00a1No comas sin lavar las manos!",tr:"Ellerini y\u0131kamadan yeme!",en:"Don't eat without washing your hands!"},
+{t:"fill",q:"\u00a1No __________ en la cama con zapatos!\nPorque ensucias las s\u00e1banas.\n(subirse \u2014 t\u00fa)",a:["te subas"],exp:"subirse \u2192 d\u00f6n\u00fc\u015fl\u00fc fiil, no te subas. | \ud83c\uddea\ud83c\uddf8 \u00a1No te subas en la cama con zapatos! | \ud83c\uddf9\ud83c\uddf7 Ayakkab\u0131yla yata\u011fa \u00e7\u0131kma! | \ud83c\uddec\ud83c\udde7 Don't get on the bed with shoes!",es:"\u00a1No te subas en la cama con zapatos!",tr:"Ayakkab\u0131yla yata\u011fa \u00e7\u0131kma!",en:"Don't get on the bed with shoes!"},
+{t:"fill",q:"\u00a1No __________ la m\u00fasica tan fuerte!\nPorque los dem\u00e1s quieren descansar.\n(escuchar \u2014 t\u00fa)",a:["escuches"],exp:"escuchar \u2192 no escuches (subjuntivo). | \ud83c\uddea\ud83c\uddf8 \u00a1No escuches la m\u00fasica tan fuerte! | \ud83c\uddf9\ud83c\uddf7 M\u00fczi\u011fi \u00e7ok y\u00fcksek dinleme! | \ud83c\uddec\ud83c\udde7 Don't listen to music so loud!",es:"\u00a1No escuches la m\u00fasica tan fuerte!",tr:"M\u00fczi\u011fi \u00e7ok y\u00fcksek dinleme!",en:"Don't listen to music so loud!"},
+{t:"fill",q:"\u00a1No __________ el ba\u00f1o mojado!\nPorque alguien puede caerse.\n(dejar \u2014 t\u00fa)",a:["dejes"],exp:"dejar \u2192 no dejes. | \ud83c\uddea\ud83c\uddf8 \u00a1No dejes el ba\u00f1o mojado! | \ud83c\uddf9\ud83c\uddf7 Banyoyu \u0131slak b\u0131rakma! | \ud83c\uddec\ud83c\udde7 Don't leave the bathroom wet!",es:"\u00a1No dejes el ba\u00f1o mojado!",tr:"Banyoyu \u0131slak b\u0131rakma!",en:"Don't leave the bathroom wet!"},
+{t:"fill",q:"\u00a1No __________ la puerta con fuerza!\nPorque hace mucho ruido.\n(cerrar \u2014 t\u00fa)",a:["cierres"],exp:"cerrar \u2192 no cierres (e\u2192ie d\u00fczensiz, subjuntivo: cierr+es). | \ud83c\uddea\ud83c\uddf8 \u00a1No cierres la puerta con fuerza! | \ud83c\uddf9\ud83c\uddf7 Kap\u0131y\u0131 sert kapatma! | \ud83c\uddec\ud83c\udde7 Don't close the door hard!",es:"\u00a1No cierres la puerta con fuerza!",tr:"Kap\u0131y\u0131 sert kapatma!",en:"Don't close the door hard!"},
+{t:"fill",q:"\u00a1No __________ el m\u00f3vil en la mesa durante la comida!\nPorque queremos hablar juntos.\n(usar \u2014 t\u00fa)",a:["uses"],exp:"usar \u2192 no uses (subjuntivo). | \ud83c\uddea\ud83c\uddf8 \u00a1No uses el m\u00f3vil en la mesa durante la comida! | \ud83c\uddf9\ud83c\uddf7 Masada telefon kullanma! | \ud83c\uddec\ud83c\udde7 Don't use the phone at the table!",es:"\u00a1No uses el m\u00f3vil en la mesa durante la comida!",tr:"Masada telefon kullanma!",en:"Don't use the phone at the table!"},
+{t:"fill",q:"\u00a1No __________ tarde a casa sin avisar!\nPorque nos preocupamos.\n(llegar \u2014 t\u00fa)",a:["llegues"],exp:"llegar \u2192 no llegues (g\u2192gu yaz\u0131m kural\u0131, subjuntivo). | \ud83c\uddea\ud83c\uddf8 \u00a1No llegues tarde a casa sin avisar! | \ud83c\uddf9\ud83c\uddf7 Haber vermeden eve ge\u00e7 gelme! | \ud83c\uddec\ud83c\udde7 Don't come home late without letting us know!",es:"\u00a1No llegues tarde a casa sin avisar!",tr:"Haber vermeden eve ge\u00e7 gelme!",en:"Don't come home late without letting us know!"},
+{t:"fill",q:"\u00a1No __________ la ropa en el suelo!\nPorque debe ir al cesto.\n(dejar \u2014 t\u00fa)",a:["dejes"],exp:"dejar \u2192 no dejes. | \ud83c\uddea\ud83c\uddf8 \u00a1No dejes la ropa en el suelo! | \ud83c\uddf9\ud83c\uddf7 K\u0131yafetleri yerde b\u0131rakma! | \ud83c\uddec\ud83c\udde7 Don't leave clothes on the floor!",es:"\u00a1No dejes la ropa en el suelo!",tr:"K\u0131yafetleri yerde b\u0131rakma!",en:"Don't leave clothes on the floor!"},
+{t:"fill",q:"\u00a1No __________ en la cocina sin permiso!\nPorque puede ser peligroso.\n(cocinar \u2014 t\u00fa)",a:["cocines"],exp:"cocinar \u2192 no cocines (subjuntivo). | \ud83c\uddea\ud83c\uddf8 \u00a1No cocines en la cocina sin permiso! | \ud83c\uddf9\ud83c\uddf7 \u0130zinsiz yemek yapma! | \ud83c\uddec\ud83c\udde7 Don't cook without permission!",es:"\u00a1No cocines en la cocina sin permiso!",tr:"\u0130zinsiz yemek yapma!",en:"Don't cook without permission!"},
+{t:"fill",q:"\u00a1No __________ el ordenador encendido toda la noche!\nPorque gasta energ\u00eda.\n(dejar \u2014 t\u00fa)",a:["dejes"],exp:"dejar \u2192 no dejes. | \ud83c\uddea\ud83c\uddf8 \u00a1No dejes el ordenador encendido toda la noche! | \ud83c\uddf9\ud83c\uddf7 Bilgisayar\u0131 gece boyunca a\u00e7\u0131k b\u0131rakma! | \ud83c\uddec\ud83c\udde7 Don't leave the computer on all night!",es:"\u00a1No dejes el ordenador encendido toda la noche!",tr:"Bilgisayar\u0131 gece boyunca a\u00e7\u0131k b\u0131rakma!",en:"Don't leave the computer on all night!"},
+{t:"fill",q:"\u00a1No __________ el agua correr sin usarla!\nPorque es un desperdicio.\n(dejar \u2014 t\u00fa)",a:["dejes"],exp:"dejar \u2192 no dejes. | \ud83c\uddea\ud83c\uddf8 \u00a1No dejes el agua correr sin usarla! | \ud83c\uddf9\ud83c\uddf7 Suyu kullanmadan a\u00e7\u0131k b\u0131rakma! | \ud83c\uddec\ud83c\udde7 Don't let water run without using it!",es:"\u00a1No dejes el agua correr sin usarla!",tr:"Suyu kullanmadan a\u00e7\u0131k b\u0131rakma!",en:"Don't let water run without using it!"},
+{t:"fill",q:"\u00a1No __________ en la ducha demasiado tiempo!\nPorque gastas agua.\n(estar \u2014 t\u00fa)",a:["est\u00e9s"],exp:"estar \u2192 no est\u00e9s (subjuntivo d\u00fczensiz). | \ud83c\uddea\ud83c\uddf8 \u00a1No est\u00e9s en la ducha demasiado tiempo! | \ud83c\uddf9\ud83c\uddf7 Du\u015fta \u00e7ok uzun kalma! | \ud83c\uddec\ud83c\udde7 Don't stay in the shower too long!",es:"\u00a1No est\u00e9s en la ducha demasiado tiempo!",tr:"Du\u015fta \u00e7ok uzun kalma!",en:"Don't stay in the shower too long!"},
+{t:"fill",q:"\u00a1No __________ en casa con zapatos sucios!\nPorque ensucias el suelo.\n(caminar \u2014 t\u00fa)",a:["camines"],exp:"caminar \u2192 no camines (subjuntivo). | \ud83c\uddea\ud83c\uddf8 \u00a1No camines en casa con zapatos sucios! | \ud83c\uddf9\ud83c\uddf7 Kirli ayakkab\u0131yla evde y\u00fcr\u00fcme! | \ud83c\uddec\ud83c\udde7 Don't walk in the house with dirty shoes!",es:"\u00a1No camines en casa con zapatos sucios!",tr:"Kirli ayakkab\u0131yla evde y\u00fcr\u00fcme!",en:"Don't walk in the house with dirty shoes!"},
+{t:"fill",q:"\u00a1No __________ las ventanas abiertas cuando llueve!\nPorque entra agua.\n(dejar \u2014 t\u00fa)",a:["dejes"],exp:"dejar \u2192 no dejes. | \ud83c\uddea\ud83c\uddf8 \u00a1No dejes las ventanas abiertas cuando llueve! | \ud83c\uddf9\ud83c\uddf7 Ya\u011fmurda pencereleri a\u00e7\u0131k b\u0131rakma! | \ud83c\uddec\ud83c\udde7 Don't leave windows open when it rains!",es:"\u00a1No dejes las ventanas abiertas cuando llueve!",tr:"Ya\u011fmurda pencereleri a\u00e7\u0131k b\u0131rakma!",en:"Don't leave windows open when it rains!"},
+{t:"fill",q:"\u00a1No __________ comida en el sof\u00e1!\nPorque se ensucia.\n(comer \u2014 t\u00fa)",a:["comas"],exp:"comer \u2192 no comas. | \ud83c\uddea\ud83c\uddf8 \u00a1No comas comida en el sof\u00e1! | \ud83c\uddf9\ud83c\uddf7 Kanepede yemek yeme! | \ud83c\uddec\ud83c\udde7 Don't eat on the sofa!",es:"\u00a1No comas comida en el sof\u00e1!",tr:"Kanepede yemek yeme!",en:"Don't eat on the sofa!"},
+{t:"fill",q:"\u00a1No __________ los libros en cualquier lugar!\nPorque se pierden.\n(dejar \u2014 t\u00fa)",a:["dejes"],exp:"dejar \u2192 no dejes. | \ud83c\uddea\ud83c\uddf8 \u00a1No dejes los libros en cualquier lugar! | \ud83c\uddf9\ud83c\uddf7 Kitaplar\u0131 rastgele yerlere b\u0131rakma! | \ud83c\uddec\ud83c\udde7 Don't leave books just anywhere!",es:"\u00a1No dejes los libros en cualquier lugar!",tr:"Kitaplar\u0131 rastgele yerlere b\u0131rakma!",en:"Don't leave books just anywhere!"},
+{t:"fill",q:"\u00a1No __________ en la mesa de trabajo!\nPorque no es un lugar para eso.\n(comer \u2014 t\u00fa)",a:["comas"],exp:"comer \u2192 no comas. | \ud83c\uddea\ud83c\uddf8 \u00a1No comas en la mesa de trabajo! | \ud83c\uddf9\ud83c\uddf7 \u00c7al\u0131\u015fma masas\u0131nda yeme! | \ud83c\uddec\ud83c\udde7 Don't eat at the work desk!",es:"\u00a1No comas en la mesa de trabajo!",tr:"\u00c7al\u0131\u015fma masas\u0131nda yeme!",en:"Don't eat at the work desk!"},
+{t:"fill",q:"\u00a1No __________ el ba\u00f1o ocupado mucho tiempo!\nPorque otros lo necesitan.\n(dejar \u2014 t\u00fa)",a:["dejes"],exp:"dejar \u2192 no dejes. | \ud83c\uddea\ud83c\uddf8 \u00a1No dejes el ba\u00f1o ocupado mucho tiempo! | \ud83c\uddf9\ud83c\uddf7 Banyoyu uzun s\u00fcre me\u015fgul etme! | \ud83c\uddec\ud83c\udde7 Don't leave the bathroom occupied for too long!",es:"\u00a1No dejes el ba\u00f1o ocupado mucho tiempo!",tr:"Banyoyu uzun s\u00fcre me\u015fgul etme!",en:"Don't leave the bathroom occupied for too long!"},
+{t:"fill",q:"\u00a1No __________ la puerta sin cerrar!\nPorque es peligroso.\n(dejar \u2014 t\u00fa)",a:["dejes"],exp:"dejar \u2192 no dejes. | \ud83c\uddea\ud83c\uddf8 \u00a1No dejes la puerta sin cerrar! | \ud83c\uddf9\ud83c\uddf7 Kap\u0131y\u0131 a\u00e7\u0131k b\u0131rakma! | \ud83c\uddec\ud83c\udde7 Don't leave the door unlocked!",es:"\u00a1No dejes la puerta sin cerrar!",tr:"Kap\u0131y\u0131 a\u00e7\u0131k b\u0131rakma!",en:"Don't leave the door unlocked!"},
+{t:"fill",q:"\u00a1No __________ con las manos sucias!\nPorque ensucias todo.\n(tocar \u2014 t\u00fa)",a:["toques"],exp:"tocar \u2192 no toques (c\u2192qu yaz\u0131m kural\u0131, subjuntivo). | \ud83c\uddea\ud83c\uddf8 \u00a1No toques con las manos sucias! | \ud83c\uddf9\ud83c\uddf7 Kirli ellerle dokunma! | \ud83c\uddec\ud83c\udde7 Don't touch things with dirty hands!",es:"\u00a1No toques con las manos sucias!",tr:"Kirli ellerle dokunma!",en:"Don't touch things with dirty hands!"},
+{t:"fill",q:"\u00a1No __________ la mesa sin limpiarla!\nPorque despu\u00e9s es m\u00e1s dif\u00edcil quitar la suciedad.\n(dejar \u2014 t\u00fa)",a:["dejes"],exp:"dejar \u2192 no dejes. | \ud83c\uddea\ud83c\uddf8 \u00a1No dejes la mesa sin limpiarla! | \ud83c\uddf9\ud83c\uddf7 Masay\u0131 temizlemeden b\u0131rakma! | \ud83c\uddec\ud83c\udde7 Don't leave the table without cleaning it!",es:"\u00a1No dejes la mesa sin limpiarla!",tr:"Masay\u0131 temizlemeden b\u0131rakma!",en:"Don't leave the table without cleaning it!"},
+{t:"fill",q:"\u00a1No __________ con la puerta del ba\u00f1o abierta!\nPorque no es c\u00f3modo para los dem\u00e1s.\n(ducharse \u2014 t\u00fa)",a:["te duches"],exp:"ducharse \u2192 d\u00f6n\u00fc\u015fl\u00fc fiil, no te duches. | \ud83c\uddea\ud83c\uddf8 \u00a1No te duches con la puerta del ba\u00f1o abierta! | \ud83c\uddf9\ud83c\uddf7 Kap\u0131 a\u00e7\u0131k du\u015f alma! | \ud83c\uddec\ud83c\udde7 Don't shower with the bathroom door open!",es:"\u00a1No te duches con la puerta del ba\u00f1o abierta!",tr:"Kap\u0131 a\u00e7\u0131k du\u015f alma!",en:"Don't shower with the bathroom door open!"},
+{t:"fill",q:"\u00a1No __________ los armarios abiertos!\nPorque la casa se ve desordenada.\n(dejar \u2014 t\u00fa)",a:["dejes"],exp:"dejar \u2192 no dejes. | \ud83c\uddea\ud83c\uddf8 \u00a1No dejes los armarios abiertos! | \ud83c\uddf9\ud83c\uddf7 Dolaplar\u0131 a\u00e7\u0131k b\u0131rakma! | \ud83c\uddec\ud83c\udde7 Don't leave the cupboards open!",es:"\u00a1No dejes los armarios abiertos!",tr:"Dolaplar\u0131 a\u00e7\u0131k b\u0131rakma!",en:"Don't leave the cupboards open!"},
+{t:"fill",q:"\u00a1No __________ la comida en la nevera sin taparla!\nPorque se estropea m\u00e1s r\u00e1pido.\n(guardar \u2014 t\u00fa)",a:["guardes"],exp:"guardar \u2192 no guardes (subjuntivo). | \ud83c\uddea\ud83c\uddf8 \u00a1No guardes la comida en la nevera sin taparla! | \ud83c\uddf9\ud83c\uddf7 Yeme\u011fi kapatmadan buzdolab\u0131na koyma! | \ud83c\uddec\ud83c\udde7 Don't store food in the fridge uncovered!",es:"\u00a1No guardes la comida en la nevera sin taparla!",tr:"Yeme\u011fi kapatmadan buzdolab\u0131na koyma!",en:"Don't store food in the fridge uncovered!"},
+{t:"fill",q:"\u00a1No __________ las manos en la ropa limpia!\nPorque se ensucia.\n(secarse \u2014 t\u00fa)",a:["te seques"],exp:"secarse \u2192 d\u00f6n\u00fc\u015fl\u00fc fiil, no te seques. | \ud83c\uddea\ud83c\uddf8 \u00a1No te seques las manos en la ropa limpia! | \ud83c\uddf9\ud83c\uddf7 Ellerini temiz k\u0131yafete silme! | \ud83c\uddec\ud83c\udde7 Don't dry your hands on clean clothes!",es:"\u00a1No te seques las manos en la ropa limpia!",tr:"Ellerini temiz k\u0131yafete silme!",en:"Don't dry your hands on clean clothes!"},
+{t:"fill",q:"\u00a1No __________ en la cocina con prisa!\nPorque puedes romper algo.\n(cocinar \u2014 t\u00fa)",a:["cocines"],exp:"cocinar \u2192 no cocines. | \ud83c\uddea\ud83c\uddf8 \u00a1No cocines en la cocina con prisa! | \ud83c\uddf9\ud83c\uddf7 Aceleyle yemek yapma! | \ud83c\uddec\ud83c\udde7 Don't cook in a hurry!",es:"\u00a1No cocines en la cocina con prisa!",tr:"Aceleyle yemek yapma!",en:"Don't cook in a hurry!"},
+{t:"fill",q:"\u00a1No __________ el ordenador con las manos mojadas!\nPorque es peligroso.\n(tocar \u2014 t\u00fa)",a:["toques"],exp:"tocar \u2192 no toques. | \ud83c\uddea\ud83c\uddf8 \u00a1No toques el ordenador con las manos mojadas! | \ud83c\uddf9\ud83c\uddf7 Islak ellerle bilgisayara dokunma! | \ud83c\uddec\ud83c\udde7 Don't touch the computer with wet hands!",es:"\u00a1No toques el ordenador con las manos mojadas!",tr:"Islak ellerle bilgisayara dokunma!",en:"Don't touch the computer with wet hands!"},
+{t:"fill",q:"\u00a1No __________ en el suelo de la cocina!\nPorque puedes resbalar.\n(correr \u2014 t\u00fa)",a:["corras"],exp:"correr \u2192 no corras (subjuntivo). | \ud83c\uddea\ud83c\uddf8 \u00a1No corras en el suelo de la cocina! | \ud83c\uddf9\ud83c\uddf7 Mutfakta ko\u015fma! | \ud83c\uddec\ud83c\udde7 Don't run on the kitchen floor!",es:"\u00a1No corras en el suelo de la cocina!",tr:"Mutfakta ko\u015fma!",en:"Don't run on the kitchen floor!"},
+{t:"fill",q:"\u00a1No __________ la televisi\u00f3n mientras comemos!\nPorque queremos hablar en familia.\n(encender \u2014 t\u00fa)",a:["enciendas"],exp:"encender \u2192 no enciendas (e\u2192ie d\u00fczensiz, subjuntivo: enciend+as). | \ud83c\uddea\ud83c\uddf8 \u00a1No enciendas la televisi\u00f3n mientras comemos! | \ud83c\uddf9\ud83c\uddf7 Yemek yerken televizyonu a\u00e7ma! | \ud83c\uddec\ud83c\udde7 Don't turn on the TV while we're eating!",es:"\u00a1No enciendas la televisi\u00f3n mientras comemos!",tr:"Yemek yerken televizyonu a\u00e7ma!",en:"Don't turn on the TV while we're eating!"},
+{t:"fill",q:"\u00a1No __________ la ducha abierta sin usarla!\nPorque desperdicias agua.\n(dejar \u2014 t\u00fa)",a:["dejes"],exp:"dejar \u2192 no dejes. | \ud83c\uddea\ud83c\uddf8 \u00a1No dejes la ducha abierta sin usarla! | \ud83c\uddf9\ud83c\uddf7 Du\u015fu a\u00e7\u0131k b\u0131rakma! | \ud83c\uddec\ud83c\udde7 Don't leave the shower on without using it!",es:"\u00a1No dejes la ducha abierta sin usarla!",tr:"Du\u015fu a\u00e7\u0131k b\u0131rakma!",en:"Don't leave the shower on without using it!"},
+{t:"fill",q:"\u00a1No __________ el frigor\u00edfico cada cinco minutos!\nPorque pierde fr\u00edo.\n(abrir \u2014 t\u00fa)",a:["abras"],exp:"abrir \u2192 no abras (subjuntivo). | \ud83c\uddea\ud83c\uddf8 \u00a1No abras el frigor\u00edfico cada cinco minutos! | \ud83c\uddf9\ud83c\uddf7 Buzdolab\u0131n\u0131 her be\u015f dakikada a\u00e7ma! | \ud83c\uddec\ud83c\udde7 Don't open the fridge every five minutes!",es:"\u00a1No abras el frigor\u00edfico cada cinco minutos!",tr:"Buzdolab\u0131n\u0131 her be\u015f dakikada a\u00e7ma!",en:"Don't open the fridge every five minutes!"},
+{t:"fill",q:"\u00a1No __________ la ropa mojada dentro de la lavadora!\nPorque huele mal.\n(dejar \u2014 t\u00fa)",a:["dejes"],exp:"dejar \u2192 no dejes. | \ud83c\uddea\ud83c\uddf8 \u00a1No dejes la ropa mojada dentro de la lavadora! | \ud83c\uddf9\ud83c\uddf7 Islak \u00e7ama\u015f\u0131r\u0131 makinede b\u0131rakma! | \ud83c\uddec\ud83c\udde7 Don't leave wet clothes inside the washing machine!",es:"\u00a1No dejes la ropa mojada dentro de la lavadora!",tr:"Islak \u00e7ama\u015f\u0131r\u0131 makinede b\u0131rakma!",en:"Don't leave wet clothes inside the washing machine!"},
+{t:"fill",q:"\u00a1No __________ las luces de toda la casa!\nPorque gastas energ\u00eda.\n(encender \u2014 t\u00fa)",a:["enciendas"],exp:"encender \u2192 no enciendas. | \ud83c\uddea\ud83c\uddf8 \u00a1No enciendas las luces de toda la casa! | \ud83c\uddf9\ud83c\uddf7 T\u00fcm evin \u0131\u015f\u0131klar\u0131n\u0131 a\u00e7ma! | \ud83c\uddec\ud83c\udde7 Don't turn on all the lights in the house!",es:"\u00a1No enciendas las luces de toda la casa!",tr:"T\u00fcm evin \u0131\u015f\u0131klar\u0131n\u0131 a\u00e7ma!",en:"Don't turn on all the lights in the house!"},
+{t:"fill",q:"\u00a1No __________ sin avisar a d\u00f3nde vas!\nPorque nos preocupamos.\n(salir \u2014 t\u00fa)",a:["salgas"],exp:"salir \u2192 no salgas (yo salgo \u2192 salg+as, subjuntivo). | \ud83c\uddea\ud83c\uddf8 \u00a1No salgas sin avisar a d\u00f3nde vas! | \ud83c\uddf9\ud83c\uddf7 Haber vermeden \u00e7\u0131kma! | \ud83c\uddec\ud83c\udde7 Don't go out without letting us know where you're going!",es:"\u00a1No salgas sin avisar a d\u00f3nde vas!",tr:"Haber vermeden \u00e7\u0131kma!",en:"Don't go out without letting us know where you're going!"},
+{t:"fill",q:"\u00a1No __________ la cama sin hacerla!\nPorque la habitaci\u00f3n se ve desordenada.\n(dejar \u2014 t\u00fa)",a:["dejes"],exp:"dejar \u2192 no dejes. | \ud83c\uddea\ud83c\uddf8 \u00a1No dejes la cama sin hacerla! | \ud83c\uddf9\ud83c\uddf7 Yata\u011f\u0131 toplamadan b\u0131rakma! | \ud83c\uddec\ud83c\udde7 Don't leave the bed unmade!",es:"\u00a1No dejes la cama sin hacerla!",tr:"Yata\u011f\u0131 toplamadan b\u0131rakma!",en:"Don't leave the bed unmade!"},
+{t:"fill",q:"\u00a1No __________ el tel\u00e9fono durante la comida!\nPorque es una falta de respeto.\n(mirar \u2014 t\u00fa)",a:["mires"],exp:"mirar \u2192 no mires (subjuntivo). | \ud83c\uddea\ud83c\uddf8 \u00a1No mires el tel\u00e9fono durante la comida! | \ud83c\uddf9\ud83c\uddf7 Yemek s\u0131ras\u0131nda telefona bakma! | \ud83c\uddec\ud83c\udde7 Don't look at your phone during meals!",es:"\u00a1No mires el tel\u00e9fono durante la comida!",tr:"Yemek s\u0131ras\u0131nda telefona bakma!",en:"Don't look at your phone during meals!"},
+{t:"fill",q:"\u00a1No __________ en el sof\u00e1 despu\u00e9s de comer con las manos sucias!\nPorque ensucias todo.\n(sentarse \u2014 t\u00fa)",a:["te sientes"],exp:"sentarse \u2192 d\u00f6n\u00fc\u015fl\u00fc, no te sientes. | \ud83c\uddea\ud83c\uddf8 \u00a1No te sientes en el sof\u00e1 con las manos sucias! | \ud83c\uddf9\ud83c\uddf7 Kirli ellerle kanepeye oturma! | \ud83c\uddec\ud83c\udde7 Don't sit on the sofa with dirty hands!",es:"\u00a1No te sientes en el sof\u00e1 con las manos sucias!",tr:"Kirli ellerle kanepeye oturma!",en:"Don't sit on the sofa with dirty hands!"},
+{t:"fill",q:"\u00a1No __________ los cajones abiertos!\nPorque puedes tropezar.\n(dejar \u2014 t\u00fa)",a:["dejes"],exp:"dejar \u2192 no dejes. | \ud83c\uddea\ud83c\uddf8 \u00a1No dejes los cajones abiertos! | \ud83c\uddf9\ud83c\uddf7 \u00c7ekmeceleri a\u00e7\u0131k b\u0131rakma! | \ud83c\uddec\ud83c\udde7 Don't leave the drawers open!",es:"\u00a1No dejes los cajones abiertos!",tr:"\u00c7ekmeceleri a\u00e7\u0131k b\u0131rakma!",en:"Don't leave the drawers open!"},
+{t:"fill",q:"\u00a1No __________ los libros sin cuidado!\nPorque se rompen.\n(dejar \u2014 t\u00fa)",a:["dejes"],exp:"dejar \u2192 no dejes. | \ud83c\uddea\ud83c\uddf8 \u00a1No dejes los libros sin cuidado! | \ud83c\uddf9\ud83c\uddf7 Kitaplar\u0131 dikkatsizce b\u0131rakma! | \ud83c\uddec\ud83c\udde7 Don't leave books carelessly!",es:"\u00a1No dejes los libros sin cuidado!",tr:"Kitaplar\u0131 dikkatsizce b\u0131rakma!",en:"Don't leave books carelessly!"},
+{t:"fill",q:"\u00a1No __________ en casa con zapatos mojados!\nPorque ensucias el suelo.\n(caminar \u2014 t\u00fa)",a:["camines"],exp:"caminar \u2192 no camines. | \ud83c\uddea\ud83c\uddf8 \u00a1No camines en casa con zapatos mojados! | \ud83c\uddf9\ud83c\uddf7 Islak ayakkab\u0131yla evde y\u00fcr\u00fcme! | \ud83c\uddec\ud83c\udde7 Don't walk in the house with wet shoes!",es:"\u00a1No camines en casa con zapatos mojados!",tr:"Islak ayakkab\u0131yla evde y\u00fcr\u00fcme!",en:"Don't walk in the house with wet shoes!"},
+{t:"fill",q:"\u00a1No __________ la basura dentro de la casa!\nPorque huele mal.\n(dejar \u2014 t\u00fa)",a:["dejes"],exp:"dejar \u2192 no dejes. | \ud83c\uddea\ud83c\uddf8 \u00a1No dejes la basura dentro de la casa! | \ud83c\uddf9\ud83c\uddf7 \u00c7\u00f6p\u00fc evin i\u00e7inde b\u0131rakma! | \ud83c\uddec\ud83c\udde7 Don't leave trash inside the house!",es:"\u00a1No dejes la basura dentro de la casa!",tr:"\u00c7\u00f6p\u00fc evin i\u00e7inde b\u0131rakma!",en:"Don't leave trash inside the house!"},
+{t:"fill",q:"\u00a1No __________ en el pasillo!\nPorque es un espacio peque\u00f1o.\n(correr \u2014 t\u00fa)",a:["corras"],exp:"correr \u2192 no corras. | \ud83c\uddea\ud83c\uddf8 \u00a1No corras en el pasillo! | \ud83c\uddf9\ud83c\uddf7 Koridorda ko\u015fma! | \ud83c\uddec\ud83c\udde7 Don't run in the hallway!",es:"\u00a1No corras en el pasillo!",tr:"Koridorda ko\u015fma!",en:"Don't run in the hallway!"},
+{t:"fill",q:"\u00a1No __________ los platos sin enjuagar!\nPorque luego es m\u00e1s dif\u00edcil limpiarlos.\n(dejar \u2014 t\u00fa)",a:["dejes"],exp:"dejar \u2192 no dejes. | \ud83c\uddea\ud83c\uddf8 \u00a1No dejes los platos sin enjuagar! | \ud83c\uddf9\ud83c\uddf7 Tabaklar\u0131 durulamadan b\u0131rakma! | \ud83c\uddec\ud83c\udde7 Don't leave the dishes without rinsing them!",es:"\u00a1No dejes los platos sin enjuagar!",tr:"Tabaklar\u0131 durulamadan b\u0131rakma!",en:"Don't leave the dishes without rinsing them!"},
+{t:"fill",q:"\u00a1No __________ la m\u00fasica con volumen alto por la noche!\nPorque molestas a los dem\u00e1s.\n(escuchar \u2014 t\u00fa)",a:["escuches"],exp:"escuchar \u2192 no escuches. | \ud83c\uddea\ud83c\uddf8 \u00a1No escuches la m\u00fasica con volumen alto por la noche! | \ud83c\uddf9\ud83c\uddf7 Gece m\u00fczi\u011fi y\u00fcksek dinleme! | \ud83c\uddec\ud83c\udde7 Don't listen to music at high volume at night!",es:"\u00a1No escuches la m\u00fasica con volumen alto por la noche!",tr:"Gece m\u00fczi\u011fi y\u00fcksek dinleme!",en:"Don't listen to music at high volume at night!"},
+{t:"fill",q:"\u00a1No __________ la puerta principal abierta!\nPorque es peligroso.\n(dejar \u2014 t\u00fa)",a:["dejes"],exp:"dejar \u2192 no dejes. | \ud83c\uddea\ud83c\uddf8 \u00a1No dejes la puerta principal abierta! | \ud83c\uddf9\ud83c\uddf7 Ana kap\u0131y\u0131 a\u00e7\u0131k b\u0131rakma! | \ud83c\uddec\ud83c\udde7 Don't leave the main door open!",es:"\u00a1No dejes la puerta principal abierta!",tr:"Ana kap\u0131y\u0131 a\u00e7\u0131k b\u0131rakma!",en:"Don't leave the main door open!"},
+{t:"fill",q:"\u00a1No __________ la ropa limpia con la sucia!\nPorque se contamina.\n(meter \u2014 t\u00fa)",a:["metas"],exp:"meter \u2192 no metas (subjuntivo). | \ud83c\uddea\ud83c\uddf8 \u00a1No metas la ropa limpia con la sucia! | \ud83c\uddf9\ud83c\uddf7 Temiz k\u0131yafetleri kirliyle kar\u0131\u015ft\u0131rma! | \ud83c\uddec\ud83c\udde7 Don't mix clean clothes with dirty ones!",es:"\u00a1No metas la ropa limpia con la sucia!",tr:"Temiz k\u0131yafetleri kirliyle kar\u0131\u015ft\u0131rma!",en:"Don't mix clean clothes with dirty ones!"},
+{t:"fill",q:"\u00a1No __________ sin apagar la luz!\nPorque gastas electricidad.\n(salir \u2014 t\u00fa)",a:["salgas"],exp:"salir \u2192 no salgas. | \ud83c\uddea\ud83c\uddf8 \u00a1No salgas sin apagar la luz! | \ud83c\uddf9\ud83c\uddf7 I\u015f\u0131\u011f\u0131 kapatmadan \u00e7\u0131kma! | \ud83c\uddec\ud83c\udde7 Don't go out without turning off the light!",es:"\u00a1No salgas sin apagar la luz!",tr:"I\u015f\u0131\u011f\u0131 kapatmadan \u00e7\u0131kma!",en:"Don't go out without turning off the light!"},
+{t:"fill",q:"\u00a1No __________ el ba\u00f1o desordenado!\nPorque otros lo usan tambi\u00e9n.\n(dejar \u2014 t\u00fa)",a:["dejes"],exp:"dejar \u2192 no dejes. | \ud83c\uddea\ud83c\uddf8 \u00a1No dejes el ba\u00f1o desordenado! | \ud83c\uddf9\ud83c\uddf7 Banyoyu da\u011f\u0131n\u0131k b\u0131rakma! | \ud83c\uddec\ud83c\udde7 Don't leave the bathroom messy!",es:"\u00a1No dejes el ba\u00f1o desordenado!",tr:"Banyoyu da\u011f\u0131n\u0131k b\u0131rakma!",en:"Don't leave the bathroom messy!"},
+{t:"fill",q:"\u00a1No __________ la comida en el microondas sin tapa!\nPorque salpica.\n(calentar \u2014 t\u00fa)",a:["calientes"],exp:"calentar \u2192 no calientes (e\u2192ie d\u00fczensiz, subjuntivo: caliente+s \u2192 calientes). | \ud83c\uddea\ud83c\uddf8 \u00a1No calientes la comida en el microondas sin tapa! | \ud83c\uddf9\ud83c\uddf7 Yeme\u011fi kapaks\u0131z mikrodalga f\u0131r\u0131nda \u0131s\u0131tma! | \ud83c\uddec\ud83c\udde7 Don't heat food in the microwave without a lid!",es:"\u00a1No calientes la comida en el microondas sin tapa!",tr:"Yeme\u011fi kapaks\u0131z mikrodalga f\u0131r\u0131nda \u0131s\u0131tma!",en:"Don't heat food in the microwave without a lid!"},
+{t:"fill",q:"\u00a1No __________ en casa sin quitarte los zapatos!\nPorque ensucias el suelo.\n(entrar \u2014 t\u00fa)",a:["entres"],exp:"entrar \u2192 no entres (subjuntivo). | \ud83c\uddea\ud83c\uddf8 \u00a1No entres en casa sin quitarte los zapatos! | \ud83c\uddf9\ud83c\uddf7 Ayakkab\u0131n\u0131 \u00e7\u0131karmadan eve girme! | \ud83c\uddec\ud83c\udde7 Don't enter the house without taking off your shoes!",es:"\u00a1No entres en casa sin quitarte los zapatos!",tr:"Ayakkab\u0131n\u0131 \u00e7\u0131karmadan eve girme!",en:"Don't enter the house without taking off your shoes!"},
+{t:"fill",q:"\u00a1No __________ tarde a la reuni\u00f3n!\n(llegar \u2014 usted)",a:["llegue"],exp:"llegar \u2192 no llegue. | \ud83c\uddea\ud83c\uddf8 \u00a1No llegue tarde a la reuni\u00f3n! | \ud83c\uddf9\ud83c\uddf7 Toplant\u0131ya ge\u00e7 gelmeyin! | \ud83c\uddec\ud83c\udde7 Don't arrive late to the meeting!",es:"\u00a1No llegue tarde a la reuni\u00f3n!",tr:"Toplant\u0131ya ge\u00e7 gelmeyin!",en:"Don't arrive late to the meeting!"},
+{t:"fill",q:"\u00a1__________ la puerta con cuidado!\n(cerrar \u2014 usted)",a:["cierre"],exp:"cerrar \u2192 cierre (e\u2192ie). | \ud83c\uddea\ud83c\uddf8 \u00a1Cierre la puerta con cuidado! | \ud83c\uddf9\ud83c\uddf7 Kap\u0131y\u0131 dikkatlice kapat\u0131n! | \ud83c\uddec\ud83c\udde7 Close the door carefully!",es:"\u00a1Cierre la puerta con cuidado!",tr:"Kap\u0131y\u0131 dikkatlice kapat\u0131n!",en:"Close the door carefully!"},
+{t:"fill",q:"\u00a1No __________ aqu\u00ed!\n(fumar \u2014 usted)",a:["fume"],exp:"fumar \u2192 no fume. | \ud83c\uddea\ud83c\uddf8 \u00a1No fume aqu\u00ed! | \ud83c\uddf9\ud83c\uddf7 Burada sigara i\u00e7meyin! | \ud83c\uddec\ud83c\udde7 Don't smoke here!",es:"\u00a1No fume aqu\u00ed!",tr:"Burada sigara i\u00e7meyin!",en:"Don't smoke here!"},
+{t:"fill",q:"\u00a1__________ m\u00e1s despacio!\n(hablar \u2014 usted)",a:["hable"],exp:"hablar \u2192 hable. | \ud83c\uddea\ud83c\uddf8 \u00a1Hable m\u00e1s despacio! | \ud83c\uddf9\ud83c\uddf7 Daha yava\u015f konu\u015fun! | \ud83c\uddec\ud83c\udde7 Speak more slowly!",es:"\u00a1Hable m\u00e1s despacio!",tr:"Daha yava\u015f konu\u015fun!",en:"Speak more slowly!"},
+{t:"fill",q:"\u00a1No __________ la verdad!\n(decir \u2014 usted)",a:["diga"],exp:"decir \u2192 diga (irregular). | \ud83c\uddea\ud83c\uddf8 \u00a1No diga la verdad! | \ud83c\uddf9\ud83c\uddf7 Ger\u00e7e\u011fi s\u00f6ylemeyin! | \ud83c\uddec\ud83c\udde7 Don't tell the truth!",es:"\u00a1No diga la verdad!",tr:"Ger\u00e7e\u011fi s\u00f6ylemeyin!",en:"Don't tell the truth!"},
+{t:"fill",q:"\u00a1__________ la tarea ahora!\n(hacer \u2014 usted)",a:["haga"],exp:"hacer \u2192 haga (irregular). | \ud83c\uddea\ud83c\uddf8 \u00a1Haga la tarea ahora! | \ud83c\uddf9\ud83c\uddf7 \u00d6devi \u015fimdi yap\u0131n! | \ud83c\uddec\ud83c\udde7 Do the homework now!",es:"\u00a1Haga la tarea ahora!",tr:"\u00d6devi \u015fimdi yap\u0131n!",en:"Do the homework now!"},
+{t:"fill",q:"\u00a1No __________ tan r\u00e1pido!\n(conducir \u2014 usted)",a:["conduzca"],exp:"conducir \u2192 conduzca. | \ud83c\uddea\ud83c\uddf8 \u00a1No conduzca tan r\u00e1pido! | \ud83c\uddf9\ud83c\uddf7 Bu kadar h\u0131zl\u0131 s\u00fcrmeyin! | \ud83c\uddec\ud83c\udde7 Don't drive so fast!",es:"\u00a1No conduzca tan r\u00e1pido!",tr:"Bu kadar h\u0131zl\u0131 s\u00fcrmeyin!",en:"Don't drive so fast!"},
+{t:"fill",q:"\u00a1__________ la ventana!\n(abrir \u2014 usted)",a:["abra"],exp:"abrir \u2192 abra. | \ud83c\uddea\ud83c\uddf8 \u00a1Abra la ventana! | \ud83c\uddf9\ud83c\uddf7 Pencereyi a\u00e7\u0131n! | \ud83c\uddec\ud83c\udde7 Open the window!",es:"\u00a1Abra la ventana!",tr:"Pencereyi a\u00e7\u0131n!",en:"Open the window!"},
+{t:"fill",q:"\u00a1No __________ ruido!\n(hacer \u2014 usted)",a:["haga"],exp:"hacer \u2192 no haga. | \ud83c\uddea\ud83c\uddf8 \u00a1No haga ruido! | \ud83c\uddf9\ud83c\uddf7 G\u00fcr\u00fclt\u00fc yapmay\u0131n! | \ud83c\uddec\ud83c\udde7 Don't make noise!",es:"\u00a1No haga ruido!",tr:"G\u00fcr\u00fclt\u00fc yapmay\u0131n!",en:"Don't make noise!"},
+{t:"fill",q:"\u00a1__________ aqu\u00ed!\n(venir \u2014 usted)",a:["venga"],exp:"venir \u2192 venga. | \ud83c\uddea\ud83c\uddf8 \u00a1Venga aqu\u00ed! | \ud83c\uddf9\ud83c\uddf7 Buraya gelin! | \ud83c\uddec\ud83c\udde7 Come here!",es:"\u00a1Venga aqu\u00ed!",tr:"Buraya gelin!",en:"Come here!"},
+{t:"fill",q:"\u00a1No __________ tarde!\n(dormir \u2014 usted)",a:["duerma"],exp:"dormir \u2192 duerma (o\u2192ue). | \ud83c\uddea\ud83c\uddf8 \u00a1No duerma tarde! | \ud83c\uddf9\ud83c\uddf7 Ge\u00e7 uyumay\u0131n! | \ud83c\uddec\ud83c\udde7 Don't sleep late!",es:"\u00a1No duerma tarde!",tr:"Ge\u00e7 uyumay\u0131n!",en:"Don't sleep late!"},
+{t:"fill",q:"\u00a1__________ el informe!\n(escribir \u2014 usted)",a:["escriba"],exp:"escribir \u2192 escriba. | \ud83c\uddea\ud83c\uddf8 \u00a1Escriba el informe! | \ud83c\uddf9\ud83c\uddf7 Raporu yaz\u0131n! | \ud83c\uddec\ud83c\udde7 Write the report!",es:"\u00a1Escriba el informe!",tr:"Raporu yaz\u0131n!",en:"Write the report!"},
+{t:"fill",q:"\u00a1No __________ eso!\n(poner \u2014 usted)",a:["ponga"],exp:"poner \u2192 ponga. | \ud83c\uddea\ud83c\uddf8 \u00a1No ponga eso! | \ud83c\uddf9\ud83c\uddf7 Onu koymay\u0131n! | \ud83c\uddec\ud83c\udde7 Don't put that!",es:"\u00a1No ponga eso!",tr:"Onu koymay\u0131n!",en:"Don't put that!"},
+{t:"fill",q:"\u00a1__________ atenci\u00f3n!\n(prestar \u2014 usted)",a:["preste"],exp:"prestar \u2192 preste. | \ud83c\uddea\ud83c\uddf8 \u00a1Preste atenci\u00f3n! | \ud83c\uddf9\ud83c\uddf7 Dikkat edin! | \ud83c\uddec\ud83c\udde7 Pay attention!",es:"\u00a1Preste atenci\u00f3n!",tr:"Dikkat edin!",en:"Pay attention!"},
+{t:"fill",q:"\u00a1No __________ aqu\u00ed!\n(estar \u2014 usted)",a:["est\u00e9"],exp:"estar \u2192 est\u00e9. | \ud83c\uddea\ud83c\uddf8 \u00a1No est\u00e9 aqu\u00ed! | \ud83c\uddf9\ud83c\uddf7 Burada bulunmay\u0131n! | \ud83c\uddec\ud83c\udde7 Don't be here!",es:"\u00a1No est\u00e9 aqu\u00ed!",tr:"Burada bulunmay\u0131n!",en:"Don't be here!"},
+{t:"fill",q:"\u00a1__________ temprano!\n(llegar \u2014 usted)",a:["llegue"],exp:"llegar \u2192 llegue. | \ud83c\uddea\ud83c\uddf8 \u00a1Llegue temprano! | \ud83c\uddf9\ud83c\uddf7 Erken gelin! | \ud83c\uddec\ud83c\udde7 Arrive early!",es:"\u00a1Llegue temprano!",tr:"Erken gelin!",en:"Arrive early!"},
+{t:"fill",q:"\u00a1No __________ la luz!\n(apagar \u2014 usted)",a:["apague"],exp:"apagar \u2192 no apague. | \ud83c\uddea\ud83c\uddf8 \u00a1No apague la luz! | \ud83c\uddf9\ud83c\uddf7 I\u015f\u0131\u011f\u0131 kapatmay\u0131n! | \ud83c\uddec\ud83c\udde7 Don't turn off the light!",es:"\u00a1No apague la luz!",tr:"I\u015f\u0131\u011f\u0131 kapatmay\u0131n!",en:"Don't turn off the light!"},
+{t:"fill",q:"\u00a1__________ la verdad!\n(decir \u2014 usted)",a:["diga"],exp:"decir \u2192 diga. | \ud83c\uddea\ud83c\uddf8 \u00a1Diga la verdad! | \ud83c\uddf9\ud83c\uddf7 Ger\u00e7e\u011fi s\u00f6yleyin! | \ud83c\uddec\ud83c\udde7 Tell the truth!",es:"\u00a1Diga la verdad!",tr:"Ger\u00e7e\u011fi s\u00f6yleyin!",en:"Tell the truth!"},
+{t:"fill",q:"\u00a1No __________ eso!\n(hacer \u2014 usted)",a:["haga"],exp:"hacer \u2192 no haga. | \ud83c\uddea\ud83c\uddf8 \u00a1No haga eso! | \ud83c\uddf9\ud83c\uddf7 Bunu yapmay\u0131n! | \ud83c\uddec\ud83c\udde7 Don't do that!",es:"\u00a1No haga eso!",tr:"Bunu yapmay\u0131n!",en:"Don't do that!"},
+{t:"fill",q:"\u00a1__________ m\u00e1s!\n(comer \u2014 usted)",a:["coma"],exp:"comer \u2192 coma. | \ud83c\uddea\ud83c\uddf8 \u00a1Coma m\u00e1s! | \ud83c\uddf9\ud83c\uddf7 Daha fazla yiyin! | \ud83c\uddec\ud83c\udde7 Eat more!",es:"\u00a1Coma m\u00e1s!",tr:"Daha fazla yiyin!",en:"Eat more!"},
+{t:"fill",q:"\u00a1No __________ tarde!\n(llegar \u2014 ustedes)",a:["lleguen"],exp:"llegar \u2192 no lleguen. | \ud83c\uddea\ud83c\uddf8 \u00a1No lleguen tarde! | \ud83c\uddf9\ud83c\uddf7 Ge\u00e7 gelmeyin! | \ud83c\uddec\ud83c\udde7 Don't arrive late!",es:"\u00a1No lleguen tarde!",tr:"Ge\u00e7 gelmeyin!",en:"Don't arrive late!"},
+{t:"fill",q:"\u00a1__________ la puerta!\n(cerrar \u2014 ustedes)",a:["cierren"],exp:"cerrar \u2192 cierren (e\u2192ie). | \ud83c\uddea\ud83c\uddf8 \u00a1Cierren la puerta! | \ud83c\uddf9\ud83c\uddf7 Kap\u0131y\u0131 kapat\u0131n! | \ud83c\uddec\ud83c\udde7 Close the door!",es:"\u00a1Cierren la puerta!",tr:"Kap\u0131y\u0131 kapat\u0131n!",en:"Close the door!"},
+{t:"fill",q:"\u00a1No __________ aqu\u00ed!\n(fumar \u2014 ustedes)",a:["fumen"],exp:"fumar \u2192 no fumen. | \ud83c\uddea\ud83c\uddf8 \u00a1No fumen aqu\u00ed! | \ud83c\uddf9\ud83c\uddf7 Burada sigara i\u00e7meyin! | \ud83c\uddec\ud83c\udde7 Don't smoke here!",es:"\u00a1No fumen aqu\u00ed!",tr:"Burada sigara i\u00e7meyin!",en:"Don't smoke here!"},
+{t:"fill",q:"\u00a1__________ m\u00e1s despacio!\n(hablar \u2014 ustedes)",a:["hablen"],exp:"hablar \u2192 hablen. | \ud83c\uddea\ud83c\uddf8 \u00a1Hablen m\u00e1s despacio! | \ud83c\uddf9\ud83c\uddf7 Daha yava\u015f konu\u015fun! | \ud83c\uddec\ud83c\udde7 Speak more slowly!",es:"\u00a1Hablen m\u00e1s despacio!",tr:"Daha yava\u015f konu\u015fun!",en:"Speak more slowly!"},
+{t:"fill",q:"\u00a1No __________ la verdad!\n(decir \u2014 ustedes)",a:["digan"],exp:"decir \u2192 digan. | \ud83c\uddea\ud83c\uddf8 \u00a1No digan la verdad! | \ud83c\uddf9\ud83c\uddf7 Ger\u00e7e\u011fi s\u00f6ylemeyin! | \ud83c\uddec\ud83c\udde7 Don't tell the truth!",es:"\u00a1No digan la verdad!",tr:"Ger\u00e7e\u011fi s\u00f6ylemeyin!",en:"Don't tell the truth!"},
+{t:"fill",q:"\u00a1__________ la tarea!\n(hacer \u2014 ustedes)",a:["hagan"],exp:"hacer \u2192 hagan. | \ud83c\uddea\ud83c\uddf8 \u00a1Hagan la tarea! | \ud83c\uddf9\ud83c\uddf7 \u00d6devi yap\u0131n! | \ud83c\uddec\ud83c\udde7 Do the homework!",es:"\u00a1Hagan la tarea!",tr:"\u00d6devi yap\u0131n!",en:"Do the homework!"},
+{t:"fill",q:"\u00a1No __________ tan r\u00e1pido!\n(conducir \u2014 ustedes)",a:["conduzcan"],exp:"conducir \u2192 conduzcan. | \ud83c\uddea\ud83c\uddf8 \u00a1No conduzcan tan r\u00e1pido! | \ud83c\uddf9\ud83c\uddf7 Bu kadar h\u0131zl\u0131 s\u00fcrmeyin! | \ud83c\uddec\ud83c\udde7 Don't drive so fast!",es:"\u00a1No conduzcan tan r\u00e1pido!",tr:"Bu kadar h\u0131zl\u0131 s\u00fcrmeyin!",en:"Don't drive so fast!"},
+{t:"fill",q:"\u00a1__________ la ventana!\n(abrir \u2014 ustedes)",a:["abran"],exp:"abrir \u2192 abran. | \ud83c\uddea\ud83c\uddf8 \u00a1Abran la ventana! | \ud83c\uddf9\ud83c\uddf7 Pencereyi a\u00e7\u0131n! | \ud83c\uddec\ud83c\udde7 Open the window!",es:"\u00a1Abran la ventana!",tr:"Pencereyi a\u00e7\u0131n!",en:"Open the window!"},
+{t:"fill",q:"\u00a1No __________ ruido!\n(hacer \u2014 ustedes)",a:["hagan"],exp:"hacer \u2192 no hagan. | \ud83c\uddea\ud83c\uddf8 \u00a1No hagan ruido! | \ud83c\uddf9\ud83c\uddf7 G\u00fcr\u00fclt\u00fc yapmay\u0131n! | \ud83c\uddec\ud83c\udde7 Don't make noise!",es:"\u00a1No hagan ruido!",tr:"G\u00fcr\u00fclt\u00fc yapmay\u0131n!",en:"Don't make noise!"},
+{t:"fill",q:"\u00a1__________ aqu\u00ed!\n(venir \u2014 ustedes)",a:["vengan"],exp:"venir \u2192 vengan. | \ud83c\uddea\ud83c\uddf8 \u00a1Vengan aqu\u00ed! | \ud83c\uddf9\ud83c\uddf7 Buraya gelin! | \ud83c\uddec\ud83c\udde7 Come here!",es:"\u00a1Vengan aqu\u00ed!",tr:"Buraya gelin!",en:"Come here!"},
+{t:"fill",q:"\u00a1No __________ tarde!\n(dormir \u2014 ustedes)",a:["duerman"],exp:"dormir \u2192 duerman (o\u2192ue). | \ud83c\uddea\ud83c\uddf8 \u00a1No duerman tarde! | \ud83c\uddf9\ud83c\uddf7 Ge\u00e7 uyumay\u0131n! | \ud83c\uddec\ud83c\udde7 Don't sleep late!",es:"\u00a1No duerman tarde!",tr:"Ge\u00e7 uyumay\u0131n!",en:"Don't sleep late!"},
+{t:"fill",q:"\u00a1__________ el informe!\n(escribir \u2014 ustedes)",a:["escriban"],exp:"escribir \u2192 escriban. | \ud83c\uddea\ud83c\uddf8 \u00a1Escriban el informe! | \ud83c\uddf9\ud83c\uddf7 Raporu yaz\u0131n! | \ud83c\uddec\ud83c\udde7 Write the report!",es:"\u00a1Escriban el informe!",tr:"Raporu yaz\u0131n!",en:"Write the report!"},
+{t:"fill",q:"\u00a1No __________ eso!\n(poner \u2014 ustedes)",a:["pongan"],exp:"poner \u2192 pongan. | \ud83c\uddea\ud83c\uddf8 \u00a1No pongan eso! | \ud83c\uddf9\ud83c\uddf7 Onu koymay\u0131n! | \ud83c\uddec\ud83c\udde7 Don't put that!",es:"\u00a1No pongan eso!",tr:"Onu koymay\u0131n!",en:"Don't put that!"},
+{t:"fill",q:"\u00a1__________ atenci\u00f3n!\n(prestar \u2014 ustedes)",a:["presten"],exp:"prestar \u2192 presten. | \ud83c\uddea\ud83c\uddf8 \u00a1Presten atenci\u00f3n! | \ud83c\uddf9\ud83c\uddf7 Dikkat edin! | \ud83c\uddec\ud83c\udde7 Pay attention!",es:"\u00a1Presten atenci\u00f3n!",tr:"Dikkat edin!",en:"Pay attention!"},
+{t:"fill",q:"\u00a1No __________ aqu\u00ed!\n(estar \u2014 ustedes)",a:["est\u00e9n"],exp:"estar \u2192 est\u00e9n. | \ud83c\uddea\ud83c\uddf8 \u00a1No est\u00e9n aqu\u00ed! | \ud83c\uddf9\ud83c\uddf7 Burada bulunmay\u0131n! | \ud83c\uddec\ud83c\udde7 Don't be here!",es:"\u00a1No est\u00e9n aqu\u00ed!",tr:"Burada bulunmay\u0131n!",en:"Don't be here!"},
+{t:"fill",q:"\u00a1__________ temprano!\n(llegar \u2014 ustedes)",a:["lleguen"],exp:"llegar \u2192 lleguen. | \ud83c\uddea\ud83c\uddf8 \u00a1Lleguen temprano! | \ud83c\uddf9\ud83c\uddf7 Erken gelin! | \ud83c\uddec\ud83c\udde7 Arrive early!",es:"\u00a1Lleguen temprano!",tr:"Erken gelin!",en:"Arrive early!"},
+{t:"fill",q:"\u00a1No __________ la luz!\n(apagar \u2014 ustedes)",a:["apaguen"],exp:"apagar \u2192 apaguen. | \ud83c\uddea\ud83c\uddf8 \u00a1No apaguen la luz! | \ud83c\uddf9\ud83c\uddf7 I\u015f\u0131\u011f\u0131 kapatmay\u0131n! | \ud83c\uddec\ud83c\udde7 Don't turn off the light!",es:"\u00a1No apaguen la luz!",tr:"I\u015f\u0131\u011f\u0131 kapatmay\u0131n!",en:"Don't turn off the light!"},
+{t:"fill",q:"\u00a1__________ la verdad!\n(decir \u2014 ustedes)",a:["digan"],exp:"decir \u2192 digan. | \ud83c\uddea\ud83c\uddf8 \u00a1Digan la verdad! | \ud83c\uddf9\ud83c\uddf7 Ger\u00e7e\u011fi s\u00f6yleyin! | \ud83c\uddec\ud83c\udde7 Tell the truth!",es:"\u00a1Digan la verdad!",tr:"Ger\u00e7e\u011fi s\u00f6yleyin!",en:"Tell the truth!"},
+{t:"fill",q:"\u00a1No __________ eso!\n(hacer \u2014 ustedes)",a:["hagan"],exp:"hacer \u2192 hagan. | \ud83c\uddea\ud83c\uddf8 \u00a1No hagan eso! | \ud83c\uddf9\ud83c\uddf7 Bunu yapmay\u0131n! | \ud83c\uddec\ud83c\udde7 Don't do that!",es:"\u00a1No hagan eso!",tr:"Bunu yapmay\u0131n!",en:"Don't do that!"},
+{t:"fill",q:"\u00a1__________ m\u00e1s!\n(comer \u2014 ustedes)",a:["coman"],exp:"comer \u2192 coman. | \ud83c\uddea\ud83c\uddf8 \u00a1Coman m\u00e1s! | \ud83c\uddf9\ud83c\uddf7 Daha fazla yiyin! | \ud83c\uddec\ud83c\udde7 Eat more!",es:"\u00a1Coman m\u00e1s!",tr:"Daha fazla yiyin!",en:"Eat more!"}
+];
+let cur=0,score=0,err=0,state=[],wrongList=[];
+const WARN='\u26a0\ufe0f Dikkat: Tildelere (\u00e1, \u00e9, \u00ed, \u00f3, \u00fa, \u00fc, \u00f1) dikkat edin. L\u00fctfen k\u00fc\u00e7\u00fck harfle yaz\u0131n!';
+
+function normalize(s){ return s.trim(); }
+
+function checkAnswer(userAns, correctArr){
+  const u = normalize(userAns).toLowerCase();
+  return correctArr.some(c => normalize(c).toLowerCase() === u);
+}
+
+function startQuiz(){
+  const n=document.getElementById('introName').value;
+  if(!n){alert('Lütfen adınızı seçin!');return;}
+  document.getElementById('studentName').value=n;
+  state=new Array(Q.length).fill(null);
+  wrongList=[];cur=0;score=0;err=0;
+  document.getElementById('sCorrect').textContent=0;
+  document.getElementById('sWrong').textContent=0;
+  document.getElementById('intro').style.display='none';
+  document.getElementById('result').style.display='none';
+  document.getElementById('quiz').style.display='block';
+  render();
+}
+
+function render(){
+  document.getElementById('progFill').style.width=((cur/Q.length)*100)+'%';
+  document.getElementById('progLabel').textContent=(cur+1)+' / '+Q.length;
+  document.getElementById('sCorrect').textContent=score;
+  document.getElementById('sWrong').textContent=err;
+  const q=Q[cur];
+  document.getElementById('qArea').innerHTML=WARN+buildFill(q,cur);
+  if(state[cur]!==null) restoreState(cur);
+}
+
+function buildFill(q,i){
+  const multi = q.a.length > 1;
+  const hint = multi ? '<div class="multi-hint">💡 Bu soru için iki farklı doğru cevap vardır — herhangi birini yazabilirsiniz.</div>' : '';
+  return '<div class="q-card">'+
+    '<div class="q-num">SORU '+(i+1)+'</div>'+
+    '<span class="q-type-badge badge-fill">BOŞLUK DOLDURMA</span>'+
+    hint+
+    '<div class="q-text">'+q.q.replace(/\n/g,'<br>')+'</div>'+
+    '<div class="fill-wrap">'+
+      '<input class="fill-input" id="fi'+i+'" placeholder="Cevabınızı yazın..." '+
+        'onkeydown="if(event.key===\\u0027Enter\\u0027)answerFill('+i+')">'+
+      '<button class="fill-submit" id="fs'+i+'" onclick="answerFill('+i+')">Kontrol Et →</button>'+
+    '</div>'+
+    '<div class="explanation" id="exp'+i+'"></div>'+
+    navRow(i)+'</div>';
+}
+
+function navRow(i){
+  return '<div class="nav-row">'+
+    '<button class="nav-btn" onclick="prev()" '+(i===0?'disabled':'')+'>← Geri</button>'+
+    '<button class="nav-btn" onclick="skipQ()" '+(state[i]!==null?'disabled':'')+'>Atla</button>'+
+    '<button class="nav-btn primary" onclick="next()">'+(i===Q.length-1?'Bitir ✓':'İleri →')+'</button>'+
+    '</div>';
+}
+
+function answerFill(i){
+  if(state[i]!==null) return;
+  const inp=document.getElementById('fi'+i);
+  const userAns=inp.value;
+  if(!userAns.trim()){alert('Lütfen bir cevap yazın!');return;}
+  const q=Q[i];
+  const ok=checkAnswer(userAns, q.a);
+  state[i]={chosen:userAns, ok};
+  if(ok) score++; else {err++; wrongList.push({idx:i,chosen:userAns,correct:q.a});}
+  document.getElementById('sCorrect').textContent=score;
+  document.getElementById('sWrong').textContent=err;
+  inp.disabled=true;
+  document.getElementById('fs'+i).disabled=true;
+  inp.style.borderColor=ok?'var(--ok)':'var(--err)';
+  inp.style.background=ok?'rgba(0,184,148,0.06)':'rgba(225,112,85,0.06)';
+  showExp(i,ok,userAns);
+  if(cur===Q.length-1){ setTimeout(()=>showResult(),700); }
+}
+
+function restoreState(i){
+  const s=state[i]; if(!s) return;
+  const inp=document.getElementById('fi'+i);
+  if(inp){ inp.value=s.chosen; inp.disabled=true;
+    inp.style.borderColor=s.ok?'var(--ok)':'var(--err)';
+    inp.style.background=s.ok?'rgba(0,184,148,0.06)':'rgba(225,112,85,0.06)'; }
+  const btn=document.getElementById('fs'+i);
+  if(btn) btn.disabled=true;
+  showExp(i,s.ok,s.chosen);
+}
+
+function showExp(i,ok,userAns){
+  const q=Q[i],el=document.getElementById('exp'+i);
+  if(!el) return;
+  el.className='explanation show '+(ok?'exp-ok':'exp-err');
+  const correctStr = q.a.length>1 ? q.a.join(' &nbsp;/&nbsp; ') : q.a[0];
+  el.innerHTML=(ok?'✅ Doğru! ':'❌ Senin cevabın: <strong>'+userAns+'</strong> → Doğrusu: <strong>'+correctStr+'</strong><br>')+
+    q.exp+
+    '<span class="exp-es">🇪🇸 '+q.es+'</span>'+
+    '<span class="exp-tr">🇹🇷 '+q.tr+'</span>'+
+    '<span class="exp-en">🇬🇧 '+q.en+'</span>';
+}
+
+function next(){if(cur<Q.length-1){cur++;render();window.scrollTo(0,0);}else showResult();}
+function prev(){if(cur>0){cur--;render();window.scrollTo(0,0);}}
+function skipQ(){if(state[cur]===null){state[cur]={chosen:'',ok:false};}next();}
+
+function showResult(){
+  document.getElementById('quiz').style.display='none';
+  const pct=Math.round(score/Q.length*100);
+  window._lastPct=pct;
+  document.getElementById('scoreBig').innerHTML=pct+'<span>/100</span>';
+  document.getElementById('rCorrect').textContent=score;
+  document.getElementById('rWrong').textContent=err;
+  document.getElementById('rPuan').textContent=pct;
+  document.getElementById('result').style.display='block';
+  document.getElementById('confirmBtn').disabled=false;
+  document.getElementById('confirmBtn').textContent='📬 ÖDEVİ TESLİM ET';
+  document.getElementById('studentName').disabled=false;
+  document.getElementById('sendStatus').textContent='';
+  document.getElementById('summaryCard').style.display='none';
+  window.scrollTo(0,0);
+}
+
+function confirmName(){
+  const val=document.getElementById('studentName').value;
+  if(!val){alert('Lütfen adınızı seçin!');return;}
+  const grup=GROUPS[val]||'A1.2';
+  const pct=window._lastPct;
+  document.getElementById('studentName').disabled=true;
+  document.getElementById('confirmBtn').disabled=true;
+  document.getElementById('confirmBtn').textContent='✓ Kaydedildi';
+  document.getElementById('summaryName').textContent=val;
+  document.getElementById('summaryOdev').textContent=ODEV_ADI+' · '+grup;
+  document.getElementById('sumPuan').textContent=pct;
+  document.getElementById('sumDogru').textContent=score;
+  document.getElementById('sumYanlis').textContent=err;
+  document.getElementById('summaryCard').style.display='block';
+  const cta=document.getElementById('submitCta');if(cta)cta.style.display='none';
+  const st=document.getElementById('sendStatus');
+  st.style.color='var(--muted)';st.textContent='⏳ Kaydediliyor...';
+  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({ogrenci:val,grup:grup,odev:ODEV_ADI,puan:pct,dogru:score,yanlis:err})})
+  .then(()=>{st.textContent='';})
+  .catch(()=>{st.style.color='var(--err)';st.textContent='⚠️ Bağlantı hatası.';});
+}
+
+function toggleReview(){
+  const sec=document.getElementById('reviewSection');
+  if(sec.style.display==='block'){sec.style.display='none';return;}
+  sec.style.display='block';
+  if(wrongList.length===0){sec.innerHTML='<div style="text-align:center;padding:20px;color:var(--ok);font-weight:700;font-family:Nunito,sans-serif;">🎯 Tebrikler! Hiç hata yok!</div>';return;}
+  sec.innerHTML=wrongList.map(w=>{
+    const q=Q[w.idx];
+    const correctStr=q.a.length>1?q.a.join(' / '):q.a[0];
+    return '<div class="review-item">'+
+      '<div class="ri-num">SORU '+(w.idx+1)+'</div>'+
+      '<div class="ri-q">'+q.q.replace(/\n/g,'<br>')+'</div>'+
+      '<div class="ri-wrong">✗ Senin cevabın: '+w.chosen+'</div>'+
+      '<div class="ri-correct">✓ Doğru: '+correctStr+'</div>'+
+      '</div>';
+  }).join('');
+}
+
+function retryQuiz(){
+  state=new Array(Q.length).fill(null);
+  wrongList=[];cur=0;score=0;err=0;
+  document.getElementById('result').style.display='none';
+  document.getElementById('reviewSection').style.display='none';
+  document.getElementById('quiz').style.display='block';
+  document.getElementById('confirmBtn').disabled=false;
+  document.getElementById('confirmBtn').textContent='📬 ÖDEVİ TESLİM ET';
+  document.getElementById('studentName').disabled=false;
+  document.getElementById('sendStatus').textContent='';
+  document.getElementById('summaryCard').style.display='none';
+  render();window.scrollTo(0,0);
+}
+
+
+</script>
+</body>
+</html>
