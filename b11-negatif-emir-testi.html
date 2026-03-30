@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Imperativo Negativo | B1.1 H1 3-4.Ders</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f0fa;
+  --surface:#ffffff;
+  --primary:#6c5ce7;
+  --primary-dark:#5a4bd1;
+  --primary-light:#a29bfe;
+  --accent:#fd79a8;
+  --accent2:#00cec9;
+  --accent3:#fdcb6e;
+  --text:#2d3436;
+  --muted:#636e72;
+  --border:#dfe6e9;
+  --ok:#00b894;
+  --err:#e17055;
+  --radius:16px;
+  --shadow:0 4px 24px rgba(108,92,231,0.13);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* Dekoratif arka plan */
+body::before{
+  content:'';position:fixed;top:0;left:0;width:100%;height:100%;
+  background:
+    radial-gradient(ellipse at 10% 20%,rgba(162,155,254,0.18) 0%,transparent 50%),
+    radial-gradient(ellipse at 90% 80%,rgba(253,121,168,0.12) 0%,transparent 50%),
+    radial-gradient(ellipse at 50% 50%,rgba(108,92,231,0.06) 0%,transparent 70%);
+  pointer-events:none;z-index:0;
+}
+
+.wrap{max-width:640px;margin:0 auto;padding:20px 16px 40px;position:relative;z-index:1;}
+
+/* INTRO */
+#intro{
+  background:var(--surface);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:36px 28px 32px;
+  border-top:5px solid var(--primary);
+  animation:fadeUp .5s ease;
+}
+.brand-bar{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
+.brand-dot{width:10px;height:10px;border-radius:50%;background:var(--primary);}
+.brand-dot:nth-child(2){background:var(--accent);}
+.brand-dot:nth-child(3){background:var(--accent3);}
+.brand-name{font-family:'Nunito',sans-serif;font-size:13px;color:var(--muted);font-weight:700;letter-spacing:.5px;}
+.intro-badge{
+  display:inline-block;background:linear-gradient(135deg,var(--primary),var(--primary-light));
+  color:#fff;font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;
+  padding:4px 12px;border-radius:20px;letter-spacing:1px;margin-bottom:14px;
+}
+#intro h1{font-family:'Nunito',sans-serif;font-size:26px;font-weight:900;color:var(--primary);margin-bottom:6px;}
+.intro-sub{font-size:14px;color:var(--muted);margin-bottom:4px;}
+.intro-desc{font-size:13px;color:var(--primary-light);font-weight:700;margin-bottom:24px;}
+
+.chip-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;}
+.chip{
+  padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;
+  background:rgba(108,92,231,0.09);color:var(--primary);
+}
+.chip.c2{background:rgba(253,121,168,0.1);color:var(--accent);}
+.chip.c3{background:rgba(0,206,201,0.1);color:var(--accent2);}
+
+.name-label{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:var(--primary);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+select.name-select{
+  width:100%;padding:12px 16px;border:2px solid var(--border);border-radius:12px;
+  font-family:'Nunito Sans',sans-serif;font-size:15px;color:var(--text);
+  background:#fff;cursor:pointer;outline:none;transition:border .2s;
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236c5ce7' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;
+}
+select.name-select:focus{border-color:var(--primary);}
+
+.start-btn{
+  width:100%;margin-top:20px;padding:15px;
+  background:linear-gradient(135deg,var(--primary),var(--primary-light));
+  color:#fff;border:none;border-radius:12px;
+  font-family:'Nunito',sans-serif;font-size:17px;font-weight:800;
+  cursor:pointer;transition:transform .15s,box-shadow .15s;
+  box-shadow:0 4px 16px rgba(108,92,231,0.35);
+  letter-spacing:.3px;
+}
+.start-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(108,92,231,0.45);}
+.start-btn:active{transform:translateY(0);}
+
+/* QUIZ */
+#quiz{display:none;}
+.top-bar{
+  background:var(--surface);border-radius:var(--radius);padding:14px 18px;
+  margin-bottom:14px;box-shadow:0 2px 12px rgba(108,92,231,0.08);
+  display:flex;align-items:center;gap:12px;
+}
+.prog-wrap{flex:1;height:8px;background:rgba(108,92,231,0.12);border-radius:4px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:4px;transition:width .4s ease;}
+.prog-label{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:var(--primary);white-space:nowrap;}
+.score-bar{display:flex;gap:16px;padding:0 2px;}
+.sc{font-size:13px;font-weight:700;}
+.sc.ok{color:var(--ok);}
+.sc.err{color:var(--err);}
+
+.q-card{
+  background:var(--surface);border-radius:var(--radius);
+  padding:26px 24px 22px;box-shadow:var(--shadow);
+  border-left:4px solid var(--primary);
+  animation:fadeUp .3s ease;
+}
+.q-num{
+  font-family:'Nunito',sans-serif;font-size:11px;font-weight:900;
+  color:var(--primary-light);letter-spacing:1.5px;margin-bottom:6px;
+}
+.q-type-badge{
+  display:inline-block;padding:3px 10px;border-radius:10px;
+  font-size:11px;font-weight:800;letter-spacing:.5px;margin-bottom:12px;
+  background:rgba(108,92,231,0.1);color:var(--primary);
+}
+.q-text{font-size:16px;font-weight:700;line-height:1.5;margin-bottom:18px;color:var(--text);}
+
+.choices{display:flex;flex-direction:column;gap:9px;}
+.choice-btn{
+  display:flex;align-items:center;gap:12px;padding:12px 16px;
+  border:2px solid var(--border);border-radius:12px;background:#fff;
+  cursor:pointer;text-align:left;font-family:'Nunito Sans',sans-serif;
+  font-size:14px;font-weight:600;color:var(--text);
+  transition:border-color .15s,background .15s,transform .1s;
+}
+.choice-btn:hover:not(:disabled){border-color:var(--primary-light);background:rgba(108,92,231,0.04);transform:translateX(3px);}
+.cletter{
+  width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;
+  font-family:'Nunito',sans-serif;font-size:13px;font-weight:900;
+  background:rgba(108,92,231,0.1);color:var(--primary);flex-shrink:0;
+}
+.choice-btn.ok{border-color:var(--ok);background:rgba(0,184,148,0.06);}
+.choice-btn.ok .cletter{background:var(--ok);color:#fff;}
+.choice-btn.err{border-color:var(--err);background:rgba(225,112,85,0.06);}
+.choice-btn.err .cletter{background:var(--err);color:#fff;}
+
+.explanation{
+  margin-top:14px;padding:14px 16px;border-radius:12px;
+  font-size:13px;line-height:1.6;display:none;
+}
+.explanation.show{display:block;}
+.exp-ok{background:rgba(0,184,148,0.08);border-left:3px solid var(--ok);}
+.exp-err{background:rgba(225,112,85,0.08);border-left:3px solid var(--err);}
+.exp-es{display:block;margin-top:6px;color:var(--primary);font-weight:700;}
+.exp-tr{display:block;margin-top:2px;color:var(--muted);}
+.exp-en{display:block;margin-top:2px;color:var(--accent2);font-style:italic;}
+
+.nav-row{display:flex;gap:8px;margin-top:18px;}
+.nav-btn{
+  padding:9px 18px;border-radius:10px;border:2px solid var(--border);
+  background:#fff;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;
+  color:var(--muted);cursor:pointer;transition:all .15s;
+}
+.nav-btn:hover:not(:disabled){border-color:var(--primary);color:var(--primary);}
+.nav-btn:disabled{opacity:.4;cursor:not-allowed;}
+.nav-btn.primary{
+  margin-left:auto;background:var(--primary);border-color:var(--primary);color:#fff;
+}
+.nav-btn.primary:hover{background:var(--primary-dark);border-color:var(--primary-dark);}
+
+/* RESULT */
+#result{display:none;}
+.result-card{
+  background:var(--surface);border-radius:var(--radius);
+  padding:32px 28px;box-shadow:var(--shadow);
+  text-align:center;border-top:5px solid var(--primary);
+  animation:fadeUp .5s ease;
+}
+.result-emoji{font-size:52px;margin-bottom:8px;}
+.result-badge{
+  display:inline-block;background:rgba(108,92,231,0.1);color:var(--primary);
+  font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;
+  padding:4px 12px;border-radius:20px;letter-spacing:1px;margin-bottom:12px;
+}
+.score-big{
+  font-family:'Nunito',sans-serif;font-size:64px;font-weight:900;
+  color:var(--primary);line-height:1;margin-bottom:4px;
+}
+.score-big span{font-size:28px;color:var(--primary-light);}
+.score-row{display:flex;justify-content:center;gap:24px;margin:16px 0 20px;}
+.score-item{text-align:center;}
+.score-item .val{font-family:'Nunito',sans-serif;font-size:28px;font-weight:900;}
+.score-item .lbl{font-size:12px;color:var(--muted);margin-top:2px;}
+.val.ok{color:var(--ok);}
+.val.err{color:var(--err);}
+
+.name-confirm-box{margin:20px 0 16px;}
+.name-confirm-box label{
+  font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;
+  color:var(--primary);display:flex;align-items:center;gap:6px;margin-bottom:8px;
+}
+.confirm-row{display:flex;flex-direction:column;gap:10px;}
+select#studentName{
+  flex:1;padding:11px 14px;border:2px solid var(--border);border-radius:10px;
+  font-size:14px;font-family:'Nunito Sans',sans-serif;color:var(--text);
+  background:#fff;outline:none;cursor:pointer;
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236c5ce7' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 10px center;
+}
+select#studentName:focus{border-color:var(--primary);}
+.confirm-btn{
+  padding:11px 20px;background:var(--primary);color:#fff;border:none;
+  border-radius:10px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;
+  cursor:pointer;transition:background .15s;white-space:nowrap;
+width:100%;}
+.confirm-btn:hover{background:var(--primary-dark);}
+.confirm-btn:disabled{opacity:.5;cursor:not-allowed;}
+#sendStatus{font-size:13px;color:var(--muted);margin-top:6px;min-height:18px;}
+.summary-card{
+  background:linear-gradient(135deg,rgba(108,92,231,0.07),rgba(162,155,254,0.05));
+  border:1px solid rgba(108,92,231,0.15);border-radius:12px;
+  padding:16px;margin-top:14px;text-align:left;display:none;
+}
+.summary-card p{font-size:13px;margin-bottom:4px;}
+.summary-card strong{color:var(--primary);}
+
+.submit-cta{
+  background:linear-gradient(135deg,rgba(253,121,168,0.1),rgba(253,203,110,0.1));
+  border:2px dashed rgba(253,121,168,0.4);border-radius:14px;
+  padding:16px;margin-bottom:16px;text-align:center;
+}
+.submit-hint{
+  font-family:'Nunito',sans-serif;font-size:15px;font-weight:900;
+  color:var(--accent);margin-bottom:4px;
+}
+.submit-hint2{font-size:12px;color:var(--muted);}
+.submit-big{
+  width:100%;padding:16px;font-size:17px!important;
+  background:linear-gradient(135deg,var(--accent),#e84393)!important;
+  border-color:transparent!important;
+  box-shadow:0 4px 20px rgba(253,121,168,0.4)!important;
+  letter-spacing:.3px;
+}
+.submit-big:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(253,121,168,0.5)!important;}
+.submit-big:disabled{background:var(--ok)!important;box-shadow:none!important;transform:none!important;}
+
+.tilde-warn{
+  background:linear-gradient(135deg,rgba(253,203,110,0.15),rgba(253,121,168,0.08));
+  border:2px solid rgba(253,203,110,0.5);border-radius:12px;
+  padding:12px 16px;margin-bottom:16px;font-size:13px;
+  color:var(--text);line-height:1.5;
+}
+.tilde-chars{
+  display:block;margin-top:6px;font-size:15px;font-weight:800;
+  color:var(--primary);letter-spacing:3px;font-family:'Nunito',sans-serif;
+}
+.multi-hint{
+  background:rgba(0,206,201,0.08);border-left:3px solid var(--accent2);
+  border-radius:8px;padding:8px 12px;margin-bottom:12px;
+  font-size:12px;color:var(--accent2);font-weight:700;
+}
+.fill-wrap{display:flex;gap:8px;margin-bottom:4px;flex-wrap:wrap;}
+.fill-input{
+  flex:1;min-width:200px;padding:12px 16px;border:2px solid var(--border);
+  border-radius:12px;font-size:15px;font-family:'Nunito Sans',sans-serif;
+  color:var(--text);outline:none;transition:border .2s;
+}
+.fill-input:focus{border-color:var(--primary);}
+.fill-submit{
+  padding:12px 20px;background:var(--primary);color:#fff;border:none;
+  border-radius:12px;font-family:'Nunito',sans-serif;font-size:14px;
+  font-weight:800;cursor:pointer;white-space:nowrap;
+}
+.fill-submit:hover{background:var(--primary-dark);}
+.fill-submit:disabled{opacity:.5;cursor:not-allowed;}
+
+.intro-tilde-box{
+  background:linear-gradient(135deg,rgba(253,203,110,0.12),rgba(253,121,168,0.06));
+  border:2px dashed rgba(253,203,110,0.5);border-radius:12px;
+  padding:14px 16px;margin-bottom:20px;text-align:center;
+}
+.badge-fill{background:rgba(0,206,201,0.1);color:var(--accent2);}
+.result-actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;}
+.btn-review,.btn-retry{
+  flex:1;padding:12px;border-radius:12px;border:none;
+  font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;
+  transition:all .15s;
+}
+.btn-review{background:rgba(108,92,231,0.1);color:var(--primary);}
+.btn-review:hover{background:rgba(108,92,231,0.18);}
+.btn-retry{background:var(--primary);color:#fff;box-shadow:0 4px 12px rgba(108,92,231,0.3);}
+.btn-retry:hover{background:var(--primary-dark);}
+
+/* REVIEW */
+#reviewSection{display:none;margin-top:16px;}
+.review-item{
+  background:var(--surface);border-radius:12px;padding:16px 18px;
+  margin-bottom:10px;border-left:4px solid var(--err);
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+.review-item .ri-num{font-size:11px;color:var(--err);font-weight:800;letter-spacing:1px;margin-bottom:4px;}
+.review-item .ri-q{font-size:14px;font-weight:700;margin-bottom:8px;}
+.review-item .ri-wrong{font-size:13px;color:var(--err);}
+.review-item .ri-correct{font-size:13px;color:var(--ok);font-weight:700;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<div id="intro">
+  <span class="intro-icon">📚</span>
+  <div class="week-pill">ÖDEV &nbsp;|&nbsp; B1.1 &nbsp;|&nbsp; 3-4. Ders</div>
+  <h1>Imperativo Negativo</h1>
+  <div class="intro-sub">Negatif Emir Kipi — Tú & Vosotros</div>
+  <p class="intro-desc">100 soru · Çoktan seçmeli</p>
+  <div class="teacher-badge"><span class="handle">@ispanyolcacim</span><span style="color:var(--border)">•</span><span style="color:var(--muted)">Profe Hazel</span></div>
+  <div class="name-box">
+    <label>👤 Adınızı seçin</label>
+    <select id="introName" class="name-select">
+    <option value="">— Adınızı seçin —</option>
+    <option value="Gencay Agocuk">Gencay Agocuk</option>
+    <option value="Ufuk Aydın">Ufuk Aydın</option>
+    <option value="Pelinsu Damgacı">Pelinsu Damgacı</option>
+    <option value="Kübra Bulut">Kübra Bulut</option>
+    <option value="Ceylin Öz">Ceylin Öz</option>
+    <option value="Simge Güler">Simge Güler</option>
+    <option value="Esra Özçeşmeci">Esra Özçeşmeci</option>
+    <option value="Kayhan Açan">Kayhan Açan</option>
+    <option value="Nur O. Demirci">Nur O. Demirci</option>
+    <option value="Umre Gül">Umre Gül</option>
+    <option value="Nihan Karagedik">Nihan Karagedik</option>
+    <option value="Deneme Öğrencisi">Deneme Öğrencisi</option>
+  </select>
+  </div>
+  <button class="start-btn" onclick="startQuiz()">Teste Başla →</button>
+</div>
+
+<div id="quiz">
+  <div class="top-bar">
+    <div class="prog-wrap"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+    <div class="prog-label" id="progLabel">1 / 100</div>
+  </div>
+  <div class="score-bar">
+    <span class="s-correct">✓ <span id="sCorrect">0</span> doğru</span>
+    <button class="finish-btn-sm" onclick="showResult()">Testi Bitir →</button>
+    <span class="s-wrong">✗ <span id="sWrong">0</span> yanlış</span>
+  </div>
+  <div id="qArea"></div>
+</div>
+
+<div id="result">
+  <div class="result-card">
+    <div class="result-emoji" id="resIcon">🎉</div>
+    <div class="result-badge">ÖDEV · B1.1</div>
+    <div class="score-big" id="resPct">0<span>/100</span></div>
+    <div class="score-row">
+      <div class="score-item"><div class="val ok" id="stOk">0</div><div class="lbl">✓ Doğru</div></div>
+      <div class="score-item"><div class="val err" id="stErr">0</div><div class="lbl">✗ Yanlış</div></div>
+      <div class="score-item"><div class="val" id="stPct" style="color:var(--primary)">0</div><div class="lbl">Puan</div></div>
+    </div>
+
+    <div class="submit-cta" id="submitCta">
+      <p class="submit-hint">⚠️ Ödeviniz henüz teslim edilmedi!</p>
+      <p class="submit-hint2">Adınızı seçip butona tıklayana kadar ödev sisteme işlenmez.</p>
+    </div>
+    <div class="name-confirm-box">
+      <label>👤 Adınızı seçin</label>
+      <div class="confirm-row">
+        <select id="studentName">
+    <option value="">— Adınızı seçin —</option>
+    <option value="Gencay Agocuk">Gencay Agocuk</option>
+    <option value="Ufuk Aydın">Ufuk Aydın</option>
+    <option value="Pelinsu Damgacı">Pelinsu Damgacı</option>
+    <option value="Kübra Bulut">Kübra Bulut</option>
+    <option value="Ceylin Öz">Ceylin Öz</option>
+    <option value="Simge Güler">Simge Güler</option>
+    <option value="Esra Özçeşmeci">Esra Özçeşmeci</option>
+    <option value="Kayhan Açan">Kayhan Açan</option>
+    <option value="Nur O. Demirci">Nur O. Demirci</option>
+    <option value="Umre Gül">Umre Gül</option>
+    <option value="Nihan Karagedik">Nihan Karagedik</option>
+    <option value="Deneme Öğrencisi">Deneme Öğrencisi</option>
+  </select>
+        <button class="confirm-btn submit-big" id="confirmBtn" onclick="confirmName()">📬 ÖDEVİ TESLİM ET</button>
+      </div>
+      <div id="sendStatus"></div>
+    </div>
+
+    <div class="summary-card" id="summaryCard">
+      <p>👤 <strong id="summaryName"></strong></p>
+      <p>📚 <strong id="summaryOdev"></strong></p>
+      <p>🏆 Puan: <strong id="sumPuan"></strong>/100 &nbsp;·&nbsp; ✓ <strong id="sumDogru"></strong> &nbsp;·&nbsp; ✗ <strong id="sumYanlis"></strong></p>
+      <p style="color:var(--ok);font-weight:700;margin-top:6px;">✅ Ödeviniz teslim edildi!</p>
+    </div>
+
+    <div class="notice-box" id="noticeBox" style="display:none;text-align:center;padding:12px;margin:10px 0;background:rgba(108,92,231,0.07);border-radius:10px;font-size:14px;">🎉 <strong>Test tamamlandı!</strong><br>Yanlışlarınız için <strong>WhatsApp grubundan</strong> sorun!</div><div class="result-actions" id="actionBtns">
+      <button class="btn-review" onclick="toggleReview()">🔍 Hatalarımı gözden geçir</button>
+      <button class="btn-retry" onclick="restart()">🔄 Testi Tekrar Çöz</button>
+    </div>
+  </div>
+  <div id="reviewSection"></div>
+</div>
+
+</div><!-- /wrap -->
+
+<script>
+const SCRIPT_URL="https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec";
+const ODEV_ADI="H1 – 3-4.Ders";
+const GROUPS={
+  'Gencay Agocuk':'B1.1',
+  'Ufuk Aydın':'B1.1',
+  'Pelinsu Damgacı':'B1.1',
+  'Kübra Bulut':'B1.1',
+  'Ceylin Öz':'B1.1',
+  'Simge Güler':'B1.1',
+  'Esra Özçeşmeci':'B1.1',
+  'Kayhan Açan':'B1.1',
+  'Nur O. Demirci':'B1.1',
+  'Umre Gül':'B1.1',
+  'Nihan Karagedik':'B1.1',
+  'Deneme Öğrencisi':'B1.1'
+};
+
+const WARN='';
+
+const Q=[
+{t:"mc",q:"\"Hablar\" fiilinin t\u00fa i\u00e7in negatif emir \u00e7ekimi nas\u0131l olu\u015fturulur?",o:["\"No\" + yo \u00e7ekiminin -o'su at\u0131l\u0131r + -es eklenir.", "Geni\u015f zaman t\u00fa \u00e7ekimine \"no\" eklenir.", "Mastara \"no\" eklenir.", "Yo \u00e7ekimine -as eklenir.", "Geni\u015f zaman \u00e9l \u00e7ekimine \"no\" eklenir."],a:0,exp:"T\u00fa negatif emir: yo hablo \u2192 -o at\u0131l\u0131r \u2192 habl + es \u2192 no hables. -AR fiillerde z\u0131t ses -es'tir. | No hables = Konu\u015fma!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Comer\" fiilinin t\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No comes", "No comas", "No comed", "No coman", "No come"],a:1,exp:"Comer -ER grubu. Yo como \u2192 -o at\u0131l\u0131r \u2192 com + as \u2192 no comas. | No comas = Yeme!",es:"",tr:"",en:""},
+{t:"mc",q:"T\u00fa negatif emir \u00e7ekiminde -AR grubu fiillere hangi ek getirilir?",o:["-as", "-is", "-es", "-os", "-mos"],a:2,exp:"-AR fiillerde t\u00fa negatif emir: yo \u00e7ekiminden -o at\u0131l\u0131r, -es eklenir. \u00d6rnek: no hables.",es:"",tr:"",en:""},
+{t:"mc",q:"\"Salir\" fiilinin t\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No sales", "No sal", "No sals", "No salgas", "No salga"],a:3,exp:"Salir: yo salgo \u2192 -o at\u0131l\u0131r \u2192 salg + as \u2192 no salgas. | No salgas = \u00c7\u0131kma!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Escribir\" fiilinin t\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No escribes", "No escribid", "No escriban", "No escriba", "No escribas"],a:4,exp:"Escribir -IR grubu. Yo escribo \u2192 -o at\u0131l\u0131r \u2192 escrib + as \u2192 no escribas. | No escribas = Yazma!",es:"",tr:"",en:""},
+{t:"mc",q:"T\u00fa negatif emir \u00e7ekiminde -ER ve -IR grubu fiillere hangi ek getirilir?",o:["-as", "-es", "-is", "-os", "-mos"],a:0,exp:"-ER ve -IR fiillerde t\u00fa negatif emir: yo \u00e7ekiminden -o at\u0131l\u0131r, -as eklenir. \u00d6rnek: no comas.",es:"",tr:"",en:""},
+{t:"mc",q:"\"Vosotros\" negatif emir \u00e7ekimi nas\u0131l olu\u015fturulur?",o:["Mastar -r at\u0131l\u0131r, -d eklenir, ba\u015f\u0131na \"no\" gelir.", "\"No\" + yo \u00e7ekiminin -o'su at\u0131l\u0131r + -\u00e9is (-AR) veya -\u00e1is (-ER/-IR) eklenir.", "T\u00fa negatif emir \u00e7ekiminin sonuna -is eklenir.", "Geni\u015f zaman vosotros \u00e7ekimine \"no\" eklenir.", "Pozitif vosotros emir \u00e7ekimine \"no\" eklenir."],a:1,exp:"Vosotros negatif emir: yo \u00e7ekiminden -o at\u0131l\u0131r + -\u00e9is (-AR) veya -\u00e1is (-ER/-IR) \u2192 no habl\u00e9is, no com\u00e1is.",es:"",tr:"",en:""},
+{t:"mc",q:"\"Hacer\" fiilinin t\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No haces", "No hazgas", "No hagas", "No haga", "No haz"],a:2,exp:"Hacer: yo hago \u2192 -o at\u0131l\u0131r \u2192 hag + as \u2192 no hagas. Yo \u00e7ekimindeki -g korunur. | No hagas = Yapma!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Caminar\" fiilinin t\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No caminas", "No caminad", "No caminen", "No camines", "No camine"],a:3,exp:"Caminar -AR grubu. Yo camino \u2192 -o at\u0131l\u0131r \u2192 camin + es \u2192 no camines. | No camines = Y\u00fcr\u00fcme!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Poner\" fiilinin t\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No pones", "No poned", "No pongan", "No pon", "No pongas"],a:4,exp:"Poner: yo pongo \u2192 -o at\u0131l\u0131r \u2192 pong + as \u2192 no pongas. Yo \u00e7ekimindeki -g korunur. | No pongas = Koyma!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Hablar\" fiilinin vosotros negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No habl\u00e9is", "No hablad", "No habl\u00e1is", "No hablen", "No hables"],a:0,exp:"Hablar vosotros negatif emir: yo hablo \u2192 -o at\u0131l\u0131r \u2192 habl + \u00e9is \u2192 no habl\u00e9is. | No habl\u00e9is = Konu\u015fmay\u0131n!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Tener\" fiilinin t\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No tienes", "No tengas", "No tened", "No ten", "No teng\u00e1is"],a:1,exp:"Tener: yo tengo \u2192 -o at\u0131l\u0131r \u2192 teng + as \u2192 no tengas. | No tengas = Sahip olma!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Leer\" fiilinin t\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No lee", "No leed", "No leas", "No lean", "No lees"],a:2,exp:"Leer -ER grubu. Yo leo \u2192 -o at\u0131l\u0131r \u2192 le + as \u2192 no leas. | No leas = Okuma!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Venir\" fiilinin t\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No vienes", "No venid", "No vienen", "No vengas", "No ven"],a:3,exp:"Venir: yo vengo \u2192 -o at\u0131l\u0131r \u2192 veng + as \u2192 no vengas. | No vengas = Gelme!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Vivir\" fiilinin vosotros negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No viv\u00eds", "No viven", "No vivan", "No vivid", "No viv\u00e1is"],a:4,exp:"Vivir vosotros negatif emir: yo vivo \u2192 -o at\u0131l\u0131r \u2192 viv + \u00e1is \u2192 no viv\u00e1is. | No viv\u00e1is = Ya\u015famay\u0131n!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Ver\" fiilinin t\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No veas", "No ves", "No ved", "No vean", "No ve"],a:0,exp:"Ver: yo veo \u2192 -o at\u0131l\u0131r \u2192 ve + as \u2192 no veas. | No veas = G\u00f6rme!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Cantar\" fiilinin t\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No canta", "No cantes", "No cantad", "No canten", "No cantas"],a:1,exp:"Cantar -AR grubu. Yo canto \u2192 -o at\u0131l\u0131r \u2192 cant + es \u2192 no cantes. | No cantes = \u015eark\u0131 s\u00f6yleme!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Saber\" fiilinin t\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No sabes", "No sabed", "No sepas", "No sepa", "No s\u00e9"],a:2,exp:"Saber fiili negatif emir \u00e7ekiminde kendine \u00f6zg\u00fc (d\u00fczensiz) bir k\u00f6k yap\u0131s\u0131 kullan\u0131r; t\u00fa \u00e7ekimi no sepas \u015feklindedir.",es:"",tr:"",en:""},
+{t:"mc",q:"A\u015fa\u011f\u0131daki t\u00fa negatif emir \u00e7ekimlerinden hangisi YANLI\u015e verilmi\u015ftir?",o:["Hablar \u2192 no hables", "Comer \u2192 no comas", "Vivir \u2192 no vivas", "Salir \u2192 no sales", "Hacer \u2192 no hagas"],a:3,exp:"Salir t\u00fa negatif emir: yo salgo \u2192 salg + as \u2192 no salgas. \"No sales\" geni\u015f zaman \u00e7ekimidir.",es:"",tr:"",en:""},
+{t:"mc",q:"\"Ducharse\" d\u00f6n\u00fc\u015fl\u00fc fiilinin t\u00fa negatif emir \u00e7ekiminde zamir nereye konur?",o:["Fiilin sonuna eklenir.", "\"No\"dan \u00f6nce gelir.", "C\u00fcmlenin en sonuna gider.", "Zamir kullan\u0131lmaz.", "\"No\" ile fiil aras\u0131na girer."],a:4,exp:"D\u00f6n\u00fc\u015fl\u00fc t\u00fa negatif emirde zamir \"no\" ile fiil aras\u0131na girer: no te duches. | No te duches = Du\u015f alma!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Correr\" fiilinin t\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No corras", "No corres", "No corred", "No corran", "No corre"],a:0,exp:"Correr -ER grubu. Yo corro \u2192 -o at\u0131l\u0131r \u2192 corr + as \u2192 no corras. | No corras = Ko\u015fma!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Comer\" fiilinin vosotros negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No com\u00e9is", "No com\u00e1is", "No coman", "No comed", "No comas"],a:1,exp:"Comer vosotros negatif emir: yo como \u2192 com + \u00e1is \u2192 no com\u00e1is. | No com\u00e1is = Yemeyin!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Trabajar\" fiilinin vosotros negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No trabajas", "No trabajen", "No trabaj\u00e9is", "No trabajad", "No trabaj\u00e1is"],a:2,exp:"Trabajar vosotros negatif emir: yo trabajo \u2192 trabaj + \u00e9is \u2192 no trabaj\u00e9is. | No trabaj\u00e9is = \u00c7al\u0131\u015fmay\u0131n!",es:"",tr:"",en:""},
+{t:"mc",q:"T\u00fa negatif emir \u00e7ekimi ile pozitif emir \u00e7ekimi aras\u0131ndaki temel fark nedir?",o:["Negatif emirde mastara \"no\" eklenir.", "Negatif emirde geni\u015f zamana \"no\" eklenir.", "Negatif emirde vosotros formu kullan\u0131l\u0131r.", "Negatif emirde \"no\" + subjuntivo (dilek kipi) kullan\u0131l\u0131r.", "Negatif emirde mastar de\u011fi\u015fmez."],a:3,exp:"T\u00fa negatif emir = \"no\" + subjuntivo (yo \u00e7ekimi k\u00f6k\u00fcne z\u0131t sesli eki).",es:"",tr:"",en:""},
+{t:"mc",q:"\"Abrir\" fiilinin t\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No abres", "No abrid", "No abran", "No abre", "No abras"],a:4,exp:"Abrir -IR grubu. Yo abro \u2192 -o at\u0131l\u0131r \u2192 abr + as \u2192 no abras. | No abras = A\u00e7ma!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Dormir\" fiili d\u00fczensiz (o\u2192ue) bir fiildir. T\u00fa negatif emir \u00e7ekiminde k\u00f6k de\u011fi\u015fimi ger\u00e7ekle\u015fir mi?",o:["Evet, k\u00f6k de\u011fi\u015fimi korunur: no duermas.", "Hay\u0131r, no dormas olur.", "Hay\u0131r, emir \u00e7ekiminde k\u00f6k de\u011fi\u015fimi olmaz.", "Evet, ama sadece pozitif emirde.", "Hay\u0131r, no dormes olur."],a:0,exp:"Dormir: yo duermo \u2192 -o at\u0131l\u0131r \u2192 duerm + as \u2192 no duermas. | No duermas = Uyuma!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Ducharse\" d\u00f6n\u00fc\u015fl\u00fc fiilinin t\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No d\u00fachate", "No te duches", "No duchaos", "No te duchas", "No duches te"],a:1,exp:"D\u00f6n\u00fc\u015fl\u00fc negatif emirde zamir \"no\" ile fiil aras\u0131na girer. \"No\"dan sonra zamir (te), sonra fiil \u00e7ekimi gelir. | No te duches = Du\u015f alma!",es:"",tr:"",en:""},
+{t:"mc",q:"A\u015fa\u011f\u0131daki vosotros negatif emir \u00e7ekimlerinden hangisi YANLI\u015e yaz\u0131lm\u0131\u015ft\u0131r?",o:["Hablar \u2192 no habl\u00e9is", "Comer \u2192 no com\u00e1is", "Trabajar \u2192 no trabajad", "Beber \u2192 no beb\u00e1is", "Vivir \u2192 no viv\u00e1is"],a:2,exp:"\"No trabajad\" yanl\u0131\u015ft\u0131r; -d ile biten form pozitif emirdir. Negatif emir: no trabaj\u00e9is olmal\u0131d\u0131r.",es:"",tr:"",en:""},
+{t:"mc",q:"\"Bailar\" fiilinin t\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No baila", "No bailad", "No baile", "No bailes", "No bailas"],a:3,exp:"Bailar -AR grubu. Yo bailo \u2192 -o at\u0131l\u0131r \u2192 bail + es \u2192 no bailes. | No bailes = Dans etme!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Volver\" fiili d\u00fczensiz (o\u2192ue) bir fiildir. T\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No vuelves", "No volved", "No vuelvan", "No volvas", "No vuelvas"],a:4,exp:"Volver: yo vuelvo \u2192 -o at\u0131l\u0131r \u2192 vuelv + as \u2192 no vuelvas. | No vuelvas = D\u00f6nme!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Levantarse\" d\u00f6n\u00fc\u015fl\u00fc fiilinin t\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No te levantes", "No lev\u00e1ntate", "No levantaos", "No te levantas", "No levantas te"],a:0,exp:"D\u00f6n\u00fc\u015fl\u00fc negatif emirde zamir (te) \"no\" ile fiil aras\u0131na girer: no te levantes. | No te levantes = Kalkma!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Escribir\" fiilinin vosotros negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No escrib\u00eds", "No escrib\u00e1is", "No escriben", "No escriban", "No escribid"],a:1,exp:"Escribir vosotros negatif emir: yo escribo \u2192 escrib + \u00e1is \u2192 no escrib\u00e1is. | No escrib\u00e1is = Yazmay\u0131n!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Escuchar\" fiilinin t\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No escucha", "No escuchad", "No escuches", "No escuche", "No escuchas"],a:2,exp:"Escuchar -AR grubu. Yo escucho \u2192 -o at\u0131l\u0131r \u2192 escuch + es \u2192 no escuches. | No escuches = Dinleme!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Tener\" fiilinin vosotros negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No tened", "No ten\u00e9is", "No tengan", "No teng\u00e1is", "No tienes"],a:3,exp:"Tener vosotros negatif emir: yo tengo \u2192 teng + \u00e1is \u2192 no teng\u00e1is. | No teng\u00e1is = Sahip olmay\u0131n!",es:"",tr:"",en:""},
+{t:"mc",q:"A\u015fa\u011f\u0131daki se\u00e7eneklerden hangisinde t\u00fa pozitif ve negatif emir \u00e7ekimleri birlikte do\u011fru verilmi\u015ftir?",o:["Hablar: hablas / no hables", "Hablar: habla / no hablas", "Hablar: hables / no habla", "Hablar: habla / no hables", "Hablar: hablas / no habla"],a:3,exp:"Pozitif t\u00fa emir: hablas \u2192 -s d\u00fc\u015fer \u2192 habla. Negatif t\u00fa emir: yo hablo \u2192 habl + es \u2192 no hables.",es:"",tr:"",en:""},
+{t:"mc",q:"\"Pedir\" fiili d\u00fczensiz (e\u2192i) bir fiildir. T\u00fa negatif emir \u00e7ekimi hangisidir?",o:["No pidas", "No pedas", "No pides", "No pedes", "No pidis"],a:0,exp:"Pedir: yo pido (e\u2192i) \u2192 pid + as \u2192 no pidas. K\u00f6k de\u011fi\u015fimi negatif emirde korunur. | No pidas = \u0130steme!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Mirar\" fiilinin t\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No mira", "No mires", "No mirad", "No miren", "No miras"],a:1,exp:"Mirar -AR grubu. Yo miro \u2192 -o at\u0131l\u0131r \u2192 mir + es \u2192 no mires. | No mires = Bakma!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Hacer\" fiilinin vosotros negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No haced", "No hac\u00e9is", "No hag\u00e1is", "No hagan", "No haces"],a:2,exp:"Hacer vosotros negatif emir: yo hago \u2192 hag + \u00e1is \u2192 no hag\u00e1is. | No hag\u00e1is = Yapmay\u0131n!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Sentarse\" d\u00f6n\u00fc\u015fl\u00fc fiilinin t\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No te sientas", "No si\u00e9ntate", "No sentaos", "No te sientes", "No te sent\u00e1is"],a:3,exp:"Sentar d\u00fczensiz (e\u2192ie). Yo siento \u2192 sient + es \u2192 no te sientes. Zamir (te) no ile fiil aras\u0131ndad\u0131r. | No te sientes = Oturma!",es:"",tr:"",en:""},
+{t:"mc",q:"T\u00fa negatif emirde d\u00f6n\u00fc\u015fl\u00fc zamir (te, os...) nereye yerle\u015ftirilir?",o:["Fiilin sonuna eklenir.", "C\u00fcmlenin en ba\u015f\u0131na gelir.", "\"No\"dan \u00f6nce gelir.", "C\u00fcmle sonuna ayr\u0131 yaz\u0131l\u0131r.", "\"No\" ile fiil aras\u0131na girer."],a:4,exp:"Negatif emirde zamir fiilin \u00f6n\u00fcne, \"no\"dan sonraya gelir: no te duches.",es:"",tr:"",en:""},
+{t:"mc",q:"\"Limpiar\" fiilinin t\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No limpies", "No limpia", "No limpiad", "No limpien", "No limpias"],a:0,exp:"Limpiar -AR grubu. Yo limpio \u2192 -o at\u0131l\u0131r \u2192 limpi + es \u2192 no limpies. | No limpies = Temizleme!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Salir\" fiilinin vosotros negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No salid", "No salg\u00e1is", "No sal\u00eds", "No salgan", "No sales"],a:1,exp:"Salir vosotros negatif emir: yo salgo \u2192 salg + \u00e1is \u2192 no salg\u00e1is. | No salg\u00e1is = \u00c7\u0131kmay\u0131n!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Pensar\" fiili d\u00fczensiz (e\u2192ie) bir fiildir. T\u00fa negatif emir \u00e7ekimi hangisidir?",o:["No piensas", "No pensad", "No pienses", "No piensen", "No pensa"],a:2,exp:"Pensar: yo pienso (e\u2192ie) \u2192 piens + es \u2192 no pienses. | No pienses = D\u00fc\u015f\u00fcnme!",es:"",tr:"",en:""},
+{t:"mc",q:"Negatif emir \u00e7ekiminde \"no\" nereye konur?",o:["Fiilin sonuna eklenir.", "C\u00fcmlenin en sonuna gelir.", "\u00d6znenin \u00f6n\u00fcne gelir.", "Her zaman fiilin hemen \u00f6n\u00fcne gelir.", "Rastgele yere konabilir."],a:3,exp:"\"No\" her zaman fiilden \u00f6nce yer al\u0131r: no hables, no te levantes.",es:"",tr:"",en:""},
+{t:"mc",q:"\"Cerrar\" fiili d\u00fczensiz (e\u2192ie) bir fiildir. T\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No cierres", "No cierra", "No cerrad", "No cierren", "No cierras"],a:0,exp:"Cerrar: yo cierro (e\u2192ie) \u2192 cierr + es \u2192 no cierres. | No cierres = Kapatma!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Venir\" fiilinin vosotros negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No venid", "No veng\u00e1is", "No ven\u00eds", "No vengan", "No vienes"],a:1,exp:"Venir vosotros negatif emir: yo vengo \u2192 veng + \u00e1is \u2192 no veng\u00e1is. | No veng\u00e1is = Gelmeyin!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Ba\u00f1arse\" d\u00f6n\u00fc\u015fl\u00fc fiilinin vosotros negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No os ba\u00f1\u00e1is", "ba\u00f1aos", "No os ba\u00f1\u00e9is", "No ba\u00f1aros", "No os ba\u00f1ado"],a:2,exp:"Ba\u00f1ar -AR grubu. Yo ba\u00f1o \u2192 ba\u00f1 + \u00e9is \u2192 ba\u00f1\u00e9is. Vosotros d\u00f6n\u00fc\u015fl\u00fc negatif: no os ba\u00f1\u00e9is. | No os ba\u00f1\u00e9is = Banyo yapmay\u0131n!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Decir\" fiilinin vosotros negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No dec\u00eds", "No decid", "No digan", "No dig\u00e1is", "No dices"],a:3,exp:"Decir vosotros negatif emir: yo digo \u2192 dig + \u00e1is \u2192 no dig\u00e1is. | No dig\u00e1is = S\u00f6ylemeyin!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Trabajar\" fiilinin t\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No trabaja", "No trabajad", "No trabajen", "No trabajas", "No trabajes"],a:4,exp:"Trabajar -AR grubu. Yo trabajo \u2192 trabaj + es \u2192 no trabajes. | No trabajes = \u00c7al\u0131\u015fma!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Ponerse\" d\u00f6n\u00fc\u015fl\u00fc fiilinin t\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No te pongas", "No p\u00f3nte", "No poneos", "No te pones", "No pongas te"],a:0,exp:"Poner: yo pongo \u2192 pong + as \u2192 no te pongas. Zamir \"no\" ile fiil aras\u0131ndad\u0131r. | No te pongas = Giyinme!",es:"",tr:"",en:""},
+{t:"mc",q:"A\u015fa\u011f\u0131daki negatif emir e\u015fle\u015fmelerinden hangisi DO\u011eRUDUR?",o:["Venir \u2192 no vienes", "Poner \u2192 no pongas", "Salir \u2192 no sales", "Hacer \u2192 no haces", "Tener \u2192 no tienes"],a:1,exp:"Poner fiilinin t\u00fa negatif emir \u00e7ekimi \"no pongas\"d\u0131r. Di\u011fer se\u00e7enekler geni\u015f zaman \u00e7ekimleridir.",es:"",tr:"",en:""},
+{t:"mc",q:"\"Dormir\" fiilinin vosotros negatif emir \u00e7ekimi hangisidir?",o:["No duerm\u00e1is", "No dorm\u00e1is", "No durm\u00e1is", "No dorm\u00e9is", "No duerm\u00e9is"],a:2,exp:"Dormir fiili -IR grubudur ve vosotros \u00e7ekiminde k\u00f6k de\u011fi\u015fimi (o\u2192u) olur. | No durm\u00e1is = Uyumay\u0131n!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Llamar\" fiilinin t\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No llama", "No llamad", "No llame", "No llames", "No llamas"],a:3,exp:"Llamar -AR grubu. Yo llamo \u2192 llam + es \u2192 no llames. | No llames = Arama!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Ir\" fiilinin t\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No ve", "No id", "No vayan", "No vas", "No vayas"],a:4,exp:"Ir tamamen d\u00fczensizdir. T\u00fa negatif emir: no vayas. | No vayas = Gitme!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Levantarse\" d\u00f6n\u00fc\u015fl\u00fc fiilinin vosotros negatif emir \u00e7ekimi hangisidir?",o:["No os levant\u00e9is", "No os levant\u00e1is", "No levantaos", "No os levantad", "No levantados"],a:0,exp:"Levantar -AR grubu. Yo levanto \u2192 levant + \u00e9is \u2192 no os levant\u00e9is. | No os levant\u00e9is = Kalkmay\u0131n!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Abrir\" fiilinin vosotros negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No abres", "No abr\u00e1is", "No abr\u00eds", "No abran", "No abrid"],a:1,exp:"Abrir vosotros negatif emir: yo abro \u2192 abr + \u00e1is \u2192 no abr\u00e1is. | No abr\u00e1is = A\u00e7may\u0131n!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Beber\" fiilinin t\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No bebe", "No bebed", "No bebas", "No beban", "No bebes"],a:2,exp:"Beber -ER grubu. Yo bebo \u2192 beb + as \u2192 no bebas. | No bebas = \u0130\u00e7me!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Poner\" fiilinin vosotros negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No poned", "No pon\u00e9is", "No pongan", "No pong\u00e1is", "No pones"],a:3,exp:"Poner vosotros negatif emir: yo pongo \u2192 pong + \u00e1is \u2192 no pong\u00e1is. | No pong\u00e1is = Koymay\u0131n!",es:"",tr:"",en:""},
+{t:"mc",q:"A\u015fa\u011f\u0131daki vosotros negatif emir \u00e7ekimlerinden hangisi DO\u011eRUDUR?",o:["Hacer \u2192 no hac\u00e9is", "Salir \u2192 no sal\u00eds", "Tener \u2192 no ten\u00e9is", "Decir \u2192 no dec\u00eds", "Venir \u2192 no veng\u00e1is"],a:4,exp:"Venir: yo vengo \u2192 veng + \u00e1is \u2192 no veng\u00e1is. Di\u011ferleri geni\u015f zaman \u00e7ekimleridir.",es:"",tr:"",en:""},
+{t:"mc",q:"\"Acostarse\" d\u00f6n\u00fc\u015fl\u00fc fiilinin t\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No te acuestes", "No te acuestas", "No acu\u00e9state", "No acostaos", "No te acuesta"],a:0,exp:"Acostarse d\u00fczensiz (o\u2192ue). Yo acuesto \u2192 acuest + es \u2192 no te acuestes. | No te acuestes = Yatma!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Vivir\" fiilinin t\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No vive", "No vivas", "No vivid", "No vivan", "No vives"],a:1,exp:"Vivir -IR grubu. Yo vivo \u2192 viv + as \u2192 no vivas. | No vivas = Ya\u015fama!",es:"",tr:"",en:""},
+{t:"mc",q:"Negatif emir (imperativo negativo) olu\u015fturulurken a\u015fa\u011f\u0131dakilerden hangisi DO\u011eRUDUR?",o:["Negatif emirde geni\u015f zaman kullan\u0131l\u0131r.", "Negatif emirde mastar formu kullan\u0131l\u0131r.", "Negatif emirde \"no\" + subjuntivo kullan\u0131l\u0131r.", "Negatif emirde sadece yo \u00e7ekimi kullan\u0131l\u0131r.", "Negatif emirde fiil de\u011fi\u015fmeden kal\u0131r."],a:2,exp:"\u0130spanyolcada negatif emir her zaman \"no + subjuntivo\" ile yap\u0131l\u0131r. \u00d6rnek: hablar \u2192 no hables",es:"",tr:"",en:""},
+{t:"mc",q:"\"Vestirse\" d\u00f6n\u00fc\u015fl\u00fc fiilinin t\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No v\u00edstete", "No te vistes", "No vest\u00edos", "No te vistas", "No te vista"],a:3,exp:"Vestirse d\u00fczensiz (e\u2192i). Yo visto \u2192 vist + as \u2192 no te vistas. | No te vistas = Giyinme!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Ir\" fiilinin vosotros negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No vais", "No vamos", "No vayan", "No id", "No vay\u00e1is"],a:4,exp:"Ir fiilinin vosotros negatif emir \u00e7ekimi \"no vay\u00e1is\"d\u0131r. | No vay\u00e1is = Gitmeyin!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Ayudar\" fiilinin t\u00fa negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No ayudes", "No ayuda", "No ayudad", "No ayuden", "No ayudas"],a:0,exp:"Ayudar -AR grubu. Yo ayudo \u2192 ayud + es \u2192 no ayudes. | No ayudes = Yard\u0131m etme!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Volver\" fiilinin vosotros negatif emir \u00e7ekimi hangisidir?",o:["No volved", "No volv\u00e1is", "No vuelv\u00e1is", "No volv\u00e9is", "No volvais"],a:1,exp:"Volver -ER grubundad\u0131r. Vosotros formunda o\u2192ue de\u011fi\u015fimi olmaz. K\u00f6k (volv-) + -\u00e1is \u2192 no volv\u00e1is.",es:"",tr:"",en:""},
+{t:"mc",q:"A\u015fa\u011f\u0131daki t\u00fa negatif emir \u00e7ekimlerinden hangisi do\u011fru e\u015fle\u015ftirilmi\u015ftir?",o:["Tener \u2192 no tienes", "Ver \u2192 no ves", "Venir \u2192 no vengas", "Saber \u2192 no sabes", "Hacer \u2192 no haces"],a:2,exp:"Venir: yo vengo \u2192 veng + as \u2192 no vengas. Di\u011ferleri geni\u015f zamand\u0131r.",es:"",tr:"",en:""},
+{t:"mc",q:"A\u015fa\u011f\u0131daki vosotros negatif emir \u00e7ekimlerinden hangisi DO\u011eRUDUR? (Pedir: e\u2192i)",o:["Pedir \u2192 no ped\u00e9is", "Pedir \u2192 no ped\u00e1is", "Pedir \u2192 no pid\u00e9is", "Pedir \u2192 no pid\u00e1is", "Pedir \u2192 no ped\u00eds"],a:3,exp:"Pedir e\u2192i k\u00f6k de\u011fi\u015fimli (-IR) fiildir. Bu de\u011fi\u015fim vosotros negatif emirde de korunur: yo pido \u2192 pid + \u00e1is \u2192 no pid\u00e1is",es:"",tr:"",en:""},
+{t:"mc",q:"\"Hablar\" fiilinin t\u00fa ve vosotros negatif emir \u00e7ekimleri hangi se\u00e7enekte birlikte do\u011fru verilmi\u015ftir?",o:["No hables / No habl\u00e1is", "No hablas / No habl\u00e9is", "No hables / No hables", "No hables / No hablad", "No hables / No habl\u00e9is"],a:4,exp:"-AR fiillerinde t\u00fa i\u00e7in -es, vosotros i\u00e7in -\u00e9is eki getirilir.",es:"",tr:"",en:""},
+{t:"mc",q:"\"Sentarse\" d\u00f6n\u00fc\u015fl\u00fc fiilinin vosotros negatif emir \u00e7ekimi hangisidir?",o:["No os sent\u00e9is", "No os sent\u00e1is", "No sentaos", "No os sentados", "No os sient\u00e9is"],a:0,exp:"Sentar -AR grubundad\u0131r. Vosotros'ta e\u2192ie de\u011fi\u015fimi olmaz. K\u00f6k (sent-) + -\u00e9is \u2192 no os sent\u00e9is.",es:"",tr:"",en:""},
+{t:"mc",q:"A\u015fa\u011f\u0131daki c\u00fcmlelerden hangisinde negatif emir YANLI\u015e kullan\u0131lm\u0131\u015ft\u0131r?",o:["\u00a1No hables tan alto!", "\u00a1No sal ahora!", "\u00a1No hagas eso!", "\u00a1No salg\u00e1is de aqu\u00ed!", "\u00a1No veng\u00e1is a la fiesta!"],a:1,exp:"Negatif emirde \"sal\" (pozitif emir) kullan\u0131lmaz, subjuntivo formu \"no salgas\" kullan\u0131lmal\u0131d\u0131r.",es:"",tr:"",en:""},
+{t:"mc",q:"\"Leer\" fiilinin vosotros negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No lees", "No le\u00e1is", "No le\u00e9is", "No lean", "No leed"],a:1,exp:"Leer: yo leo \u2192 le + \u00e1is \u2192 no le\u00e1is. | No le\u00e1is = Okumay\u0131n!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Correr\" fiilinin vosotros negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No corred", "No corr\u00e9is", "No corr\u00e1is", "No corran", "No corres"],a:2,exp:"Correr: yo corro \u2192 corr + \u00e1is \u2192 no corr\u00e1is. | No corr\u00e1is = Ko\u015fmay\u0131n!",es:"",tr:"",en:""},
+{t:"mc",q:"\"Decir\" fiilinin t\u00fa negatif emir \u00e7ekiminin \"di\" de\u011fil de ba\u015fka bir form olmas\u0131n\u0131n nedeni nedir?",o:["Decir -AR grubundad\u0131r.", "Di vosotros \u00e7ekimidir.", "Di geni\u015f zaman yo \u00e7ekimidir.", "Negatif emirde d\u00fczensiz t\u00fa formlar\u0131 (di, haz vb.) kullan\u0131lmaz, subjuntivo kullan\u0131l\u0131r.", "Decir d\u00f6n\u00fc\u015fl\u00fc bir fiildir."],a:3,exp:"Negatif emirde her zaman subjuntivo (no digas) kullan\u0131l\u0131r; \"di\" sadece pozitif emirdir.",es:"",tr:"",en:""},
+{t:"mc",q:"\"Escuchar\" fiilinin vosotros negatif emir \u00e7ekimi hangisidir?",o:["No escuch\u00e1is", "No escuchas", "No escuches", "No escuchen", "No escuch\u00e9is"],a:4,exp:"Escuchar -AR grubu. Yo escucho \u2192 escuch + \u00e9is \u2192 no escuch\u00e9is. | No escuch\u00e9is = Dinlemeyin!",es:"",tr:"",en:""},
+{t:"mc",q:"A\u015fa\u011f\u0131dakilerden hangisinde hem t\u00fa hem vosotros negatif emir \u00e7ekimi DO\u011eRU verilmi\u015ftir? (Comer)",o:["Comer: no comas / no com\u00e1is", "Comer: no comas / no com\u00e9is", "Comer: no comes / no com\u00e1is", "Comer: no come / no com\u00e1is", "Comer: no comas / no comad"],a:0,exp:"-ER fiili i\u00e7in t\u00fa \u00e7ekimi -as, vosotros \u00e7ekimi -\u00e1is ile biter.",es:"",tr:"",en:""},
+{t:"mc",q:"\"Llamar\" fiilinin vosotros negatif emir \u00e7ekimi hangi se\u00e7enekte do\u011frudur?",o:["No llamad", "No llam\u00e9is", "No llam\u00e1is", "No llamen", "No llamas"],a:1,exp:"Llamar -AR grubu. Yo llamo \u2192 llam + \u00e9is \u2192 no llam\u00e9is. | No llam\u00e9is = Aramay\u0131n!",es:"",tr:"",en:""},
+{t:"mc",q:"T\u00fa negatif emir \u00e7ekiminde -AR fiillere -es, -ER/-IR fiillere -as gelmesinin sebebi nedir?",o:["Rastgele belirlenmi\u015f bir kurald\u0131r.", "-AR fiillerin yo \u00e7ekimi -o ile bitmez.", "-AR fiiller i\u00e7in z\u0131t ses -e grubundan, -ER/-IR i\u00e7in z\u0131t ses -a grubundand\u0131r.", "-ER/-IR fiillerin t\u00fa \u00e7ekimi -as ile biter.", "Bu kural\u0131n istisnas\u0131 vard\u0131r."],a:2,exp:"\u0130spanyolca emir kipinde \"z\u0131t sesli\" kural\u0131 uygulan\u0131r: a \u2192 e, e/i \u2192 a.",es:"",tr:"",en:""},
+{t:"mc",q:"A\u015fa\u011f\u0131daki c\u00fcmlelerden hangisinde negatif emir DO\u011eRU kullan\u0131lm\u0131\u015ft\u0131r?",o:["\u00a1No sal de casa!", "\u00a1No pon eso aqu\u00ed!", "\u00a1No ven tarde!", "\u00a1No vengas tarde!", "\u00a1No haz ruido!"],a:3,exp:"Negatif emirde pozitif emir formlar\u0131 (sal, pon, ven, haz) kullan\u0131lmaz. \"No vengas\" do\u011fru \u00e7ekimdir.",es:"",tr:"",en:""},
+{t:"mc",q:"\"Trabajar\" fiilinin t\u00fa ve vosotros negatif emir \u00e7ekimleri hangi se\u00e7enekte birlikte do\u011fru verilmi\u015ftir?",o:["No trabajas / No trabaj\u00e1is", "No trabajas / No trabaj\u00e9is", "No trabajes / No trabaj\u00e9is", "No trabajad / No trabaj\u00e9is", "No trabajes / No trabaj\u00e1is"],a:2,exp:"Trabajar -AR grubudur. T\u00fa i\u00e7in -es, vosotros i\u00e7in -\u00e9is eki kullan\u0131l\u0131r.",es:"",tr:"",en:""},
+{t:"mc",q:"\"\u00a1No _______ (hablar) t\u00fa tan fuerte, por favor!\" \u2014 Bo\u015flu\u011fa hangisi gelir?",o:["hables", "hablas", "hable", "hablad", "hablen"],a:0,exp:"Hablar -AR fiilidir. Yo hablo \u2192 habl + es \u2192 no hables.",es:"",tr:"",en:""},
+{t:"mc",q:"\"\u00a1No _______ (beber) vosotros esa agua, est\u00e1 sucia!\" \u2014 Bo\u015flu\u011fa hangisi gelir?",o:["beb\u00e9is", "beb\u00e1is", "bebed", "beban", "bebas"],a:1,exp:"Beber -ER grubudur. Yo bebo k\u00f6k\u00fcne vosotros i\u00e7in -\u00e1is eklenir.",es:"",tr:"",en:""},
+{t:"mc",q:"\"\u00a1No _______ (abrir) t\u00fa la ventana, hace fr\u00edo!\" \u2014 Bo\u015flu\u011fa hangisi gelir?",o:["abres", "abrid", "abras", "abran", "abre"],a:2,exp:"Abrir -IR grubudur. Yo abro \u2192 abr + as \u2192 no abras.",es:"",tr:"",en:""},
+{t:"mc",q:"\"\u00a1No _______ (salir) t\u00fa a la calle sin chaqueta!\" \u2014 Bo\u015flu\u011fa hangisi gelir?",o:["sales", "sal", "salgas", "salga", "salg\u00e1is"],a:2,exp:"Salir: yo salgo \u2192 salg + as \u2192 no salgas.",es:"",tr:"",en:""},
+{t:"mc",q:"\"\u00a1No _______ (hacer) vosotros ruido, el beb\u00e9 duerme!\" \u2014 Bo\u015flu\u011fa hangisi gelir?",o:["hac\u00e9is", "haced", "hag\u00e1is", "hagan", "hago"],a:2,exp:"Hacer: yo hago \u2192 hag + \u00e1is \u2192 no hag\u00e1is.",es:"",tr:"",en:""},
+{t:"mc",q:"\"\u00a1No _______ (poner) t\u00fa los pies sobre la mesa!\" \u2014 Bo\u015flu\u011fa hangisi gelir?",o:["pones", "pon", "pongan", "poned", "pongas"],a:4,exp:"Poner: yo pongo \u2192 pong + as \u2192 no pongas.",es:"",tr:"",en:""},
+{t:"mc",q:"\"\u00a1No _______ (venir) vosotros tarde a la cena!\" \u2014 Bo\u015flu\u011fa hangisi gelir?",o:["veng\u00e1is", "ven\u00eds", "venid", "vengan", "vengas"],a:0,exp:"Venir: yo vengo \u2192 veng + \u00e1is \u2192 no veng\u00e1is.",es:"",tr:"",en:""},
+{t:"mc",q:"\"\u00a1No _______ (decir) t\u00fa mentiras!\" \u2014 Bo\u015flu\u011fa hangisi gelir?",o:["dices", "digas", "di", "diga", "dig\u00e1is"],a:1,exp:"Decir: yo digo \u2192 dig + as \u2192 no digas.",es:"",tr:"",en:""},
+{t:"mc",q:"\"\u00a1No _______ (traer) vosotros comida al examen!\" \u2014 Bo\u015flu\u011fa hangisi gelir?",o:["tra\u00e9is", "traed", "traig\u00e1is", "traigan", "traigas"],a:2,exp:"Traer: yo traigo \u2192 traig + \u00e1is \u2192 no traig\u00e1is.",es:"",tr:"",en:""},
+{t:"mc",q:"\"\u00a1No _______ (mirar) t\u00fa hacia atr\u00e1s!\" \u2014 Bo\u015flu\u011fa hangisi gelir?",o:["miras", "miren", "mire", "mires", "mirad"],a:3,exp:"Mirar -AR grubudur. Yo miro \u2192 mir + es \u2192 no mires.",es:"",tr:"",en:""},
+{t:"mc",q:"\"\u00a1No _______ (comer) t\u00fa muchos dulces!\" \u2014 Bo\u015flu\u011fa hangisi gelir?",o:["comes", "comed", "coman", "coma", "comas"],a:4,exp:"Comer -ER grubudur. Yo como \u2192 com + as \u2192 no comas.",es:"",tr:"",en:""},
+{t:"mc",q:"\"\u00a1No _______ (escribir) vosotros en las paredes!\" \u2014 Bo\u015flu\u011fa hangisi gelir?",o:["escrib\u00e1is", "escrib\u00eds", "escribid", "escriban", "escribas"],a:0,exp:"Escribir -IR grubudur. Yo escribo \u2192 escrib + \u00e1is \u2192 no escrib\u00e1is.",es:"",tr:"",en:""},
+{t:"mc",q:"\"\u00a1No _______ (perder) t\u00fa las llaves otra vez!\" \u2014 Bo\u015flu\u011fa hangisi gelir? (Perder: e\u2192ie)",o:["pierdes", "pierdas", "perd\u00e1is", "perded", "perdas"],a:1,exp:"Perder: yo pierdo (e\u2192ie) \u2192 pierd + as \u2192 no pierdas.",es:"",tr:"",en:""},
+{t:"mc",q:"\"\u00a1No _______ (correr) vosotros por los pasillos!\" \u2014 Bo\u015flu\u011fa hangisi gelir?",o:["corr\u00e9is", "corran", "corr\u00e1is", "corred", "corras"],a:2,exp:"Correr -ER grubudur. Yo corro \u2192 corr + \u00e1is \u2192 no corr\u00e1is.",es:"",tr:"",en:""},
+{t:"mc",q:"\"\u00a1No _______ (escuchar) t\u00fa esa m\u00fasica tan alta!\" \u2014 Bo\u015flu\u011fa hangisi gelir?",o:["escuchas", "escuches", "escuchad", "escuche", "escuchen"],a:1,exp:"Escuchar -AR grubudur. T\u00fa negatif emirde -es ekini al\u0131r.",es:"",tr:"",en:""},
+{t:"mc",q:"\"\u00a1No _______ (comprar) vosotros ese coche, es muy viejo!\" \u2014 Bo\u015flu\u011fa hangisi gelir?",o:["compr\u00e1is", "comprad", "compren", "compr\u00e9is", "compres"],a:3,exp:"Comprar -AR grubudur. Vosotros negatif emirde -\u00e9is ekini al\u0131r.",es:"",tr:"",en:""},
+{t:"mc",q:"\"\u00a1No _______ (tocar) t\u00fa la estufa, est\u00e1 caliente!\" \u2014 Bo\u015flu\u011fa hangisi gelir? (tocar: c\u2192qu)",o:["tocas", "tocad", "toque", "toquen", "toques"],a:4,exp:"Tocar: \"c\" sesini korumak i\u00e7in negatif emirde \"qu\" de\u011fi\u015fimine u\u011frar: yo toco \u2192 no toques.",es:"",tr:"",en:""},
+{t:"mc",q:"\"\u00a1No _______ (pagar) vosotros la cuenta, yo invito!\" \u2014 Bo\u015flu\u011fa hangisi gelir? (pagar: g\u2192gu)",o:["pagu\u00e9is", "pag\u00e1is", "pagad", "pagan", "pagues"],a:0,exp:"Pagar: \"g\" sesini korumak i\u00e7in negatif emirde \"gu\" harflerine d\u00f6n\u00fc\u015f\u00fcr: no pagu\u00e9is.",es:"",tr:"",en:""},
+{t:"mc",q:"\"\u00a1No _______ (leer) t\u00fa ese libro, es muy aburrido!\" \u2014 Bo\u015flu\u011fa hangisi gelir?",o:["lees", "leas", "leed", "lean", "lea"],a:1,exp:"Leer -ER grubudur. Yo leo \u2192 le + as \u2192 no leas.",es:"",tr:"",en:""},
+{t:"mc",q:"\"\u00a1No _______ (dormir) vosotros hasta tarde ma\u00f1ana!\" \u2014 Bo\u015flu\u011fa hangisi gelir? (dormir: o\u2192u)",o:["dorm\u00e1is", "duerm\u00e1is", "durm\u00e1is", "dormid", "duermen"],a:2,exp:"Dormir -IR fiilidir. -IR k\u00f6k de\u011fi\u015fimli fiillerde vosotros negatif emirde o\u2192u de\u011fi\u015fimi olur.",es:"",tr:"",en:""}
+];
+
+let cur=0,score=0,err=0,wrongList=[],state=new Array(Q.length).fill(null);
+
+function startQuiz(){
+  const n=document.getElementById('introName').value;
+  if(!n){alert('Lütfen adınızı seçin!');return;}
+  window._introName=n;
+  document.getElementById('intro').style.display='none';
+  document.getElementById('quiz').style.display='block';
+  render();
+}
+
+function render(){
+  document.getElementById('progFill').style.width=((cur/Q.length)*100)+'%';
+  document.getElementById('progLabel').textContent=(cur+1)+' / '+Q.length;
+  document.getElementById('sCorrect').textContent=score;
+  document.getElementById('sWrong').textContent=err;
+  const q=Q[cur];
+  document.getElementById('qArea').innerHTML=WARN+(q.t==='mc'?buildMC(q,cur):buildFill(q,cur));
+  if(state[cur]!==null)restoreState(cur);
+}
+
+function buildMC(q,i){
+  return'<div class="q-card"><div class="q-num">SORU '+(i+1)+'</div><span class="q-type-badge badge-mc">ÇOKTAN SEÇMELİ</span><div class="q-text">'+q.q+'</div><div class="choices" id="ch'+i+'">'+
+  q.o.map((o,j)=>'<button class="choice-btn" id="cb'+i+'_'+j+'" onclick="answerMC('+i+','+j+')"><span class="cletter">'+'abcde'[j]+'</span>'+o+'</button>').join('')+
+  '</div><div class="explanation" id="exp'+i+'"></div>'+navRow(i)+'</div>';
+}
+
+function buildFill(q,i){
+  return'<div class="q-card"><div class="q-num">SORU '+(i+1)+'</div><span class="q-type-badge badge-fill">BOŞLUK DOLDURMA</span><div class="q-text">'+q.q+'</div><div class="fill-wrap"><input class="fill-input" id="fi'+i+'" placeholder="Cevabınızı yazın..." onkeydown="if(event.key===\'Enter\')answerFill('+i+')"><button class="fill-submit" id="fs'+i+'" onclick="answerFill('+i+')">Kontrol Et →</button></div><div class="explanation" id="exp'+i+'"></div>'+navRow(i)+'</div>';
+}
+
+function navRow(i){
+  return'<div class="nav-row"><button class="nav-btn" onclick="skipQ()" '+(state[i]!==null?'disabled':'')+'>Atla</button><button class="nav-btn" onclick="prev()" '+(i===0?'disabled':'')+'>← Geri</button><button class="nav-btn primary" onclick="next()">'+(i===Q.length-1?'Bitir ✓':'İleri →')+'</button></div>';
+}
+
+function showExp(i,ok){
+  const q=Q[i],el=document.getElementById('exp'+i);
+  if(!el)return;
+  el.className='explanation show '+(ok?'exp-ok':'exp-err');
+  const letters=['a','b','c','d'];
+  el.innerHTML=(ok?'✅ ':'❌ Doğrusu: <strong>'+letters[q.a]+') '+q.o[q.a]+'</strong><br>')+q.exp+
+    '<span class="exp-es">🇪🇸 '+q.es+'</span><span class="exp-tr">🇹🇷 '+q.tr+'</span><span class="exp-en">🇬🇧 '+q.en+'</span>';
+}
+
+function answerMC(i,j){
+  if(state[i]!==null)return;
+  const q=Q[i],ok=j===q.a;
+  state[i]={chosen:q.o[j],correct:q.o[q.a],ok};
+  if(ok)score++;else{err++;wrongList.push({idx:i,chosen:q.o[j],correct:q.o[q.a]});}
+  for(let k=0;k<4;k++){
+    const b=document.getElementById('cb'+i+'_'+k);
+    if(!b)continue;b.disabled=true;
+    if(k===q.a)b.classList.add('correct');
+    else if(k===j&&!ok)b.classList.add('wrong');
+  }
+  showExp(i,ok);
+  document.getElementById('sCorrect').textContent=score;
+  document.getElementById('sWrong').textContent=err;
+  if(allAnswered())setTimeout(showResult,700);
+}
+
+function answerFill(i){
+  const inp=document.getElementById('fi'+i);
+  if(!inp||state[i]!==null)return;
+  const user=inp.value.trim();if(!user)return;
+  const q=Q[i],ok=user.toLowerCase()===q.a.toLowerCase();
+  state[i]={chosen:user,correct:q.a,ok};
+  if(ok)score++;else{err++;wrongList.push({idx:i,chosen:user,correct:q.a});}
+  inp.classList.add(ok?'correct-input':'wrong-input');
+  inp.disabled=true;
+  document.getElementById('fs'+i).disabled=true;
+  if(!ok){const d=document.createElement('div');d.style.cssText='font-size:.8rem;color:#e17055;margin-top:.3rem;font-weight:600;';const letters=['a','b','c','d'];d.textContent='Doğrusu: '+letters[q.a]+') '+q.o[q.a];inp.parentNode.insertBefore(d,inp.nextSibling);}
+  showExp(i,ok);
+  document.getElementById('sCorrect').textContent=score;
+  document.getElementById('sWrong').textContent=err;
+  if(allAnswered())setTimeout(showResult,700);
+}
+
+function restoreState(i){
+  const s=state[i],q=Q[i];if(!s)return;
+  if(q.t==='mc'){
+    for(let k=0;k<4;k++){const b=document.getElementById('cb'+i+'_'+k);if(!b)continue;b.disabled=true;if(k===q.a)b.classList.add('correct');else if(q.o[k]===s.chosen&&!s.ok)b.classList.add('wrong');}
+  }else{
+    const inp=document.getElementById('fi'+i);
+    if(inp){inp.value=s.chosen;inp.classList.add(s.ok?'correct-input':'wrong-input');inp.disabled=true;}
+    document.getElementById('fs'+i).disabled=true;
+    if(!s.ok){const d=document.createElement('div');d.style.cssText='font-size:.8rem;color:#e17055;margin-top:.3rem;font-weight:600;';const letters=['a','b','c','d'];d.textContent='Doğrusu: '+letters[q.a]+') '+q.o[q.a];if(inp)inp.parentNode.insertBefore(d,inp.nextSibling);}
+  }
+  showExp(i,s.ok);
+}
+
+function allAnswered(){return state.every(s=>s!==null);}
+function skipQ(){next();}
+function prev(){if(cur>0){cur--;render();}}
+function next(){if(cur<Q.length-1){cur++;render();}else showResult();}
+
+function showResult(){
+  document.getElementById('quiz').style.display='none';
+  document.getElementById('result').style.display='block';
+  const pct=Math.round(score/Q.length*100);
+  window._lastPct=pct;
+  document.getElementById('resPct').textContent=pct;
+  document.getElementById('resIcon').textContent=pct>=90?'🏆':pct>=70?'🎉':pct>=50?'👏':'📚';
+  document.getElementById('stOk').textContent=score;
+  document.getElementById('stErr').textContent=err;
+  document.getElementById('stPct').textContent=pct;
+  document.getElementById('noticeBox').style.display='block';
+  document.getElementById('actionBtns').classList.add('show');
+  if(window._introName){
+    const sel=document.getElementById('studentName');
+    if(sel)for(let i=0;i<sel.options.length;i++)if(sel.options[i].text===window._introName){sel.selectedIndex=i;break;}
+  }
+  // Önceki onay sıfırlansın (tekrar yapıldıysa)
+  document.getElementById('confirmBtn').disabled=false;
+  document.getElementById('confirmBtn').textContent='Onayla ✓';
+  document.getElementById('studentName').disabled=false;
+  document.getElementById('sendStatus').style.display='none';
+  document.getElementById('summaryCard').style.display='none';
+  window.scrollTo(0,0);
+}
+
+function confirmName(){
+  const val=document.getElementById('studentName').value;
+  if(!val){alert('Lütfen adınızı seçin!');return;}
+  const grup=GROUPS[val]||'A1.1';
+  const pct=window._lastPct;
+  document.getElementById('studentName').disabled=true;
+  document.getElementById('confirmBtn').disabled=true;
+  document.getElementById('confirmBtn').textContent='✓ Kaydedildi';
+  document.getElementById('summaryName').textContent=val;
+  document.getElementById('summaryOdev').textContent=ODEV_ADI+' · '+grup;
+  document.getElementById('sumPuan').textContent=pct;
+  document.getElementById('sumDogru').textContent=score;
+  document.getElementById('sumYanlis').textContent=err;
+  document.getElementById('summaryCard').style.display='block';
+  const st=document.getElementById('sendStatus');
+  st.style.display='block';st.style.color='var(--muted)';st.textContent='⏳ Kaydediliyor...';
+  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({ogrenci:val,grup:grup,odev:ODEV_ADI,puan:pct,dogru:score,yanlis:err})})
+  .then(()=>{st.style.display='none';})
+  .catch(()=>{st.style.color='var(--muted)';st.textContent='⚠️ Bağlantı hatası, lütfen tekrar deneyin.';});
+}
+
+function toggleReview(){
+  const sec=document.getElementById('reviewSection');
+  const btn=document.querySelector('.btn-review');
+  if(sec.innerHTML&&sec.style.display!=='none'){sec.style.display='none';btn.textContent='🔍 Hatalarımı gözden geçir';return;}
+  btn.textContent='▲ Kapat';
+  if(wrongList.length===0){sec.innerHTML='<div class="review-title">🎉 Hiç hata yok!</div>';sec.style.display='block';return;}
+  let h='<div class="review-title">❌ Yanlış Sorular ('+wrongList.length+')</div>';
+  wrongList.forEach(w=>{
+    const q=Q[w.idx];
+    h+='<div class="review-card"><div class="review-qnum">SORU '+(w.idx+1)+'</div><div class="review-q">'+q.q+'</div><div class="review-your">❌ Cevabınız: '+w.chosen+'</div><div class="review-correct">✅ Doğru: '+w.correct+'</div><div class="review-exp">'+q.exp+'<br><span style="font-style:italic;color:#6c5ce7">🇪🇸 '+q.es+'</span><br><strong style="color:#6c5ce7">🇹🇷 '+q.tr+'</strong><br><span style="color:#555">🇬🇧 '+q.en+'</span></div></div>';
+  });
+  sec.innerHTML=h;sec.style.display='block';sec.scrollIntoView({behavior:'smooth'});
+}
+
+function restart(){
+  cur=0;score=0;err=0;wrongList=[];state=new Array(Q.length).fill(null);
+  document.getElementById('result').style.display='none';
+  document.getElementById('reviewSection').innerHTML='';
+  document.getElementById('reviewSection').style.display='none';
+  document.getElementById('actionBtns').classList.remove('show');
+  document.getElementById('noticeBox').style.display='none';
+  document.querySelector('.btn-review').textContent='🔍 Hatalarımı gözden geçir';
+  document.getElementById('quiz').style.display='block';
+  render();window.scrollTo(0,0);
+}
+</script>
+</div>
+</body>
+</html>
