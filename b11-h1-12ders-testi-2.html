@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frida Kahlo | B1.1 H1 1-2.Ders</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f0fa;
+  --surface:#ffffff;
+  --primary:#6c5ce7;
+  --primary-dark:#5a4bd1;
+  --primary-light:#a29bfe;
+  --accent:#fd79a8;
+  --accent2:#00cec9;
+  --accent3:#fdcb6e;
+  --text:#2d3436;
+  --muted:#636e72;
+  --border:#dfe6e9;
+  --ok:#00b894;
+  --err:#e17055;
+  --radius:16px;
+  --shadow:0 4px 24px rgba(108,92,231,0.13);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* Dekoratif arka plan */
+body::before{
+  content:'';position:fixed;top:0;left:0;width:100%;height:100%;
+  background:
+    radial-gradient(ellipse at 10% 20%,rgba(162,155,254,0.18) 0%,transparent 50%),
+    radial-gradient(ellipse at 90% 80%,rgba(253,121,168,0.12) 0%,transparent 50%),
+    radial-gradient(ellipse at 50% 50%,rgba(108,92,231,0.06) 0%,transparent 70%);
+  pointer-events:none;z-index:0;
+}
+
+.wrap{max-width:640px;margin:0 auto;padding:20px 16px 40px;position:relative;z-index:1;}
+
+/* INTRO */
+#intro{
+  background:var(--surface);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:36px 28px 32px;
+  border-top:5px solid var(--primary);
+  animation:fadeUp .5s ease;
+}
+.brand-bar{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
+.brand-dot{width:10px;height:10px;border-radius:50%;background:var(--primary);}
+.brand-dot:nth-child(2){background:var(--accent);}
+.brand-dot:nth-child(3){background:var(--accent3);}
+.brand-name{font-family:'Nunito',sans-serif;font-size:13px;color:var(--muted);font-weight:700;letter-spacing:.5px;}
+.intro-badge{
+  display:inline-block;background:linear-gradient(135deg,var(--primary),var(--primary-light));
+  color:#fff;font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;
+  padding:4px 12px;border-radius:20px;letter-spacing:1px;margin-bottom:14px;
+}
+#intro h1{font-family:'Nunito',sans-serif;font-size:26px;font-weight:900;color:var(--primary);margin-bottom:6px;}
+.intro-sub{font-size:14px;color:var(--muted);margin-bottom:4px;}
+.intro-desc{font-size:13px;color:var(--primary-light);font-weight:700;margin-bottom:24px;}
+
+.chip-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;}
+.chip{
+  padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;
+  background:rgba(108,92,231,0.09);color:var(--primary);
+}
+.chip.c2{background:rgba(253,121,168,0.1);color:var(--accent);}
+.chip.c3{background:rgba(0,206,201,0.1);color:var(--accent2);}
+
+.name-label{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:var(--primary);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+select.name-select{
+  width:100%;padding:12px 16px;border:2px solid var(--border);border-radius:12px;
+  font-family:'Nunito Sans',sans-serif;font-size:15px;color:var(--text);
+  background:#fff;cursor:pointer;outline:none;transition:border .2s;
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236c5ce7' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;
+}
+select.name-select:focus{border-color:var(--primary);}
+
+.start-btn{
+  width:100%;margin-top:20px;padding:15px;
+  background:linear-gradient(135deg,var(--primary),var(--primary-light));
+  color:#fff;border:none;border-radius:12px;
+  font-family:'Nunito',sans-serif;font-size:17px;font-weight:800;
+  cursor:pointer;transition:transform .15s,box-shadow .15s;
+  box-shadow:0 4px 16px rgba(108,92,231,0.35);
+  letter-spacing:.3px;
+}
+.start-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(108,92,231,0.45);}
+.start-btn:active{transform:translateY(0);}
+
+/* QUIZ */
+#quiz{display:none;}
+.top-bar{
+  background:var(--surface);border-radius:var(--radius);padding:14px 18px;
+  margin-bottom:14px;box-shadow:0 2px 12px rgba(108,92,231,0.08);
+  display:flex;align-items:center;gap:12px;
+}
+.prog-wrap{flex:1;height:8px;background:rgba(108,92,231,0.12);border-radius:4px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:4px;transition:width .4s ease;}
+.prog-label{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:var(--primary);white-space:nowrap;}
+.score-bar{display:flex;gap:16px;padding:0 2px;}
+.sc{font-size:13px;font-weight:700;}
+.sc.ok{color:var(--ok);}
+.sc.err{color:var(--err);}
+
+.q-card{
+  background:var(--surface);border-radius:var(--radius);
+  padding:26px 24px 22px;box-shadow:var(--shadow);
+  border-left:4px solid var(--primary);
+  animation:fadeUp .3s ease;
+}
+.q-num{
+  font-family:'Nunito',sans-serif;font-size:11px;font-weight:900;
+  color:var(--primary-light);letter-spacing:1.5px;margin-bottom:6px;
+}
+.q-type-badge{
+  display:inline-block;padding:3px 10px;border-radius:10px;
+  font-size:11px;font-weight:800;letter-spacing:.5px;margin-bottom:12px;
+  background:rgba(108,92,231,0.1);color:var(--primary);
+}
+.q-text{font-size:16px;font-weight:700;line-height:1.5;margin-bottom:18px;color:var(--text);}
+
+.choices{display:flex;flex-direction:column;gap:9px;}
+.choice-btn{
+  display:flex;align-items:center;gap:12px;padding:12px 16px;
+  border:2px solid var(--border);border-radius:12px;background:#fff;
+  cursor:pointer;text-align:left;font-family:'Nunito Sans',sans-serif;
+  font-size:14px;font-weight:600;color:var(--text);
+  transition:border-color .15s,background .15s,transform .1s;
+}
+.choice-btn:hover:not(:disabled){border-color:var(--primary-light);background:rgba(108,92,231,0.04);transform:translateX(3px);}
+.cletter{
+  width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;
+  font-family:'Nunito',sans-serif;font-size:13px;font-weight:900;
+  background:rgba(108,92,231,0.1);color:var(--primary);flex-shrink:0;
+}
+.choice-btn.ok{border-color:var(--ok);background:rgba(0,184,148,0.06);}
+.choice-btn.ok .cletter{background:var(--ok);color:#fff;}
+.choice-btn.err{border-color:var(--err);background:rgba(225,112,85,0.06);}
+.choice-btn.err .cletter{background:var(--err);color:#fff;}
+
+.explanation{
+  margin-top:14px;padding:14px 16px;border-radius:12px;
+  font-size:13px;line-height:1.6;display:none;
+}
+.explanation.show{display:block;}
+.exp-ok{background:rgba(0,184,148,0.08);border-left:3px solid var(--ok);}
+.exp-err{background:rgba(225,112,85,0.08);border-left:3px solid var(--err);}
+.exp-es{display:block;margin-top:6px;color:var(--primary);font-weight:700;}
+.exp-tr{display:block;margin-top:2px;color:var(--muted);}
+.exp-en{display:block;margin-top:2px;color:var(--accent2);font-style:italic;}
+
+.nav-row{display:flex;gap:8px;margin-top:18px;}
+.nav-btn{
+  padding:9px 18px;border-radius:10px;border:2px solid var(--border);
+  background:#fff;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;
+  color:var(--muted);cursor:pointer;transition:all .15s;
+}
+.nav-btn:hover:not(:disabled){border-color:var(--primary);color:var(--primary);}
+.nav-btn:disabled{opacity:.4;cursor:not-allowed;}
+.nav-btn.primary{
+  margin-left:auto;background:var(--primary);border-color:var(--primary);color:#fff;
+}
+.nav-btn.primary:hover{background:var(--primary-dark);border-color:var(--primary-dark);}
+
+/* RESULT */
+#result{display:none;}
+.result-card{
+  background:var(--surface);border-radius:var(--radius);
+  padding:32px 28px;box-shadow:var(--shadow);
+  text-align:center;border-top:5px solid var(--primary);
+  animation:fadeUp .5s ease;
+}
+.result-emoji{font-size:52px;margin-bottom:8px;}
+.result-badge{
+  display:inline-block;background:rgba(108,92,231,0.1);color:var(--primary);
+  font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;
+  padding:4px 12px;border-radius:20px;letter-spacing:1px;margin-bottom:12px;
+}
+.score-big{
+  font-family:'Nunito',sans-serif;font-size:64px;font-weight:900;
+  color:var(--primary);line-height:1;margin-bottom:4px;
+}
+.score-big span{font-size:28px;color:var(--primary-light);}
+.score-row{display:flex;justify-content:center;gap:24px;margin:16px 0 20px;}
+.score-item{text-align:center;}
+.score-item .val{font-family:'Nunito',sans-serif;font-size:28px;font-weight:900;}
+.score-item .lbl{font-size:12px;color:var(--muted);margin-top:2px;}
+.val.ok{color:var(--ok);}
+.val.err{color:var(--err);}
+
+.name-confirm-box{margin:20px 0 16px;}
+.name-confirm-box label{
+  font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;
+  color:var(--primary);display:flex;align-items:center;gap:6px;margin-bottom:8px;
+}
+.confirm-row{display:flex;flex-direction:column;gap:10px;}
+select#studentName{
+  flex:1;padding:11px 14px;border:2px solid var(--border);border-radius:10px;
+  font-size:14px;font-family:'Nunito Sans',sans-serif;color:var(--text);
+  background:#fff;outline:none;cursor:pointer;
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236c5ce7' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 10px center;
+}
+select#studentName:focus{border-color:var(--primary);}
+.confirm-btn{
+  padding:11px 20px;background:var(--primary);color:#fff;border:none;
+  border-radius:10px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;
+  cursor:pointer;transition:background .15s;white-space:nowrap;
+width:100%;}
+.confirm-btn:hover{background:var(--primary-dark);}
+.confirm-btn:disabled{opacity:.5;cursor:not-allowed;}
+#sendStatus{font-size:13px;color:var(--muted);margin-top:6px;min-height:18px;}
+.summary-card{
+  background:linear-gradient(135deg,rgba(108,92,231,0.07),rgba(162,155,254,0.05));
+  border:1px solid rgba(108,92,231,0.15);border-radius:12px;
+  padding:16px;margin-top:14px;text-align:left;display:none;
+}
+.summary-card p{font-size:13px;margin-bottom:4px;}
+.summary-card strong{color:var(--primary);}
+
+.submit-cta{
+  background:linear-gradient(135deg,rgba(253,121,168,0.1),rgba(253,203,110,0.1));
+  border:2px dashed rgba(253,121,168,0.4);border-radius:14px;
+  padding:16px;margin-bottom:16px;text-align:center;
+}
+.submit-hint{
+  font-family:'Nunito',sans-serif;font-size:15px;font-weight:900;
+  color:var(--accent);margin-bottom:4px;
+}
+.submit-hint2{font-size:12px;color:var(--muted);}
+.submit-big{
+  width:100%;padding:16px;font-size:17px!important;
+  background:linear-gradient(135deg,var(--accent),#e84393)!important;
+  border-color:transparent!important;
+  box-shadow:0 4px 20px rgba(253,121,168,0.4)!important;
+  letter-spacing:.3px;
+}
+.submit-big:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(253,121,168,0.5)!important;}
+.submit-big:disabled{background:var(--ok)!important;box-shadow:none!important;transform:none!important;}
+
+.tilde-warn{
+  background:linear-gradient(135deg,rgba(253,203,110,0.15),rgba(253,121,168,0.08));
+  border:2px solid rgba(253,203,110,0.5);border-radius:12px;
+  padding:12px 16px;margin-bottom:16px;font-size:13px;
+  color:var(--text);line-height:1.5;
+}
+.tilde-chars{
+  display:block;margin-top:6px;font-size:15px;font-weight:800;
+  color:var(--primary);letter-spacing:3px;font-family:'Nunito',sans-serif;
+}
+.multi-hint{
+  background:rgba(0,206,201,0.08);border-left:3px solid var(--accent2);
+  border-radius:8px;padding:8px 12px;margin-bottom:12px;
+  font-size:12px;color:var(--accent2);font-weight:700;
+}
+.fill-wrap{display:flex;gap:8px;margin-bottom:4px;flex-wrap:wrap;}
+.fill-input{
+  flex:1;min-width:200px;padding:12px 16px;border:2px solid var(--border);
+  border-radius:12px;font-size:15px;font-family:'Nunito Sans',sans-serif;
+  color:var(--text);outline:none;transition:border .2s;
+}
+.fill-input:focus{border-color:var(--primary);}
+.fill-submit{
+  padding:12px 20px;background:var(--primary);color:#fff;border:none;
+  border-radius:12px;font-family:'Nunito',sans-serif;font-size:14px;
+  font-weight:800;cursor:pointer;white-space:nowrap;
+}
+.fill-submit:hover{background:var(--primary-dark);}
+.fill-submit:disabled{opacity:.5;cursor:not-allowed;}
+
+.intro-tilde-box{
+  background:linear-gradient(135deg,rgba(253,203,110,0.12),rgba(253,121,168,0.06));
+  border:2px dashed rgba(253,203,110,0.5);border-radius:12px;
+  padding:14px 16px;margin-bottom:20px;text-align:center;
+}
+.badge-fill{background:rgba(0,206,201,0.1);color:var(--accent2);}
+.result-actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;}
+.btn-review,.btn-retry{
+  flex:1;padding:12px;border-radius:12px;border:none;
+  font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;
+  transition:all .15s;
+}
+.btn-review{background:rgba(108,92,231,0.1);color:var(--primary);}
+.btn-review:hover{background:rgba(108,92,231,0.18);}
+.btn-retry{background:var(--primary);color:#fff;box-shadow:0 4px 12px rgba(108,92,231,0.3);}
+.btn-retry:hover{background:var(--primary-dark);}
+
+/* REVIEW */
+#reviewSection{display:none;margin-top:16px;}
+.review-item{
+  background:var(--surface);border-radius:12px;padding:16px 18px;
+  margin-bottom:10px;border-left:4px solid var(--err);
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+.review-item .ri-num{font-size:11px;color:var(--err);font-weight:800;letter-spacing:1px;margin-bottom:4px;}
+.review-item .ri-q{font-size:14px;font-weight:700;margin-bottom:8px;}
+.review-item .ri-wrong{font-size:13px;color:var(--err);}
+.review-item .ri-correct{font-size:13px;color:var(--ok);font-weight:700;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<div id="intro">
+  <span class="intro-icon">📚</span>
+  <div class="week-pill">1. HAFTA ÖDEVİ &nbsp;|&nbsp; B1.1 (1–2. DERS)</div>
+  <h1>Frida Kahlo</h1>
+  <div class="intro-sub">Comprensión Lectora — Frida Kahlo</div>
+  <p class="intro-desc">50 soru · Çoktan seçmeli</p>
+  <div class="teacher-badge"><span class="handle">@ispanyolcacim</span><span style="color:var(--border)">•</span><span style="color:var(--muted)">Profe Hazel</span></div>
+  <div class="name-box">
+    <label>👤 Adınızı seçin</label>
+    <select id="introName" class="name-select">
+    <option value="">— Adınızı seçin —</option>
+    <option value="Ceylin Öz">Ceylin Öz</option>
+    <option value="Esra Özçeşmeci">Esra Özçeşmeci</option>
+    <option value="Gencay Agocuk">Gencay Agocuk</option>
+    <option value="Kayhan Açan">Kayhan Açan</option>
+    <option value="Kübra Bulut">Kübra Bulut</option>
+    <option value="Nihan Karagedik">Nihan Karagedik</option>
+    <option value="Nur O. Demirci">Nur O. Demirci</option>
+    <option value="Pelinsu Damgacı">Pelinsu Damgacı</option>
+    <option value="Simge Güler">Simge Güler</option>
+    <option value="Ufuk Aydın">Ufuk Aydın</option>
+    <option value="Umre Gül">Umre Gül</option>
+    <option value="Deneme Öğrencisi">Deneme Öğrencisi</option>
+  </select>
+  </div>
+  <button class="start-btn" onclick="startQuiz()">Teste Başla →</button>
+</div>
+
+<div id="quiz">
+  <div class="top-bar">
+    <div class="prog-wrap"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+    <div class="prog-label" id="progLabel">1 / 100</div>
+  </div>
+  <div class="score-bar">
+    <span class="s-correct">✓ <span id="sCorrect">0</span> doğru</span>
+    <button class="finish-btn-sm" onclick="showResult()">Testi Bitir →</button>
+    <span class="s-wrong">✗ <span id="sWrong">0</span> yanlış</span>
+  </div>
+  <div id="qArea"></div>
+</div>
+
+<div id="result">
+  <div class="result-card">
+    <div class="result-emoji" id="resIcon">🎉</div>
+    <div class="result-badge">ÖDEV · B1.1</div>
+    <div class="score-big" id="resPct">0<span>/100</span></div>
+    <div class="score-row">
+      <div class="score-item"><div class="val ok" id="stOk">0</div><div class="lbl">✓ Doğru</div></div>
+      <div class="score-item"><div class="val err" id="stErr">0</div><div class="lbl">✗ Yanlış</div></div>
+      <div class="score-item"><div class="val" id="stPct" style="color:var(--primary)">0</div><div class="lbl">Puan</div></div>
+    </div>
+
+    <div class="submit-cta" id="submitCta">
+      <p class="submit-hint">⚠️ Ödeviniz henüz teslim edilmedi!</p>
+      <p class="submit-hint2">Adınızı seçip butona tıklayana kadar ödev sisteme işlenmez.</p>
+    </div>
+    <div class="name-confirm-box">
+      <label>👤 Adınızı seçin</label>
+      <div class="confirm-row">
+        <select id="studentName">
+    <option value="">— Adınızı seçin —</option>
+    <option value="Ceylin Öz">Ceylin Öz</option>
+    <option value="Esra Özçeşmeci">Esra Özçeşmeci</option>
+    <option value="Gencay Agocuk">Gencay Agocuk</option>
+    <option value="Kayhan Açan">Kayhan Açan</option>
+    <option value="Kübra Bulut">Kübra Bulut</option>
+    <option value="Nihan Karagedik">Nihan Karagedik</option>
+    <option value="Nur O. Demirci">Nur O. Demirci</option>
+    <option value="Pelinsu Damgacı">Pelinsu Damgacı</option>
+    <option value="Simge Güler">Simge Güler</option>
+    <option value="Ufuk Aydın">Ufuk Aydın</option>
+    <option value="Umre Gül">Umre Gül</option>
+    <option value="Deneme Öğrencisi">Deneme Öğrencisi</option>
+  </select>
+        <button class="confirm-btn submit-big" id="confirmBtn" onclick="confirmName()">📬 ÖDEVİ TESLİM ET</button>
+      </div>
+      <div id="sendStatus"></div>
+    </div>
+
+    <div class="summary-card" id="summaryCard">
+      <p>👤 <strong id="summaryName"></strong></p>
+      <p>📚 <strong id="summaryOdev"></strong></p>
+      <p>🏆 Puan: <strong id="sumPuan"></strong>/100 &nbsp;·&nbsp; ✓ <strong id="sumDogru"></strong> &nbsp;·&nbsp; ✗ <strong id="sumYanlis"></strong></p>
+      <p style="color:var(--ok);font-weight:700;margin-top:6px;">✅ Ödeviniz teslim edildi!</p>
+    </div>
+
+    <div class="notice-box" id="noticeBox" style="display:none;text-align:center;padding:12px;margin:10px 0;background:rgba(108,92,231,0.07);border-radius:10px;font-size:14px;">🎉 <strong>Test tamamlandı!</strong><br>Yanlışlarınız için <strong>WhatsApp grubundan</strong> sorun!</div><div class="result-actions" id="actionBtns">
+      <button class="btn-review" onclick="toggleReview()">🔍 Hatalarımı gözden geçir</button>
+      <button class="btn-retry" onclick="restart()">🔄 Testi Tekrar Çöz</button>
+    </div>
+  </div>
+  <div id="reviewSection"></div>
+</div>
+
+</div><!-- /wrap -->
+
+<script>
+const SCRIPT_URL="https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec";
+const ODEV_ADI="H1 – 1-2.Ders";
+const GROUPS={
+  'Ceylin Öz':'B1.1',
+  'Esra Özçeşmeci':'B1.1',
+  'Gencay Agocuk':'B1.1',
+  'Kayhan Açan':'B1.1',
+  'Kübra Bulut':'B1.1',
+  'Nihan Karagedik':'B1.1',
+  'Nur O. Demirci':'B1.1',
+  'Pelinsu Damgacı':'B1.1',
+  'Simge Güler':'B1.1',
+  'Ufuk Aydın':'B1.1',
+  'Umre Gül':'B1.1',
+  'Deneme Öğrencisi':'B1.1'
+};
+
+const WARN='';
+
+const Q=[
+{t:"mc",q:"\u00bfCu\u00e1l es el nombre completo de Frida Kahlo?",o:["Carmen Frida Kahlo y Rivera", "Magdalena Carmen Frida Kahlo y Calder\u00f3n", "Frida Magdalena Calder\u00f3n y Kahlo", "Mar\u00eda Frida Kahlo Calder\u00f3n"],a:1,exp:"Su nombre completo era Magdalena Carmen Frida Kahlo y Calder\u00f3n. La familia le puso los dos primeros nombres para bautizarla, pero ella usaba solo el tercero.",es:"Su nombre completo era Magdalena Carmen Frida Kahlo y Calder\u00f3n. La familia le puso los dos primeros nombres para bautizarla, pero ella usaba solo el tercero.",tr:"Tam ad\u0131 Magdalena Carmen Frida Kahlo y Calder\u00f3n'dur. Ailesi onu vaftiz i\u00e7in bu isimleri verdi, ancak o yaln\u0131zca \u00fc\u00e7\u00fcnc\u00fc ismini kulland\u0131.",en:""},
+{t:"mc",q:"\u00bfDe qu\u00e9 idioma proviene la palabra \"Frida\" y qu\u00e9 significa?",o:["Del ingl\u00e9s, significa \"libre\"", "Del franc\u00e9s, significa \"fr\u00eda\"", "Del alem\u00e1n, significa \"paz\"", "Del n\u00e1huatl, significa \"flor\""],a:2,exp:"\"Frida\" proviene de la palabra alemana Frieden, que significa \u00abpaz\u00bb.",es:"\"Frida\" proviene de la palabra alemana Frieden, que significa \u00abpaz\u00bb.",tr:"\"Frida\", Almanca \"Frieden\" kelimesinden gelir ve \"bar\u0131\u015f\" anlam\u0131na gelir.",en:""},
+{t:"mc",q:"\u00bfC\u00f3mo escrib\u00eda Frida su nombre hasta finales de los a\u00f1os treinta?",o:["Freda", "Frieda", "Freida", "Frida"],a:1,exp:"Frida escribi\u00f3 su nombre en alem\u00e1n, Frieda, hasta finales de los a\u00f1os treinta, cuando el nazismo gan\u00f3 fuerza en Alemania.",es:"Frida escribi\u00f3 su nombre en alem\u00e1n, Frieda, hasta finales de los a\u00f1os treinta, cuando el nazismo gan\u00f3 fuerza en Alemania.",tr:"Frida, 1930'lar\u0131n sonuna kadar ad\u0131n\u0131 Almanca bi\u00e7imiyle \"Frieda\" olarak yazard\u0131. Almanya'da Nazizm g\u00fc\u00e7lenince bunu de\u011fi\u015ftirdi.",en:""},
+{t:"mc",q:"\u00bfPor qu\u00e9 Frida no fue amamantada por su propia madre?",o:["Porque su madre muri\u00f3 al nacer Frida", "Porque su madre estaba de viaje", "Porque su madre enferm\u00f3 poco despu\u00e9s de nacer Frida", "Porque era costumbre en M\u00e9xico usar nodrizas"],a:2,exp:"Poco despu\u00e9s de nacer Frida, su madre enferm\u00f3 y una nodriza ind\u00edgena tuvo que amamantar a la ni\u00f1a.",es:"Poco despu\u00e9s de nacer Frida, su madre enferm\u00f3 y una nodriza ind\u00edgena tuvo que amamantar a la ni\u00f1a.",tr:"Frida do\u011fduktan k\u0131sa s\u00fcre sonra annesi hastaland\u0131 ve Frida'y\u0131 yerli bir s\u00fctanne emzirmek zorunda kald\u0131.",en:""},
+{t:"mc",q:"\u00bfQu\u00e9 enfermedad tuvo Frida cuando ten\u00eda siete a\u00f1os?",o:["Tuberculosis", "Sarampi\u00f3n", "Poliomielitis", "Meningitis"],a:2,exp:"Frida enferm\u00f3 de poliomielitis a los siete a\u00f1os. Como consecuencia, tuvo que pasar nueve meses en el hospital.",es:"Frida enferm\u00f3 de poliomielitis a los siete a\u00f1os. Como consecuencia, tuvo que pasar nueve meses en el hospital.",tr:"Yedi ya\u015f\u0131nda \u00e7ocuk felci (poliomyelitis) ge\u00e7irdi. Bu hastal\u0131k nedeniyle dokuz ay hastanede kalmak zorunda kald\u0131.",en:""},
+{t:"mc",q:"\u00bfQu\u00e9 deportes practicaba Frida despu\u00e9s de su enfermedad?",o:["Nataci\u00f3n, baloncesto y ciclismo", "Boxeo, f\u00fatbol y nataci\u00f3n", "Tenis, atletismo y boxeo", "F\u00fatbol, voleibol y nataci\u00f3n"],a:1,exp:"Frida hac\u00eda boxeo, jugaba al f\u00fatbol y fue campeona de nataci\u00f3n, deportes poco convencionales para las chicas mexicanas de aquella \u00e9poca.",es:"Frida hac\u00eda boxeo, jugaba al f\u00fatbol y fue campeona de nataci\u00f3n, deportes poco convencionales para las chicas mexicanas de aquella \u00e9poca.",tr:"Boks yap\u0131yor, futbol oynuyor ve y\u00fczmede \u015fampiyonluklar kazan\u0131yordu \u2014 o d\u00f6nem Meksika's\u0131nda k\u0131zlar i\u00e7in \u00e7ok s\u0131ra d\u0131\u015f\u0131 sporlard\u0131.",en:""},
+{t:"mc",q:"\u00bfEn qu\u00e9 a\u00f1o ingres\u00f3 Frida Kahlo en la Escuela Nacional Preparatoria?",o:["1920", "1919", "1925", "1922"],a:3,exp:"En 1922, Frida Kahlo ingres\u00f3 en la mejor instituci\u00f3n educativa de M\u00e9xico: la Escuela Nacional Preparatoria.",es:"En 1922, Frida Kahlo ingres\u00f3 en la mejor instituci\u00f3n educativa de M\u00e9xico: la Escuela Nacional Preparatoria.",tr:"1922'de Meksika'n\u0131n en iyi e\u011fitim kurumu olan Ulusal Haz\u0131rl\u0131k Okulu'na girdi.",en:""},
+{t:"mc",q:"\u00bfCu\u00e1ntas chicas hab\u00eda entre los 2000 alumnos de la Escuela cuando entr\u00f3 Frida?",o:["Solo 15", "Solo 35", "Solo 50", "Solo 20"],a:1,exp:"La escuela admit\u00eda a muy pocas chicas: solo 35 entre un total de 2000 alumnos. Frida super\u00f3 el examen de acceso.",es:"La escuela admit\u00eda a muy pocas chicas: solo 35 entre un total de 2000 alumnos. Frida super\u00f3 el examen de acceso.",tr:"2000 \u00f6\u011frenci aras\u0131nda yaln\u0131zca 35 k\u0131z vard\u0131. Frida giri\u015f s\u0131nav\u0131n\u0131 ge\u00e7meyi ba\u015fard\u0131.",en:""},
+{t:"mc",q:"\u00bfC\u00f3mo se llamaba el grupo de amigos de Frida en la preparatoria?",o:["Los Rebeldes", "Los Intelectuales", "Los Cachuchas", "Los Creativos"],a:2,exp:"Frida disfrutaba de la compa\u00f1\u00eda de los Cachuchas (llamados as\u00ed por las gorras que usaban), un grupo de amigos inteligentes pero bastante traviesos.",es:"Frida disfrutaba de la compa\u00f1\u00eda de los Cachuchas (llamados as\u00ed por las gorras que usaban), un grupo de amigos inteligentes pero bastante traviesos.",tr:"Arkada\u015f grubunun ad\u0131 \"Los Cachuchas\"d\u0131 \u2014 takt\u0131klar\u0131 kasketlerden dolay\u0131 bu ismi alm\u0131\u015flard\u0131. Zeki ama olduk\u00e7a yaramaz bir gruptu.",en:""},
+{t:"mc",q:"\u00bfCu\u00e1ndo se conocieron Frida Kahlo y Diego Rivera por primera vez?",o:["En 1928, en el Ministerio de Educaci\u00f3n", "En 1929, en la boda de un amigo", "En 1923, en la Escuela Nacional Preparatoria", "En 1925, despu\u00e9s del accidente de Frida"],a:2,exp:"Frida Kahlo y Diego Rivera se vieron por primera vez en 1923, en la Escuela Nacional Preparatoria.",es:"Frida Kahlo y Diego Rivera se vieron por primera vez en 1923, en la Escuela Nacional Preparatoria.",tr:"Frida ile Diego, ilk kez 1923'te Ulusal Haz\u0131rl\u0131k Okulu'nda kar\u015f\u0131la\u015ft\u0131.",en:""},
+{t:"mc",q:"\u00bfQu\u00e9 estaba pintando Diego Rivera cuando Frida lo conoci\u00f3 en la preparatoria?",o:["Un cuadro en el Museo de Bellas Artes", "Un mural en el anfiteatro de la escuela de Frida", "Un retrato del presidente de M\u00e9xico", "Un mural en el Palacio Nacional"],a:1,exp:"Diego Rivera, de 36 a\u00f1os, ya era un pintor famoso y hab\u00eda recibido el encargo de pintar un mural en el anfiteatro de la escuela de Frida.",es:"Diego Rivera, de 36 a\u00f1os, ya era un pintor famoso y hab\u00eda recibido el encargo de pintar un mural en el anfiteatro de la escuela de Frida.",tr:"Diego Rivera, Frida'n\u0131n okulunun amfiteatr\u0131na fresk yap\u0131yordu. 36 ya\u015f\u0131nda zaten \u00fcnl\u00fc bir ressamd\u0131.",en:""},
+{t:"mc",q:"\u00bfQu\u00e9 ocurri\u00f3 el 17 de septiembre de 1925?",o:["Frida conoci\u00f3 a Diego Rivera por primera vez", "Frida ingres\u00f3 en la Escuela Nacional Preparatoria", "Un tranv\u00eda embisti\u00f3 el autob\u00fas en el que viajaban Frida y Alejandro", "Frida tuvo su primera exposici\u00f3n de pintura"],a:2,exp:"El 17 de septiembre de 1925, un tranv\u00eda procedente de Xochimilco avanz\u00f3 directo hacia ellos y embisti\u00f3 el autob\u00fas en el que viajaban Frida y Alejandro.",es:"El 17 de septiembre de 1925, un tranv\u00eda procedente de Xochimilco avanz\u00f3 directo hacia ellos y embisti\u00f3 el autob\u00fas en el que viajaban Frida y Alejandro.",tr:"17 Eyl\u00fcl 1925'te Xochimilco'dan gelen bir tramvay, Frida ve Alejandro'nun bindi\u011fi otob\u00fcse \u00e7arpt\u0131. Bu kaza hayat\u0131n\u0131 sonsuza dek de\u011fi\u015ftirdi.",en:""},
+{t:"mc",q:"\u00bfCu\u00e1ntas partes se rompi\u00f3 la columna vertebral de Frida en el accidente?",o:["Dos", "Cuatro", "Cinco", "Tres"],a:3,exp:"La columna vertebral se le rompi\u00f3 por tres sitios, se fractur\u00f3 la clav\u00edcula, la pierna derecha se rompi\u00f3 en diez pedazos y el pie qued\u00f3 aplastado.",es:"La columna vertebral se le rompi\u00f3 por tres sitios, se fractur\u00f3 la clav\u00edcula, la pierna derecha se rompi\u00f3 en diez pedazos y el pie qued\u00f3 aplastado.",tr:"Omurgas\u0131 \u00fc\u00e7 yerden k\u0131r\u0131ld\u0131, k\u00f6pr\u00fcc\u00fck kemi\u011fi k\u0131r\u0131ld\u0131, sa\u011f baca\u011f\u0131 on par\u00e7aya ayr\u0131ld\u0131 ve aya\u011f\u0131 ezildi.",en:""},
+{t:"mc",q:"\u00bfQu\u00e9 dijo Frida Kahlo sobre los dos grandes accidentes de su vida?",o:["\"Tuve dos accidentes: el tranv\u00eda y la enfermedad.\"", "\"He sufrido dos grandes accidentes en mi vida, uno fue en aquel cami\u00f3n y el otro, Diego.\"", "\"Mi vida fue un accidente desde el principio.\"", "\"El primero fue Diego, el segundo fue el tranv\u00eda.\""],a:1,exp:"En una ocasi\u00f3n Frida dijo: \u00abHe sufrido dos grandes accidentes en mi vida, uno fue en aquel cami\u00f3n y el otro, Diego\u00bb.",es:"En una ocasi\u00f3n Frida dijo: \u00abHe sufrido dos grandes accidentes en mi vida, uno fue en aquel cami\u00f3n y el otro, Diego\u00bb.",tr:"\"Hayat\u0131mda iki b\u00fcy\u00fck kaza ge\u00e7irdim; biri o otob\u00fcste, di\u011feri Diego.\"",en:""},
+{t:"mc",q:"\u00bfQu\u00e9 le regalaron los padres de Frida para que pudiera pintar durante su recuperaci\u00f3n?",o:["Un cuaderno de dibujo y l\u00e1pices de colores", "Un caballete especial con espejo para pintar tumbada", "Pinceles, pinturas y un espejo sobre su cama", "Una c\u00e1mara fotogr\u00e1fica y materiales de arte"],a:2,exp:"Le dieron pinceles y pinturas y pusieron un espejo sobre su cama para que Frida pudiera mirarse y pintar mientras estaba tumbada.",es:"Le dieron pinceles y pinturas y pusieron un espejo sobre su cama para que Frida pudiera mirarse y pintar mientras estaba tumbada.",tr:"Ailesii ona f\u0131r\u00e7a ve boya verdi, yata\u011f\u0131n\u0131n \u00fczerine bir ayna ast\u0131. B\u00f6ylece Frida, yatarken kendine bakarak resim yapabildi.",en:""},
+{t:"mc",q:"\u00bfD\u00f3nde vivi\u00f3 Frida Kahlo la mayor parte de su vida?",o:["En Ciudad de M\u00e9xico, cerca del Z\u00f3calo", "En Coyoac\u00e1n, en la Casa Azul", "En San \u00c1ngel, en la casa que dise\u00f1\u00f3 Juan O'Gorman", "En Xochimilco, cerca de sus familiares"],a:1,exp:"Frida Kahlo vivi\u00f3 casi toda su vida en Coyoac\u00e1n, en la casona de la calle Londres, conocida como la Casa Azul.",es:"Frida Kahlo vivi\u00f3 casi toda su vida en Coyoac\u00e1n, en la casona de la calle Londres, conocida como la Casa Azul.",tr:"Hayat\u0131n\u0131n b\u00fcy\u00fck b\u00f6l\u00fcm\u00fcn\u00fc Coyoac\u00e1n'daki Mavi Ev'de (Casa Azul) ge\u00e7irdi.",en:""},
+{t:"mc",q:"\u00bfC\u00f3mo llamaba Frida Kahlo a Estados Unidos con desprecio?",o:["\"El pa\u00eds del norte\"", "\"Yanquilandia\"", "\"Gringolandia\"", "\"El pa\u00eds de los aburridos\""],a:2,exp:"\u00abGringolandia\u00bb \u2014 as\u00ed llamaba Frida Kahlo con desprecio a Estados Unidos.",es:"\u00abGringolandia\u00bb \u2014 as\u00ed llamaba Frida Kahlo con desprecio a Estados Unidos.",tr:"Frida, ABD'ye a\u015fa\u011f\u0131layarak \"Gringolandia\" derdi.",en:""},
+{t:"mc",q:"\u00bfPor qu\u00e9 fue destruido el mural de Diego Rivera en el Rockefeller Center?",o:["Porque Rivera pint\u00f3 el retrato de Lenin en el mural", "Porque el mural era de mala calidad art\u00edstica", "Porque el due\u00f1o del edificio no pag\u00f3 por \u00e9l", "Porque Rivera no termin\u00f3 el trabajo a tiempo"],a:0,exp:"El contrato se rescindi\u00f3 porque Rivera pint\u00f3 el retrato de Lenin en el mural. Se neg\u00f3 a borrarlo y el mural fue destruido.",es:"El contrato se rescindi\u00f3 porque Rivera pint\u00f3 el retrato de Lenin en el mural. Se neg\u00f3 a borrarlo y el mural fue destruido.",tr:"Diego, freske Lenin'in portresini yapt\u0131\u011f\u0131 i\u00e7in s\u00f6zle\u015fme feshedildi. Diego silmeyi reddetti ve fresk y\u0131k\u0131ld\u0131.",en:""},
+{t:"mc",q:"\u00bfQu\u00e9 cuadro de Frida fue el primero en ser comprado por el Museo del Louvre?",o:["Las dos Fridas", "La columna rota", "Autorretrato con vestido de terciopelo", "Autorretrato \u2014 El marco"],a:3,exp:"\u00abAutorretrato - El marco\u00bb fue la primera obra de un artista mexicano que compr\u00f3 el Museo del Louvre.",es:"\u00abAutorretrato - El marco\u00bb fue la primera obra de un artista mexicano que compr\u00f3 el Museo del Louvre.",tr:"\"Autorretrato \u2013 El Marco\" (\u00c7er\u00e7eveli Otoportre), Louvre M\u00fczesi taraf\u0131ndan sat\u0131n al\u0131nan ilk Meksikal\u0131 sanat\u00e7\u0131 eseriydi.",en:""},
+{t:"mc",q:"\u00bfCu\u00e1ndo se casaron Diego Rivera y Frida Kahlo por primera vez?",o:["El 29 de agosto de 1928", "El 29 de agosto de 1929", "El 8 de diciembre de 1940", "El 15 de octubre de 1930"],a:1,exp:"Diego y Frida se casaron el 29 de agosto de 1929. Ella ten\u00eda 22 a\u00f1os y \u00e9l, 42.",es:"Diego y Frida se casaron el 29 de agosto de 1929. Ella ten\u00eda 22 a\u00f1os y \u00e9l, 42.",tr:"Diego ile Frida ilk kez 29 A\u011fustos 1929'da evlendi. Frida 22, Diego ise 42 ya\u015f\u0131ndayd\u0131.",en:""},
+{t:"mc",q:"\u00bfC\u00f3mo describi\u00f3 el padre de Frida la boda entre Diego y su hija?",o:["\"Una boda entre un artista y su musa\"", "\"La boda m\u00e1s hermosa de Coyoac\u00e1n\"", "\"La boda entre un elefante y una paloma\"", "\"Una uni\u00f3n imposible pero necesaria\""],a:2,exp:"El d\u00eda de la ceremonia, Guillermo Kahlo dijo que era \u00abla boda entre un elefante y una paloma\u00bb.",es:"El d\u00eda de la ceremonia, Guillermo Kahlo dijo que era \u00abla boda entre un elefante y una paloma\u00bb.",tr:"Frida'n\u0131n babas\u0131 Guillermo, bu d\u00fc\u011f\u00fcn\u00fc \"bir fil ile bir g\u00fcvercinin d\u00fc\u011f\u00fcn\u00fc\" olarak nitelendirdi.",en:""},
+{t:"mc",q:"\u00bfQu\u00e9 arquitecto dise\u00f1\u00f3 la nueva casa de Diego y Frida en San \u00c1ngel?",o:["Luis Barrag\u00e1n", "Mario Pani", "Juan O'Gorman", "Pedro Ram\u00edrez V\u00e1zquez"],a:2,exp:"Juan O'Gorman realiz\u00f3 el dise\u00f1o de la nueva casa de Diego y Frida, en el barrio de San \u00c1ngel.",es:"Juan O'Gorman realiz\u00f3 el dise\u00f1o de la nueva casa de Diego y Frida, en el barrio de San \u00c1ngel.",tr:"Mimar Juan O'Gorman, Diego ve Frida'n\u0131n San \u00c1ngel'deki yeni evini tasarlad\u0131.",en:""},
+{t:"mc",q:"\u00bfQu\u00e9 descubrimiento hundi\u00f3 a Frida en una profunda depresi\u00f3n?",o:["Que Diego Rivera ten\u00eda una relaci\u00f3n con una actriz famosa", "Que Diego Rivera y su hermana Cristina manten\u00edan una relaci\u00f3n", "Que Diego Rivera quer\u00eda divorciarse de ella", "Que Diego Rivera se iba a vivir a Estados Unidos para siempre"],a:1,exp:"Frida descubri\u00f3 que Rivera y su hermana menor Cristina, a la que m\u00e1s quer\u00eda, manten\u00edan una relaci\u00f3n a sus espaldas.",es:"Frida descubri\u00f3 que Rivera y su hermana menor Cristina, a la que m\u00e1s quer\u00eda, manten\u00edan una relaci\u00f3n a sus espaldas.",tr:"Frida, Diego'nun en \u00e7ok sevdi\u011fi k\u00fc\u00e7\u00fck k\u0131z karde\u015fi Cristina ile gizlice ili\u015fki ya\u015fad\u0131\u011f\u0131n\u0131 \u00f6\u011frendi. Bu ke\u015fif onu derin bir bunal\u0131ma s\u00fcr\u00fckledi.",en:""},
+{t:"mc",q:"\u00bfQu\u00e9 cuadro pint\u00f3 Frida despu\u00e9s del divorcio con Diego en 1939?",o:["La columna rota", "Autorretrato con collar de espinas", "Las dos Fridas", "Mi nacimiento"],a:2,exp:"Frida cre\u00f3 \u00abLas dos Fridas\u00bb (1939), donde aparecen dos autorretratos unidos por una arteria que va de un coraz\u00f3n al otro.",es:"Frida cre\u00f3 \u00abLas dos Fridas\u00bb (1939), donde aparecen dos autorretratos unidos por una arteria que va de un coraz\u00f3n al otro.",tr:"1939 bo\u015fanmas\u0131n\u0131n ard\u0131ndan \"\u0130ki Frida\" (Las dos Fridas) tablosunu yaratt\u0131. \u0130ki otoportre, birbirinden di\u011ferine uzanan bir atardamarla ba\u011fl\u0131d\u0131r.",en:""},
+{t:"mc",q:"\u00bfCu\u00e1ndo se divorciaron Frida y Diego por primera vez?",o:["En octubre de 1938", "En enero de 1940", "En diciembre de 1939", "En marzo de 1941"],a:2,exp:"En diciembre de 1939, Frida y Diego Rivera se divorciaron.",es:"En diciembre de 1939, Frida y Diego Rivera se divorciaron.",tr:"Frida ile Diego, Aral\u0131k 1939'da ilk kez bo\u015fand\u0131.",en:""},
+{t:"mc",q:"\u00bfCu\u00e1ndo se volvieron a casar Diego y Frida?",o:["El 8 de diciembre de 1940", "El 15 de enero de 1941", "El 29 de agosto de 1942", "El 3 de marzo de 1939"],a:0,exp:"Diego le propuso que se casaran de nuevo. Lo hicieron el 8 de diciembre de 1940.",es:"Diego le propuso que se casaran de nuevo. Lo hicieron el 8 de diciembre de 1940.",tr:"Diego yeniden evlenmeyi teklif etti. 8 Aral\u0131k 1940'ta ikinci kez evlendiler.",en:""},
+{t:"mc",q:"\u00bfCu\u00e1ntas operaciones quir\u00fargicas tuvo Frida Kahlo a lo largo de su vida?",o:["20 operaciones", "25 operaciones", "32 operaciones", "40 operaciones"],a:2,exp:"Frida tuvo 32 operaciones quir\u00fargicas a lo largo de su vida, principalmente en la columna vertebral y la pierna derecha.",es:"Frida tuvo 32 operaciones quir\u00fargicas a lo largo de su vida, principalmente en la columna vertebral y la pierna derecha.",tr:"Frida, hayat\u0131 boyunca 32 ameliyat ge\u00e7irdi \u2014 a\u011f\u0131rl\u0131kl\u0131 olarak omurgas\u0131 ve sa\u011f baca\u011f\u0131 i\u00e7in.",en:""},
+{t:"mc",q:"\u00bfQu\u00e9 le diagnostic\u00f3 el Dr. Eloesser a Frida en San Francisco en 1930?",o:["Tuberculosis en los pulmones", "Una deformaci\u00f3n cong\u00e9nita de la columna vertebral (escoliosis) y la falta de un disco intervertebral", "Una fractura grave en la cadera derecha", "Una enfermedad del sistema nervioso sin cura"],a:1,exp:"En 1930, el Dr. Eloesser le diagnostic\u00f3 a Frida una deformaci\u00f3n cong\u00e9nita de su columna vertebral (escoliosis) y la falta de un disco intervertebral.",es:"En 1930, el Dr. Eloesser le diagnostic\u00f3 a Frida una deformaci\u00f3n cong\u00e9nita de su columna vertebral (escoliosis) y la falta de un disco intervertebral.",tr:"1930'da Dr. Eloesser, Frida'ya do\u011fu\u015ftan omurga e\u011frili\u011fi (skolyoz) ve omurlar aras\u0131 disk eksikli\u011fi te\u015fhisi koydu.",en:""},
+{t:"mc",q:"\u00bfQu\u00e9 tuvo que hacerle a Frida el m\u00e9dico con su pie derecho en los \u00faltimos a\u00f1os de su vida?",o:["Ponerle una pr\u00f3tesis de metal", "Amputarle todos los dedos", "Inmovilizarlo con yeso permanente", "Operarlo m\u00e1s de diez veces"],a:1,exp:"Su pie derecho sufri\u00f3 gangrena por la falta de riego sangu\u00edneo y le tuvieron que amputar todos los dedos.",es:"Su pie derecho sufri\u00f3 gangrena por la falta de riego sangu\u00edneo y le tuvieron que amputar todos los dedos.",tr:"Sa\u011f aya\u011f\u0131nda kan dola\u015f\u0131m\u0131 bozuklu\u011fundan kaynaklanan kangren geli\u015fti ve t\u00fcm parmaklar\u0131 kesilmek zorunda kal\u0131nd\u0131.",en:""},
+{t:"mc",q:"\u00bfEn qu\u00e9 a\u00f1o le amputaron la pierna derecha a Frida?",o:["En 1950", "En 1951", "En 1952", "En 1953"],a:3,exp:"En 1953 le amputaron la pierna derecha, y con ella su sensibilidad est\u00e9tica.",es:"En 1953 le amputaron la pierna derecha, y con ella su sensibilidad est\u00e9tica.",tr:"1953'te sa\u011f baca\u011f\u0131 kesildi. Bu onun estetik duyarl\u0131l\u0131\u011f\u0131n\u0131 da bir anlamda g\u00f6t\u00fcrd\u00fc.",en:""},
+{t:"mc",q:"\u00bfCu\u00e1ndo y c\u00f3mo muri\u00f3 Frida Kahlo?",o:["El 13 de julio de 1954, por embolia pulmonar", "El 3 de agosto de 1954, por un infarto", "El 13 de julio de 1953, por complicaciones quir\u00fargicas", "El 6 de julio de 1954, el d\u00eda de su cumplea\u00f1os"],a:0,exp:"Frida fue encontrada la noche del 13 de julio de 1954. Seg\u00fan su acta de defunci\u00f3n, muri\u00f3 a causa de una embolia pulmonar.",es:"Frida fue encontrada la noche del 13 de julio de 1954. Seg\u00fan su acta de defunci\u00f3n, muri\u00f3 a causa de una embolia pulmonar.",tr:"13 Temmuz 1954 gecesi hayat\u0131n\u0131 kaybetti. \u00d6l\u00fcm belgesine g\u00f6re pulmoner emboli (akci\u011fer t\u0131kan\u0131kl\u0131\u011f\u0131) nedeniyle \u00f6ld\u00fc.",en:""},
+{t:"mc",q:"\u00bfQu\u00e9 escribi\u00f3 Frida en las \u00faltimas p\u00e1ginas de su diario?",o:["\"Viva la vida y la alegr\u00eda de vivir\"", "\"Espero alegre la salida... y espero no volver jam\u00e1s\"", "\"He vivido intensamente y sin arrepentimiento\"", "\"Diego, te amar\u00e9 por siempre aunque ya no est\u00e9s\""],a:1,exp:"En las \u00faltimas p\u00e1ginas de su diario anot\u00f3: \u00abEspero alegre la salida... y espero no volver jam\u00e1s\u00bb.",es:"En las \u00faltimas p\u00e1ginas de su diario anot\u00f3: \u00abEspero alegre la salida... y espero no volver jam\u00e1s\u00bb.",tr:"G\u00fcnl\u00fc\u011f\u00fcn\u00fcn son sayfalar\u0131na \u015funu yazd\u0131: \"\u00c7\u0131k\u0131\u015f\u0131 ne\u015feyle bekliyorum... ve bir daha geri d\u00f6nmemeyi umuyorum.\"",en:""},
+{t:"mc",q:"\u00bfQu\u00e9 le dijo el ch\u00f3fer de los Kahlo a Diego Rivera la noche de la muerte de Frida?",o:["\"Se\u00f1or, la se\u00f1ora Frida est\u00e1 muy enferma\"", "\"Se\u00f1or, muri\u00f3 la ni\u00f1a Frida\"", "\"Se\u00f1or, venga usted inmediatamente a la Casa Azul\"", "\"Se\u00f1or, Frida necesita al m\u00e9dico urgentemente\""],a:1,exp:"El ch\u00f3fer fue a buscarlo a San \u00c1ngel y le dijo: \u00abSe\u00f1or, muri\u00f3 la ni\u00f1a Frida\u00bb.",es:"El ch\u00f3fer fue a buscarlo a San \u00c1ngel y le dijo: \u00abSe\u00f1or, muri\u00f3 la ni\u00f1a Frida\u00bb.",tr:"Kahlo ailesinin \u015fof\u00f6r\u00fc Diego'yu San \u00c1ngel'de buldu ve \"Efendim, k\u00fc\u00e7\u00fck Frida \u00f6ld\u00fc\" dedi.",en:""},
+{t:"mc",q:"\u00bfCu\u00e1ndo tuvo Frida su aborto?",o:["En julio de 1930", "En julio de 1932", "En marzo de 1934", "En septiembre de 1935"],a:1,exp:"Frida sufri\u00f3 un aborto el 4 de julio de 1932. A los tres meses, el feto no hab\u00eda conseguido a\u00fan formarse.",es:"Frida sufri\u00f3 un aborto el 4 de julio de 1932. A los tres meses, el feto no hab\u00eda conseguido a\u00fan formarse.",tr:"Frida, 4 Temmuz 1932'de d\u00fc\u015f\u00fck yapt\u0131. \u00dc\u00e7 ayl\u0131k fet\u00fcs hen\u00fcz geli\u015fimini tamamlayamam\u0131\u015ft\u0131.",en:""},
+{t:"mc",q:"\u00bfQui\u00e9n fue el amante m\u00e1s famoso de Frida Kahlo seg\u00fan el libro?",o:["Nickolas Muray", "Isamu Noguchi", "Le\u00f3n Trotsky", "Alejandro G\u00f3mez Arias"],a:2,exp:"El amante m\u00e1s famoso de Frida fue, sin duda, Le\u00f3n Trotsky.",es:"El amante m\u00e1s famoso de Frida fue, sin duda, Le\u00f3n Trotsky.",tr:"Kitaba g\u00f6re Frida'n\u0131n en \u00fcnl\u00fc sevgilisi Le\u00f3n Trotsky'dir.",en:""},
+{t:"mc",q:"\u00bfEn qu\u00e9 cuadro aparece el vestido de tehuana de Frida rodeado de s\u00edmbolos de la sociedad estadounidense?",o:["Autorretrato en la frontera entre M\u00e9xico y los Estados Unidos", "Las dos Fridas", "Mi vestido cuelga all\u00e1", "La columna rota"],a:2,exp:"En \u00abMi vestido cuelga all\u00e1\u00bb aparece en el centro el vestido de tehuana de Kahlo, rodeado de s\u00edmbolos de la sociedad estadounidense.",es:"En \u00abMi vestido cuelga all\u00e1\u00bb aparece en el centro el vestido de tehuana de Kahlo, rodeado de s\u00edmbolos de la sociedad estadounidense.",tr:"\"Mi vestido cuelga all\u00e1\" (Elbisem orada as\u0131l\u0131) tablosunda Frida'n\u0131n tehuana elbisesi, ABD toplumunun sembollerinin ortas\u0131nda yer al\u0131r.",en:""},
+{t:"mc",q:"\u00bfCu\u00e1ntas veces se hab\u00eda casado Diego Rivera antes de Frida?",o:["Una vez", "Dos veces", "Tres veces", "Ninguna vez"],a:1,exp:"Diego ten\u00eda 42 a\u00f1os cuando se cas\u00f3 con Frida. Se hab\u00eda casado dos veces antes y hab\u00eda tenido cuatro hijos.",es:"Diego ten\u00eda 42 a\u00f1os cuando se cas\u00f3 con Frida. Se hab\u00eda casado dos veces antes y hab\u00eda tenido cuatro hijos.",tr:"Diego, Frida ile evlenmeden \u00f6nce iki kez evlenmi\u015fti ve d\u00f6rt \u00e7ocu\u011fu vard\u0131.",en:""},
+{t:"mc",q:"\u00bfC\u00f3mo reaccion\u00f3 Frida cuando vio a Diego Rivera pintando en la preparatoria?",o:["Le pidi\u00f3 que bajara a ver sus cuadros", "Le grit\u00f3 \"Panz\u00f3n\" desde el patio con sus amigos", "Le envi\u00f3 una carta con sus cuadros", "Le pidi\u00f3 que la retratara en el mural"],a:1,exp:"Los Cachuchas, con Frida a la cabeza, se escond\u00edan en el teatro para gastarle bromas. \u00abPanz\u00f3n\u00bb \u2014 le gritaba Frida.",es:"Los Cachuchas, con Frida a la cabeza, se escond\u00edan en el teatro para gastarle bromas. \u00abPanz\u00f3n\u00bb \u2014 le gritaba Frida.",tr:"Arkada\u015flar\u0131yla birlikte Diego'ya \"\u015ei\u015fko!\" (Panz\u00f3n) diye ba\u011f\u0131rd\u0131. Los Cachuchas ona \u00e7e\u015fitli \u015fakalar yaparlard\u0131.",en:""},
+{t:"mc",q:"\u00bfCu\u00e1nto tiempo pas\u00f3 Frida en el hospital en el a\u00f1o 1950?",o:["Tres meses", "Seis meses", "Todo el a\u00f1o", "Ocho meses"],a:2,exp:"Frida estaba hundida psicol\u00f3gica y f\u00edsicamente, y el a\u00f1o 1950 lo pas\u00f3 entero en el hospital.",es:"Frida estaba hundida psicol\u00f3gica y f\u00edsicamente, y el a\u00f1o 1950 lo pas\u00f3 entero en el hospital.",tr:"1950 y\u0131l\u0131n\u0131n tamam\u0131n\u0131 hastanede ge\u00e7irdi. Hem psikolojik hem fiziksel a\u00e7\u0131dan \u00e7\u00f6km\u00fc\u015ft\u00fc.",en:""},
+{t:"mc",q:"\u00bfCu\u00e1l era el apodo que le daban los compa\u00f1eros a Frida despu\u00e9s de su enfermedad?",o:["\"La coja\"", "\"Frida, pata de palo\"", "\"La ni\u00f1a triste\"", "\"La renguita\""],a:1,exp:"Cuando Frida volvi\u00f3 al colegio, tuvo que soportar las burlas de los compa\u00f1eros: \u00abFrida, pata de palo\u00bb.",es:"Cuando Frida volvi\u00f3 al colegio, tuvo que soportar las burlas de los compa\u00f1eros: \u00abFrida, pata de palo\u00bb.",tr:"Okula d\u00f6nd\u00fc\u011f\u00fcnde arkada\u015flar\u0131 ona \"Frida, tahta bacak\" diye lakap takarak alay etti.",en:""},
+{t:"mc",q:"\u00bfQu\u00e9 simbolizaba la casa de dos edificios unidos por un puente?",o:["La diferencia de edad entre los dos", "Su relaci\u00f3n: independientes pero siempre unidos", "La separaci\u00f3n entre el arte de Diego y el de Frida", "El amor y el odio que sent\u00edan el uno por el otro"],a:1,exp:"Juan O'Gorman construy\u00f3 dos edificios independientes unidos solo por un puente, simbolizando su relaci\u00f3n: independientes pero siempre unidos.",es:"Juan O'Gorman construy\u00f3 dos edificios independientes unidos solo por un puente, simbolizando su relaci\u00f3n: independientes pero siempre unidos.",tr:"K\u00f6pr\u00fcyle ba\u011fl\u0131 iki ba\u011f\u0131ms\u0131z ev, ili\u015fkilerini simgeliyordu: ba\u011f\u0131ms\u0131z ama her zaman birlikte.",en:""},
+{t:"mc",q:"\u00bfQu\u00e9 cuadro pint\u00f3 Frida despu\u00e9s de descubrir la relaci\u00f3n de Diego con su hermana Cristina?",o:["Las dos Fridas", "La columna rota", "Unos cuantos piquetitos", "Mi nacimiento"],a:2,exp:"De aquella historia surgi\u00f3 \u00abUnos cuantos piquetitos\u00bb, donde aparece Rivera junto a una cama en la que est\u00e1 Frida cubierta de sangre.",es:"De aquella historia surgi\u00f3 \u00abUnos cuantos piquetitos\u00bb, donde aparece Rivera junto a una cama en la que est\u00e1 Frida cubierta de sangre.",tr:"Bu olaydan \"Unos cuantos piquetitos\" (Birka\u00e7 k\u00fc\u00e7\u00fck b\u0131\u00e7ak yaras\u0131) tablosu do\u011fdu. Tabloda Rivera, kanda yatan Frida'n\u0131n yan\u0131nda g\u00f6r\u00fcn\u00fcr.",en:""},
+{t:"mc",q:"\u00bfC\u00f3mo se llama el museo que hoy ocupa la Casa Azul de Coyoac\u00e1n?",o:["Museo Diego Rivera", "Museo de Arte Mexicano", "Museo Frida Kahlo", "Casa Museo Kahlo-Rivera"],a:2,exp:"Situada en la calle Londres, en el barrio bohemio de Coyoac\u00e1n, hoy es el Museo Frida Kahlo.",es:"Situada en la calle Londres, en el barrio bohemio de Coyoac\u00e1n, hoy es el Museo Frida Kahlo.",tr:"Coyoac\u00e1n'\u0131n bohem mahallesindeki Londra Soka\u011f\u0131'nda bulunan bu ev, bug\u00fcn Frida Kahlo M\u00fczesi olarak hizmet vermektedir.",en:""},
+{t:"mc",q:"\u00bfCu\u00e1ntos visitantes recibe al mes el Museo Frida Kahlo seg\u00fan el libro?",o:["M\u00e1s de 10.000", "M\u00e1s de 15.000", "M\u00e1s de 20.000", "M\u00e1s de 25.000"],a:3,exp:"La casa recibe m\u00e1s de 25.000 visitantes al mes, de los cuales el 70% son extranjeros.",es:"La casa recibe m\u00e1s de 25.000 visitantes al mes, de los cuales el 70% son extranjeros.",tr:"M\u00fcze ayda 25.000'den fazla ziyaret\u00e7i almaktad\u0131r ve bunlar\u0131n y\u00fczde 70'i yabanc\u0131d\u0131r.",en:""},
+{t:"mc",q:"\u00bfPor qu\u00e9 Frida se sent\u00eda especialmente unida a los pueblos ind\u00edgenas de M\u00e9xico?",o:["Porque su padre era de origen ind\u00edgena", "Porque fue criada por una nodriza ind\u00edgena cuya leche tom\u00f3 de ni\u00f1a", "Porque vivi\u00f3 varios a\u00f1os en una comunidad ind\u00edgena", "Porque estudi\u00f3 las culturas ind\u00edgenas en la universidad"],a:1,exp:"El hecho de haber recibido la leche de una mujer ind\u00edgena fue muy importante para Frida. Siempre sinti\u00f3 devoci\u00f3n por los pueblos ind\u00edgenas de M\u00e9xico.",es:"El hecho de haber recibido la leche de una mujer ind\u00edgena fue muy importante para Frida. Siempre sinti\u00f3 devoci\u00f3n por los pueblos ind\u00edgenas de M\u00e9xico.",tr:"K\u00fc\u00e7\u00fckken yerli bir s\u00fctanne taraf\u0131ndan emzirilmesi onun i\u00e7in b\u00fcy\u00fck anlam ta\u015f\u0131d\u0131. Frida, Meksika'n\u0131n yerli halklar\u0131na hep derin bir ba\u011fl\u0131l\u0131k duydu.",en:""},
+{t:"mc",q:"\u00bfQu\u00e9 t\u00e9rmino usa el libro para describir el fen\u00f3meno global de la popularidad de Frida Kahlo?",o:["\"Fridaman\u00eda\"", "\"Fridolatr\u00eda\"", "\"Fridafiebre\"", "\"Fridacultura\""],a:1,exp:"El octavo cap\u00edtulo se titula \u00abFridolatr\u00eda\u00bb, que hace referencia a la adoraci\u00f3n global hacia la figura de Frida Kahlo.",es:"El octavo cap\u00edtulo se titula \u00abFridolatr\u00eda\u00bb, que hace referencia a la adoraci\u00f3n global hacia la figura de Frida Kahlo.",tr:"Kitab\u0131n sekizinci b\u00f6l\u00fcm\u00fc \"Fridolatr\u00eda\" ba\u015fl\u0131\u011f\u0131n\u0131 ta\u015f\u0131r \u2014 bu kelime Frida'ya duyulan k\u00fcresel hayranl\u0131\u011f\u0131 ve tap\u0131nmay\u0131 ifade eder.",en:""},
+{t:"mc",q:"\u00bfCu\u00e1l fue la actitud de Frida hacia la pol\u00edtica seg\u00fan el libro?",o:["Era completamente apol\u00edtica y rechazaba la pol\u00edtica", "Era feminista pero no se interesaba por la pol\u00edtica nacional", "Era comunista y militante, y fue a una manifestaci\u00f3n del Partido Comunista incluso enferma", "Era conservadora y apoyaba al gobierno de Franco"],a:2,exp:"A pesar de los consejos m\u00e9dicos, Frida fue a una manifestaci\u00f3n del Partido Comunista incluso estando enferma.",es:"A pesar de los consejos m\u00e9dicos, Frida fue a una manifestaci\u00f3n del Partido Comunista incluso estando enferma.",tr:"Doktor uyar\u0131lar\u0131na ra\u011fmen hasta olmas\u0131na kar\u015f\u0131n Kom\u00fcnist Parti mitingine kat\u0131ld\u0131. Siyasi a\u00e7\u0131dan kom\u00fcnist ve militan bir tutum sergiledi.",en:""},
+{t:"mc",q:"\u00bfQu\u00e9 dijo Frida sobre los americanos en una carta?",o:["\"Los americanos son ricos pero no tienen cultura\"", "\"Creo que los americanos no tienen inteligencia ni buen gusto\"", "\"En Estados Unidos todo es posible pero nada es humano\"", "\"Los americanos trabajan mucho pero no saben vivir\""],a:1,exp:"En una carta escribi\u00f3: \u00abCreo que los americanos no tienen inteligencia ni buen gusto\u00bb.",es:"En una carta escribi\u00f3: \u00abCreo que los americanos no tienen inteligencia ni buen gusto\u00bb.",tr:"Bir mektubunda \u015f\u00f6yle yazd\u0131: \"San\u0131r\u0131m Amerikal\u0131lar\u0131n ne zekas\u0131 ne de zevki var.\"",en:""},
+{t:"mc",q:"\u00bfQu\u00e9 frase famosa de Frida aparece en el libro relacionada con sus pies?",o:["\"Mis pies me llevaron lejos pero mi coraz\u00f3n siempre volvi\u00f3\"", "\"Pies, \u00bfpara qu\u00e9 los quiero si tengo alas para volar?\"", "\"Sin mis pies no podr\u00eda caminar pero sin Diego no podr\u00eda vivir\"", "\"Perd\u00ed mis pies pero encontr\u00e9 mi pintura\""],a:1,exp:"\u00abPies, \u00bfpara qu\u00e9 los quiero si tengo alas para volar?\u00bb \u2014 frase emblem\u00e1tica de Frida Kahlo.",es:"\u00abPies, \u00bfpara qu\u00e9 los quiero si tengo alas para volar?\u00bb \u2014 frase emblem\u00e1tica de Frida Kahlo.",tr:"\"Ayaklar\u0131m, u\u00e7mak i\u00e7in kanatlar\u0131m varken ne i\u015fime yarar?\" \u2014 Frida'n\u0131n en bilinen s\u00f6zlerinden biridir.",en:""},
+{t:"mc",q:"\u00bfQu\u00e9 describe la Introducci\u00f3n del libro como la caracter\u00edstica m\u00e1s importante de la personalidad de Frida?",o:["Su talento art\u00edstico excepcional y su t\u00e9cnica perfecta", "Su belleza f\u00edsica y su estilo \u00fanico de vestir", "Su capacidad de aprovechar cada d\u00eda de su vida para vivirlo intensamente, reflej\u00e1ndolo en su arte", "Su habilidad para relacionarse con los grandes intelectuales de su \u00e9poca"],a:2,exp:"\u00abFrida Kahlo aprovech\u00f3 cada d\u00eda de su vida, cada acontecimiento, para vivirlo intensamente, y esto se refleja en sus obras.\u00bb",es:"\u00abFrida Kahlo aprovech\u00f3 cada d\u00eda de su vida, cada acontecimiento, para vivirlo intensamente, y esto se refleja en sus obras.\u00bb",tr:"Frida Kahlo'nun en temel \u00f6zelli\u011fi olarak, her g\u00fcn\u00fc ve her olay\u0131 yo\u011fun bi\u00e7imde ya\u015fay\u0131p bunu sanat\u0131na yans\u0131tma kapasitesi tan\u0131mlanmaktad\u0131r.",en:""}
+];
+
+let cur=0,score=0,err=0,wrongList=[],state=new Array(Q.length).fill(null);
+
+function startQuiz(){
+  const n=document.getElementById('introName').value;
+  if(!n){alert('Lütfen adınızı seçin!');return;}
+  window._introName=n;
+  document.getElementById('intro').style.display='none';
+  document.getElementById('quiz').style.display='block';
+  render();
+}
+
+function render(){
+  document.getElementById('progFill').style.width=((cur/Q.length)*100)+'%';
+  document.getElementById('progLabel').textContent=(cur+1)+' / '+Q.length;
+  document.getElementById('sCorrect').textContent=score;
+  document.getElementById('sWrong').textContent=err;
+  const q=Q[cur];
+  document.getElementById('qArea').innerHTML=WARN+(q.t==='mc'?buildMC(q,cur):buildFill(q,cur));
+  if(state[cur]!==null)restoreState(cur);
+}
+
+function buildMC(q,i){
+  return'<div class="q-card"><div class="q-num">SORU '+(i+1)+'</div><span class="q-type-badge badge-mc">ÇOKTAN SEÇMELİ</span><div class="q-text">'+q.q+'</div><div class="choices" id="ch'+i+'">'+
+  q.o.map((o,j)=>'<button class="choice-btn" id="cb'+i+'_'+j+'" onclick="answerMC('+i+','+j+')"><span class="cletter">'+'abcd'[j]+'</span>'+o+'</button>').join('')+
+  '</div><div class="explanation" id="exp'+i+'"></div>'+navRow(i)+'</div>';
+}
+
+function buildFill(q,i){
+  return'<div class="q-card"><div class="q-num">SORU '+(i+1)+'</div><span class="q-type-badge badge-fill">BOŞLUK DOLDURMA</span><div class="q-text">'+q.q+'</div><div class="fill-wrap"><input class="fill-input" id="fi'+i+'" placeholder="Cevabınızı yazın..." onkeydown="if(event.key===\'Enter\')answerFill('+i+')"><button class="fill-submit" id="fs'+i+'" onclick="answerFill('+i+')">Kontrol Et →</button></div><div class="explanation" id="exp'+i+'"></div>'+navRow(i)+'</div>';
+}
+
+function navRow(i){
+  return'<div class="nav-row"><button class="nav-btn" onclick="skipQ()" '+(state[i]!==null?'disabled':'')+'>Atla</button><button class="nav-btn" onclick="prev()" '+(i===0?'disabled':'')+'>← Geri</button><button class="nav-btn primary" onclick="next()">'+(i===Q.length-1?'Bitir ✓':'İleri →')+'</button></div>';
+}
+
+function showExp(i,ok){
+  const q=Q[i],el=document.getElementById('exp'+i);
+  if(!el)return;
+  el.className='explanation show '+(ok?'exp-ok':'exp-err');
+  const letters=['a','b','c','d'];
+  el.innerHTML=(ok?'✅ ':'❌ Doğrusu: <strong>'+letters[q.a]+') '+q.o[q.a]+'</strong><br>')+q.exp+
+    '<span class="exp-es">🇪🇸 '+q.es+'</span><span class="exp-tr">🇹🇷 '+q.tr+'</span><span class="exp-en">🇬🇧 '+q.en+'</span>';
+}
+
+function answerMC(i,j){
+  if(state[i]!==null)return;
+  const q=Q[i],ok=j===q.a;
+  state[i]={chosen:q.o[j],correct:q.o[q.a],ok};
+  if(ok)score++;else{err++;wrongList.push({idx:i,chosen:q.o[j],correct:q.o[q.a]});}
+  for(let k=0;k<4;k++){
+    const b=document.getElementById('cb'+i+'_'+k);
+    if(!b)continue;b.disabled=true;
+    if(k===q.a)b.classList.add('correct');
+    else if(k===j&&!ok)b.classList.add('wrong');
+  }
+  showExp(i,ok);
+  document.getElementById('sCorrect').textContent=score;
+  document.getElementById('sWrong').textContent=err;
+  if(allAnswered())setTimeout(showResult,700);
+}
+
+function answerFill(i){
+  const inp=document.getElementById('fi'+i);
+  if(!inp||state[i]!==null)return;
+  const user=inp.value.trim();if(!user)return;
+  const q=Q[i],ok=user.toLowerCase()===q.a.toLowerCase();
+  state[i]={chosen:user,correct:q.a,ok};
+  if(ok)score++;else{err++;wrongList.push({idx:i,chosen:user,correct:q.a});}
+  inp.classList.add(ok?'correct-input':'wrong-input');
+  inp.disabled=true;
+  document.getElementById('fs'+i).disabled=true;
+  if(!ok){const d=document.createElement('div');d.style.cssText='font-size:.8rem;color:#e17055;margin-top:.3rem;font-weight:600;';const letters=['a','b','c','d'];d.textContent='Doğrusu: '+letters[q.a]+') '+q.o[q.a];inp.parentNode.insertBefore(d,inp.nextSibling);}
+  showExp(i,ok);
+  document.getElementById('sCorrect').textContent=score;
+  document.getElementById('sWrong').textContent=err;
+  if(allAnswered())setTimeout(showResult,700);
+}
+
+function restoreState(i){
+  const s=state[i],q=Q[i];if(!s)return;
+  if(q.t==='mc'){
+    for(let k=0;k<4;k++){const b=document.getElementById('cb'+i+'_'+k);if(!b)continue;b.disabled=true;if(k===q.a)b.classList.add('correct');else if(q.o[k]===s.chosen&&!s.ok)b.classList.add('wrong');}
+  }else{
+    const inp=document.getElementById('fi'+i);
+    if(inp){inp.value=s.chosen;inp.classList.add(s.ok?'correct-input':'wrong-input');inp.disabled=true;}
+    document.getElementById('fs'+i).disabled=true;
+    if(!s.ok){const d=document.createElement('div');d.style.cssText='font-size:.8rem;color:#e17055;margin-top:.3rem;font-weight:600;';const letters=['a','b','c','d'];d.textContent='Doğrusu: '+letters[q.a]+') '+q.o[q.a];if(inp)inp.parentNode.insertBefore(d,inp.nextSibling);}
+  }
+  showExp(i,s.ok);
+}
+
+function allAnswered(){return state.every(s=>s!==null);}
+function skipQ(){next();}
+function prev(){if(cur>0){cur--;render();}}
+function next(){if(cur<Q.length-1){cur++;render();}else showResult();}
+
+function showResult(){
+  document.getElementById('quiz').style.display='none';
+  document.getElementById('result').style.display='block';
+  const pct=Math.round(score/Q.length*100);
+  window._lastPct=pct;
+  document.getElementById('resPct').textContent=pct;
+  document.getElementById('resIcon').textContent=pct>=90?'🏆':pct>=70?'🎉':pct>=50?'👏':'📚';
+  document.getElementById('stOk').textContent=score;
+  document.getElementById('stErr').textContent=err;
+  document.getElementById('stPct').textContent=pct;
+  document.getElementById('noticeBox').style.display='block';
+  document.getElementById('actionBtns').classList.add('show');
+  if(window._introName){
+    const sel=document.getElementById('studentName');
+    if(sel)for(let i=0;i<sel.options.length;i++)if(sel.options[i].text===window._introName){sel.selectedIndex=i;break;}
+  }
+  // Önceki onay sıfırlansın (tekrar yapıldıysa)
+  document.getElementById('confirmBtn').disabled=false;
+  document.getElementById('confirmBtn').textContent='Onayla ✓';
+  document.getElementById('studentName').disabled=false;
+  document.getElementById('sendStatus').style.display='none';
+  document.getElementById('summaryCard').style.display='none';
+  window.scrollTo(0,0);
+}
+
+function confirmName(){
+  const val=document.getElementById('studentName').value;
+  if(!val){alert('Lütfen adınızı seçin!');return;}
+  const grup=GROUPS[val]||'A1.1';
+  const pct=window._lastPct;
+  document.getElementById('studentName').disabled=true;
+  document.getElementById('confirmBtn').disabled=true;
+  document.getElementById('confirmBtn').textContent='✓ Kaydedildi';
+  document.getElementById('summaryName').textContent=val;
+  document.getElementById('summaryOdev').textContent=ODEV_ADI+' · '+grup;
+  document.getElementById('sumPuan').textContent=pct;
+  document.getElementById('sumDogru').textContent=score;
+  document.getElementById('sumYanlis').textContent=err;
+  document.getElementById('summaryCard').style.display='block';
+  const st=document.getElementById('sendStatus');
+  st.style.display='block';st.style.color='var(--muted)';st.textContent='⏳ Kaydediliyor...';
+  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({ogrenci:val,grup:grup,odev:ODEV_ADI,puan:pct,dogru:score,yanlis:err})})
+  .then(()=>{st.style.display='none';})
+  .catch(()=>{st.style.color='var(--muted)';st.textContent='⚠️ Bağlantı hatası, lütfen tekrar deneyin.';});
+}
+
+function toggleReview(){
+  const sec=document.getElementById('reviewSection');
+  const btn=document.querySelector('.btn-review');
+  if(sec.innerHTML&&sec.style.display!=='none'){sec.style.display='none';btn.textContent='🔍 Hatalarımı gözden geçir';return;}
+  btn.textContent='▲ Kapat';
+  if(wrongList.length===0){sec.innerHTML='<div class="review-title">🎉 Hiç hata yok!</div>';sec.style.display='block';return;}
+  let h='<div class="review-title">❌ Yanlış Sorular ('+wrongList.length+')</div>';
+  wrongList.forEach(w=>{
+    const q=Q[w.idx];
+    h+='<div class="review-card"><div class="review-qnum">SORU '+(w.idx+1)+'</div><div class="review-q">'+q.q+'</div><div class="review-your">❌ Cevabınız: '+w.chosen+'</div><div class="review-correct">✅ Doğru: '+w.correct+'</div><div class="review-exp">'+q.exp+'<br><span style="font-style:italic;color:#6c5ce7">🇪🇸 '+q.es+'</span><br><strong style="color:#6c5ce7">🇹🇷 '+q.tr+'</strong><br><span style="color:#555">🇬🇧 '+q.en+'</span></div></div>';
+  });
+  sec.innerHTML=h;sec.style.display='block';sec.scrollIntoView({behavior:'smooth'});
+}
+
+function restart(){
+  cur=0;score=0;err=0;wrongList=[];state=new Array(Q.length).fill(null);
+  document.getElementById('result').style.display='none';
+  document.getElementById('reviewSection').innerHTML='';
+  document.getElementById('reviewSection').style.display='none';
+  document.getElementById('actionBtns').classList.remove('show');
+  document.getElementById('noticeBox').style.display='none';
+  document.querySelector('.btn-review').textContent='🔍 Hatalarımı gözden geçir';
+  document.getElementById('quiz').style.display='block';
+  render();window.scrollTo(0,0);
+}
+</script>
+</div>
+</body>
+</html>
