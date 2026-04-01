@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Los Tiempos Verbales | B1.1 H2 7-8.Ders</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f0fa;
+  --surface:#ffffff;
+  --primary:#6c5ce7;
+  --primary-dark:#5a4bd1;
+  --primary-light:#a29bfe;
+  --accent:#fd79a8;
+  --accent2:#00cec9;
+  --accent3:#fdcb6e;
+  --text:#2d3436;
+  --muted:#636e72;
+  --border:#dfe6e9;
+  --ok:#00b894;
+  --err:#e17055;
+  --radius:16px;
+  --shadow:0 4px 24px rgba(108,92,231,0.13);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* Dekoratif arka plan */
+body::before{
+  content:'';position:fixed;top:0;left:0;width:100%;height:100%;
+  background:
+    radial-gradient(ellipse at 10% 20%,rgba(162,155,254,0.18) 0%,transparent 50%),
+    radial-gradient(ellipse at 90% 80%,rgba(253,121,168,0.12) 0%,transparent 50%),
+    radial-gradient(ellipse at 50% 50%,rgba(108,92,231,0.06) 0%,transparent 70%);
+  pointer-events:none;z-index:0;
+}
+
+.wrap{max-width:640px;margin:0 auto;padding:20px 16px 40px;position:relative;z-index:1;}
+
+/* INTRO */
+#intro{
+  background:var(--surface);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:36px 28px 32px;
+  border-top:5px solid var(--primary);
+  animation:fadeUp .5s ease;
+}
+.brand-bar{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
+.brand-dot{width:10px;height:10px;border-radius:50%;background:var(--primary);}
+.brand-dot:nth-child(2){background:var(--accent);}
+.brand-dot:nth-child(3){background:var(--accent3);}
+.brand-name{font-family:'Nunito',sans-serif;font-size:13px;color:var(--muted);font-weight:700;letter-spacing:.5px;}
+.intro-badge{
+  display:inline-block;background:linear-gradient(135deg,var(--primary),var(--primary-light));
+  color:#fff;font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;
+  padding:4px 12px;border-radius:20px;letter-spacing:1px;margin-bottom:14px;
+}
+#intro h1{font-family:'Nunito',sans-serif;font-size:26px;font-weight:900;color:var(--primary);margin-bottom:6px;}
+.intro-sub{font-size:14px;color:var(--muted);margin-bottom:4px;}
+.intro-desc{font-size:13px;color:var(--primary-light);font-weight:700;margin-bottom:24px;}
+
+.chip-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;}
+.chip{
+  padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;
+  background:rgba(108,92,231,0.09);color:var(--primary);
+}
+.chip.c2{background:rgba(253,121,168,0.1);color:var(--accent);}
+.chip.c3{background:rgba(0,206,201,0.1);color:var(--accent2);}
+
+.name-label{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:var(--primary);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+select.name-select{
+  width:100%;padding:12px 16px;border:2px solid var(--border);border-radius:12px;
+  font-family:'Nunito Sans',sans-serif;font-size:15px;color:var(--text);
+  background:#fff;cursor:pointer;outline:none;transition:border .2s;
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236c5ce7' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;
+}
+select.name-select:focus{border-color:var(--primary);}
+
+.start-btn{
+  width:100%;margin-top:20px;padding:15px;
+  background:linear-gradient(135deg,var(--primary),var(--primary-light));
+  color:#fff;border:none;border-radius:12px;
+  font-family:'Nunito',sans-serif;font-size:17px;font-weight:800;
+  cursor:pointer;transition:transform .15s,box-shadow .15s;
+  box-shadow:0 4px 16px rgba(108,92,231,0.35);
+  letter-spacing:.3px;
+}
+.start-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(108,92,231,0.45);}
+.start-btn:active{transform:translateY(0);}
+
+/* QUIZ */
+#quiz{display:none;}
+.top-bar{
+  background:var(--surface);border-radius:var(--radius);padding:14px 18px;
+  margin-bottom:14px;box-shadow:0 2px 12px rgba(108,92,231,0.08);
+  display:flex;align-items:center;gap:12px;
+}
+.prog-wrap{flex:1;height:8px;background:rgba(108,92,231,0.12);border-radius:4px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:4px;transition:width .4s ease;}
+.prog-label{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:var(--primary);white-space:nowrap;}
+.score-bar{display:flex;gap:16px;padding:0 2px;}
+.sc{font-size:13px;font-weight:700;}
+.sc.ok{color:var(--ok);}
+.sc.err{color:var(--err);}
+
+.q-card{
+  background:var(--surface);border-radius:var(--radius);
+  padding:26px 24px 22px;box-shadow:var(--shadow);
+  border-left:4px solid var(--primary);
+  animation:fadeUp .3s ease;
+}
+.q-num{
+  font-family:'Nunito',sans-serif;font-size:11px;font-weight:900;
+  color:var(--primary-light);letter-spacing:1.5px;margin-bottom:6px;
+}
+.q-type-badge{
+  display:inline-block;padding:3px 10px;border-radius:10px;
+  font-size:11px;font-weight:800;letter-spacing:.5px;margin-bottom:12px;
+  background:rgba(108,92,231,0.1);color:var(--primary);
+}
+.q-text{font-size:16px;font-weight:700;line-height:1.5;margin-bottom:18px;color:var(--text);}
+
+.choices{display:flex;flex-direction:column;gap:9px;}
+.choice-btn{
+  display:flex;align-items:center;gap:12px;padding:12px 16px;
+  border:2px solid var(--border);border-radius:12px;background:#fff;
+  cursor:pointer;text-align:left;font-family:'Nunito Sans',sans-serif;
+  font-size:14px;font-weight:600;color:var(--text);
+  transition:border-color .15s,background .15s,transform .1s;
+}
+.choice-btn:hover:not(:disabled){border-color:var(--primary-light);background:rgba(108,92,231,0.04);transform:translateX(3px);}
+.cletter{
+  width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;
+  font-family:'Nunito',sans-serif;font-size:13px;font-weight:900;
+  background:rgba(108,92,231,0.1);color:var(--primary);flex-shrink:0;
+}
+.choice-btn.ok{border-color:var(--ok);background:rgba(0,184,148,0.06);}
+.choice-btn.ok .cletter{background:var(--ok);color:#fff;}
+.choice-btn.err{border-color:var(--err);background:rgba(225,112,85,0.06);}
+.choice-btn.err .cletter{background:var(--err);color:#fff;}
+
+.explanation{
+  margin-top:14px;padding:14px 16px;border-radius:12px;
+  font-size:13px;line-height:1.6;display:none;
+}
+.explanation.show{display:block;}
+.exp-ok{background:rgba(0,184,148,0.08);border-left:3px solid var(--ok);}
+.exp-err{background:rgba(225,112,85,0.08);border-left:3px solid var(--err);}
+.exp-es{display:block;margin-top:6px;color:var(--primary);font-weight:700;}
+.exp-tr{display:block;margin-top:2px;color:var(--muted);}
+.exp-en{display:block;margin-top:2px;color:var(--accent2);font-style:italic;}
+
+.nav-row{display:flex;gap:8px;margin-top:18px;}
+.nav-btn{
+  padding:9px 18px;border-radius:10px;border:2px solid var(--border);
+  background:#fff;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;
+  color:var(--muted);cursor:pointer;transition:all .15s;
+}
+.nav-btn:hover:not(:disabled){border-color:var(--primary);color:var(--primary);}
+.nav-btn:disabled{opacity:.4;cursor:not-allowed;}
+.nav-btn.primary{
+  margin-left:auto;background:var(--primary);border-color:var(--primary);color:#fff;
+}
+.nav-btn.primary:hover{background:var(--primary-dark);border-color:var(--primary-dark);}
+
+/* RESULT */
+#result{display:none;}
+.result-card{
+  background:var(--surface);border-radius:var(--radius);
+  padding:32px 28px;box-shadow:var(--shadow);
+  text-align:center;border-top:5px solid var(--primary);
+  animation:fadeUp .5s ease;
+}
+.result-emoji{font-size:52px;margin-bottom:8px;}
+.result-badge{
+  display:inline-block;background:rgba(108,92,231,0.1);color:var(--primary);
+  font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;
+  padding:4px 12px;border-radius:20px;letter-spacing:1px;margin-bottom:12px;
+}
+.score-big{
+  font-family:'Nunito',sans-serif;font-size:64px;font-weight:900;
+  color:var(--primary);line-height:1;margin-bottom:4px;
+}
+.score-big span{font-size:28px;color:var(--primary-light);}
+.score-row{display:flex;justify-content:center;gap:24px;margin:16px 0 20px;}
+.score-item{text-align:center;}
+.score-item .val{font-family:'Nunito',sans-serif;font-size:28px;font-weight:900;}
+.score-item .lbl{font-size:12px;color:var(--muted);margin-top:2px;}
+.val.ok{color:var(--ok);}
+.val.err{color:var(--err);}
+
+.name-confirm-box{margin:20px 0 16px;}
+.name-confirm-box label{
+  font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;
+  color:var(--primary);display:flex;align-items:center;gap:6px;margin-bottom:8px;
+}
+.confirm-row{display:flex;gap:8px;}
+select#studentName{
+  flex:1;padding:11px 14px;border:2px solid var(--border);border-radius:10px;
+  font-size:14px;font-family:'Nunito Sans',sans-serif;color:var(--text);
+  background:#fff;outline:none;cursor:pointer;
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236c5ce7' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 10px center;
+}
+select#studentName:focus{border-color:var(--primary);}
+.confirm-btn{
+  padding:11px 20px;background:var(--primary);color:#fff;border:none;
+  border-radius:10px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;
+  cursor:pointer;transition:background .15s;white-space:nowrap;
+}
+.confirm-btn:hover{background:var(--primary-dark);}
+.confirm-btn:disabled{opacity:.5;cursor:not-allowed;}
+#sendStatus{font-size:13px;color:var(--muted);margin-top:6px;min-height:18px;}
+.summary-card{
+  background:linear-gradient(135deg,rgba(108,92,231,0.07),rgba(162,155,254,0.05));
+  border:1px solid rgba(108,92,231,0.15);border-radius:12px;
+  padding:16px;margin-top:14px;text-align:left;display:none;
+}
+.summary-card p{font-size:13px;margin-bottom:4px;}
+.summary-card strong{color:var(--primary);}
+
+.submit-cta{
+  background:linear-gradient(135deg,rgba(253,121,168,0.1),rgba(253,203,110,0.1));
+  border:2px dashed rgba(253,121,168,0.4);border-radius:14px;
+  padding:16px;margin-bottom:16px;text-align:center;
+}
+.submit-hint{
+  font-family:'Nunito',sans-serif;font-size:15px;font-weight:900;
+  color:var(--accent);margin-bottom:4px;
+}
+.submit-hint2{font-size:12px;color:var(--muted);}
+.submit-big{
+  width:100%;padding:16px;font-size:17px!important;
+  background:linear-gradient(135deg,var(--accent),#e84393)!important;
+  border-color:transparent!important;
+  box-shadow:0 4px 20px rgba(253,121,168,0.4)!important;
+  letter-spacing:.3px;
+}
+.submit-big:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(253,121,168,0.5)!important;}
+.submit-big:disabled{background:var(--ok)!important;box-shadow:none!important;transform:none!important;}
+
+.tilde-warn{
+  background:linear-gradient(135deg,rgba(253,203,110,0.15),rgba(253,121,168,0.08));
+  border:2px solid rgba(253,203,110,0.5);border-radius:12px;
+  padding:12px 16px;margin-bottom:16px;font-size:13px;
+  color:var(--text);line-height:1.5;
+}
+.tilde-chars{
+  display:block;margin-top:6px;font-size:15px;font-weight:800;
+  color:var(--primary);letter-spacing:3px;font-family:'Nunito',sans-serif;
+}
+.multi-hint{
+  background:rgba(0,206,201,0.08);border-left:3px solid var(--accent2);
+  border-radius:8px;padding:8px 12px;margin-bottom:12px;
+  font-size:12px;color:var(--accent2);font-weight:700;
+}
+.fill-wrap{display:flex;gap:8px;margin-bottom:4px;flex-wrap:wrap;}
+.fill-input{
+  flex:1;min-width:200px;padding:12px 16px;border:2px solid var(--border);
+  border-radius:12px;font-size:15px;font-family:'Nunito Sans',sans-serif;
+  color:var(--text);outline:none;transition:border .2s;
+}
+.fill-input:focus{border-color:var(--primary);}
+.fill-submit{
+  padding:12px 20px;background:var(--primary);color:#fff;border:none;
+  border-radius:12px;font-family:'Nunito',sans-serif;font-size:14px;
+  font-weight:800;cursor:pointer;white-space:nowrap;
+}
+.fill-submit:hover{background:var(--primary-dark);}
+.fill-submit:disabled{opacity:.5;cursor:not-allowed;}
+
+.intro-tilde-box{
+  background:linear-gradient(135deg,rgba(253,203,110,0.12),rgba(253,121,168,0.06));
+  border:2px dashed rgba(253,203,110,0.5);border-radius:12px;
+  padding:14px 16px;margin-bottom:20px;text-align:center;
+}
+.badge-fill{background:rgba(0,206,201,0.1);color:var(--accent2);}
+.result-actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;}
+.btn-review,.btn-retry{
+  flex:1;padding:12px;border-radius:12px;border:none;
+  font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;
+  transition:all .15s;
+}
+.btn-review{background:rgba(108,92,231,0.1);color:var(--primary);}
+.btn-review:hover{background:rgba(108,92,231,0.18);}
+.btn-retry{background:var(--primary);color:#fff;box-shadow:0 4px 12px rgba(108,92,231,0.3);}
+.btn-retry:hover{background:var(--primary-dark);}
+
+/* REVIEW */
+#reviewSection{display:none;margin-top:16px;}
+.review-item{
+  background:var(--surface);border-radius:12px;padding:16px 18px;
+  margin-bottom:10px;border-left:4px solid var(--err);
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+.review-item .ri-num{font-size:11px;color:var(--err);font-weight:800;letter-spacing:1px;margin-bottom:4px;}
+.review-item .ri-q{font-size:14px;font-weight:700;margin-bottom:8px;}
+.review-item .ri-wrong{font-size:13px;color:var(--err);}
+.review-item .ri-correct{font-size:13px;color:var(--ok);font-weight:700;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<div id="intro">
+  <span class="intro-icon">📚</span>
+  <div class="week-pill">2. HAFTA ÖDEVİ &nbsp;|&nbsp; B1.1 (7–8. DERS)</div>
+  <h1>Los Tiempos Verbales</h1>
+  <div class="intro-sub">Zamanlar &amp; Fiil Çekimleri</div>
+  <p class="intro-desc">100 soru · Çoktan seçmeli</p>
+  <div class="teacher-badge"><span class="handle">@ispanyolcacim</span><span style="color:var(--border)">•</span><span style="color:var(--muted)">Profe Hazel</span></div>
+  <div class="name-box">
+    <label>👤 Adınızı seçin</label>
+    <select id="introName" class="name-select">
+    <option value="">— Adınızı seçin —</option>
+    <option value="Ceylin Öz">Ceylin Öz</option>
+    <option value="Esra Özçeşmeci">Esra Özçeşmeci</option>
+    <option value="Gencay Agocuk">Gencay Agocuk</option>
+    <option value="Kayhan Açan">Kayhan Açan</option>
+    <option value="Kübra Bulut">Kübra Bulut</option>
+    <option value="Nihan Karagedik">Nihan Karagedik</option>
+    <option value="Nur O. Demirci">Nur O. Demirci</option>
+    <option value="Pelinsu Damgacı">Pelinsu Damgacı</option>
+    <option value="Simge Güler">Simge Güler</option>
+    <option value="Ufuk Aydın">Ufuk Aydın</option>
+    <option value="Umre Gül">Umre Gül</option>
+    <option value="Deneme Öğrencisi">Deneme Öğrencisi</option>
+  </select>
+  </div>
+  <button class="start-btn" onclick="startQuiz()">Teste Başla →</button>
+</div>
+
+<div id="quiz">
+  <div class="top-bar">
+    <div class="prog-wrap"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+    <div class="prog-label" id="progLabel">1 / 100</div>
+  </div>
+  <div class="score-bar">
+    <span class="s-correct">✓ <span id="sCorrect">0</span> doğru</span>
+    <button class="finish-btn-sm" onclick="showResult()">Testi Bitir →</button>
+    <span class="s-wrong">✗ <span id="sWrong">0</span> yanlış</span>
+  </div>
+  <div id="qArea"></div>
+</div>
+
+<div id="result">
+  <div class="result-card">
+    <div class="result-emoji">🎉</div>
+    <div class="result-badge">ÖDEV · B1.1</div>
+    <div class="score-big" id="resPct">0<span>/100</span></div>
+    <div class="score-row">
+      <div class="score-item"><div class="val ok" id="stOk">0</div><div class="lbl">✓ Doğru</div></div>
+      <div class="score-item"><div class="val err" id="stErr">0</div><div class="lbl">✗ Yanlış</div></div>
+      <div class="score-item"><div class="val" id="stPct" style="color:var(--primary)">0</div><div class="lbl">Puan</div></div>
+    </div>
+
+    <div class="submit-cta" id="submitCta">
+      <p class="submit-hint">⚠️ Ödeviniz henüz teslim edilmedi!</p>
+      <p class="submit-hint2">Adınızı seçip butona tıklayana kadar ödev sisteme işlenmez.</p>
+    </div>
+    <div class="name-confirm-box">
+      <label>👤 Adınızı seçin</label>
+      <div class="confirm-row">
+        <select id="studentName">
+    <option value="">— Adınızı seçin —</option>
+    <option value="Ceylin Öz">Ceylin Öz</option>
+    <option value="Esra Özçeşmeci">Esra Özçeşmeci</option>
+    <option value="Gencay Agocuk">Gencay Agocuk</option>
+    <option value="Kayhan Açan">Kayhan Açan</option>
+    <option value="Kübra Bulut">Kübra Bulut</option>
+    <option value="Nihan Karagedik">Nihan Karagedik</option>
+    <option value="Nur O. Demirci">Nur O. Demirci</option>
+    <option value="Pelinsu Damgacı">Pelinsu Damgacı</option>
+    <option value="Simge Güler">Simge Güler</option>
+    <option value="Ufuk Aydın">Ufuk Aydın</option>
+    <option value="Umre Gül">Umre Gül</option>
+    <option value="Deneme Öğrencisi">Deneme Öğrencisi</option>
+  </select>
+        <button class="confirm-btn submit-big" id="confirmBtn" onclick="confirmName()">📬 ÖDEVİ TESLİM ET</button>
+      </div>
+      <div id="sendStatus"></div>
+    </div>
+
+    <div class="summary-card" id="summaryCard">
+      <p>👤 <strong id="summaryName"></strong></p>
+      <p>📚 <strong id="summaryOdev"></strong></p>
+      <p>🏆 Puan: <strong id="sumPuan"></strong>/100 &nbsp;·&nbsp; ✓ <strong id="sumDogru"></strong> &nbsp;·&nbsp; ✗ <strong id="sumYanlis"></strong></p>
+      <p style="color:var(--ok);font-weight:700;margin-top:6px;">✅ Ödeviniz teslim edildi!</p>
+    </div>
+
+    <div class="result-actions">
+      <button class="btn-review" onclick="toggleReview()">🔍 Hatalarımı gözden geçir</button>
+      <button class="btn-retry" onclick="restart()">🔄 Testi Tekrar Çöz</button>
+    </div>
+  </div>
+  <div id="reviewSection"></div>
+</div>
+
+</div><!-- /wrap -->
+
+<script>
+const SCRIPT_URL="https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec";
+const ODEV_ADI="H2 – 7-8.Ders";
+const GROUPS={
+  'Ceylin Öz':'B1.1',
+  'Esra Özçeşmeci':'B1.1',
+  'Gencay Agocuk':'B1.1',
+  'Kayhan Açan':'B1.1',
+  'Kübra Bulut':'B1.1',
+  'Nihan Karagedik':'B1.1',
+  'Nur O. Demirci':'B1.1',
+  'Pelinsu Damgacı':'B1.1',
+  'Simge Güler':'B1.1',
+  'Ufuk Aydın':'B1.1',
+  'Umre Gül':'B1.1',
+  'Deneme Öğrencisi':'B1.1'
+};
+
+const WARN='';
+
+const Q=[
+{t:"mc",q:"Ayer yo ______ al cine con mis amigos.",o:["voy", "fui", "iba", "he ido"],a:1,exp:"\"Ayer\" (d\u00fcn) \u2192 tamamlanm\u0131\u015f ge\u00e7mi\u015f \u2192 pret\u00e9rito indefinido. | a) voy=\u015fimdi, c) iba=al\u0131\u015fkanl\u0131k/devam eden ge\u00e7mi\u015f, d) he ido=yak\u0131n ge\u00e7mi\u015f",es:"",tr:"",en:""},
+{t:"mc",q:"Cuando era peque\u00f1o, ______ mucho en el parque.",o:["juego", "jugaba", "jugu\u00e9", "he jugado"],a:1,exp:"\"Cuando era peque\u00f1o\" \u2192 ge\u00e7mi\u015fte al\u0131\u015fkanl\u0131k \u2192 imperfecto. | a) juego=\u015fimdi, b) jugu\u00e9=tek seferlik, d) he jugado=yak\u0131n ge\u00e7mi\u015f",es:"",tr:"",en:""},
+{t:"mc",q:"Esta ma\u00f1ana nosotros ______ caf\u00e9 juntos.",o:["tomamos", "tom\u00e1bamos", "tomaremos", "hemos tomado"],a:3,exp:"\"Esta ma\u00f1ana\" \u2192 zaman bitmedi \u2192 pret\u00e9rito perfecto. | a) tomamos=genel, b) tom\u00e1bamos=s\u00fcre\u00e7, d) tomaremos=gelecek",es:"",tr:"",en:""},
+{t:"mc",q:"Mientras ella ______, yo cocinaba.",o:["estudiaba", "estudi\u00f3", "estudiar\u00e1", "estudia"],a:0,exp:"\"Mientras\" \u2192 ayn\u0131 anda devam eden iki eylem \u2192 imperfecto. | a) estudia=\u015fimdi, b) estudi\u00f3=tek seferlik, c) estudiar\u00e1=gelecek",es:"",tr:"",en:""},
+{t:"mc",q:"Hoy yo ______ tres correos importantes.",o:["escribo", "escrib\u00ed", "he escrito", "escrib\u00eda"],a:2,exp:"\"Hoy\" \u2192 zaman bitmedi \u2192 pret\u00e9rito perfecto. | a) escribo=\u015fimdi, b) escrib\u00ed=bitmi\u015f ge\u00e7mi\u015f, c) escrib\u00eda=s\u00fcre\u00e7",es:"",tr:"",en:""},
+{t:"mc",q:"Antes nosotros ______ en Madrid.",o:["vivimos", "hemos vivido", "viv\u00edamos", "viviremos"],a:2,exp:"\"Antes\" \u2192 ge\u00e7mi\u015fte devam eden durum \u2192 imperfecto. | a) vivimos=geni\u015f zaman, c) hemos vivido=yak\u0131n ge\u00e7mi\u015f, d) viviremos=gelecek",es:"",tr:"",en:""},
+{t:"mc",q:"Esta semana ellos ______ mucho trabajo.",o:["han tenido", "tuvieron", "ten\u00edan", "tienen"],a:0,exp:"\"Esta semana\" hen\u00fcz bitmedi \u2192 pret\u00e9rito perfecto. | a) tienen=\u015fimdi, b) tuvieron=bitmi\u015f ge\u00e7mi\u015f, c) ten\u00edan=s\u00fcreklilik",es:"",tr:"",en:""},
+{t:"mc",q:"Cuando llegu\u00e9, ellos ya ______.",o:["salen", "sal\u00edan", "salieron", "hab\u00edan salido"],a:3,exp:"\"Cuando llegu\u00e9\" = ge\u00e7mi\u015fte belirli bir an. Ondan DAHA \u00d6NCE olmu\u015f eylem \u2192 pret\u00e9rito pluscuamperfecto (hab\u00edan + participio). | \ud83c\uddea\ud83c\uddf8 Cuando llegu\u00e9, ellos ya hab\u00edan salido. | \ud83c\uddf9\ud83c\uddf7 Ben geldi\u011fimde onlar zaten \u00e7\u0131km\u0131\u015ft\u0131. | \ud83c\uddec\ud83c\udde7 When I arrived, they had already left.",es:"",tr:"",en:""},
+{t:"mc",q:"Siempre ______ caf\u00e9 por la ma\u00f1ana.",o:["bebo", "beb\u00ed", "beb\u00eda", "he bebido"],a:0,exp:"\"Siempre\" \u2192 al\u0131\u015fkanl\u0131k \u2192 geni\u015f zaman (presente). | b) beb\u00ed=tek seferlik, c) beb\u00eda=s\u00fcreklilik var ama genel al\u0131\u015fkanl\u0131k i\u00e7in presente tercih edilir, d) he bebido=yak\u0131n ge\u00e7mi\u015f",es:"",tr:"",en:""},
+{t:"mc",q:"Ayer a las 9 nosotros ______ en casa cuando empez\u00f3 a llover.",o:["estamos", "hemos estado", "est\u00e1bamos", "estuvimos"],a:2,exp:"\"cuando empez\u00f3 a llover\" = ani olay (indefinido). Bu olay olurken devam eden durum \u2192 imperfecto. | \ud83c\uddea\ud83c\uddf8 Ayer a las 9 nosotros est\u00e1bamos en casa cuando empez\u00f3 a llover. | \ud83c\uddf9\ud83c\uddf7 D\u00fcn saat 9'da ya\u011fmur ba\u015flad\u0131\u011f\u0131nda evdeydik. | \ud83c\uddec\ud83c\udde7 Yesterday at 9 we were at home when it started to rain.",es:"",tr:"",en:""},
+{t:"mc",q:"Hoy no ______ nada todav\u00eda.",o:["como", "com\u00ed", "he comido", "com\u00eda"],a:2,exp:"\"Hoy\" hen\u00fcz bitmedi \u2192 pret\u00e9rito perfecto. | a) como=\u015fimdi, b) com\u00ed=bitmi\u015f ge\u00e7mi\u015f, c) com\u00eda=s\u00fcre\u00e7",es:"",tr:"",en:""},
+{t:"mc",q:"Cuando era ni\u00f1o, ______ mucho chocolate.",o:["com\u00eda", "com\u00ed", "como", "he comido"],a:0,exp:"Ge\u00e7mi\u015fte al\u0131\u015fkanl\u0131k \u2192 imperfecto. | a) como=\u015fimdi, b) com\u00ed=tek seferlik, d) he comido=yak\u0131n ge\u00e7mi\u015f",es:"",tr:"",en:""},
+{t:"mc",q:"Esta tarde yo ______ a mi abuela.",o:["visito", "visit\u00e9", "he visitado", "visitaba"],a:2,exp:"Esta tarde \u2192 zaman hen\u00fcz bitmedi \u2192 pret\u00e9rito perfecto. | a) visito=\u015fimdi/plan, b) visit\u00e9=bitmi\u015f ge\u00e7mi\u015f, c) visitaba=s\u00fcre\u00e7",es:"",tr:"",en:""},
+{t:"mc",q:"Mientras ellos ______, nosotros trabaj\u00e1bamos.",o:["descansan", "descansaron", "descansaban", "han descansado"],a:2,exp:"\"Mientras\" \u2192 e\u015f zamanl\u0131 eylemler \u2192 imperfecto. | a) descansan=\u015fimdi, b) descansaron=bitmi\u015f eylem, d) han descansado=yak\u0131n ge\u00e7mi\u015f",es:"",tr:"",en:""},
+{t:"mc",q:"Hoy nosotros ______ en el restaurante.",o:["comemos", "comimos", "hemos comido", "com\u00edamos"],a:2,exp:"\"Hoy\" \u2192 zaman bitmedi \u2192 pret\u00e9rito perfecto. | a) comemos=\u015fimdi, b) comimos=bitmi\u015f ge\u00e7mi\u015f, c) com\u00edamos=s\u00fcre\u00e7",es:"",tr:"",en:""},
+{t:"mc",q:"Antes yo ______ en esa empresa.",o:["trabajo", "trabajaba", "trabaj\u00e9", "he trabajado"],a:1,exp:"\"Antes\" \u2192 ge\u00e7mi\u015fte s\u00fcreklilik \u2192 imperfecto. | a) trabajo=\u015fimdi, b) trabaj\u00e9=tek seferlik, d) he trabajado=yak\u0131n ge\u00e7mi\u015f",es:"",tr:"",en:""},
+{t:"mc",q:"Esta semana ______ mucho.",o:["llueve", "ha llovido", "llov\u00eda", "llovi\u00f3"],a:1,exp:"\"Esta semana\" \u2192 zaman bitmedi \u2192 pret\u00e9rito perfecto. | a) llueve=\u015fimdi, b) llovi\u00f3=bitmi\u015f, c) llov\u00eda=s\u00fcre\u00e7",es:"",tr:"",en:""},
+{t:"mc",q:"Ayer ellos ______ tarde.",o:["llegan", "han llegado", "llegaban", "llegaron"],a:3,exp:"\"Ayer\" \u2192 tamamlanm\u0131\u015f ge\u00e7mi\u015f \u2192 pret\u00e9rito indefinido. | a) llegan=\u015fimdi, c) llegaban=s\u00fcre\u00e7, d) han llegado=yak\u0131n ge\u00e7mi\u015f",es:"",tr:"",en:""},
+{t:"mc",q:"Siempre ______ temprano.",o:["me he levantado", "me levant\u00e9", "me levantaba", "me levanto"],a:3,exp:"\"Siempre\" \u2192 al\u0131\u015fkanl\u0131k \u2192 geni\u015f zaman. | b) me levant\u00e9=tek seferlik, c) me levantaba=s\u00fcre\u00e7, d) me he levantado=yak\u0131n ge\u00e7mi\u015f",es:"",tr:"",en:""},
+{t:"mc",q:"Esta ma\u00f1ana yo ______ con el profesor.",o:["hablo", "he hablado", "hablaba", "habl\u00e9"],a:1,exp:"\"Esta ma\u00f1ana\" \u2192 zaman hen\u00fcz bitmedi \u2192 pret\u00e9rito perfecto. | a) hablo=\u015fimdi, b) habl\u00e9=bitmi\u015f, c) hablaba=s\u00fcre\u00e7",es:"",tr:"",en:""},
+{t:"mc",q:"Cuando \u00e9ramos j\u00f3venes, ______ mucho.",o:["viaj\u00e9", "viaj\u00e1bamos", "viajaremos", "hemos viajado"],a:1,exp:"\"Cuando \u00e9ramos j\u00f3venes\" \u2192 ge\u00e7mi\u015fte al\u0131\u015fkanl\u0131k \u2192 imperfecto. | a/b) viajamos=geni\u015f/belirsiz, d) hemos viajado=yak\u0131n ge\u00e7mi\u015f",es:"",tr:"",en:""},
+{t:"mc",q:"Hoy no ______ tiempo.",o:["he tenido", "tuve", "ten\u00eda", "tengo"],a:0,exp:"\"Hoy\" \u2192 hen\u00fcz bitmedi \u2192 pret\u00e9rito perfecto. | a) tengo=\u015fimdi, b) tuve=bitmi\u015f ge\u00e7mi\u015f, c) ten\u00eda=s\u00fcre\u00e7",es:"",tr:"",en:""},
+{t:"mc",q:"Ayer ______ una pel\u00edcula.",o:["veo", "vi", "ve\u00eda", "he visto"],a:1,exp:"\"Ayer\" \u2192 tamamlanm\u0131\u015f ge\u00e7mi\u015f \u2192 indefinido. | a) veo=\u015fimdi, c) ve\u00eda=s\u00fcre\u00e7, d) he visto=yak\u0131n ge\u00e7mi\u015f",es:"",tr:"",en:""},
+{t:"mc",q:"Antes ______ en el campo.",o:["vivo", "viv\u00ed", "he vivido", "viv\u00eda"],a:3,exp:"Ge\u00e7mi\u015fte s\u00fcreklilik \u2192 imperfecto. | a) vivo=\u015fimdi, b) viv\u00ed=tek seferlik, d) he vivido=yak\u0131n ge\u00e7mi\u015f",es:"",tr:"",en:""},
+{t:"mc",q:"Esta semana ______ mucho.",o:["estudio", "estudi\u00e9", "estudiaba", "he estudiado"],a:3,exp:"\"Esta semana\" \u2192 zaman bitmedi \u2192 pret\u00e9rito perfecto. | a) estudio=\u015fimdi, b) estudi\u00e9=bitmi\u015f, c) estudiaba=s\u00fcre\u00e7",es:"",tr:"",en:""},
+{t:"mc",q:"Ma\u00f1ana yo ______ temprano para estudiar.",o:["me levanto", "me levantar\u00e9", "me levantaba", "me levant\u00e9"],a:1,exp:"\"Ma\u00f1ana\" \u2192 gelecek \u2192 futuro simple. | a) me levanto=\u015fimdi, b) me levant\u00e9=ge\u00e7mi\u015f, c) me levantaba=s\u00fcre\u00e7",es:"",tr:"",en:""},
+{t:"mc",q:"El pr\u00f3ximo a\u00f1o nosotros ______ a otro pa\u00eds.",o:["viajamos", "hemos viajado", "viaj\u00e1bamos", "viajaremos"],a:3,exp:"\"El pr\u00f3ximo a\u00f1o\" \u2192 gelecek \u2192 futuro simple. | a) viajamos=\u015fimdi, c) viaj\u00e1bamos=ge\u00e7mi\u015f, d) hemos viajado=yak\u0131n ge\u00e7mi\u015f",es:"",tr:"",en:""},
+{t:"mc",q:"Supongo que ella ______ en casa ahora.",o:["est\u00e1", "estar\u00e1", "estaba", "estar\u00eda"],a:1,exp:"\"Supongo que\" = tahmin / olas\u0131l\u0131k. \u015eu an i\u00e7in tahmin yap\u0131yoruz \u2192 futuro simple (estar\u00e1). | \ud83c\uddea\ud83c\uddf8 Supongo que ella estar\u00e1 en casa ahora. | \ud83c\uddf9\ud83c\uddf7 San\u0131r\u0131m o \u015fu an evdedir. | \ud83c\uddec\ud83c\udde7 I suppose she is at home now.",es:"",tr:"",en:""},
+{t:"mc",q:"Dentro de dos d\u00edas ellos ______ el proyecto.",o:["terminan", "terminaron", "terminaban", "terminar\u00e1n"],a:3,exp:"\"Dentro de dos d\u00edas\" \u2192 gelecek \u2192 futuro simple. | a) terminan=\u015fimdi, b) terminaron=ge\u00e7mi\u015f, d) terminaban=s\u00fcre\u00e7",es:"",tr:"",en:""},
+{t:"mc",q:"Creo que ma\u00f1ana ______ buen tiempo.",o:["hace", "har\u00e1", "hac\u00eda", "har\u00eda"],a:1,exp:"\"Creo que\" + gelecek tahmini \u2192 futuro simple. | a) hace=\u015fimdi, c) hac\u00eda=ge\u00e7mi\u015f, d) har\u00eda=\u015fart",es:"",tr:"",en:""},
+{t:"mc",q:"Ma\u00f1ana nosotros ______ al gimnasio.",o:["iremos", "vamos", "\u00edbamos", "hemos ido"],a:0,exp:"\"Ma\u00f1ana\" \u2192 gelecek \u2192 futuro simple. | a) vamos=\u015fimdi, c) \u00edbamos=ge\u00e7mi\u015f, d) hemos ido=yak\u0131n ge\u00e7mi\u015f",es:"",tr:"",en:""},
+{t:"mc",q:"Dentro de un mes yo ______ un coche nuevo.",o:["compro", "comprar\u00e9", "compr\u00e9", "compraba"],a:1,exp:"\"Dentro de un mes\" \u2192 gelecek \u2192 futuro simple. | a) compro=\u015fimdi, b) compr\u00e9=ge\u00e7mi\u015f, d) compraba=s\u00fcre\u00e7",es:"",tr:"",en:""},
+{t:"mc",q:"Supongo que ellos ______ en casa ahora.",o:["est\u00e1n", "estaban", "estar\u00e1n", "estar\u00edan"],a:2,exp:"\"Supongo que\" = tahmin / olas\u0131l\u0131k. \u015eu an i\u00e7in tahmin yap\u0131l\u0131yor \u2192 futuro simple (estar\u00e1n). | \ud83c\uddea\ud83c\uddf8 Supongo que ellos estar\u00e1n en casa ahora. | \ud83c\uddf9\ud83c\uddf7 San\u0131r\u0131m onlar \u015fu an evdedir. | \ud83c\uddec\ud83c\udde7 I suppose they are at home now.",es:"",tr:"",en:""},
+{t:"mc",q:"La pr\u00f3xima semana nosotros ______ a Barcelona.",o:["viajamos", "viaj\u00e1bamos", "viajaremos", "hemos viajado"],a:2,exp:"\"La pr\u00f3xima semana\" \u2192 gelecek \u2192 futuro simple. | a) viajamos=\u015fimdi, c) viaj\u00e1bamos=ge\u00e7mi\u015f, d) hemos viajado=yak\u0131n ge\u00e7mi\u015f",es:"",tr:"",en:""},
+{t:"mc",q:"Creo que ma\u00f1ana ______ fr\u00edo.",o:["hace", "hac\u00eda", "har\u00e1", "har\u00eda"],a:2,exp:"Tahmin \u2192 futuro simple. | a) hace=\u015fimdi, b) hac\u00eda=ge\u00e7mi\u015f, d) har\u00eda=\u015fart",es:"",tr:"",en:""},
+{t:"mc",q:"Si estudias, ______ el examen.",o:["apruebas", "aprobar\u00e1s", "aprobabas", "aprobar\u00edas"],a:1,exp:"\u015eart c\u00fcmlesi: Si + presente \u2192 futuro simple. | a) apruebas=\u015fimdi, c) aprobabas=ge\u00e7mi\u015f, d) aprobar\u00edas=\u015fart",es:"",tr:"",en:""},
+{t:"mc",q:"Dentro de dos a\u00f1os yo ______ en otra ciudad.",o:["vivo", "viv\u00eda", "vivir\u00eda", "vivir\u00e9"],a:3,exp:"\"Dentro de dos a\u00f1os\" \u2192 gelecek \u2192 futuro simple. | a) vivo=\u015fimdi, b) viv\u00eda=ge\u00e7mi\u015f, d) vivir\u00eda=\u015fart",es:"",tr:"",en:""},
+{t:"mc",q:"Probablemente ellos ______ tarde.",o:["llegan", "llegaban", "llegar\u00e1n", "llegar\u00edan"],a:2,exp:"\"Probablemente\" \u2192 tahmin \u2192 futuro simple. | a) llegan=\u015fimdi, b) llegaban=ge\u00e7mi\u015f, d) llegar\u00edan=\u015fart",es:"",tr:"",en:""},
+{t:"mc",q:"El a\u00f1o que viene nosotros ______ una casa.",o:["compramos", "compr\u00e1bamos", "hemos comprado", "compraremos"],a:3,exp:"\"El a\u00f1o que viene\" \u2192 gelecek \u2192 futuro simple. | a) compramos=\u015fimdi, b) compr\u00e1bamos=ge\u00e7mi\u015f, d) hemos comprado=yak\u0131n ge\u00e7mi\u015f",es:"",tr:"",en:""},
+{t:"mc",q:"Mar\u00eda no est\u00e1 en clase hoy, supongo que ______ en casa porque est\u00e1 enferma.",o:["estar\u00e1", "est\u00e1", "estaba", "estar\u00eda"],a:0,exp:"\"supongo que\" = tahmin / olas\u0131l\u0131k. \u015eu an i\u00e7in \u00e7\u0131kar\u0131m yap\u0131yoruz \u2192 futuro simple (estar\u00e1). | \ud83c\uddea\ud83c\uddf8 Supongo que estar\u00e1 en casa porque est\u00e1 enferma. | \ud83c\uddf9\ud83c\uddf7 San\u0131r\u0131m hasta oldu\u011fu i\u00e7in evdedir. | \ud83c\uddec\ud83c\udde7 I suppose she is at home because she is sick.",es:"",tr:"",en:""},
+{t:"mc",q:"Ma\u00f1ana t\u00fa ______ temprano.",o:["sales", "saldr\u00e1s", "sal\u00edas", "saldr\u00edas"],a:1,exp:"\"Ma\u00f1ana\" \u2192 gelecek \u2192 futuro simple. | a) sales=\u015fimdi, b) sal\u00edas=ge\u00e7mi\u015f, d) saldr\u00edas=\u015fart",es:"",tr:"",en:""},
+{t:"mc",q:"Dentro de poco nosotros ______ noticias.",o:["tendremos", "tenemos", "ten\u00edamos", "tendr\u00edamos"],a:0,exp:"\"Dentro de poco\" \u2192 gelecek \u2192 futuro simple. | a) tenemos=\u015fimdi, c) ten\u00edamos=ge\u00e7mi\u015f, d) tendr\u00edamos=\u015fart",es:"",tr:"",en:""},
+{t:"mc",q:"Creo que ellos ______ la verdad.",o:["dicen", "dir\u00e1n", "dec\u00edan", "dir\u00edan"],a:1,exp:"\"Creo que\" \u2192 tahmin/gelecek beklentisi \u2192 futuro simple. | a) dicen=\u015fimdi, c) dec\u00edan=ge\u00e7mi\u015f, d) dir\u00edan=\u015fart",es:"",tr:"",en:""},
+{t:"mc",q:"La pr\u00f3xima semana yo ______ m\u00e1s.",o:["trabajo", "trabajar\u00e9", "trabaj\u00e9", "trabajaba"],a:1,exp:"\"La pr\u00f3xima semana\" \u2192 gelecek \u2192 futuro simple. | a) trabajo=\u015fimdi, b) trabaj\u00e9=ge\u00e7mi\u015f, d) trabajaba=s\u00fcre\u00e7",es:"",tr:"",en:""},
+{t:"mc",q:"No contesta al tel\u00e9fono, seguro que ahora ______ ocupado.",o:["estar\u00e1", "est\u00e1", "estaba", "estar\u00eda"],a:0,exp:"\"No contesta al tel\u00e9fono\" = g\u00f6zlem. \"seguro que\" = g\u00fc\u00e7l\u00fc tahmin \u2192 futuro simple. | \ud83c\uddea\ud83c\uddf8 No contesta al tel\u00e9fono, seguro que ahora estar\u00e1 ocupado. | \ud83c\uddf9\ud83c\uddf7 Telefona cevap vermiyor, kesin \u015fu an me\u015fguld\u00fcr. | \ud83c\uddec\ud83c\udde7 He is not answering the phone, he must be busy now.",es:"",tr:"",en:""},
+{t:"mc",q:"Ma\u00f1ana nosotros ______ juntos.",o:["cenamos", "cen\u00e1bamos", "cenaremos", "cenar\u00edamos"],a:2,exp:"\"Ma\u00f1ana\" \u2192 gelecek \u2192 futuro simple. | a) cenamos=\u015fimdi/planl\u0131, c) cen\u00e1bamos=ge\u00e7mi\u015f, d) cenar\u00edamos=\u015fart",es:"",tr:"",en:""},
+{t:"mc",q:"Dentro de un a\u00f1o ellos ______ en Espa\u00f1a.",o:["viven", "viv\u00edan", "vivir\u00e1n", "vivir\u00edan"],a:2,exp:"\"Dentro de un a\u00f1o\" \u2192 gelecek \u2192 futuro simple. | a) viven=\u015fimdi, b) viv\u00edan=ge\u00e7mi\u015f, d) vivir\u00edan=\u015fart",es:"",tr:"",en:""},
+{t:"mc",q:"Creo que ma\u00f1ana ______ lluvia.",o:["hay", "hab\u00eda", "habr\u00e1", "habr\u00eda"],a:2,exp:"\"Creo que\" + gelecek tahmini \u2192 futuro simple. | a) hay=\u015fimdi, b) hab\u00eda=ge\u00e7mi\u015f, d) habr\u00eda=\u015fart",es:"",tr:"",en:""},
+{t:"mc",q:"Si vienes, nosotros ______ juntos.",o:["saldremos", "salimos", "sal\u00edamos", "saldr\u00edamos"],a:0,exp:"\u015eart c\u00fcmlesi: Si + presente \u2192 futuro simple. | a) salimos=\u015fimdi, c) sal\u00edamos=ge\u00e7mi\u015f, d) saldr\u00edamos=\u015fart",es:"",tr:"",en:""},
+{t:"mc",q:"Ha trabajado todo el d\u00eda, ______ cansado ahora.",o:["est\u00e1", "estar\u00e1", "estaba", "estar\u00eda"],a:1,exp:"\"Ha trabajado todo el d\u00eda\" = g\u00f6zlem. Bu bilgiye dayanarak \u015fu an i\u00e7in tahmin \u2192 futuro simple (estar\u00e1). | \ud83c\uddea\ud83c\uddf8 Ha trabajado todo el d\u00eda, estar\u00e1 cansado ahora. | \ud83c\uddf9\ud83c\uddf7 B\u00fct\u00fcn g\u00fcn \u00e7al\u0131\u015ft\u0131, \u015fimdi yorgun olmal\u0131. | \ud83c\uddec\ud83c\udde7 He has worked all day, he must be tired now.",es:"",tr:"",en:""},
+{t:"mc",q:"Texto 51\nMar\u00eda vive en un piso peque\u00f1o con su hermana Ana. Cada ma\u00f1ana se levanta a las siete. Primero se ducha y luego prepara el desayuno. Normalmente come pan, queso y t\u00e9. Despu\u00e9s camina hasta la parada del autob\u00fas. Trabaja en una tienda en el centro. Ana estudia en la universidad. Por la noche cenan juntas. Los viernes ven una pel\u00edcula. Mar\u00eda est\u00e1 contenta con su vida.\n\n\u2753 Seg\u00fan el texto, \u00bfcu\u00e1l NO se puede deducir?",o:["Mar\u00eda trabaja en el centro.", "Ana es estudiante.", "Mar\u00eda va al trabajo en coche.", "Ven pel\u00edculas los viernes."],a:2,exp:"Metinde Mar\u00eda'n\u0131n otob\u00fcs dura\u011f\u0131na y\u00fcr\u00fcd\u00fc\u011f\u00fc yaz\u0131yor, araba yok. | \ud83c\uddea\ud83c\uddf8 Camina al autob\u00fas \u2192 no hay coche mencionado. | \ud83c\uddf9\ud83c\uddf7 Arabaya dair bilgi yok. | \ud83c\uddec\ud83c\udde7 She walks to the bus stop \u2192 no car mentioned.",es:"",tr:"",en:""},
+{t:"mc",q:"Texto 52\nCarlos trabaja en una oficina grande. Llega a las nueve cada d\u00eda. Habla con sus compa\u00f1eros por la ma\u00f1ana. Al mediod\u00eda almuerza en un restaurante cercano. Le gusta la comida italiana. Por la tarde responde correos electr\u00f3nicos. Sale del trabajo a las seis. Despu\u00e9s va al gimnasio tres veces por semana. Los fines de semana descansa en casa. Dice que su trabajo es interesante.\n\n\u2753 Seg\u00fan el texto, \u00bfcu\u00e1l NO se puede deducir?",o:["Carlos trabaja los domingos.", "Hace deporte regularmente.", "Le gusta la comida italiana.", "Sale del trabajo a las seis."],a:0,exp:"Hafta sonu evde dinlendi\u011fi s\u00f6yleniyor \u2192 \u00e7al\u0131\u015ft\u0131\u011f\u0131 \u00e7\u0131kar\u0131lamaz. | \ud83c\uddea\ud83c\uddf8 Dice que descansa los fines de semana. | \ud83c\uddf9\ud83c\uddf7 Hafta sonu dinleniyor \u2192 pazar \u00e7al\u0131\u015fmaz. | \ud83c\uddec\ud83c\udde7 He rests on weekends \u2192 not working on Sundays.",es:"",tr:"",en:""},
+{t:"mc",q:"Texto 53\nLuc\u00eda estudia medicina en la universidad. Tiene clases por la ma\u00f1ana. Despu\u00e9s estudia en la biblioteca. Le gusta leer libros de ciencia. Tambi\u00e9n ve videos educativos. Los s\u00e1bados sale con sus amigos. Le gusta el cine. No trabaja porque quiere concentrarse en sus estudios. Vive con sus padres. Dice que quiere ser doctora.\n\n\u2753 Seg\u00fan el texto, \u00bfcu\u00e1l NO se puede deducir?",o:["Luc\u00eda estudia medicina.", "Luc\u00eda trabaja actualmente.", "Le gusta estudiar.", "Vive con su familia."],a:1,exp:"\u00c7al\u0131\u015fmad\u0131\u011f\u0131 a\u00e7\u0131k\u00e7a yaz\u0131yor. | \ud83c\uddea\ud83c\uddf8 \"No trabaja\" \u2192 no trabaja. | \ud83c\uddf9\ud83c\uddf7 Metinde \"\u00e7al\u0131\u015fm\u0131yor\" yaz\u0131yor. | \ud83c\uddec\ud83c\udde7 The text clearly states she does not work.",es:"",tr:"",en:""},
+{t:"mc",q:"Texto 54\nPedro tiene un restaurante en el centro de la ciudad. Abre todos los d\u00edas a las diez de la ma\u00f1ana. Aunque el lugar es peque\u00f1o, siempre est\u00e1 lleno. Muchos clientes vuelven porque la comida es casera. Pedro cocina mientras su esposa atiende las mesas. A veces trabajan hasta tarde, especialmente los s\u00e1bados. Sin embargo, los domingos prefieren descansar. Pedro quiere ampliar el restaurante en el futuro. Est\u00e1 ahorrando dinero para ese proyecto. Dice que trabajar con su esposa es lo mejor.\n\n\u2753 Seg\u00fan el texto, \u00bfcu\u00e1l NO se puede deducir?",o:["El restaurante es popular.", "Pedro trabaja con su esposa.", "Pedro quiere expandir su negocio.", "El restaurante abre los domingos."],a:3,exp:"Pazar g\u00fcnleri dinlenmeyi tercih ettikleri yaz\u0131yor \u2192 pazar a\u00e7\u0131k de\u011fil. | \ud83c\uddea\ud83c\uddf8 Los domingos prefieren descansar \u2192 no abre los domingos. | \ud83c\uddf9\ud83c\uddf7 Pazar dinleniyor \u2192 pazar a\u00e7\u0131k de\u011fil. | \ud83c\uddec\ud83c\udde7 They rest on Sundays \u2192 restaurant not open Sundays.",es:"",tr:"",en:""},
+{t:"mc",q:"Texto 55\nElena vive en Madrid desde hace cinco a\u00f1os. Trabaja en una escuela internacional. Sus estudiantes vienen de diferentes pa\u00edses. Por eso, usa ingl\u00e9s y espa\u00f1ol en clase. Cada ma\u00f1ana toma el metro para ir al trabajo. Aunque el viaje es largo, aprovecha para leer. Los fines de semana visita a su familia. Tambi\u00e9n sale a caminar por el parque. Tiene un gato que siempre la espera en casa. Dice que su vida es tranquila pero interesante.\n\n\u2753 Seg\u00fan el texto, \u00bfcu\u00e1l NO se puede deducir?",o:["Elena conduce al trabajo cada d\u00eda.", "Elena trabaja con estudiantes internacionales.", "Elena usa transporte p\u00fablico.", "Elena habla m\u00e1s de un idioma."],a:0,exp:"Her g\u00fcn metroya biniyor \u2192 araba kullanm\u0131yor. | \ud83c\uddea\ud83c\uddf8 Toma el metro \u2192 no conduce. | \ud83c\uddf9\ud83c\uddf7 Metro kullan\u0131yor, araba kullanm\u0131yor. | \ud83c\uddec\ud83c\udde7 She takes the metro \u2192 she does not drive.",es:"",tr:"",en:""},
+{t:"mc",q:"Texto 56\nJavier trabaja desde casa como dise\u00f1ador gr\u00e1fico. Empieza a trabajar a las diez de la ma\u00f1ana. Pasa muchas horas frente al ordenador. Se comunica con clientes de otros pa\u00edses. A veces tiene reuniones en l\u00ednea. Prefiere almorzar en casa porque es m\u00e1s r\u00e1pido. Despu\u00e9s del trabajo suele ver series o jugar videojuegos. No hace mucho deporte, aunque quiere empezar. Dice que trabajar desde casa es c\u00f3modo pero solitario. Por eso intenta salir los fines de semana.\n\n\u2753 Seg\u00fan el texto, \u00bfcu\u00e1l NO se puede deducir?",o:["Javier trabaja con clientes internacionales.", "Javier usa internet para trabajar.", "Javier hace deporte regularmente.", "Javier trabaja desde casa."],a:2,exp:"\u00c7ok spor yapmad\u0131\u011f\u0131 yaz\u0131yor \u2192 d\u00fczenli spor yapmaz. | \ud83c\uddea\ud83c\uddf8 \"No hace mucho deporte\" \u2192 no regularmente. | \ud83c\uddf9\ud83c\uddf7 \u00c7ok spor yapm\u0131yor \u2192 d\u00fczenli spor yapmaz. | \ud83c\uddec\ud83c\udde7 He does not do much sport \u2192 not regularly.",es:"",tr:"",en:""},
+{t:"mc",q:"Texto 57\nAna tiene un coche, pero no lo usa todos los d\u00edas. Prefiere caminar cuando el clima es bueno. Trabaja en una oficina cerca de su casa. Solo usa el coche cuando llueve o tiene prisa. Escucha m\u00fasica mientras conduce. Los fines de semana suele salir con amigos. A veces viaja a otras ciudades. Le gusta conducir, pero no le gusta el tr\u00e1fico. Dice que su coche es muy \u00fatil. Sin embargo, intenta usarlo menos.\n\n\u2753 Seg\u00fan el texto, \u00bfcu\u00e1l NO se puede deducir?",o:["Ana tiene coche.", "Ana usa el coche todos los d\u00edas.", "Ana viaja a veces.", "Ana prefiere caminar en buen clima."],a:1,exp:"Her g\u00fcn kullanmad\u0131\u011f\u0131 a\u00e7\u0131k\u00e7a yaz\u0131yor. | \ud83c\uddea\ud83c\uddf8 \"No lo usa todos los d\u00edas\". | \ud83c\uddf9\ud83c\uddf7 Her g\u00fcn kullanm\u0131yor yaz\u0131yor. | \ud83c\uddec\ud83c\udde7 The text says she does not use it every day.",es:"",tr:"",en:""},
+{t:"mc",q:"Texto 58\nLuis estudia ingenier\u00eda en la universidad. Tiene clases por la ma\u00f1ana y estudia por la tarde. Por la noche suele repasar sus apuntes. No duerme mucho durante la semana. A veces se siente cansado en clase. Quiere terminar sus estudios pronto. No trabaja porque quiere concentrarse en la universidad. Los fines de semana descansa o sale con amigos. Le gusta su carrera, aunque es dif\u00edcil. Dice que en el futuro quiere trabajar en una empresa grande.\n\n\u2753 Seg\u00fan el texto, \u00bfcu\u00e1l NO se puede deducir?",o:["Luis estudia mucho.", "Luis quiere terminar sus estudios.", "Luis se siente cansado a veces.", "Luis trabaja actualmente."],a:3,exp:"\u00c7al\u0131\u015fmad\u0131\u011f\u0131 a\u00e7\u0131k\u00e7a yaz\u0131yor. | \ud83c\uddea\ud83c\uddf8 \"No trabaja porque quiere concentrarse\". | \ud83c\uddf9\ud83c\uddf7 \u00c7al\u0131\u015fm\u0131yor yaz\u0131yor. | \ud83c\uddec\ud83c\udde7 The text clearly says he does not work.",es:"",tr:"",en:""},
+{t:"mc",q:"Texto 59\nSof\u00eda trabaja en una tienda de ropa. Le gusta la moda y sigue nuevas tendencias. Habla mucho con los clientes. Trabaja seis d\u00edas a la semana. Descansa los domingos. En su tiempo libre sale con amigos. Tambi\u00e9n le gusta ir al cine. A veces compra ropa nueva. Dice que su trabajo es divertido pero cansado. Quiere abrir su propia tienda alg\u00fan d\u00eda.\n\n\u2753 Seg\u00fan el texto, \u00bfcu\u00e1l NO se puede deducir?",o:["Sof\u00eda trabaja muchos d\u00edas.", "Sof\u00eda trabaja los domingos.", "Sof\u00eda habla con clientes.", "Sof\u00eda quiere su propio negocio."],a:1,exp:"Pazar g\u00fcnleri dinlendi\u011fi yaz\u0131yor \u2192 pazar \u00e7al\u0131\u015fmaz. | \ud83c\uddea\ud83c\uddf8 \"Descansa los domingos\". | \ud83c\uddf9\ud83c\uddf7 Pazar dinleniyor \u2192 \u00e7al\u0131\u015fmaz. | \ud83c\uddec\ud83c\udde7 She rests on Sundays \u2192 does not work Sundays.",es:"",tr:"",en:""},
+{t:"mc",q:"Texto 60\nMiguel vive en Barcelona y trabaja en un hotel. Su turno es de noche, por lo que duerme durante el d\u00eda. Habla ingl\u00e9s con los turistas. A veces el trabajo es muy intenso. No tiene mucho tiempo libre. Cuando puede, ve televisi\u00f3n o escucha m\u00fasica. Sale poco con amigos. Dice que su trabajo es interesante pero agotador. Le gustar\u00eda cambiar de horario en el futuro. Pero por ahora necesita el trabajo.\n\n\u2753 Seg\u00fan el texto, \u00bfcu\u00e1l NO se puede deducir?",o:["Miguel trabaja con turistas.", "Miguel trabaja por la ma\u00f1ana.", "Miguel vive en Barcelona.", "Miguel habla ingl\u00e9s."],a:1,exp:"Gece vardiyas\u0131nda \u00e7al\u0131\u015f\u0131yor \u2192 sabah de\u011fil. | \ud83c\uddea\ud83c\uddf8 \"Su turno es de noche\" \u2192 no trabaja por la ma\u00f1ana. | \ud83c\uddf9\ud83c\uddf7 Gece vardiyas\u0131nda \u00e7al\u0131\u015f\u0131yor. | \ud83c\uddec\ud83c\udde7 His shift is at night \u2192 not in the morning.",es:"",tr:"",en:""},
+{t:"mc",q:"Dentro de un mes nosotros ______ m\u00e1s tiempo.",o:["tendremos", "tenemos", "ten\u00edamos", "tendr\u00edamos"],a:0,exp:"\"Dentro de un mes\" \u2192 gelecek \u2192 futuro simple. | a) tenemos=\u015fimdi, c) ten\u00edamos=ge\u00e7mi\u015f, d) tendr\u00edamos=\u015fart",es:"",tr:"",en:""},
+{t:"mc",q:"Ma\u00f1ana ella ______ temprano.",o:["llegar\u00e1", "llega", "llegaba", "llegar\u00eda"],a:0,exp:"\"Ma\u00f1ana\" \u2192 gelecek \u2192 futuro simple. | a) llega=\u015fimdi, c) llegaba=ge\u00e7mi\u015f, d) llegar\u00eda=\u015fart",es:"",tr:"",en:""},
+{t:"mc",q:"Creo que ellos ______ el problema.",o:["resolver\u00e1n", "resuelven", "resolv\u00edan", "resolver\u00edan"],a:0,exp:"Tahmin \u2192 futuro simple. | a) resuelven=\u015fimdi, c) resolv\u00edan=ge\u00e7mi\u015f, d) resolver\u00edan=\u015fart",es:"",tr:"",en:""},
+{t:"mc",q:"La pr\u00f3xima semana yo ______ m\u00e1s.",o:["estudio", "estudiaba", "estudiar\u00e9", "estudiar\u00eda"],a:2,exp:"\"La pr\u00f3xima semana\" \u2192 gelecek \u2192 futuro simple. | a) estudio=\u015fimdi, c) estudiaba=ge\u00e7mi\u015f, d) estudiar\u00eda=\u015fart",es:"",tr:"",en:""},
+{t:"mc",q:"No responde a los mensajes, ahora ______ en casa.",o:["est\u00e1", "estar\u00eda", "estaba", "estar\u00e1"],a:3,exp:"\"No responde a los mensajes\" = g\u00f6zlem. Bu g\u00f6zleme dayanarak \u015fu an i\u00e7in tahmin \u2192 futuro simple (estar\u00e1). | \ud83c\uddea\ud83c\uddf8 No responde a los mensajes, ahora estar\u00e1 en casa. | \ud83c\uddf9\ud83c\uddf7 Mesajlara cevap vermiyor, \u015fu an evde olmal\u0131. | \ud83c\uddec\ud83c\udde7 He is not replying to messages, he must be at home now.",es:"",tr:"",en:""},
+{t:"mc",q:"El profesor explic\u00f3 el tema con ejemplos simples y todos entendieron f\u00e1cilmente, por eso habl\u00f3 de manera muy ______ durante la conferencia.",o:["clara", "aburrida", "dif\u00edcil", "lenta"],a:0,exp:"Herkes anlad\u0131 \u2192 a\u00e7\u0131k anlat\u0131m. | \ud83c\uddea\ud83c\uddf8 Todos entienden \u2192 clara. | \ud83c\uddf9\ud83c\uddf7 Herkes anlad\u0131 \u2192 net/a\u00e7\u0131k. | \ud83c\uddec\ud83c\udde7 Everyone understood \u2192 clear.",es:"",tr:"",en:""},
+{t:"mc",q:"No entiendo este ejercicio porque tiene muchas reglas dif\u00edciles y varios pasos, es demasiado ______.",o:["f\u00e1cil", "complicado", "simple", "r\u00e1pido"],a:1,exp:"\u00c7ok kural \u2192 karma\u015f\u0131k. | \ud83c\uddea\ud83c\uddf8 Muchas reglas \u2192 complicado. | \ud83c\uddf9\ud83c\uddf7 \u00c7ok kural var \u2192 karma\u015f\u0131k. | \ud83c\uddec\ud83c\udde7 Many rules \u2192 complicated.",es:"",tr:"",en:""},
+{t:"mc",q:"El ni\u00f1o sigui\u00f3 todas las reglas y respet\u00f3 a sus profesores, por eso se comport\u00f3 muy ______ en la escuela.",o:["mal", "bueno", "correctamente", "despacio"],a:2,exp:"Kurallara uydu \u2192 do\u011fru davran\u0131\u015f. | \ud83c\uddea\ud83c\uddf8 Sigue reglas \u2192 correctamente. | \ud83c\uddf9\ud83c\uddf7 Kurallara uydu \u2192 do\u011fru \u015fekilde. | \ud83c\uddec\ud83c\udde7 Follows rules \u2192 correctly.",es:"",tr:"",en:""},
+{t:"mc",q:"El hotel tiene cinco estrellas, ofrece servicios exclusivos y habitaciones de alta calidad, es muy ______.",o:["barato", "peque\u00f1o", "antiguo", "lujoso"],a:3,exp:"5 y\u0131ld\u0131z \u2192 l\u00fcks. | \ud83c\uddea\ud83c\uddf8 Cinco estrellas \u2192 lujoso. | \ud83c\uddf9\ud83c\uddf7 5 y\u0131ld\u0131z \u2192 l\u00fcks. | \ud83c\uddec\ud83c\udde7 Five-star \u2192 luxurious.",es:"",tr:"",en:""},
+{t:"mc",q:"El problema es urgente y no tenemos mucho tiempo, por eso necesitamos una soluci\u00f3n ______ inmediatamente.",o:["r\u00e1pida", "lenta", "innecesaria", "complicada"],a:0,exp:"Acil \u2192 h\u0131zl\u0131 \u00e7\u00f6z\u00fcm. | \ud83c\uddea\ud83c\uddf8 Urgente \u2192 r\u00e1pida. | \ud83c\uddf9\ud83c\uddf7 Acil sorun \u2192 h\u0131zl\u0131 \u00e7\u00f6z\u00fcm gerek. | \ud83c\uddec\ud83c\udde7 Urgent \u2192 quick.",es:"",tr:"",en:""},
+{t:"mc",q:"La pel\u00edcula era tan lenta y sin acci\u00f3n que todos empezaron a dormir, fue muy ______.",o:["interesante", "divertida", "larga", "aburrida"],a:3,exp:"Uyudular \u2192 s\u0131k\u0131c\u0131. | \ud83c\uddea\ud83c\uddf8 Se duermen \u2192 aburrida. | \ud83c\uddf9\ud83c\uddf7 Uyudular \u2192 s\u0131k\u0131c\u0131. | \ud83c\uddec\ud83c\udde7 Fell asleep \u2192 boring.",es:"",tr:"",en:""},
+{t:"mc",q:"En verano vienen miles de turistas y siempre est\u00e1 lleno, por eso este lugar es muy ______.",o:["tranquilo", "vac\u00edo", "moderno", "caro"],a:3,exp:"Turist \u00e7ok \u2192 pop\u00fcler/pahal\u0131. | \ud83c\uddea\ud83c\uddf8 Muchos turistas \u2192 popular/caro. | \ud83c\uddf9\ud83c\uddf7 \u00c7ok turist \u2192 pop\u00fcler. | \ud83c\uddec\ud83c\udde7 Many tourists \u2192 popular/expensive.",es:"",tr:"",en:""},
+{t:"mc",q:"Nunca ayuda a nadie y solo piensa en s\u00ed mismo, por eso Pedro es muy ______.",o:["generoso", "amable", "ego\u00edsta", "simp\u00e1tico"],a:2,exp:"Sadece kendini d\u00fc\u015f\u00fcn\u00fcr \u2192 bencil. | \ud83c\uddea\ud83c\uddf8 Piensa en s\u00ed mismo \u2192 ego\u00edsta. | \ud83c\uddf9\ud83c\uddf7 Sadece kendini d\u00fc\u015f\u00fcn\u00fcr \u2192 bencil. | \ud83c\uddec\ud83c\udde7 Self-centered \u2192 selfish.",es:"",tr:"",en:""},
+{t:"mc",q:"El examen fue muy f\u00e1cil y todos pudieron responder correctamente, por eso fue tan ______.",o:["dif\u00edcil", "largo", "complicado", "f\u00e1cil"],a:3,exp:"Herkes yapt\u0131 \u2192 kolay. | \ud83c\uddea\ud83c\uddf8 Todos responden \u2192 f\u00e1cil. | \ud83c\uddf9\ud83c\uddf7 Herkes yapt\u0131 \u2192 kolay. | \ud83c\uddec\ud83c\udde7 Everyone solved \u2192 easy.",es:"",tr:"",en:""},
+{t:"mc",q:"Llegamos antes de la hora prevista y pudimos esperar sin problema, tuvimos ______ de tiempo.",o:["retraso", "dificultad", "calma", "adelanto"],a:3,exp:"Erken geldik \u2192 zaman avantaj\u0131. | \ud83c\uddea\ud83c\uddf8 Llegar antes \u2192 adelanto. | \ud83c\uddf9\ud83c\uddf7 Erken geldik \u2192 avantaj. | \ud83c\uddec\ud83c\udde7 Arrived early \u2192 ahead of time.",es:"",tr:"",en:""},
+{t:"mc",q:"Aprender idiomas requiere tiempo y tranquilidad, por eso mi hermana tiene mucha ______.",o:["dificultad", "sue\u00f1o", "paciencia", "paz"],a:2,exp:"Dil \u00f6\u011frenmek \u2192 sab\u0131r. | \ud83c\uddea\ud83c\uddf8 Requiere tiempo \u2192 paciencia. | \ud83c\uddf9\ud83c\uddf7 Dil \u00f6\u011frenmek sab\u0131r ister. | \ud83c\uddec\ud83c\udde7 Needs time \u2192 patience.",es:"",tr:"",en:""},
+{t:"mc",q:"Tengo muchas tareas y poco tiempo disponible, no tengo suficiente ______ para terminarlas hoy.",o:["hambre", "tiempo", "aburrido", "oscuridad"],a:1,exp:"Zaman yok \u2192 tiempo. | \ud83c\uddea\ud83c\uddf8 Poco tiempo \u2192 tiempo. | \ud83c\uddf9\ud83c\uddf7 Zaman yok. | \ud83c\uddec\ud83c\udde7 No time \u2192 time.",es:"",tr:"",en:""},
+{t:"mc",q:"La historia ten\u00eda ideas profundas y mensajes importantes, por eso fue muy ______.",o:["interesante", "aburrida", "larga", "dif\u00edcil"],a:3,exp:"Derin mesajlar \u2192 etkileyici/zor. | \ud83c\uddea\ud83c\uddf8 Ideas profundas \u2192 dif\u00edcil. | \ud83c\uddf9\ud83c\uddf7 Derin mesajlar \u2192 zorlu/ilgin\u00e7. | \ud83c\uddec\ud83c\udde7 Deep ideas \u2192 difficult/interesting.",es:"",tr:"",en:""},
+{t:"mc",q:"Tom\u00f3 una decisi\u00f3n muy ______ sin analizar la situaci\u00f3n, y luego se arrepinti\u00f3 inmediatamente.",o:["sabia", "l\u00f3gica", "responsable", "impulsiva"],a:3,exp:"D\u00fc\u015f\u00fcnmeden karar verip sonra pi\u015fman olmak \u2192 impulsiva. | \ud83c\uddea\ud83c\uddf8 Decidir sin analizar \u2192 impulsiva. | \ud83c\uddf9\ud83c\uddf7 D\u00fc\u015f\u00fcnmeden \u2192 anl\u0131k karar. | \ud83c\uddec\ud83c\udde7 Acting without thinking \u2192 impulsive.",es:"",tr:"",en:""},
+{t:"mc",q:"Despu\u00e9s del viaje de 12 horas sin descanso, estaba muy ______ y necesitaba dormir.",o:["contento", "activo", "cansado", "tranquilo"],a:2,exp:"Uzun yol + dinlenme yok \u2192 yorgun. | \ud83c\uddea\ud83c\uddf8 Sin descanso \u2192 cansado. | \ud83c\uddf9\ud83c\uddf7 Dinlenmedi \u2192 yorgun. | \ud83c\uddec\ud83c\udde7 No rest \u2192 tired.",es:"",tr:"",en:""},
+{t:"mc",q:"Este problema es demasiado ______, incluso los expertos no pueden resolverlo f\u00e1cilmente.",o:["simple", "b\u00e1sico", "f\u00e1cil", "complejo"],a:3,exp:"Uzmanlar bile \u00e7\u00f6zemiyor \u2192 karma\u015f\u0131k. | \ud83c\uddea\ud83c\uddf8 Dif\u00edcil para expertos \u2192 complejo. | \ud83c\uddf9\ud83c\uddf7 Uzmanlar bile \u00e7\u00f6zemez \u2192 karma\u015f\u0131k. | \ud83c\uddec\ud83c\udde7 Hard even for experts \u2192 complex.",es:"",tr:"",en:""},
+{t:"mc",q:"El profesor dio una explicaci\u00f3n muy ______, por eso todos entendieron el tema sin dificultad.",o:["\u00fatil", "clara", "breve", "interesante"],a:1,exp:"Herkes anlad\u0131 \u2192 a\u00e7\u0131k / anla\u015f\u0131l\u0131r. | \ud83c\uddea\ud83c\uddf8 Todos entienden \u2192 clara. | \ud83c\uddf9\ud83c\uddf7 Herkes anlad\u0131 \u2192 net. | \ud83c\uddec\ud83c\udde7 Everyone understood \u2192 clear.",es:"",tr:"",en:""},
+{t:"mc",q:"La ciudad es muy ______ por su arquitectura hist\u00f3rica y recibe miles de turistas cada a\u00f1o.",o:["peque\u00f1a", "tranquila", "famosa", "moderna"],a:2,exp:"Turist \u00e7ekiyor \u2192 \u00fcnl\u00fc. | \ud83c\uddea\ud83c\uddf8 Recibe turistas \u2192 famosa. | \ud83c\uddf9\ud83c\uddf7 Turist \u00e7ekiyor \u2192 \u00fcnl\u00fc. | \ud83c\uddec\ud83c\udde7 Attracts tourists \u2192 famous.",es:"",tr:"",en:""},
+{t:"mc",q:"Necesitamos una soluci\u00f3n ______ que funcione a largo plazo y evite problemas futuros.",o:["temporal", "r\u00e1pida", "definitiva", "simple"],a:2,exp:"Uzun vadeli \u00e7\u00f6z\u00fcm \u2192 kesin \u00e7\u00f6z\u00fcm. | \ud83c\uddea\ud83c\uddf8 Largo plazo \u2192 definitiva. | \ud83c\uddf9\ud83c\uddf7 Uzun vadeli \u2192 kal\u0131c\u0131 \u00e7\u00f6z\u00fcm. | \ud83c\uddec\ud83c\udde7 Long-term \u2192 permanent.",es:"",tr:"",en:""},
+{t:"mc",q:"El discurso fue tan ______ que nadie prest\u00f3 atenci\u00f3n y muchos empezaron a aburrirse.",o:["aburrido", "interesante", "claro", "breve"],a:0,exp:"Kimse dinlemiyor \u2192 s\u0131k\u0131c\u0131. | \ud83c\uddea\ud83c\uddf8 Nadie escucha \u2192 aburrido. | \ud83c\uddf9\ud83c\uddf7 Kimse dinlemedi \u2192 s\u0131k\u0131c\u0131. | \ud83c\uddec\ud83c\udde7 No attention \u2192 boring.",es:"",tr:"",en:""},
+{t:"mc",q:"No pudo terminar el trabajo porque no ten\u00eda suficiente fuerza ni concentraci\u00f3n. Le faltaba ______.",o:["tiempo", "dinero", "energ\u00eda", "espacio"],a:2,exp:"G\u00fc\u00e7 + odak yok \u2192 enerji yok. | \ud83c\uddea\ud83c\uddf8 Falta de fuerza \u2192 energ\u00eda. | \ud83c\uddf9\ud83c\uddf7 G\u00fc\u00e7 yok \u2192 enerji eksik. | \ud83c\uddec\ud83c\udde7 No strength \u2192 energy.",es:"",tr:"",en:""},
+{t:"mc",q:"Despu\u00e9s de la discusi\u00f3n, el ambiente se volvi\u00f3 muy ______ y todos se sintieron inc\u00f3modos.",o:["feliz", "tranquila", "relajada", "dif\u00edcil"],a:3,exp:"Tart\u0131\u015fma sonras\u0131 ortam k\u00f6t\u00fc \u2192 zor/gergin. | \ud83c\uddea\ud83c\uddf8 Ambiente inc\u00f3modo \u2192 dif\u00edcil. | \ud83c\uddf9\ud83c\uddf7 Tart\u0131\u015fma \u2192 gergin ortam. | \ud83c\uddec\ud83c\udde7 Uncomfortable situation \u2192 difficult.",es:"",tr:"",en:""},
+{t:"mc",q:"El restaurante es muy popular porque ofrece comida muy ______ y de alta calidad.",o:["mala", "escasa", "simple", "deliciosa"],a:3,exp:"Pop\u00fcler \u2192 yemek lezzetli. | \ud83c\uddea\ud83c\uddf8 Popular \u2192 deliciosa. | \ud83c\uddf9\ud83c\uddf7 Pop\u00fcler \u2192 lezzetli yemek. | \ud83c\uddec\ud83c\udde7 Popular \u2192 delicious.",es:"",tr:"",en:""},
+{t:"mc",q:"El estudiante respondi\u00f3 correctamente todas las preguntas, as\u00ed que su respuesta fue ______.",o:["correcta", "confusa", "lenta", "innecesaria"],a:0,exp:"Hepsi do\u011fru \u2192 do\u011fru cevap. | \ud83c\uddea\ud83c\uddf8 Todas correctas \u2192 correcta. | \ud83c\uddf9\ud83c\uddf7 Hepsi do\u011fru. | \ud83c\uddec\ud83c\udde7 All correct \u2192 correct.",es:"",tr:"",en:""},
+{t:"mc",q:"Hace mucho fr\u00edo afuera y est\u00e1 nevando, por eso el clima est\u00e1 muy ______ hoy.",o:["agradable", "soleado", "c\u00e1lido", "fr\u00edo"],a:3,exp:"Kar + so\u011fuk \u2192 fr\u00edo. | \ud83c\uddea\ud83c\uddf8 Nieve \u2192 fr\u00edo. | \ud83c\uddf9\ud83c\uddf7 Kar ya\u011f\u0131yor \u2192 so\u011fuk. | \ud83c\uddec\ud83c\udde7 Snow \u2192 cold.",es:"",tr:"",en:""},
+{t:"mc",q:"La explicaci\u00f3n fue tan dif\u00edcil que nadie pudo entenderla f\u00e1cilmente, era demasiado ______.",o:["simple", "clara", "breve", "complicada"],a:3,exp:"Kimse anlamad\u0131 \u2192 karma\u015f\u0131k. | \ud83c\uddea\ud83c\uddf8 No se entiende \u2192 complicada. | \ud83c\uddf9\ud83c\uddf7 Kimse anlamad\u0131 \u2192 karma\u015f\u0131k. | \ud83c\uddec\ud83c\udde7 Not understood \u2192 complicated.",es:"",tr:"",en:""},
+{t:"mc",q:"Hay demasiados invitados y el lugar es peque\u00f1o, no hay suficiente ______ para todos.",o:["comida", "espacio", "bebida", "dinero"],a:1,exp:"Mekan k\u00fc\u00e7\u00fck \u2192 yer (alan) yok. | \ud83c\uddea\ud83c\uddf8 Lugar peque\u00f1o \u2192 falta espacio. | \ud83c\uddf9\ud83c\uddf7 Yer yok. | \ud83c\uddec\ud83c\udde7 Small place \u2192 not enough space.",es:"",tr:"",en:""},
+{t:"mc",q:"La pel\u00edcula fue tan aburrida que nadie quiso verla otra vez, era muy ______.",o:["interesante", "divertida", "emocionante", "aburrida"],a:3,exp:"Kimse tekrar izlemek istemedi \u2192 s\u0131k\u0131c\u0131. | \ud83c\uddea\ud83c\uddf8 Nadie quiere repetir \u2192 aburrida. | \ud83c\uddf9\ud83c\uddf7 Tekrar izlenmiyor \u2192 s\u0131k\u0131c\u0131. | \ud83c\uddec\ud83c\udde7 Not worth watching again \u2192 boring.",es:"",tr:"",en:""},
+{t:"mc",q:"Durante la entrevista respondi\u00f3 con seguridad y sin errores, por eso fue muy ______.",o:["clara", "directa", "insegura", "profesional"],a:3,exp:"Hatas\u0131z + g\u00fcvenli \u2192 profesyonel. | \ud83c\uddea\ud83c\uddf8 Sin errores \u2192 profesional. | \ud83c\uddf9\ud83c\uddf7 Hatas\u0131z \u2192 profesyonel. | \ud83c\uddec\ud83c\udde7 No mistakes \u2192 professional.",es:"",tr:"",en:""},
+{t:"mc",q:"Tom\u00f3 una decisi\u00f3n sin pensar y actu\u00f3 muy r\u00e1pido, fue claramente una decisi\u00f3n ______.",o:["responsable", "prudente", "l\u00f3gica", "impulsiva"],a:3,exp:"D\u00fc\u015f\u00fcnmeden \u2192 impulsif karar. | \ud83c\uddea\ud83c\uddf8 Sin pensar \u2192 impulsiva. | \ud83c\uddf9\ud83c\uddf7 D\u00fc\u015f\u00fcnmeden \u2192 anl\u0131k. | \ud83c\uddec\ud83c\udde7 Without thinking \u2192 impulsive.",es:"",tr:"",en:""},
+{t:"mc",q:"Ma\u00f1ana nosotros ______ juntos.",o:["comemos", "comeremos", "com\u00edamos", "comer\u00edamos"],a:1,exp:"\"Ma\u00f1ana\" \u2192 gelecek \u2192 futuro simple. | a) comemos=\u015fimdi, c) com\u00edamos=ge\u00e7mi\u015f, d) comer\u00edamos=\u015fart",es:"",tr:"",en:""},
+{t:"mc",q:"Dentro de un a\u00f1o ellos ______ m\u00e1s.",o:["ganan", "ganar\u00e1n", "ganaban", "ganar\u00edan"],a:1,exp:"\"Dentro de un a\u00f1o\" \u2192 gelecek \u2192 futuro simple. | a) ganan=\u015fimdi, c) ganaban=ge\u00e7mi\u015f, d) ganar\u00edan=\u015fart",es:"",tr:"",en:""},
+{t:"mc",q:"Creo que ma\u00f1ana ______ mejor.",o:["ser\u00e1", "es", "era", "ser\u00eda"],a:0,exp:"Tahmin \u2192 futuro simple. | a) es=\u015fimdi, c) era=ge\u00e7mi\u015f, d) ser\u00eda=\u015fart",es:"",tr:"",en:""},
+{t:"mc",q:"El pr\u00f3ximo a\u00f1o yo ______ m\u00e1s.",o:["estudiar\u00e9", "estudio", "estudiaba", "estudiar\u00eda"],a:0,exp:"\"El pr\u00f3ximo a\u00f1o\" \u2192 gelecek \u2192 futuro simple. | a) estudio=\u015fimdi, c) estudiaba=ge\u00e7mi\u015f, d) estudiar\u00eda=\u015fart",es:"",tr:"",en:""},
+{t:"mc",q:"Seguro que \u00e9l ______ en casa.",o:["est\u00e1", "estar\u00eda", "estaba", "estar\u00e1"],a:3,exp:"Tahmin \u2192 futuro simple. | a) est\u00e1=kesin bilgi, c) estaba=ge\u00e7mi\u015f, d) estar\u00eda=\u015fart",es:"",tr:"",en:""}
+];
+
+let cur=0,score=0,err=0,wrongList=[],state=new Array(Q.length).fill(null);
+
+function startQuiz(){
+  const n=document.getElementById('introName').value;
+  if(!n){alert('Lütfen adınızı seçin!');return;}
+  window._introName=n;
+  document.getElementById('intro').style.display='none';
+  document.getElementById('quiz').style.display='block';
+  render();
+}
+
+function render(){
+  document.getElementById('progFill').style.width=((cur/Q.length)*100)+'%';
+  document.getElementById('progLabel').textContent=(cur+1)+' / '+Q.length;
+  document.getElementById('sCorrect').textContent=score;
+  document.getElementById('sWrong').textContent=err;
+  const q=Q[cur];
+  document.getElementById('qArea').innerHTML=WARN+(q.t==='mc'?buildMC(q,cur):buildFill(q,cur));
+  if(state[cur]!==null)restoreState(cur);
+}
+
+function buildMC(q,i){
+  return'<div class="q-card"><div class="q-num">SORU '+(i+1)+'</div><span class="q-type-badge badge-mc">ÇOKTAN SEÇMELİ</span><div class="q-text">'+q.q+'</div><div class="choices" id="ch'+i+'">'+
+  q.o.map((o,j)=>'<button class="choice-btn" id="cb'+i+'_'+j+'" onclick="answerMC('+i+','+j+')"><span class="cletter">'+'abcd'[j]+'</span>'+o+'</button>').join('')+
+  '</div><div class="explanation" id="exp'+i+'"></div>'+navRow(i)+'</div>';
+}
+
+function buildFill(q,i){
+  return'<div class="q-card"><div class="q-num">SORU '+(i+1)+'</div><span class="q-type-badge badge-fill">BOŞLUK DOLDURMA</span><div class="q-text">'+q.q+'</div><div class="fill-wrap"><input class="fill-input" id="fi'+i+'" placeholder="Cevabınızı yazın..." onkeydown="if(event.key===\'Enter\')answerFill('+i+')"><button class="fill-submit" id="fs'+i+'" onclick="answerFill('+i+')">Kontrol Et →</button></div><div class="explanation" id="exp'+i+'"></div>'+navRow(i)+'</div>';
+}
+
+function navRow(i){
+  return'<div class="nav-row"><button class="nav-btn" onclick="skipQ()" '+(state[i]!==null?'disabled':'')+'>Atla</button><button class="nav-btn" onclick="prev()" '+(i===0?'disabled':'')+'>← Geri</button><button class="nav-btn primary" onclick="next()">'+(i===Q.length-1?'Bitir ✓':'İleri →')+'</button></div>';
+}
+
+function showExp(i,ok){
+  const q=Q[i],el=document.getElementById('exp'+i);
+  if(!el)return;
+  el.className='explanation show '+(ok?'exp-ok':'exp-err');
+  const letters=['a','b','c','d'];
+  el.innerHTML=(ok?'✅ ':'❌ Doğrusu: <strong>'+letters[q.a]+') '+q.o[q.a]+'</strong><br>')+q.exp+
+    '<span class="exp-es">🇪🇸 '+q.es+'</span><span class="exp-tr">🇹🇷 '+q.tr+'</span><span class="exp-en">🇬🇧 '+q.en+'</span>';
+}
+
+function answerMC(i,j){
+  if(state[i]!==null)return;
+  const q=Q[i],ok=j===q.a;
+  state[i]={chosen:q.o[j],correct:q.o[q.a],ok};
+  if(ok)score++;else{err++;wrongList.push({idx:i,chosen:q.o[j],correct:q.o[q.a]});}
+  for(let k=0;k<4;k++){
+    const b=document.getElementById('cb'+i+'_'+k);
+    if(!b)continue;b.disabled=true;
+    if(k===q.a)b.classList.add('correct');
+    else if(k===j&&!ok)b.classList.add('wrong');
+  }
+  showExp(i,ok);
+  document.getElementById('sCorrect').textContent=score;
+  document.getElementById('sWrong').textContent=err;
+  if(allAnswered())setTimeout(showResult,700);
+}
+
+function answerFill(i){
+  const inp=document.getElementById('fi'+i);
+  if(!inp||state[i]!==null)return;
+  const user=inp.value.trim();if(!user)return;
+  const q=Q[i],ok=user.toLowerCase()===q.a.toLowerCase();
+  state[i]={chosen:user,correct:q.a,ok};
+  if(ok)score++;else{err++;wrongList.push({idx:i,chosen:user,correct:q.a});}
+  inp.classList.add(ok?'correct-input':'wrong-input');
+  inp.disabled=true;
+  document.getElementById('fs'+i).disabled=true;
+  if(!ok){const d=document.createElement('div');d.style.cssText='font-size:.8rem;color:#e17055;margin-top:.3rem;font-weight:600;';const letters=['a','b','c','d'];d.textContent='Doğrusu: '+letters[q.a]+') '+q.o[q.a];inp.parentNode.insertBefore(d,inp.nextSibling);}
+  showExp(i,ok);
+  document.getElementById('sCorrect').textContent=score;
+  document.getElementById('sWrong').textContent=err;
+  if(allAnswered())setTimeout(showResult,700);
+}
+
+function restoreState(i){
+  const s=state[i],q=Q[i];if(!s)return;
+  if(q.t==='mc'){
+    for(let k=0;k<4;k++){const b=document.getElementById('cb'+i+'_'+k);if(!b)continue;b.disabled=true;if(k===q.a)b.classList.add('correct');else if(q.o[k]===s.chosen&&!s.ok)b.classList.add('wrong');}
+  }else{
+    const inp=document.getElementById('fi'+i);
+    if(inp){inp.value=s.chosen;inp.classList.add(s.ok?'correct-input':'wrong-input');inp.disabled=true;}
+    document.getElementById('fs'+i).disabled=true;
+    if(!s.ok){const d=document.createElement('div');d.style.cssText='font-size:.8rem;color:#e17055;margin-top:.3rem;font-weight:600;';const letters=['a','b','c','d'];d.textContent='Doğrusu: '+letters[q.a]+') '+q.o[q.a];if(inp)inp.parentNode.insertBefore(d,inp.nextSibling);}
+  }
+  showExp(i,s.ok);
+}
+
+function allAnswered(){return state.every(s=>s!==null);}
+function skipQ(){next();}
+function prev(){if(cur>0){cur--;render();}}
+function next(){if(cur<Q.length-1){cur++;render();}else showResult();}
+
+function showResult(){
+  document.getElementById('quiz').style.display='none';
+  document.getElementById('result').style.display='block';
+  const pct=Math.round(score/Q.length*100);
+  window._lastPct=pct;
+  document.getElementById('resPct').textContent=pct;
+  document.getElementById('resIcon').textContent=pct>=90?'🏆':pct>=70?'🎉':pct>=50?'👏':'📚';
+  document.getElementById('stOk').textContent=score;
+  document.getElementById('stErr').textContent=err;
+  document.getElementById('stPct').textContent=pct;
+  document.getElementById('noticeBox').style.display='block';
+  document.getElementById('actionBtns').classList.add('show');
+  if(window._introName){
+    const sel=document.getElementById('studentName');
+    if(sel)for(let i=0;i<sel.options.length;i++)if(sel.options[i].text===window._introName){sel.selectedIndex=i;break;}
+  }
+  // Önceki onay sıfırlansın (tekrar yapıldıysa)
+  document.getElementById('confirmBtn').disabled=false;
+  document.getElementById('confirmBtn').textContent='Onayla ✓';
+  document.getElementById('studentName').disabled=false;
+  document.getElementById('sendStatus').style.display='none';
+  document.getElementById('summaryCard').style.display='none';
+  window.scrollTo(0,0);
+}
+
+function confirmName(){
+  const val=document.getElementById('studentName').value;
+  if(!val){alert('Lütfen adınızı seçin!');return;}
+  const grup=GROUPS[val]||'A1.1';
+  const pct=window._lastPct;
+  document.getElementById('studentName').disabled=true;
+  document.getElementById('confirmBtn').disabled=true;
+  document.getElementById('confirmBtn').textContent='✓ Kaydedildi';
+  document.getElementById('summaryName').textContent=val;
+  document.getElementById('summaryOdev').textContent=ODEV_ADI+' · '+grup;
+  document.getElementById('sumPuan').textContent=pct;
+  document.getElementById('sumDogru').textContent=score;
+  document.getElementById('sumYanlis').textContent=err;
+  document.getElementById('summaryCard').style.display='block';
+  const st=document.getElementById('sendStatus');
+  st.style.display='block';st.style.color='var(--muted)';st.textContent='⏳ Kaydediliyor...';
+  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({ogrenci:val,grup:grup,odev:ODEV_ADI,puan:pct,dogru:score,yanlis:err})})
+  .then(()=>{st.style.display='none';})
+  .catch(()=>{st.style.color='var(--muted)';st.textContent='⚠️ Bağlantı hatası, lütfen tekrar deneyin.';});
+}
+
+function toggleReview(){
+  const sec=document.getElementById('reviewSection');
+  const btn=document.querySelector('.btn-review');
+  if(sec.innerHTML&&sec.style.display!=='none'){sec.style.display='none';btn.textContent='🔍 Hatalarımı gözden geçir';return;}
+  btn.textContent='▲ Kapat';
+  if(wrongList.length===0){sec.innerHTML='<div class="review-title">🎉 Hiç hata yok!</div>';sec.style.display='block';return;}
+  let h='<div class="review-title">❌ Yanlış Sorular ('+wrongList.length+')</div>';
+  wrongList.forEach(w=>{
+    const q=Q[w.idx];
+    h+='<div class="review-card"><div class="review-qnum">SORU '+(w.idx+1)+'</div><div class="review-q">'+q.q+'</div><div class="review-your">❌ Cevabınız: '+w.chosen+'</div><div class="review-correct">✅ Doğru: '+w.correct+'</div><div class="review-exp">'+q.exp+'<br><span style="font-style:italic;color:#6c5ce7">🇪🇸 '+q.es+'</span><br><strong style="color:#6c5ce7">🇹🇷 '+q.tr+'</strong><br><span style="color:#555">🇬🇧 '+q.en+'</span></div></div>';
+  });
+  sec.innerHTML=h;sec.style.display='block';sec.scrollIntoView({behavior:'smooth'});
+}
+
+function restart(){
+  cur=0;score=0;err=0;wrongList=[];state=new Array(Q.length).fill(null);
+  document.getElementById('result').style.display='none';
+  document.getElementById('reviewSection').innerHTML='';
+  document.getElementById('reviewSection').style.display='none';
+  document.getElementById('actionBtns').classList.remove('show');
+  document.getElementById('noticeBox').style.display='none';
+  document.querySelector('.btn-review').textContent='🔍 Hatalarımı gözden geçir';
+  document.getElementById('quiz').style.display='block';
+  render();window.scrollTo(0,0);
+}
+</script>
+</div>
+</body>
+</html>
