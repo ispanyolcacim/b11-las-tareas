@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>B1.1 H3 9-10. Ders</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f0ff;min-height:100vh;color:#222}
+#introScreen{display:flex;flex-direction:column;align-items:center;padding:2rem 1rem;gap:.9rem;max-width:560px;margin:0 auto}
+.logo-tag{font-size:.75rem;color:#6b7280;letter-spacing:.08em;text-transform:uppercase}
+.week-pill{background:#6b21a8;color:#fff;border-radius:999px;padding:.35rem 1.1rem;font-size:.8rem;font-weight:700;letter-spacing:.04em;text-align:center}
+h1.main-title{font-size:1.5rem;font-weight:800;color:#6b21a8;text-align:center;line-height:1.3}
+.chips{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center}
+.chip{background:#ede9fe;color:#6b21a8;border-radius:999px;padding:.25rem .75rem;font-size:.75rem;font-weight:600}
+.intro-sub{font-size:.88rem;color:#555;text-align:center;line-height:1.6}
+.score-note{font-size:.82rem;color:#7c3aed;font-weight:700;background:#ede9fe;border-radius:.5rem;padding:.4rem .9rem;text-align:center}
+.video-section-title{font-size:.8rem;font-weight:700;color:#6b21a8;align-self:flex-start;width:100%;max-width:420px}
+.video-links{width:100%;max-width:420px;display:flex;flex-direction:column;gap:.5rem}
+.video-link-btn{display:flex;align-items:center;gap:.7rem;padding:.65rem .9rem;background:#fff;border:2px solid #e5e7eb;border-radius:.7rem;text-decoration:none;color:#222;font-size:.82rem;font-weight:600;transition:all .15s;line-height:1.4}
+.video-link-btn:hover{border-color:#7c3aed;color:#6b21a8}
+.yt-icon{width:26px;height:26px;flex-shrink:0}
+.vl-meta{display:flex;flex-direction:column;gap:2px}
+.vl-title{font-size:.82rem;font-weight:700;color:#222}
+.vl-range{font-size:.73rem;color:#6b7280}
+.name-label{font-size:.85rem;font-weight:600;color:#6b21a8;align-self:flex-start;width:100%;max-width:380px}
+.name-select{width:100%;max-width:380px;padding:.6rem .9rem;border:2px solid #7c3aed;border-radius:.6rem;font-size:.95rem;color:#222;background:#fff;outline:none}
+.start-btn{width:100%;max-width:380px;padding:.85rem;background:#6b21a8;color:#fff;border:none;border-radius:.7rem;font-size:1rem;font-weight:700;cursor:pointer;margin-top:.5rem}
+.start-btn:hover{background:#9333ea}
+.notice{font-size:.77rem;color:#6b7280;text-align:center;max-width:360px;line-height:1.55}
+#quizScreen{display:none;max-width:640px;margin:0 auto;padding:1rem}
+.quiz-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem}
+.quiz-meta{font-size:.78rem;color:#6b7280}
+.counters{display:flex;gap:.6rem;font-size:.78rem}
+.cnt-ok{color:#16a34a;font-weight:700}
+.cnt-err{color:#dc2626;font-weight:700}
+.prog-bar{width:100%;height:6px;background:#ddd;border-radius:3px;margin-bottom:1rem;overflow:hidden}
+.prog-fill{height:6px;background:#6b21a8;border-radius:3px;transition:width .3s}
+.q-card{background:#fff;border-radius:1rem;padding:1.25rem;box-shadow:0 2px 12px rgba(107,33,168,.08);margin-bottom:1rem}
+.q-type-badge{display:inline-block;font-size:.68rem;font-weight:700;padding:.15rem .55rem;border-radius:999px;margin-bottom:.5rem}
+.badge-mc{background:#ede9fe;color:#6b21a8}
+.badge-dialog{background:#fef3c7;color:#92400e}
+.badge-lectura{background:#dbeafe;color:#1e40af}
+.video-ref{display:inline-flex;align-items:center;gap:.4rem;font-size:.74rem;font-weight:600;color:#6b21a8;background:#ede9fe;border-radius:999px;padding:.2rem .7rem;margin-bottom:.5rem;text-decoration:none;flex-wrap:wrap}
+.video-ref:hover{background:#ddd6fe}
+.q-text{font-size:.97rem;font-weight:600;line-height:1.65;white-space:pre-wrap;word-break:break-word}
+.dialog-block{background:#fafafa;border-left:3px solid #f59e0b;border-radius:.4rem;padding:.75rem .9rem;margin:.6rem 0;font-size:.9rem;line-height:1.75;white-space:pre-wrap;word-break:break-word;color:#333}
+.lectura-block{background:#eff6ff;border-left:3px solid #3b82f6;border-radius:.4rem;padding:.75rem .9rem;margin:.6rem 0;font-size:.86rem;line-height:1.75;white-space:pre-wrap;word-break:break-word;color:#1e3a5f}
+.opts{display:flex;flex-direction:column;gap:.5rem;margin-top:.85rem}
+.opt-btn{text-align:left;padding:.65rem .9rem;border:2px solid #e5e7eb;border-radius:.6rem;background:#fff;font-size:.9rem;cursor:pointer;transition:all .15s;line-height:1.45;word-break:break-word}
+.opt-btn:hover:not(:disabled){border-color:#7c3aed;background:#ede9fe}
+.opt-btn.correct{border-color:#16a34a;background:#dcfce7;color:#166534;font-weight:600}
+.opt-btn.wrong{border-color:#dc2626;background:#fee2e2;color:#991b1b}
+.opt-btn:disabled{cursor:default}
+.exp-box{margin-top:.75rem;background:#faf5ff;border-left:4px solid #7c3aed;border-radius:.4rem;padding:.75rem .9rem;font-size:.84rem;line-height:1.7;color:#444;display:none;white-space:pre-wrap;word-break:break-word}
+.exp-box.show{display:block}
+.nav-row{display:flex;gap:.6rem;margin-top:.75rem;flex-wrap:wrap}
+.nav-btn{flex:1;min-width:70px;padding:.7rem;border:2px solid #e5e7eb;border-radius:.7rem;background:#fff;font-size:.88rem;font-weight:600;cursor:pointer;transition:all .15s;color:#555}
+.nav-btn:hover:not(:disabled){border-color:#7c3aed;color:#7c3aed}
+.nav-btn:disabled{opacity:.35;cursor:default}
+.nav-btn.primary{background:#6b21a8;color:#fff;border-color:#6b21a8}
+.nav-btn.primary:hover:not(:disabled){background:#9333ea}
+.nav-btn.finish{background:#dc2626;color:#fff;border-color:#dc2626;font-weight:800}
+.nav-btn.finish:hover:not(:disabled){background:#b91c1c}
+#confirmOverlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:999;align-items:center;justify-content:center;padding:1rem}
+.confirm-box{background:#fff;border-radius:1rem;padding:1.5rem;max-width:360px;width:100%;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,.2)}
+.confirm-title{font-size:1.1rem;font-weight:700;color:#6b21a8;margin-bottom:.75rem}
+.confirm-msg{font-size:.92rem;color:#444;margin-bottom:1.2rem;line-height:1.5}
+.confirm-btns{display:flex;gap:.75rem}
+.confirm-btn-cancel{flex:1;padding:.7rem;border:2px solid #e5e7eb;border-radius:.6rem;background:#fff;font-size:.9rem;font-weight:600;cursor:pointer;color:#555}
+.confirm-btn-ok{flex:1;padding:.7rem;border:none;border-radius:.6rem;background:#dc2626;color:#fff;font-size:.9rem;font-weight:700;cursor:pointer}
+#resultScreen{display:none;max-width:540px;margin:0 auto;padding:2rem 1rem}
+.res-card{background:#fff;border-radius:1rem;padding:1.5rem;box-shadow:0 2px 16px rgba(107,33,168,.1);text-align:center;margin-bottom:1rem}
+.res-pill{display:inline-block;background:#6b21a8;color:#fff;border-radius:999px;padding:.4rem 1.2rem;font-size:.85rem;font-weight:700;margin:.5rem 0}
+.res-score{font-size:3rem;font-weight:900;color:#6b21a8;line-height:1.1}
+.res-total{font-size:1rem;color:#6b7280}
+.res-stats{display:flex;justify-content:center;gap:1.5rem;margin:.75rem 0;font-size:.9rem}
+.stat-ok{color:#16a34a;font-weight:700}
+.stat-err{color:#dc2626;font-weight:700}
+.res-note{font-size:.8rem;color:#6b7280;margin-top:.25rem}
+.submit-warning{background:#fef3c7;border:2px solid #f59e0b;border-radius:.8rem;padding:1.1rem;text-align:center;margin-bottom:1rem}
+.submit-warning-title{font-size:1.05rem;font-weight:900;color:#92400e}
+.submit-warning-sub{font-size:.85rem;color:#78350f;margin-top:.3rem}
+.name-select-res{width:100%;padding:.6rem .9rem;border:2px solid #7c3aed;border-radius:.6rem;font-size:.92rem;color:#222;background:#fff;margin-bottom:.75rem}
+.submit-btn{width:100%;padding:1.1rem;background:#16a34a;color:#fff;border:none;border-radius:.8rem;font-size:1.15rem;font-weight:900;cursor:pointer;letter-spacing:.03em;margin-bottom:.75rem}
+.submit-btn:hover{background:#15803d}
+.submit-msg{display:none;padding:.85rem;background:#dcfce7;border-radius:.6rem;font-size:.95rem;color:#166534;font-weight:700;line-height:1.5;text-align:center;margin-bottom:.75rem}
+.review-toggle{width:100%;padding:.7rem;background:#fff;border:2px solid #e5e7eb;border-radius:.7rem;font-size:.88rem;font-weight:600;cursor:pointer;color:#555;margin-bottom:.5rem}
+.review-toggle:hover{border-color:#7c3aed;color:#7c3aed}
+.review-list{display:none;flex-direction:column;gap:.75rem}
+.rev-item{background:#fff;border-radius:.8rem;padding:1rem;box-shadow:0 1px 6px rgba(0,0,0,.06);text-align:left}
+.rev-q{font-size:.87rem;font-weight:600;margin-bottom:.4rem;white-space:pre-wrap;word-break:break-word}
+.rev-chosen{font-size:.82rem;color:#dc2626}
+.rev-correct{font-size:.82rem;color:#16a34a;font-weight:600}
+.rev-exp{font-size:.79rem;color:#555;margin-top:.3rem;line-height:1.65;white-space:pre-wrap;word-break:break-word}
+@media(max-width:480px){h1.main-title{font-size:1.25rem}.res-score{font-size:2.5rem}.nav-row{gap:.4rem}}
+</style>
+</head>
+<body>
+
+<div id="introScreen">
+  <div class="logo-tag">@ispanyolcacim &bull; Profe Hazel</div>
+  <div class="week-pill">3. HAFTA ÖDEVİ &nbsp;|&nbsp; B1.1 (9-10. DERS)</div>
+  <h1 class="main-title">Nuestro Futuro &amp; Voluntarios &amp; Comprensión de Lectura</h1>
+  <div class="chips">
+    <span class="chip">Dinleme</span>
+    <span class="chip">Okuma Anlama</span>
+    <span class="chip">Diyalog</span>
+    <span class="chip">B1.1</span>
+  </div>
+  <div class="intro-sub">
+    50 soru &nbsp;&middot;&nbsp; S1–10: Dinleme (Voces 3) &nbsp;&middot;&nbsp; S11–26: Dinleme (Compañeros)<br>
+    S27–36: Comprensión de Lectura &nbsp;&middot;&nbsp; S37–50: Diyalog Tamamlama
+  </div>
+  <div class="score-note">Her soru 2 puan &nbsp;&middot;&nbsp; Toplam 100 puan üzerinden değerlendirme</div>
+
+  <div class="video-section-title">Video Kaynakları</div>
+  <div class="video-links">
+    <a class="video-link-btn" href="https://www.youtube.com/watch?v=am9jTBARa-o" target="_blank">
+      <svg class="yt-icon" viewBox="0 0 24 24" fill="#dc2626"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+      <div class="vl-meta">
+        <div class="vl-title">Voces 3 U5 – Nuestro futuro (SGEL ELE)</div>
+        <div class="vl-range">Sorular 1–10</div>
+      </div>
+    </a>
+    <a class="video-link-btn" href="https://www.youtube.com/watch?v=tcNyVyK1Beg" target="_blank">
+      <svg class="yt-icon" viewBox="0 0 24 24" fill="#dc2626"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+      <div class="vl-meta">
+        <div class="vl-title">Compañeros – El futuro del planeta – Voluntarios (SGEL ELE)</div>
+        <div class="vl-range">Sorular 11–26</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="name-label">Adınızı seçin</div>
+  <select id="introName" class="name-select">
+    <option value="">— Adınızı seçin —</option>
+    <option value="Ceylin Öz">Ceylin Öz</option>
+    <option value="Deneme Öğrencisi">Deneme Öğrencisi</option>
+    <option value="Esra Özçeşmeci">Esra Özçeşmeci</option>
+    <option value="Gencay Agocuk">Gencay Agocuk</option>
+    <option value="Kayhan Açan">Kayhan Açan</option>
+    <option value="Kübra Bulut">Kübra Bulut</option>
+    <option value="Nihan Karagedik">Nihan Karagedik</option>
+    <option value="Nur O. Demirci">Nur O. Demirci</option>
+    <option value="Pelinsu Damgacı">Pelinsu Damgacı</option>
+    <option value="Simge Güler">Simge Güler</option>
+    <option value="Ufuk Aydın">Ufuk Aydın</option>
+    <option value="Umre Gül">Umre Gül</option>
+  </select>
+  <button class="start-btn" onclick="startQuiz()">Teste Başla</button>
+  <div class="notice">Videoları izledikten sonra teste başlayın. Her soru 2 puan değerindedir. 50 soruyu da tamamlayınca ödevinizi teslim edebilirsiniz.</div>
+</div>
+
+<div id="confirmOverlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:999;align-items:center;justify-content:center;padding:1rem">
+  <div class="confirm-box">
+    <div class="confirm-title">Testi Bitir</div>
+    <div class="confirm-msg" id="confirmMsg"></div>
+    <div class="confirm-btns">
+      <button class="confirm-btn-cancel" onclick="closeConfirm()">Geri Dön</button>
+      <button class="confirm-btn-ok" onclick="doFinish()">Evet, Bitir</button>
+    </div>
+  </div>
+</div>
+
+<div id="quizScreen" style="display:none">
+  <div class="quiz-header">
+    <div class="quiz-meta" id="qMeta">Soru 1 / 50</div>
+    <div class="counters">
+      <span class="cnt-ok" id="cntOk">✓ 0</span>
+      <span class="cnt-err" id="cntErr">✗ 0</span>
+    </div>
+  </div>
+  <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+  <div class="q-card" id="qCard"></div>
+  <div class="nav-row">
+    <button class="nav-btn" id="btnBack" onclick="goBack()" disabled>← Geri</button>
+    <button class="nav-btn" id="btnSkip" onclick="skipQ()" disabled>Atla</button>
+    <button class="nav-btn primary" id="btnNext" onclick="goNext()" disabled>İleri →</button>
+    <button class="nav-btn finish" id="btnFinish" onclick="confirmFinish()">Testi Bitir</button>
+  </div>
+</div>
+
+<div id="resultScreen" style="display:none">
+  <div class="res-card">
+    <div class="res-pill">3. HAFTA ÖDEVİ | B1.1 (9-10. DERS)</div>
+    <div class="res-score" id="resScore">0</div>
+    <div class="res-total">/ 100 puan</div>
+    <div class="res-note" id="resNote"></div>
+    <div class="res-stats">
+      <span class="stat-ok" id="resOk">✓ 0 doğru</span>
+      <span class="stat-err" id="resErr">✗ 0 yanlış</span>
+    </div>
+  </div>
+  <div class="submit-warning" id="submitWarning">
+    <div class="submit-warning-title">⚠ ÖDEVİNİZ HENÜZ TESLİM EDİLMEDİ!</div>
+    <div class="submit-warning-sub">Aşağıdaki butona basarak ödevinizi teslim edin.</div>
+  </div>
+  <select id="resName" class="name-select-res">
+    <option value="">— Adınızı seçin —</option>
+    <option value="Ceylin Öz">Ceylin Öz</option>
+    <option value="Deneme Öğrencisi">Deneme Öğrencisi</option>
+    <option value="Esra Özçeşmeci">Esra Özçeşmeci</option>
+    <option value="Gencay Agocuk">Gencay Agocuk</option>
+    <option value="Kayhan Açan">Kayhan Açan</option>
+    <option value="Kübra Bulut">Kübra Bulut</option>
+    <option value="Nihan Karagedik">Nihan Karagedik</option>
+    <option value="Nur O. Demirci">Nur O. Demirci</option>
+    <option value="Pelinsu Damgacı">Pelinsu Damgacı</option>
+    <option value="Simge Güler">Simge Güler</option>
+    <option value="Ufuk Aydın">Ufuk Aydın</option>
+    <option value="Umre Gül">Umre Gül</option>
+  </select>
+  <button class="submit-btn" onclick="submitResult()">ÖDEVİNİZİ TESLİM EDİN</button>
+  <div class="submit-msg" id="submitMsg"></div>
+  <button class="review-toggle" onclick="toggleReview()">Yanlış Soruları Gözden Geçir ▾</button>
+  <div class="review-list" id="reviewList"></div>
+</div>
+
+<script>
+var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
+var ODEV_ADI = 'H3 – 9-10.Ders';
+var GROUPS = {
+  'Ceylin Öz':'B1.1','Deneme Öğrencisi':'B1.1','Esra Özçeşmeci':'B1.1',
+  'Gencay Agocuk':'B1.1','Kayhan Açan':'B1.1','Kübra Bulut':'B1.1',
+  'Nihan Karagedik':'B1.1','Nur O. Demirci':'B1.1','Pelinsu Damgacı':'B1.1',
+  'Simge Güler':'B1.1','Ufuk Aydın':'B1.1','Umre Gül':'B1.1'
+};
+var V1 = 'https://www.youtube.com/watch?v=am9jTBARa-o';
+var V2 = 'https://www.youtube.com/watch?v=tcNyVyK1Beg';
+var V1_LABEL = 'Voces 3 U5 – Nuestro futuro (SGEL ELE)';
+var V2_LABEL = 'Compañeros – El futuro del planeta – Voluntarios (SGEL ELE)';
+
+var Q = [
+// S1-S10: Voces 3 - Nuestro futuro
+{t:'mc',video:V1,vlabel:V1_LABEL,q:'¿En qué situación se encuentra Martina al principio del video?',o:['Está comenzando su primer año de estudios.','Está buscando un trabajo en su país de origen.','Está trabajando en un hotel en España.','Está terminando el último año de su carrera.'],a:3,exp:'[00:10] Martina, "estoy terminando el último año de la carrera" diyerek eğitiminin son yılında olduğunu ve geleceği için heyecanlı/gergin olduğunu belirtiyor.'},
+{t:'mc',video:V1,vlabel:V1_LABEL,q:'¿Qué cree Jaime que estudiará después de aprobar el bachillerato?',o:['Ingeniería en robótica','Hostelería y turismo','Ciencias de la información','Diseño gráfico'],a:2,exp:'[00:43] Jaime, lise eğitimini tamamladıktan sonra "creo que estudiaré ciencias de la información" diyerek bilgi bilimleri okumayı planladığını söylüyor.'},
+{t:'mc',video:V1,vlabel:V1_LABEL,q:'¿Hacia qué área de estudio se inclina Sara para su futuro?',o:['Medicina tradicional','Ingeniería en robótica','Relaciones internacionales','Historia del arte'],a:1,exp:'[00:50] Sara, teknoloji ve tasarımla ilgilendiğini belirterek "quizá ingeniería en robótica" (belki robotik mühendisliği) ifadesini kullanıyor.'},
+{t:'mc',video:V1,vlabel:V1_LABEL,q:'¿Cuál es el plan de Luis Alberto después de terminar sus estudios?',o:['Quedarse en España para hacer prácticas en un hotel.','Volver inmediatamente a Venezuela.','Abrir su propio restaurante en España.','Estudiar una segunda carrera en ingeniería.'],a:0,exp:'[01:08] Luis Alberto, eğitimini tamamladıktan sonra bir süre İspanya\'da kalarak otellerde staj yapmayı planladığını belirtiyor.'},
+{t:'mc',video:V1,vlabel:V1_LABEL,q:'¿Por qué quiere Luis Alberto ganar experiencia laboral en España?',o:['Para conseguir más fácil un buen trabajo en su país.','Para aprender a cocinar comida española.','Porque no quiere volver a Venezuela nunca.','Porque es un requisito para graduarse.'],a:0,exp:'[01:14] Luis Alberto, edindiği deneyim sayesinde Venezuela\'ya döndüğünde iyi bir iş bulmasının daha kolay olacağını ("me va a ser más fácil conseguir un buen trabajo allá") ifade ediyor.'},
+{t:'mc',video:V1,vlabel:V1_LABEL,q:'¿Cómo imagina Jaime el mercado laboral del futuro?',o:['Con muy pocas personas preparadas.','Con mucha competencia y gente muy preparada.','Muy fácil para encontrar un buen trabajo.','Sin necesidad de estudiar una carrera.'],a:1,exp:'[01:26] Jaime geleceğe dair pesimist bir bakış açısıyla "habrá mucha competencia, la gente estará más preparada" diyerek çok fazla rekabet olacağını öngörüyor.'},
+{t:'mc',video:V1,vlabel:V1_LABEL,q:'¿En qué tipo de organización se imagina trabajando Jaime?',o:['En una empresa de robótica','En una escuela de idiomas','En una agencia de noticias o televisión','En una oficina de turismo'],a:2,exp:'[01:33] Jaime gelecekte bir haber ajansı veya televizyon kanalı için çalışacağını hayal ettiğini söylüyor ("trabajando para una agencia de noticias o para una televisión").'},
+{t:'mc',video:V1,vlabel:V1_LABEL,q:'¿Qué opina Sara sobre la importancia de la robótica en el futuro?',o:['Cree que las máquinas no serán importantes.','Piensa que será una carrera muy aburrida.','Opina que ya no se necesitarán trabajadores humanos.','Cree que será muy importante y se necesitará gente formada.'],a:3,exp:'[01:42] Sara iyimser bir tavırla gelecekte robotiğin çok önemli olacağını ve kendisi gibi eğitimli insanlara ihtiyaç duyulacağını belirtiyor.'},
+{t:'mc',video:V1,vlabel:V1_LABEL,q:'¿Por qué es optimista Luis Alberto sobre su futuro profesional en Venezuela?',o:['Porque el país ya tiene demasiados robots.','Porque quiere estudiar periodismo allí.','Porque no habrá competencia en su área.','Porque Venezuela quiere desarrollar su potencial turístico.'],a:3,exp:'[01:52] Luis Alberto, Venezuela\'nın turizm potansiyelini geliştirmek istediğini ve bu yüzden deneyimli profesyonellere ihtiyaç duyulacağı için iyimser olduğunu söylüyor.'},
+{t:'mc',video:V1,vlabel:V1_LABEL,q:'¿A dónde deciden ir los amigos al final de la conversación para seguir preparándose?',o:['A la biblioteca','A un hotel','A sus países de origen','A un videoblog'],a:0,exp:'[02:07] Gençler, şu an hala öğrenci olduklarını ve en iyisinin ders çalışmak olduğunu kabul ederek kütüphaneye ("entramos a la biblioteca") girmeye karar veriyorlar.'},
+// S11-S26: Compañeros - Voluntarios
+{t:'mc',video:V2,vlabel:V2_LABEL,q:'¿Qué buscarán los jóvenes para realizar durante sus vacaciones?',o:['Un hotel para descansar','Un trabajo con salario','Un campamento de voluntarios','Una academia de baile'],a:2,exp:'Karakterler yaz tatili planı olarak bir gönüllü kampına (campamento de voluntarios) yazılma fikrini tartışıyorlar.'},
+{t:'mc',video:V2,vlabel:V2_LABEL,q:'¿A qué región de España viajarán los chicos si eligen el proyecto del oso pardo?',o:['A Andalucía','A Asturias','A Madrid','A las Islas Baleares'],a:1,exp:'Videoda boz ayıları (oso pardo) koruma projesinin Asturias bölgesinde olduğu belirtiliyor.'},
+{t:'mc',video:V2,vlabel:V2_LABEL,q:'¿Qué animal protegerán los voluntarios en el campamento de Costa Rica?',o:['Los osos','Las tortugas','Los pájaros','Los perros'],a:1,exp:'Costa Rica\'daki kampın kaplumbağaların (tortugas) korunmasına adandığı söyleniyor.'},
+{t:'mc',video:V2,vlabel:V2_LABEL,q:'¿En qué zona geográfica se ubica el país de Costa Rica según el video?',o:['En Europa','En el Mediterráneo','En el Caribe','En el Pacífico Sur'],a:2,exp:'Karakterlerden biri Costa Rica\'nın Karayipler\'de (el Caribe) olduğunu ifade ediyor.'},
+{t:'mc',video:V2,vlabel:V2_LABEL,q:'¿Qué aprenderán a producir de manera sostenible en las Islas Canarias?',o:['Frutas y verduras','Ropa reciclada','Casas de madera','Energía de manera sostenible'],a:3,exp:'Kanarya Adaları\'ndaki projenin sürdürülebilir enerji (energía de manera sostenible) üretmeyi öğrenmekle ilgili olduğu belirtiliyor.'},
+{t:'mc',video:V2,vlabel:V2_LABEL,q:'¿Quién quiere ser ingeniero en su vida profesional futura?',o:['El chico de la chaqueta roja','El otro chico','Los hermanos de los dos','Las madres de las dos'],a:0,exp:'Soldaki çocuk, kırmızı ceketli diğer arkadaşına "sen mühendis (ingeniero) olmak istediğin için bu senin ilgini çekiyor" diyerek onun meslek hayalini belirtiyor.'},
+{t:'mc',video:V2,vlabel:V2_LABEL,q:'¿A quién ayudará con su elección de voluntariado?',o:['A la gente','A las tortugas','A los osos','A los ingenieros'],a:0,exp:'Teknik projeler yerine insanlara yardım etmeyi (ayudar a la gente) tercih ettiğini söylüyor.'},
+{t:'mc',video:V2,vlabel:V2_LABEL,q:'¿Qué actividad harán específicamente con los niños en el voluntariado social?',o:['Limpiar los parques','Cocinar comida sana','Jugar al fútbol','Dar clases'],a:3,exp:'Sosyal gönüllülük kapsamında çocuklara ders verme (dar clases a niños) fikri üzerinde duruluyor.'},
+{t:'mc',video:V2,vlabel:V2_LABEL,q:'¿Con quién hablarán los jóvenes para recibir consejos sobre las ONGs?',o:['Con el director','Con la madre','Con el tío Luis','Con el vecino'],a:2,exp:'Gönüllülük konusunda tecrübeli olan Luis amcayı/dayıyı (tío Luis) görmeye gitmeye karar veriyorlar.'},
+{t:'mc',video:V2,vlabel:V2_LABEL,q:'¿En qué tipo de organización trabajará el tío Luis?',o:['En un banco internacional','En una ONG','En una escuela primaria','En un hospital grande'],a:1,exp:'Luis\'in bir ONG\'de çalıştığı videoda açıkça ifade ediliyor.'},
+{t:'mc',video:V2,vlabel:V2_LABEL,q:'¿Cómo se sentirán los padres al saber que el tío Luis acompañará a los chicos?',o:['Enojados','Convencidos','Sorprendidos','Asustados'],a:1,exp:'Bir akrabanın onlarla gidecek olması tüm ebeveynleri ikna ediyor (los ha convencido).'},
+{t:'mc',video:V2,vlabel:V2_LABEL,q:'¿A qué destino irán finalmente los voluntarios para su proyecto?',o:['Al Sáhara','A Costa Rica','A Asturias','A las Islas Canarias'],a:0,exp:'Videonun sonunda "Sáhara\'ya gitmeye hazır mısın?" sorusuyla nihai varış yeri belli oluyor.'},
+{t:'mc',video:V2,vlabel:V2_LABEL,q:'¿Qué dispositivo usará el chico para investigar más sobre los campamentos?',o:['Un periódico','Un ordenador viejo','Un teléfono móvil','Una tablet'],a:3,exp:'Erkek karakter, kamp seçeneklerine bakmak için tableti (tablet) kullanacağını söylüyor.'},
+{t:'mc',video:V2,vlabel:V2_LABEL,q:'¿Qué trae el chico después de visitar algunas ONGs?',o:['Fotos de los animales','Libros de geografía','Folletos','Mapas del mundo'],a:2,exp:'Çocuk, bazı kurumlardan broşürler/el ilanları (folletos) getirdiğini belirtiyor.'},
+{t:'mc',video:V2,vlabel:V2_LABEL,q:'¿En qué estación del año estarán los jóvenes cuando realicen el viaje?',o:['En invierno','En otoño','En verano','En primavera'],a:2,exp:'Diyalog "bu yaz (verano) ne yapacaksın?" sorusuyla başlayarak tatil planına odaklanıyor.'},
+{t:'mc',video:V2,vlabel:V2_LABEL,q:'¿Qué significará la sigla "ONG" para la organización donde trabajará el tío Luis?',o:['Oficina de Negocios Grandes','Operación Nacional Global','Organización No Gubernamental','Objetivo de Noticia General'],a:2,exp:'Luis amcanın/dayısının bir "ONG" bünyesinde çalıştığı belirtilir; bu kısaltma İspanyolcada sivil toplum kuruluşu (Organización No Gubernamental) anlamına gelmektedir.'},
+// S27-S36: Comprensión de lectura
+{t:'mc',badge:'lectura',lectura:'El teletrabajo ha transformado profundamente la rutina de millones de personas en todo el mundo. Hoy en día, muchas empresas permiten que sus empleados realicen sus tareas desde casa de manera permanente. Esta modalidad ayuda a los trabajadores a ahorrar mucho tiempo en desplazamientos diarios por la ciudad. Además, se observa una reducción considerable en el estrés relacionado con el tráfico matutino. Sin embargo, trabajar a distancia también presenta desafíos importantes para la salud mental y social. El aislamiento puede afectar la motivación si no hay contacto físico con los compañeros de oficina. La comunicación virtual a veces es menos eficiente que las conversaciones cara a cara. Es fundamental establecer límites claros entre el tiempo profesional y el espacio personal en casa. Muchas personas prefieren ir a la oficina al menos dos días por semana para socializar. La flexibilidad horaria permite organizar mejor las tareas domésticas y el cuidado de la familia. Se puede trabajar desde cualquier lugar del mundo si se tiene una buena conexión a internet. Esto ha fomentado el surgimiento de los llamados nómadas digitales en diversos países. Las reuniones por videoconferencia se han convertido en una herramienta indispensable para el éxito empresarial. Se requiere mucha disciplina propia para mantener la productividad sin una supervisión directa y constante. El equilibrio emocional es la clave para disfrutar de los beneficios reales de esta nueva era laboral.',q:'El impacto del teletrabajo en la sociedad moderna\n\n¿Cuál de las siguientes afirmaciones NO se puede extraer del texto?',o:['El teletrabajo reduce el estrés causado por el tráfico en las ciudades.','Es necesario separar el horario de trabajo de la vida personal en el hogar.','El contacto físico con los colegas ayuda a mantener la motivación laboral.','Todas las empresas del mundo han eliminado obligatoriamente sus oficinas físicas.'],a:3,exp:'Metinde teleçalışmanın faydaları ve zorlukları anlatılmaktadır. Ancak tüm dünya şirketlerinin ofislerini zorunlu olarak kapattığına dair bir bilgi yoktur. Bu yüzden doğru cevap D şıkkıdır.'},
+{t:'mc',badge:'lectura',lectura:'El turismo es una de las industrias más potentes y dinámicas del planeta actualmente. Muchos países dependen económicamente de la llegada constante de visitantes extranjeros cada temporada. No obstante, el turismo de masas puede causar daños irreparables en los ecosistemas locales. El turismo sostenible surge como una alternativa para proteger el medio ambiente y la cultura. Esta forma de viajar busca minimizar el impacto negativo en los recursos naturales preciosos. Los viajeros responsables eligen alojamientos que utilizan energías renovables y reciclan sus residuos. También es vital consumir productos locales para apoyar directamente la economía de la comunidad. El respeto por las tradiciones y costumbres de los habitantes es un pilar fundamental. Muchas reservas naturales ahora limitan el número de personas que pueden entrar cada día. La educación ambiental ayuda a los turistas a entender la fragilidad de ciertos paisajes únicos. Se recomienda evitar el uso de plásticos de un solo uso durante las excursiones largas. El agua es un recurso escaso en muchas zonas turísticas y debe usarse con prudencia. Los guías locales ofrecen una perspectiva auténtica y enriquecedora sobre la historia del lugar. Viajar de forma consciente permite que las futuras generaciones también disfruten de estos destinos hermosos. El compromiso colectivo es necesario para transformar la industria del viaje en algo positivo.',q:'La importancia del turismo sostenible\n\n¿Cuál de las siguientes afirmaciones NO se puede extraer del texto?',o:['El turismo de masas es la única forma de salvar la economía de los países pobres.','El turismo sostenible intenta reducir el daño en la naturaleza y en la cultura local.','Es importante comprar productos de la zona para ayudar a los habitantes locales.','Algunos lugares naturales restringen la cantidad de visitantes para proteger el paisaje.'],a:0,exp:'Metin, kitle turizminin zararlarından ve sürdürülebilirliğin öneminden bahsetmektedir. Kitle turizminin ekonomiyi kurtaracak tek yol olduğu ifadesi metinle çelişmektedir. Bu yüzden doğru cevap A şıkkıdır.'},
+{t:'mc',badge:'lectura',lectura:'La dieta mediterránea es reconocida mundialmente por ser un modelo de alimentación muy saludable. Se basa principalmente en el consumo de frutas frescas, verduras de temporada y legumbres variadas. El aceite de oliva es la principal fuente de grasa y aporta muchos beneficios cardiovasculares. El pescado azul y los frutos secos también son componentes esenciales en este estilo de vida. El consumo de carne roja se mantiene en niveles muy bajos durante todo el año. Los expertos aseguran que esta dieta ayuda a prevenir enfermedades crónicas de forma natural. Además de la comida, la actividad física diaria es parte fundamental del bienestar general. Compartir las comidas con amigos y familiares mejora la salud emocional y reduce el estrés. Las especias naturales sustituyen a menudo el uso excesivo de sal en las recetas tradicionales. Beber agua en abundancia es vital para mantener el cuerpo hidratado y con energía. Muchos países del sur de Europa siguen estos hábitos desde hace varios siglos atrás. La calidad de los ingredientes es más importante que la cantidad de alimentos ingeridos. Las personas que siguen esta dieta suelen tener una esperanza de vida más alta. No se trata solo de un plan temporal, sino de una filosofía de vida equilibrada. La Organización Mundial de la Salud recomienda estos patrones para mejorar la salud pública global.',q:'Los beneficios de la dieta mediterránea\n\n¿Cuál de las siguientes afirmaciones NO se puede extraer del texto?',o:['El aceite de oliva es un ingrediente clave que ayuda a proteger el corazón.','La dieta mediterránea prohíbe estrictamente comer cualquier tipo de pescado.','Comer en compañía de otras personas es beneficioso para el equilibrio emocional.','La dieta se centra en la calidad de los productos y no solo en cuánto se come.'],a:1,exp:'Metinde balığın (pescado) bu diyetin temel bileşenlerinden biri olduğu belirtilmektedir. Balığın yasaklandığı çıkarımı yapılamaz. Bu yüzden doğru cevap B şıkkıdır.'},
+{t:'mc',badge:'lectura',lectura:'Aprender un idioma nuevo después de los treinta años es una experiencia muy enriquecedora. Aunque muchos piensan que solo los niños pueden aprender rápido, los adultos tienen ventajas. La disciplina y la capacidad de organización son herramientas poderosas para el estudio constante. Los adultos suelen tener una motivación más clara, como el trabajo o los viajes. El cerebro humano mantiene su plasticidad durante toda la vida si se ejercita adecuadamente. Estudiar una lengua extranjera ayuda a retrasar el envejecimiento cognitivo y mejora la memoria. Es importante practicar la conversación desde el primer día para ganar confianza real. Las aplicaciones móviles y los cursos en línea facilitan el acceso al conocimiento gratuito. Sin embargo, asistir a clases presenciales permite interactuar con otros estudiantes en situaciones reales. El error es una parte necesaria del proceso y no debe causar vergüenza. Escuchar música y ver películas en versión original mejora la comprensión auditiva rápidamente. La constancia es mucho más efectiva que estudiar muchas horas un solo día. Conocer otra lengua abre puertas a nuevas oportunidades profesionales en un mercado globalizado. También permite entender mejor otras culturas y ampliar la visión personal del mundo actual. El aprendizaje constante mantiene la mente joven, curiosa y abierta a nuevos retos interesantes.',q:'El aprendizaje de idiomas en la edad adulta\n\n¿Cuál de las siguientes afirmaciones NO se puede extraer del texto?',o:['Los adultos tienen capacidades como la disciplina que les ayudan a estudiar idiomas.','Es imposible que una persona adulta aprenda un idioma de manera fluida y correcta.','Ver películas en el idioma original es un método útil para mejorar el oído.','La motivación por motivos laborales es común entre los estudiantes adultos de lenguas.'],a:1,exp:'Metin yetişkinlerin dil öğrenme avantajlarını ve yeteneklerini savunmaktadır. Yetişkinlerin dil öğrenmesinin imkansız olduğu ifadesi metnin ruhuna aykırıdır. Bu yüzden doğru cevap B şıkkıdır.'},
+{t:'mc',badge:'lectura',lectura:'Las ciudades modernas están invirtiendo cada vez más en la creación de parques públicos. Los espacios verdes son esenciales para mejorar la calidad del aire en los centros urbanos. Los árboles absorben el dióxido de carbono y ayudan a reducir las temperaturas extremas. Caminar por un parque después del trabajo disminuye notablemente los niveles de ansiedad diaria. Muchas familias utilizan estos lugares para hacer deporte y disfrutar del tiempo libre juntos. La biodiversidad urbana aumenta cuando hay suficientes plantas y flores en las avenidas principales. Los arquitectos ahora diseñan edificios con jardines verticales integrados en sus fachadas exteriores. Estos proyectos innovadores buscan crear una armonía entre el cemento y la naturaleza viva. La falta de vegetación en las ciudades puede provocar problemas de salud respiratoria graves. Los ciudadanos demandan más zonas peatonales libres de ruidos y de humos tóxicos. El diseño de estas áreas debe ser inclusivo para personas de todas las edades. Los huertos urbanos permiten que los vecinos cultiven sus propios alimentos de forma ecológica. Es una excelente manera de fomentar la cohesión social y el sentido de comunidad. La protección de los entornos naturales dentro de la ciudad es una responsabilidad política. El futuro de la vida urbana depende de nuestra capacidad para integrar el verde.',q:'El futuro de los espacios verdes urbanos\n\n¿Cuál de las siguientes afirmaciones NO se puede extraer del texto?',o:['Los parques en la ciudad contribuyen a que el aire sea más limpio y sano.','Los jardines verticales son una tendencia moderna en la arquitectura de los edificios.','La vegetación en las ciudades aumenta el ruido y empeora la salud de los niños.','Los huertos urbanos ayudan a que los vecinos tengan una relación más estrecha.'],a:2,exp:'Metinde bitki örtüsünün gürültüyü azalttığı ve sağlığı iyileştirdiği vurgulanmaktadır. Ses kirliliğini artırdığı bilgisi metinden çıkarılamaz. Bu yüzden doğru cevap C şıkkıdır.'},
+{t:'mc',badge:'lectura',lectura:'La inteligencia emocional se ha convertido en una competencia clave para el éxito profesional. No basta con tener conocimientos técnicos para liderar un equipo de trabajo eficiente. La capacidad de reconocer y gestionar las propias emociones es fundamental en las reuniones. La empatía permite entender las preocupaciones de los compañeros y mejorar el ambiente grupal. Un líder emocionalmente inteligente sabe cómo motivar a los demás en momentos difíciles. La resolución de conflictos es más sencilla cuando las personas mantienen la calma interna. El autocontrol evita reacciones impulsivas que podrían dañar las relaciones laborales a largo plazo. Las empresas ahora valoran estas habilidades tanto como la experiencia o los títulos. Es posible desarrollar la inteligencia emocional mediante la práctica constante y la reflexión personal. Escuchar activamente a los otros es el primer paso para una comunicación clara. La retroalimentación positiva ayuda a que los empleados se sientan valorados y respetados siempre. El manejo del estrés laboral es más efectivo si conocemos nuestros límites emocionales propios. La colaboración aumenta cuando existe confianza y respeto mutuo dentro de la organización empresarial. Los equipos diversos necesitan altos niveles de comprensión para alcanzar sus objetivos comunes anuales. El crecimiento personal influye directamente en el rendimiento y en la felicidad en el trabajo.',q:'La inteligencia emocional en el entorno laboral\n\n¿Cuál de las siguientes afirmaciones NO se puede extraer del texto?',o:['La empatía es una herramienta útil para que el ambiente en la oficina sea mejor.','Las habilidades emocionales son tan importantes hoy en día como los títulos académicos.','Es posible mejorar nuestra inteligencia emocional si practicamos y reflexionamos sobre ello.','El conocimiento técnico es lo único que una persona necesita para ser un buen líder.'],a:3,exp:'Metin, liderlik için teknik bilginin (conocimiento técnico) tek başına yeterli olmadığını, duygusal zekanın şart olduğunu savunur. Bu yüzden doğru cevap D şıkkıdır.'},
+{t:'mc',badge:'lectura',lectura:'España es famosa en todo el mundo por su vibrante y diversa oferta cultural. Cada año se celebran miles de festivales que atraen a turistas de todos los continentes. Estos eventos son una oportunidad excelente para conocer las tradiciones más antiguas del país. La música, la danza y la gastronomía local son los protagonistas de estas fiestas. Muchos festivales tienen lugar en pueblos pequeños que conservan un encanto histórico muy especial. La participación de los vecinos es fundamental para mantener viva la esencia del evento. La organización de estas celebraciones requiere muchos meses de trabajo duro y coordinación grupal. Los festivales de cine y teatro también gozan de un gran prestigio internacional actualmente. La economía local se beneficia enormemente gracias al gasto que realizan los visitantes extranjeros. Es un momento ideal para descubrir la diversidad lingüística y artística de las regiones. Algunos eventos están declarados Patrimonio Inmaterial de la Humanidad por la UNESCO por su valor. La alegría y la hospitalidad de la gente hacen que la experiencia sea inolvidable. Es recomendable reservar el alojamiento con mucha antelación si se desea asistir a ellos. Los jóvenes participan activamente para asegurar que las tradiciones no se pierdan con el tiempo. El intercambio cultural en estos festivales enriquece tanto a locales como a turistas extranjeros.',q:'La importancia de los festivales culturales en España\n\n¿Cuál de las siguientes afirmaciones NO se puede extraer del texto?',o:['Los festivales culturales en España solo interesan a las personas de edad avanzada.','La economía de los pueblos mejora cuando reciben turistas durante sus celebraciones.','Algunos de estos eventos culturales tienen un reconocimiento especial por parte de la UNESCO.','Es necesario trabajar durante mucho tiempo para organizar correctamente estos festivales.'],a:0,exp:'Metinde gençlerin de bu festivallere aktif olarak katıldığı ve gelenekleri sürdürdüğü belirtilmektedir. Sadece yaşlıların ilgisini çektiği bilgisi yanlıştır. Bu yüzden doğru cevap A şıkkıdır.'},
+{t:'mc',badge:'lectura',lectura:'La lucha contra el cambio climático es el mayor reto de nuestra generación presente. El uso de combustibles fósiles ha provocado un aumento peligroso de las temperaturas globales. Las energías renovables ofrecen una solución limpia para producir electricidad sin contaminar el aire. La energía solar y la eólica han crecido exponencialmente en la última década reciente. Muchos países están cerrando sus centrales de carbón para proteger la salud de todos. Los paneles solares en los tejados de las casas permiten ahorrar mucho dinero mensual. La tecnología ha avanzado tanto que ahora estas energías son mucho más baratas. Es necesario modernizar la red eléctrica para integrar estas fuentes de energía variables. La inversión en proyectos verdes genera miles de nuevos puestos de trabajo especializados anualmente. La cooperación internacional es vital para reducir las emisiones de gases de efecto invernadero. Las baterías modernas permiten almacenar la energía para usarla durante las noches sin viento. El transporte eléctrico también depende del crecimiento de la energía limpia en las ciudades. Los ciudadanos están cada vez más concienciados sobre la necesidad de este cambio urgente. El sol y el viento son recursos inagotables que debemos aprovechar al máximo siempre. La transición energética es el camino hacia un planeta más sostenible y equilibrado.',q:'Las energías renovables y el cambio climático\n\n¿Cuál de las siguientes afirmaciones NO se puede extraer del texto?',o:['Las energías renovables son actualmente más caras que el carbón y el petróleo.','La energía solar permite que las familias gasten menos dinero en sus facturas eléctricas.','El uso de carbón está disminuyendo en muchos países para cuidar el medio ambiente.','Es posible guardar la energía que se produce para utilizarla cuando no hay sol o viento.'],a:0,exp:'Metinde teknolojinin ilerlediği ve yenilenebilir enerjilerin artık çok daha ucuz (más baratas) olduğu belirtilmiştir. Pahalı oldukları bilgisi metinden çıkarılamaz. Bu yüzden doğru cevap A şıkkıdır.'},
+{t:'mc',badge:'lectura',lectura:'La inteligencia artificial ya forma parte de nuestras vidas de una manera muy integrada. Usamos algoritmos inteligentes cada vez que buscamos información en nuestros teléfonos móviles personales. Estos sistemas aprenden de nuestros gustos para ofrecernos recomendaciones personalizadas de música y cine. Los asistentes de voz nos ayudan a organizar nuestra agenda diaria con mucha rapidez. En la medicina, la inteligencia artificial permite detectar enfermedades con una precisión asombrosa hoy. Las máquinas pueden analizar miles de datos en pocos segundos para ayudar a los médicos. Sin embargo, existen debates éticos sobre la privacidad y el uso de los datos. Es importante que los humanos mantengan siempre el control final sobre las decisiones cruciales. Muchos empleos están cambiando debido a la automatización de las tareas más repetitivas y mecánicas. Los estudiantes utilizan herramientas inteligentes para aprender idiomas o matemáticas de forma interactiva y dinámica. La creatividad humana sigue siendo un valor único que las máquinas no pueden replicar. El futuro de la tecnología promete avances que todavía no podemos imaginar totalmente en este momento. Debemos aprender a convivir con estas herramientas para mejorar nuestra productividad y calidad de vida. La educación digital es necesaria para que todas las personas entiendan cómo funcionan estos sistemas. El progreso tecnológico debe estar siempre al servicio de la humanidad y del bien común.',q:'La inteligencia artificial en la vida cotidiana\n\n¿Cuál de las siguientes afirmaciones NO se puede extraer del texto?',o:['La inteligencia artificial ayuda a los médicos a identificar problemas de salud más rápido.','Las máquinas analizan nuestros hábitos para recomendarnos canciones que nos podrían gustar.','Las máquinas inteligentes ya pueden imitar perfectamente la creatividad emocional de los humanos.','Existe una preocupación por cómo se utilizan los datos privados en la tecnología actual.'],a:2,exp:'Metinde insan yaratıcılığının (creatividad humana) makinelerin taklit edemeyeceği benzersiz bir değer olduğu vurgulanmaktadır. Bu yüzden doğru cevap C şıkkıdır.'},
+{t:'mc',badge:'lectura',lectura:'El voluntariado es una forma generosa de dedicar nuestro tiempo libre a los demás. Muchas personas deciden ayudar en comedores sociales o en refugios de animales los fines de semana. Esta actividad ofrece beneficios tanto a la comunidad como a los propios voluntarios siempre. Ayudar a otros mejora nuestra autoestima y nos da un propósito de vida claro. Los jóvenes ganan experiencia y aprenden valores fundamentales como la solidaridad y el respeto. No se necesita tener mucho dinero para colaborar con una causa social importante hoy. Lo más valioso que podemos ofrecer es nuestro tiempo, energía y conocimientos específicos personales. El voluntariado internacional permite conocer realidades muy diferentes y aprender de otras culturas lejanas. Muchas organizaciones dependen totalmente del trabajo gratuito de personas comprometidas con el bienestar común. Es una oportunidad excelente para desarrollar nuevas habilidades sociales y trabajar en equipo constantemente. Los lazos de amistad que se crean durante estos proyectos suelen durar muchos años. La sociedad se vuelve más justa y humana gracias a la labor de estos ciudadanos. El apoyo emocional a las personas mayores es una de las tareas más gratificantes. Cualquier pequeña acción puede marcar una gran diferencia en la vida de alguien necesitado. El compromiso social es el motor que impulsa los cambios positivos en el mundo.',q:'El valor del voluntariado en la sociedad\n\n¿Cuál de las siguientes afirmaciones NO se puede extraer del texto?',o:['Ser voluntario ayuda a que las personas se sientan mejor consigo mismas y tengan un propósito.','Solo las personas con mucho dinero pueden participar en proyectos de ayuda social.','El voluntariado es una buena manera de que los jóvenes aprendan sobre la solidaridad.','Las amistades formadas en el voluntariado a menudo se mantienen durante mucho tiempo.'],a:1,exp:'Metinde sosyal yardım için çok paraya ihtiyaç olmadığı (no se necesita tener mucho dinero), en değerlisinin zaman olduğu belirtilmektedir. Bu yüzden doğru cevap B şıkkıdır.'},
+// S37-S50: Interacción y Completar Diálogos
+{t:'mc',badge:'dialog',escenario:'En una agencia de viajes',dialog:'— Cliente: "Busco un destino que no sea muy caro, pero que tenga mucha historia y buena comida."\n— Agente: "_________________________________________________".',q:'¿Cuál es la respuesta más adecuada para el agente?',o:['Mañana cerraremos la oficina a las ocho de la tarde.','El pasaporte es un documento necesario para viajar fuera de Europa.','Te recomiendo visitar el sur de España, cumple con todo lo que pides.','No me gusta cocinar cuando estoy de vacaciones en la playa.'],a:2,exp:'Müşteri tarih, uygun fiyat ve yemek odaklı bir yer sormaktadır. Acentenin buna uygun bir öneride bulunması beklenir. Doğru cevap C şıkkıdır.'},
+{t:'mc',badge:'dialog',escenario:'Planes para el futuro profesional',dialog:'— Lucas: "¿Qué piensas hacer cuando termines tus estudios de arquitectura?"\n— María: "_________________________________________________".',q:'¿Cuál es la respuesta más adecuada para María?',o:['Ayer terminé de leer un libro sobre la historia de Madrid.','Mi padre trabajó en una oficina de correos durante treinta años.','Los edificios modernos usan mucha energía eléctrica hoy en día.','Probablemente buscaré unas prácticas en una empresa internacional.'],a:3,exp:'Gelecek planları (Futuro) hakkında sorulan bir soruya, olasılık belirten "probablemente" ve gelecek zaman yapısıyla cevap verilmesi uygundur. Doğru cevap D şıkkıdır.'},
+{t:'mc',badge:'dialog',escenario:'Expresar una opinión sobre una película',dialog:'— Amigo A: "¿Te gustó la película que vimos anoche en el cine?"\n— Amigo B: "_________________________________________________".',q:'¿Cuál es la respuesta más adecuada para el Amigo B?',o:['Sinceramente, me pareció un poco lenta y el final fue muy predecible.','El cine de mi barrio vende palomitas de maíz muy baratas.','Mañana iremos a ver otra película de acción con mis primos.','Las entradas para el teatro son más caras que las del cine.'],a:0,exp:'İzlenen film hakkında kişisel bir görüş (opinión) sorulmaktadır. "Me pareció..." yapısı bir görüş belirtmek için kullanılır. Doğru cevap A şıkkıdır.'},
+{t:'mc',badge:'dialog',escenario:'Pidiendo indicaciones en la calle',dialog:'— Turista: "Disculpe, ¿sabe si hay alguna farmacia cerca de aquí?"\n— Transeúnte: "_________________________________________________".',q:'¿Cuál es la respuesta más adecuada para el transeúnte?',o:['Las farmacias venden medicamentos para el dolor de cabeza.','Sí, siga todo recto y gire en la segunda calle a la derecha.','No tengo dinero en efectivo para pagar la cuenta ahora.','Me duele mucho la garganta desde que llegué a esta ciudad.'],a:1,exp:'Yer tarifi isteyen birine yön bildiren ifadelerle (siga, gire) cevap verilmelidir. Doğru cevap B şıkkıdır.'},
+{t:'mc',badge:'dialog',escenario:'Dando consejos de salud',dialog:'— Pablo: "Últimamente me siento muy cansado y no puedo concentrarme."\n— Elena: "_________________________________________________".',q:'¿Cuál es la respuesta más adecuada para Elena?',o:['Mi hermano mayor también es médico en un hospital grande.','Deberías dormir más horas y tratar de comer de forma más saludable.','El cansancio es un síntoma común en las personas que trabajan mucho.','Mañana compraré una agenda nueva para organizar mis tareas.'],a:1,exp:'Bir sorun bildiren kişiye "Deberías..." (Yapmalısın) kalıbıyla tavsiye verilmektedir. Doğru cevap B şıkkıdır.'},
+{t:'mc',badge:'dialog',escenario:'Hablando de una experiencia pasada',dialog:'— Sofía: "¿Cómo fue tu primer día de trabajo en la nueva oficina?"\n— Luis: "_________________________________________________".',q:'¿Cuál es la respuesta más adecuada para Luis?',o:['Fue un poco caótico al principio, pero mis compañeros me ayudaron mucho.','Mañana tendré mi primera reunión con el director de la empresa.','El trabajo de oficina puede ser muy aburrido si no hay retos.','Me gustaría trabajar en una empresa que proteja el medio ambiente.'],a:0,exp:'Geçmişte yaşanmış bir olay (Pretérito Indefinido) sorulduğu için cevap da geçmiş zaman yapısında olmalıdır. Doğru cevap A şıkkıdır.'},
+{t:'mc',badge:'dialog',escenario:'En una entrevista de trabajo',dialog:'— Entrevistador: "¿Por qué cree que usted es la persona adecuada para este puesto?"\n— Candidato: "_________________________________________________".',q:'¿Cuál es la respuesta más adecuada para el candidato?',o:['Porque el sueldo que ofrecen es muy alto para mi país.','Porque vivo muy cerca de la oficina y puedo venir caminando.','Porque tengo experiencia previa y me adapto rápido a los cambios.','Porque el año pasado estudié un curso de cocina mediterránea.'],a:2,exp:'İş mülakatında yetkinlik ve deneyim vurgusu yapan profesyonel bir cevap beklenmektedir. Doğru cevap C şıkkıdır.'},
+{t:'mc',badge:'dialog',escenario:'Expresar deseos con el subjuntivo',dialog:'— Madre: "¿Qué quieres que te compre por tu cumpleaños?"\n— Hijo: "_________________________________________________".',q:'¿Cuál es la respuesta más adecuada para el hijo?',o:['Me compraste una bicicleta azul el año pasado en junio.','El cumpleaños es un día especial para celebrar con la familia.','Quiero comprar un regalo para mi mejor amigo de la escuela.','Quiero que me compres un ordenador nuevo para mis estudios.'],a:3,exp:'"Quiero que..." yapısından sonra Subjuntivo kullanımı (compres) gerektiren bir istek cümlesi gelmelidir. Doğru cevap D şıkkıdır.'},
+{t:'mc',badge:'dialog',escenario:'Problemas ambientales en la ciudad',dialog:'— Periodista: "¿Cuál es el principal problema ecológico de esta ciudad?"\n— Alcalde: "_________________________________________________".',q:'¿Cuál es la respuesta más adecuada para el alcalde?',o:['Los parques son lugares hermosos para caminar con los perros.','El transporte público es gratuito para las personas mayores de sesenta años.','Mañana plantaremos diez árboles nuevos en la avenida principal.','Sin duda, es la alta contaminación causada por el tráfico excesivo.'],a:3,exp:'Şehrin ekolojik sorunu sorulduğunda doğrudan bir sorun tespiti (contaminación) yapılmalıdır. Doğru cevap D şıkkıdır.'},
+{t:'mc',badge:'dialog',escenario:'Uso de la tecnología',dialog:'— Abuela: "No entiendo cómo funciona esta aplicación de mensajes."\n— Nieto: "_________________________________________________".',q:'¿Cuál es la respuesta más adecuada para el nieto?',o:['Las aplicaciones modernas son muy difíciles de usar para todos.','Mi teléfono móvil tiene una cámara de alta resolución.','No te preocupes, abuela, yo te enseñaré a usarla en un momento.','El internet es una herramienta que cambió el mundo para siempre.'],a:2,exp:'Yardım isteyen birine yönelik çözüm sunan ve yardım teklif eden bir cevap verilmiştir. Doğru cevap C şıkkıdır.'},
+{t:'mc',badge:'dialog',escenario:'Pidiendo comida en un restaurante',dialog:'— Camarero: "¿Qué van a tomar de segundo plato?"\n— Cliente: "_________________________________________________".',q:'¿Cuál es la respuesta más adecuada para el cliente?',o:['La cuenta, por favor, queremos pagar con tarjeta de crédito.','Para mí, el pescado a la plancha con una ensalada mixta.','El menú del día incluye un postre y una bebida fría.','No nos gusta esperar mucho tiempo cuando tenemos hambre.'],a:1,exp:'Garsonun yemek siparişi sorusuna bir yemek tercihiyle cevap verilmelidir. Doğru cevap B şıkkıdır.'},
+{t:'mc',badge:'dialog',escenario:'Reclamación en una tienda',dialog:'— Cliente: "Compré estos zapatos ayer, pero me quedan muy pequeños."\n— Dependienta: "_________________________________________________".',q:'¿Cuál es la respuesta más adecuada para la dependienta?',o:['No hay problema, si tiene el ticket, podemos cambiarlos por otros.','Los zapatos rojos son los más vendidos en esta temporada de invierno.','Debería comprar unos zapatos más caros si quiere que duren mucho.','La tienda abre a las diez de la mañana y cierra a las nueve de la noche.'],a:0,exp:'Bir şikayet veya değişim talebine mağaza görevlisinin çözüm odaklı cevabı gelmelidir. Doğru cevap A şıkkıdır.'},
+{t:'mc',badge:'dialog',escenario:'Hablando de tradiciones culturales',dialog:'— Turista: "¿Qué se celebra exactamente durante la fiesta de la Tomatina?"\n— Guía: "_________________________________________________".',q:'¿Cuál es la respuesta más adecuada para el guía?',o:['Es una batalla pacífica donde la gente se lanza tomates por diversión.','Los tomates son ingredientes esenciales en la cocina española.','El festival de cine de San Sebastián es muy famoso en todo el mundo.','La semana pasada fuimos al mercado a comprar verduras frescas.'],a:0,exp:'Belirli bir kültürel festivalin (La Tomatina) içeriği sorulmaktadır. Doğru cevap A şıkkıdır.'},
+{t:'mc',badge:'dialog',escenario:'Describiendo la personalidad de alguien',dialog:'— Marta: "¿Cómo es tu nuevo jefe en el departamento de ventas?"\n— Carlos: "_________________________________________________".',q:'¿Cuál es la respuesta más adecuada para Carlos?',o:['Tiene el pelo corto, es alto y siempre lleva camisas blancas.','Es una persona muy seria y exigente, pero también es muy justo.','Trabaja en la oficina que está al final del pasillo, a la izquierda.','Ganó un premio importante por su trabajo en la empresa anterior.'],a:1,exp:'"Sıfat/Karakter" odaklı bir soruya kişinin kişilik özellikleriyle (seria, exigente, justo) cevap verilmelidir. Doğru cevap B şıkkıdır.'}
+];
+
+var cur=0, score=0, err=0;
+var state=new Array(Q.length).fill(null);
+var studentName='';
+
+function startQuiz(){
+  var sel=document.getElementById('introName');
+  if(!sel.value){alert('Lütfen adınızı seçin!');return;}
+  studentName=sel.value;
+  document.getElementById('introScreen').style.display='none';
+  document.getElementById('quizScreen').style.display='block';
+  renderQ();
+}
+
+function escH(s){
+  if(s===null||s===undefined)return'';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function renderQ(){
+  var q=Q[cur];
+  document.getElementById('qMeta').textContent='Soru '+(cur+1)+' / '+Q.length;
+  document.getElementById('progFill').style.width=(Math.round(cur/Q.length*100))+'%';
+  document.getElementById('cntOk').textContent='✓ '+score;
+  document.getElementById('cntErr').textContent='✗ '+err;
+
+  var badge='';
+  if(q.badge==='lectura') badge='<span class="q-type-badge badge-lectura">Comprensión de Lectura</span>';
+  else if(q.badge==='dialog') badge='<span class="q-type-badge badge-dialog">Diyalog Tamamlama</span>';
+  else badge='<span class="q-type-badge badge-mc">Dinleme</span>';
+
+  var html=badge;
+
+  if(q.video){
+    html+='<a class="video-ref" href="'+escH(q.video)+'" target="_blank">';
+    html+='<svg width="13" height="13" viewBox="0 0 24 24" fill="#dc2626"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>';
+    html+=escH(q.vlabel)+' — videoyu izle</a>';
+  }
+
+  if(q.escenario){
+    html+='<div style="font-size:.76rem;font-weight:700;color:#92400e;background:#fef3c7;border-radius:.4rem;padding:.25rem .65rem;display:inline-block;margin-bottom:.5rem;">Senaryo: '+escH(q.escenario)+'</div>';
+  }
+
+  if(q.lectura){
+    html+='<div class="lectura-block">'+escH(q.lectura)+'</div>';
+  }
+
+  if(q.dialog){
+    html+='<div class="dialog-block">'+escH(q.dialog)+'</div>';
+  }
+
+  html+='<div class="q-text">'+escH(q.q)+'</div>';
+
+  var answered=(state[cur]!==null);
+  html+='<div class="opts">';
+  for(var i=0;i<q.o.length;i++){
+    var cls='opt-btn';var dis='';
+    if(answered){
+      if(i===q.a)cls+=' correct';
+      else if(state[cur].chosen===i)cls+=' wrong';
+      dis=' disabled';
+    }
+    html+='<button class="'+cls+'"'+dis+' onclick="answerMC('+cur+','+i+')"><strong>'+String.fromCharCode(65+i)+')</strong> '+escH(q.o[i])+'</button>';
+  }
+  html+='</div>';
+
+  var expShow=answered?' show':'';
+  html+='<div class="exp-box'+expShow+'">'+escH(q.exp)+'</div>';
+  document.getElementById('qCard').innerHTML=html;
+  updateNav();
+}
+
+function answerMC(qi,j){
+  if(state[qi]!==null)return;
+  var ok=(j===Q[qi].a);
+  state[qi]={chosen:j,ok:ok};
+  if(ok)score++;else err++;
+  renderQ();
+  checkAutoFinish();
+}
+
+function checkAutoFinish(){
+  var answered=0;
+  for(var i=0;i<state.length;i++){if(state[i]!==null)answered++;}
+  if(answered===Q.length)showResult();
+}
+
+function updateNav(){
+  var answered=(state[cur]!==null);
+  document.getElementById('btnBack').disabled=(cur===0);
+  document.getElementById('btnSkip').disabled=(answered)||(cur===Q.length-1);
+  document.getElementById('btnNext').disabled=(cur===Q.length-1);
+  document.getElementById('btnFinish').style.display='block';
+}
+
+function goNext(){if(cur<Q.length-1){cur++;renderQ();}}
+function goBack(){if(cur>0){cur--;renderQ();}}
+function skipQ(){if(cur<Q.length-1){cur++;renderQ();}}
+
+function confirmFinish(){
+  var answered=0;
+  for(var i=0;i<state.length;i++){if(state[i]!==null)answered++;}
+  var unanswered=Q.length-answered;
+  var txt=unanswered>0?unanswered+' soru yanıtsız kaldı. Yine de bitirmek istiyor musunuz?':'50 soruyu da yanıtladınız. Testi bitirmek istiyor musunuz?';
+  document.getElementById('confirmMsg').textContent=txt;
+  document.getElementById('confirmOverlay').style.display='flex';
+}
+function closeConfirm(){document.getElementById('confirmOverlay').style.display='none';}
+function doFinish(){document.getElementById('confirmOverlay').style.display='none';showResult();}
+
+function showResult(){
+  document.getElementById('quizScreen').style.display='none';
+  document.getElementById('resultScreen').style.display='block';
+  var pct=score*2;
+  document.getElementById('resScore').textContent=pct;
+  document.getElementById('resOk').textContent='✓ '+score+' doğru';
+  document.getElementById('resErr').textContent='✗ '+err+' yanlış';
+  document.getElementById('resNote').textContent='('+score+' doğru × 2 puan = '+pct+' puan)';
+  var resSel=document.getElementById('resName');
+  for(var i=0;i<resSel.options.length;i++){
+    if(resSel.options[i].value===studentName){resSel.selectedIndex=i;break;}
+  }
+  var rl=document.getElementById('reviewList');
+  var rhtml='';
+  for(var i=0;i<state.length;i++){
+    var s=state[i];
+    if(s&&!s.ok){
+      var q=Q[i];
+      rhtml+='<div class="rev-item">';
+      if(q.escenario) rhtml+='<div style="font-size:.74rem;color:#92400e;font-weight:700;margin-bottom:.3rem;">Senaryo: '+escH(q.escenario)+'</div>';
+      rhtml+='<div class="rev-q">S'+(i+1)+': '+escH(q.q)+'</div>';
+      rhtml+='<div class="rev-chosen">✗ Senin cevabın: '+String.fromCharCode(65+s.chosen)+') '+escH(q.o[s.chosen])+'</div>';
+      rhtml+='<div class="rev-correct">✓ Doğru: '+String.fromCharCode(65+q.a)+') '+escH(q.o[q.a])+'</div>';
+      rhtml+='<div class="rev-exp">'+escH(q.exp)+'</div></div>';
+    }
+  }
+  if(!rhtml)rhtml='<div style="text-align:center;color:#16a34a;padding:1rem;font-weight:600">Hatalı soru yok — mükemmel!</div>';
+  rl.innerHTML=rhtml;
+}
+
+function submitResult(){
+  var resSel=document.getElementById('resName');
+  var name=resSel.value||studentName;
+  if(!name){alert('Lütfen adınızı seçin!');return;}
+  var grup=GROUPS[name]||'B1.1';
+  var pct=score*2;
+  var payload=JSON.stringify({ogrenci:name,grup:grup,odev:ODEV_ADI,puan:pct,dogru:score,yanlis:err});
+  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:payload});
+  var warn=document.getElementById('submitWarning');
+  if(warn)warn.style.display='none';
+  var msg=document.getElementById('submitMsg');
+  msg.style.display='block';
+  msg.textContent=name+' — '+ODEV_ADI+' ödeviniz teslim edildi!';
+}
+
+function toggleReview(){
+  var rl=document.getElementById('reviewList');
+  rl.style.display=(rl.style.display==='none'||rl.style.display==='')?'flex':'none';
+}
+</script>
+</body>
+</html>
