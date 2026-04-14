@@ -315,43 +315,42 @@ function degerlendir() {
     saat    : new Date().toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'})
   };
 
-  var cbName = 'cb_' + Date.now();
+  // JSONP ile gönder
+  var cbName = 'cb' + Date.now();
   window[cbName] = function(result) {
     clearInterval(lTimer);
-    var s = document.getElementById('jsonp_script');
-    if (s) s.parentNode.removeChild(s);
+    var s = document.getElementById('_jsonp');
+    if (s) s.remove();
     delete window[cbName];
-
-    if (result.ok) {
+    if (result && result.ok) {
       sonPuan = result.toplam || 0;
       var iyiText = (result.dogru_kullanimlar || []).map(function(d){
-        return '\u2713 ' + d.ornek + '\n   ' + d.aciklama;
+        return d.ornek + '\n\u2192 ' + d.aciklama;
       }).join('\n\n');
       var hataText = (result.hatalar || []).map(function(h){
-        return '\u2717 ' + h.yanlis + ' \u2192 ' + h.dogru + '\n   ' + h.aciklama;
+        return '\u274c ' + h.yanlis + '\n\u2714 Doğrusu: ' + h.dogru + '\n\u2139 ' + h.aciklama;
       }).join('\n\n');
       gosterSonuc({
-        puan     : result.toplam || 0,
-        iyi      : iyiText,
-        gelistir : result.genel_yorum || '',
-        hatalar  : hataText
+        puan: result.toplam || 0,
+        iyi: iyiText,
+        gelistir: result.genel_yorum || '',
+        hatalar: hataText
       });
     } else {
       sonPuan = 0;
-      gosterSonuc({puan:0, iyi:'', gelistir: result.error || 'Bir hata olu\u015ftu.', hatalar:''});
+      gosterSonuc({puan:0, iyi:'', gelistir:(result&&result.error)||'Bir hata oluştu.', hatalar:''});
     }
   };
 
-  var url = SCRIPT_URL + '?callback=' + cbName + '&data=' + encodeURIComponent(JSON.stringify(payload));
-  var script = document.createElement('script');
-  script.id = 'jsonp_script';
-  script.src = url;
-  script.onerror = function() {
+  var sc = document.createElement('script');
+  sc.id = '_jsonp';
+  sc.src = SCRIPT_URL + '?callback=' + cbName + '&data=' + encodeURIComponent(JSON.stringify(payload));
+  sc.onerror = function() {
     clearInterval(lTimer);
-    sonPuan = 0;
-    gosterSonuc({puan:0, iyi:'', gelistir:'Ba\u011flant\u0131 hatas\u0131. \u0130nternet ba\u011flant\u0131n\u0131z\u0131 kontrol edin.', hatalar:''});
+    document.getElementById('_jsonp').remove();
+    gosterSonuc({puan:0, iyi:'', gelistir:'Bağlantı hatası. Tekrar deneyin.', hatalar:''});
   };
-  document.head.appendChild(script);
+  document.head.appendChild(sc);
 }
 
 
