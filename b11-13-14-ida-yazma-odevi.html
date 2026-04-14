@@ -168,7 +168,7 @@ textarea:focus{border-color:#6c4eb8}
 </div>
 <script>
 var SCRIPT_URL='https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
-var API_KEY='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';
+var API_KEY='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';
 var ODEV_ADI='H4 \u2013 13-14.Ders';
 var GRUP='B1.1';
 var MIN_KEL=350,MAX_KEL=420;
@@ -215,8 +215,8 @@ function degerlendir(){
   .then(function(r){return r.json();})
   .then(function(data){
     clearInterval(lt);
+    if(!data.content){gosterSonuc({puan:0,iyi:"",gelistir:"API yaniti: "+JSON.stringify(data).substring(0,200),hatalar:""});return;}
     var raw=data.content[0].text.trim();
-    var d=JSON.parse(raw.substring(raw.indexOf('{'),raw.lastIndexOf('}')+1));
     sonPuan=d.toplam||0;
     var iyi=(d.dogru_kullanimlar||[]).map(function(x){return '\u2713 '+x.ornek+'\n   '+x.aciklama;}).join('\n\n');
     var hata=(d.hatalar||[]).map(function(x){return '\u274c '+x.yanlis+' \u2192 '+x.dogru+'\n   '+x.aciklama;}).join('\n\n');
