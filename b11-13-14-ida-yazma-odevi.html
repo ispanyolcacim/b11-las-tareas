@@ -206,8 +206,7 @@ textarea:focus{border-color:#6c4eb8}
     <button class="detail-toggle" onclick="toggleYazi(this)">▸ Yazdığın metni gör</button>
     <div class="ogrenci-yazi-kutu" id="resYaziKutu" style="display:none"></div>
 
-    <button class="btn-kaydet" id="btnKaydet" onclick="sheetsGonder()">📊 Puanı Google Sheets'e Kaydet</button>
-    <div class="kayit-mesaj" id="kayitMsg"></div>
+    <div class="kayit-mesaj ok" id="kayitMsg" style="display:block"></div>
   </div>
 </div>
 
@@ -298,7 +297,7 @@ function teslimEt() {
 var loadMsgs = ['Yazın okunuyor…','E-posta formatı kontrol ediliyor…','Gramer analizi yapılıyor…','İçerik değerlendiriliyor…','Puan hesaplanıyor…'];
 var lIdx = 0, lTimer;
 
-async function degerlendir() {
+function degerlendir() {
   lIdx = 0;
   clearInterval(lTimer);
   lTimer = setInterval(function(){
@@ -306,38 +305,55 @@ async function degerlendir() {
     lIdx++;
   }, 2000);
 
-  try {
-    var r = await fetch('https://api.anthropic.com/v1/messages', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:1000,
-        system: SISTEM,
-        messages:[{role:'user', content:'Texto del estudiante:\n\n' + sonYazi}]
-      })
-    });
-    var data = await r.json();
+  var payload = {
+    tip     : 'yazma',
+    ogrenci : ogrenciAdi,
+    odev    : ODEV_ADI,
+    grup    : GRUP,
+    yazi    : sonYazi,
+    tarih   : new Date().toLocaleDateString('tr-TR'),
+    saat    : new Date().toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'})
+  };
+
+  var cbName = 'cb_' + Date.now();
+  window[cbName] = function(result) {
     clearInterval(lTimer);
+    var s = document.getElementById('jsonp_script');
+    if (s) s.parentNode.removeChild(s);
+    delete window[cbName];
 
-    var raw = (data.content && data.content[0] && data.content[0].text) ? data.content[0].text : '{}';
-    var clean = raw.replace(/```json|```/g,'').trim();
-    var result;
-    try { result = JSON.parse(clean); }
-    catch(e) {
-      var m = clean.match(/\{[\s\S]*\}/);
-      result = m ? JSON.parse(m[0]) : {puan:50, iyi:'', gelistir:'', hatalar:''};
+    if (result.ok) {
+      sonPuan = result.toplam || 0;
+      var iyiText = (result.dogru_kullanimlar || []).map(function(d){
+        return '\u2713 ' + d.ornek + '\n   ' + d.aciklama;
+      }).join('\n\n');
+      var hataText = (result.hatalar || []).map(function(h){
+        return '\u2717 ' + h.yanlis + ' \u2192 ' + h.dogru + '\n   ' + h.aciklama;
+      }).join('\n\n');
+      gosterSonuc({
+        puan     : result.toplam || 0,
+        iyi      : iyiText,
+        gelistir : result.genel_yorum || '',
+        hatalar  : hataText
+      });
+    } else {
+      sonPuan = 0;
+      gosterSonuc({puan:0, iyi:'', gelistir: result.error || 'Bir hata olu\u015ftu.', hatalar:''});
     }
-    if (typeof result.puan !== 'number') result.puan = 50;
-    sonPuan = result.puan;
-    gosterSonuc(result);
+  };
 
-  } catch(err) {
+  var url = SCRIPT_URL + '?callback=' + cbName + '&data=' + encodeURIComponent(JSON.stringify(payload));
+  var script = document.createElement('script');
+  script.id = 'jsonp_script';
+  script.src = url;
+  script.onerror = function() {
     clearInterval(lTimer);
     sonPuan = 0;
-    gosterSonuc({puan:0, iyi:'', gelistir:'Bağlantı hatası oluştu. Öğretmeninize bildirin.', hatalar:''});
-  }
+    gosterSonuc({puan:0, iyi:'', gelistir:'Ba\u011flant\u0131 hatas\u0131. \u0130nternet ba\u011flant\u0131n\u0131z\u0131 kontrol edin.', hatalar:''});
+  };
+  document.head.appendChild(script);
 }
+
 
 function gosterSonuc(r) {
   document.getElementById('resPuan').textContent = r.puan;
@@ -355,6 +371,17 @@ function gosterSonuc(r) {
   setFb('fbHataBlok','fbHata','hata', r.hatalar);
 
   document.getElementById('resYaziKutu').textContent = sonYazi;
+  // Otomatik kayıt mesajı
+  var km = document.getElementById('kayitMsg');
+  if (km) {
+    if (r.puan > 0) {
+      km.textContent = '✅ ' + ogrenciAdi + ' – "' + ODEV_ADI + '" ödevi kaydedildi. Puan: ' + r.puan + '/100';
+    } else {
+      km.textContent = '⚠️ Değerlendirme tamamlanamadı, öğretmeninize bildirin.';
+      km.className = 'kayit-mesaj err';
+    }
+    km.style.display = 'block';
+  }
   goster('s-result');
 }
 
@@ -379,7 +406,7 @@ function sheetsGonder() {
   btn.disabled = true;
   btn.textContent = 'Gönderiliyor…';
 
-  var yaziKayit = sonYazi.length > 1500 ? sonYazi.substring(0, 1500) + '…' : sonYazi;
+  var yaziKayit = sonYazi;
 
   var payload = JSON.stringify({
     tip     : 'yazma',
