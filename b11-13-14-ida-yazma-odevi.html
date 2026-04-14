@@ -10,434 +10,250 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;backgrou
 .card{background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(100,80,160,.15);max-width:760px;width:100%;padding:2rem}
 h1{color:#6c4eb8;font-size:1.2rem;margin-bottom:1.4rem;text-align:center;line-height:1.4}
 .screen{display:none}.screen.active{display:block}
-
-/* Badge */
 .badge-row{display:flex;gap:.5rem;align-items:center;margin-bottom:1rem;flex-wrap:wrap}
-.badge{display:inline-block;padding:.2rem .65rem;border-radius:5px;font-size:.72rem;font-weight:700;letter-spacing:.4px}
+.badge{display:inline-block;padding:.2rem .65rem;border-radius:5px;font-size:.72rem;font-weight:700}
 .badge-grup{background:#e8e0f8;color:#6c4eb8}
 .badge-hafta{background:#fff3cd;color:#856404}
 .badge-yazi{background:#d1ecf1;color:#0c5460}
-
-/* Intro */
 select{width:100%;padding:.75rem;border:2px solid #d0c8f0;border-radius:8px;color:#333;background:#fff;margin-bottom:1rem;outline:none;font-size:.95rem;font-family:inherit}
 select:focus{border-color:#6c4eb8}
-.btn-start{width:100%;padding:.85rem;background:#6c4eb8;color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;transition:background .2s}
+.btn-start{width:100%;padding:.85rem;background:#6c4eb8;color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer}
 .btn-start:hover{background:#5a3ea0}
-
-/* Yönerge */
 .yonerge-card{background:#f8f5ff;border-radius:10px;padding:1.1rem 1.3rem;margin-bottom:1.2rem;border:1px solid #e0d8f8}
 .yonerge-card h3{color:#6c4eb8;font-size:.82rem;letter-spacing:.6px;margin-bottom:.8rem;text-transform:uppercase}
 .yonerge-item{margin-bottom:.7rem;font-size:.88rem;color:#333;line-height:1.6}
 .yonerge-item strong{color:#6c4eb8}
 .yonerge-item ul{margin:.3rem 0 0 1.1rem}
 .yonerge-item ul li{margin-bottom:.15rem}
-.format-grid{display:grid;grid-template-columns:auto 1fr;gap:.3rem .7rem;margin-top:.4rem;font-size:.85rem}
-.format-num{background:#6c4eb8;color:#fff;border-radius:4px;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0;margin-top:.15rem}
+.format-grid{display:grid;grid-template-columns:24px 1fr;gap:.3rem .7rem;margin-top:.4rem;font-size:.85rem}
+.format-num{background:#6c4eb8;color:#fff;border-radius:4px;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700}
 .format-text{color:#333;line-height:1.5;padding-top:.1rem}
 .format-text em{color:#6c4eb8;font-style:normal;font-weight:600}
-
-/* Textarea */
 .kelime-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem}
 .kelime-label{font-size:.8rem;color:#888}
 .kelime-sayac{font-weight:700;font-size:.88rem;color:#999}
 .kelime-sayac.az{color:#e05c5c}
 .kelime-sayac.iyi{color:#2e9e6b}
 .kelime-sayac.cok{color:#e08c00}
-textarea{width:100%;min-height:280px;padding:.9rem;border:2px solid #d0c8f0;border-radius:10px;font-size:.9rem;line-height:1.75;resize:vertical;outline:none;font-family:inherit;color:#333;transition:border-color .2s}
+textarea{width:100%;min-height:280px;padding:.9rem;border:2px solid #d0c8f0;border-radius:10px;font-size:.9rem;line-height:1.75;resize:vertical;outline:none;font-family:inherit;color:#333}
 textarea:focus{border-color:#6c4eb8}
 .kelime-hint{font-size:.77rem;margin-top:.35rem;min-height:1.1rem}
 .kelime-hint.az{color:#e05c5c}
 .kelime-hint.iyi{color:#2e9e6b}
 .kelime-hint.cok{color:#e08c00}
-.btn-teslim{width:100%;padding:.9rem;background:#2e9e6b;color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:.9rem;transition:background .2s}
+.btn-teslim{width:100%;padding:.9rem;background:#2e9e6b;color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:.9rem}
 .btn-teslim:hover:not(:disabled){background:#257a55}
 .btn-teslim:disabled{background:#a8d5bf;cursor:not-allowed}
-
-/* Loading */
 .loading-wrap{text-align:center;padding:3rem 0}
 .spinner{width:52px;height:52px;border:5px solid #e8e0f8;border-top-color:#6c4eb8;border-radius:50%;animation:spin .9s linear infinite;margin:0 auto 1.2rem}
 @keyframes spin{to{transform:rotate(360deg)}}
-.loading-msg{color:#666;font-size:.92rem;min-height:1.4rem}
-
-/* Result */
+.loading-msg{color:#666;font-size:.92rem}
 .result-top{display:flex;align-items:center;gap:1.2rem;margin-bottom:1.3rem;flex-wrap:wrap}
 .puan-daire{width:100px;height:100px;border-radius:50%;border:5px solid #6c4eb8;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0}
 .puan-sayi{font-size:2.2rem;font-weight:800;color:#6c4eb8;line-height:1}
 .puan-100{font-size:.65rem;color:#aaa}
-.result-mesaj{flex:1}
 .result-isim{font-weight:700;color:#333;font-size:.95rem;margin-bottom:.3rem}
 .result-yorum{font-size:.85rem;color:#666;line-height:1.5}
-
 .fb-blok{margin-bottom:.9rem}
-.fb-baslik{display:inline-flex;align-items:center;gap:.35rem;font-size:.78rem;font-weight:700;letter-spacing:.4px;padding:.25rem .7rem;border-radius:5px;margin-bottom:.45rem}
+.fb-baslik{display:inline-flex;align-items:center;gap:.35rem;font-size:.78rem;font-weight:700;padding:.25rem .7rem;border-radius:5px;margin-bottom:.45rem}
 .fb-baslik.iyi{background:#e6f9f0;color:#2e9e6b}
 .fb-baslik.gelistir{background:#fff3cd;color:#856404}
 .fb-baslik.hata{background:#fde8e8;color:#d94040}
-.fb-icerik{font-size:.87rem;color:#444;line-height:1.7;border:1px solid #ede9f8;border-radius:8px;padding:.75rem 1rem;background:#fdfcff}
-
+.fb-icerik{font-size:.87rem;color:#444;line-height:1.7;border:1px solid #ede9f8;border-radius:8px;padding:.75rem 1rem;background:#fdfcff;white-space:pre-wrap}
 .detail-toggle{background:none;border:none;cursor:pointer;font-size:.78rem;color:#aaa;padding:.2rem 0;display:block;margin-bottom:.4rem;text-align:left;width:100%}
-.detail-toggle:hover{color:#888}
 .ogrenci-yazi-kutu{background:#fafafa;border:1px solid #ede9f8;border-radius:8px;padding:.8rem 1rem;font-size:.83rem;color:#555;line-height:1.7;white-space:pre-wrap;max-height:200px;overflow-y:auto;margin-bottom:1rem}
-
-.btn-kaydet{width:100%;padding:.8rem;background:#6c4eb8;color:#fff;border:none;border-radius:10px;font-size:.95rem;font-weight:700;cursor:pointer;margin-bottom:.5rem;transition:background .2s}
-.btn-kaydet:hover:not(:disabled){background:#5a3ea0}
-.btn-kaydet:disabled{background:#b5a8d8;cursor:not-allowed}
-.kayit-mesaj{padding:.7rem 1rem;border-radius:8px;font-size:.84rem;text-align:center;display:none;margin-top:.4rem}
+.kayit-mesaj{padding:.7rem 1rem;border-radius:8px;font-size:.84rem;text-align:center;display:none;margin-top:.5rem}
 .kayit-mesaj.ok{background:#e6f9f0;color:#1a5c3a}
 .kayit-mesaj.err{background:#fde8e8;color:#8b1a1a}
-
-@media(max-width:500px){
-  .result-top{flex-direction:column;align-items:flex-start}
-  .format-grid{font-size:.82rem}
-}
 </style>
 </head>
 <body>
 <div class="card">
-  <h1>✍️ B1.1 – 4. Hafta 13-14. Ders<br>Yazma Ödevi</h1>
+  <h1>&#x270D; B1.1 &#8211; 4. Hafta 13-14. Ders<br>Yazma &#214;devi</h1>
 
-  <!-- ─── INTRO ─── -->
   <div class="screen active" id="s-intro">
     <div class="badge-row">
       <span class="badge badge-grup">B1.1</span>
       <span class="badge badge-hafta">4. Hafta</span>
       <span class="badge badge-yazi">YAZMA</span>
     </div>
-    <p style="font-size:.88rem;color:#666;margin-bottom:1rem">Adını seç ve ödeve başla. Yazını teslim ettiğinde anında geri bildirim alacaksın.</p>
+    <p style="font-size:.88rem;color:#666;margin-bottom:1rem">Ad&#305;n&#305; se&#231; ve &#246;deve ba&#351;la. Yazman&#305; teslim etti&#287;inde an&#305;nda geri bildirim alacaks&#305;n.</p>
     <select id="ogrenciSec">
-      <option value="">— Adını seç —</option>
+      <option value="">&#8212; Ad&#305;n&#305; se&#231; &#8212;</option>
       <option>Gencay Agocuk</option>
-      <option>Ufuk Aydın</option>
-      <option>Pelinsu Damgacı</option>
-      <option>Kübra Bulut</option>
-      <option>Ceylin Öz</option>
-      <option>Simge Güler</option>
-      <option>Esra Özçeşmeci</option>
-      <option>Kayhan Açan</option>
+      <option>Ufuk Ayd&#305;n</option>
+      <option>Pelinsu Damgac&#305;</option>
+      <option>K&#252;bra Bulut</option>
+      <option>Ceylin &#214;z</option>
+      <option>Simge G&#252;ler</option>
+      <option>Esra &#214;z&#231;e&#351;meci</option>
+      <option>Kayhan A&#231;an</option>
       <option>Nur O. Demirci</option>
-      <option>Umre Gül</option>
+      <option>Umre G&#252;l</option>
       <option>Nihan Karagedik</option>
-      <option>Deneme Öğrencisi</option>
+      <option>Deneme &#214;&#287;rencisi</option>
     </select>
-    <button class="btn-start" onclick="baslat()">Ödeve Başla →</button>
+    <button class="btn-start" onclick="baslat()">&#214;deve Ba&#351;la &#8594;</button>
   </div>
 
-  <!-- ─── YAZMA ─── -->
   <div class="screen" id="s-yazma">
     <div class="yonerge-card">
-      <h3>📌 Görev — Resmi E-posta Yaz</h3>
-
-      <div class="yonerge-item">
-        <strong>Senaryo:</strong> Yeni bir şehirde yaşıyorsun ve İspanyolca kursuna katılmak istiyorsun. Bir dil okuluna resmi bir e-posta yazarak bilgi iste.
-      </div>
-
-      <div class="yonerge-item">
-        <strong>E-postanda mutlaka şunlara yer ver:</strong>
+      <h3>&#128204; G&#246;rev &#8212; Resmi E-posta Yaz</h3>
+      <div class="yonerge-item"><strong>Senaryo:</strong> Yeni bir &#351;ehirde ya&#351;&#305;yorsun ve &#304;spanyolca kursuna kat&#305;lmak istiyorsun. Bir dil okulu na resmi bir e-posta yazarak bilgi iste.</div>
+      <div class="yonerge-item"><strong>E-postanda mutlaka &#351;unlara yer ver:</strong>
         <ul>
-          <li>Hangi kurslarla ilgilendiğini</li>
-          <li>Hangi seviyede olduğunu</li>
-          <li>Derslerin ne zaman başladığını</li>
-          <li>Fiyatın ne olduğunu</li>
-          <li>Online seçenek olup olmadığını</li>
-          <li>Kursa <em>acil</em> olarak başlamak istediğini</li>
-          <li>Bütçenin <em>sınırlı</em> olduğunu</li>
+          <li>Hangi kurslarla ilgilendi&#287;ini</li>
+          <li>Hangi seviyede oldu&#287;unu</li>
+          <li>Derslerin ne zaman ba&#351;lad&#305;&#287;&#305;n&#305;</li>
+          <li>Fiyat&#305;n ne oldu&#287;unu</li>
+          <li>Online se&#231;enek olup olmad&#305;&#287;&#305;n&#305;</li>
+          <li>Kursa <em>acil</em> olarak ba&#351;lamak istedi&#287;ini</li>
+          <li>B&#252;t&#231;enin <em>s&#305;n&#305;rl&#305;</em> oldu&#287;unu</li>
         </ul>
       </div>
-
-      <div class="yonerge-item">
-        <strong>Format (ZORUNLU — sırasıyla):</strong>
+      <div class="yonerge-item"><strong>Format (ZORUNLU):</strong>
         <div class="format-grid">
-          <div class="format-num">1</div><div class="format-text"><em>Saludo formal</em> — Estimados señores / Estimada señora / señor</div>
-          <div class="format-num">2</div><div class="format-text"><em>Introducción</em> — Kendini kısaca tanıt</div>
-          <div class="format-num">3</div><div class="format-text"><em>Cuerpo</em> — Sorularını sor + özel durumunu açıkla (acil + bütçe)</div>
-          <div class="format-num">4</div><div class="format-text"><em>Cierre</em> — Teşekkür et</div>
-          <div class="format-num">5</div><div class="format-text"><em>Despedida</em> — Atentamente / Saludos cordiales</div>
+          <div class="format-num">1</div><div class="format-text"><em>Saludo formal</em> &#8212; Estimados se&#241;ores / Estimada se&#241;ora</div>
+          <div class="format-num">2</div><div class="format-text"><em>Introducci&#243;n</em> &#8212; Kendini k&#305;saca tan&#305;t</div>
+          <div class="format-num">3</div><div class="format-text"><em>Cuerpo</em> &#8212; Sorular&#305;n&#305; sor + &#246;zel durumunu a&#231;&#305;kla</div>
+          <div class="format-num">4</div><div class="format-text"><em>Cierre</em> &#8212; Te&#351;ekk&#252;r et</div>
+          <div class="format-num">5</div><div class="format-text"><em>Despedida</em> &#8212; Atentamente / Saludos cordiales</div>
         </div>
       </div>
-
-      <div class="yonerge-item" style="margin-bottom:0">
-        <strong>Dil şartı:</strong> 350–400 kelime İspanyolca. Resmi üslup zorunlu.
-      </div>
+      <div class="yonerge-item" style="margin-bottom:0"><strong>Dil &#351;art&#305;:</strong> 350&#8211;400 kelime &#304;spanyolca. Resmi &#252;slup zorunlu.</div>
     </div>
-
     <div class="kelime-bar">
-      <span class="kelime-label">Kelime sayısı</span>
-      <span class="kelime-sayac" id="kSayac">0 / 350–400</span>
+      <span class="kelime-label">Kelime say&#305;s&#305;</span>
+      <span class="kelime-sayac" id="kSayac">0 / 350&#8211;400</span>
     </div>
-    <textarea id="yaziAlani" placeholder="E-postanı buraya yaz…" oninput="kelimeGuncelle()"></textarea>
+    <textarea id="yaziAlani" placeholder="E-postan&#305; buraya yaz..." oninput="kelimeGuncelle()"></textarea>
     <div class="kelime-hint" id="kHint"></div>
-    <button class="btn-teslim" id="btnTeslim" onclick="teslimEt()" disabled>Değerlendirmeye Gönder ✓</button>
+    <button class="btn-teslim" id="btnTeslim" onclick="teslimEt()" disabled>De&#287;erlendirmeye G&#246;nder &#10003;</button>
   </div>
 
-  <!-- ─── LOADING ─── -->
   <div class="screen" id="s-loading">
     <div class="loading-wrap">
       <div class="spinner"></div>
-      <div class="loading-msg" id="loadingMsg">Yazın okunuyor…</div>
+      <div class="loading-msg" id="loadingMsg">Yaz&#305;n okunuyor...</div>
     </div>
   </div>
 
-  <!-- ─── RESULT ─── -->
   <div class="screen" id="s-result">
     <div class="result-top">
       <div class="puan-daire">
-        <div class="puan-sayi" id="resPuan">—</div>
+        <div class="puan-sayi" id="resPuan">&#8212;</div>
         <div class="puan-100">/ 100</div>
       </div>
-      <div class="result-mesaj">
+      <div>
         <div class="result-isim" id="resIsim"></div>
         <div class="result-yorum" id="resYorum"></div>
       </div>
     </div>
-
     <div class="fb-blok" id="fbIyiBlok" style="display:none">
-      <div class="fb-baslik iyi">✅ İyi Yaptıkların</div>
+      <div class="fb-baslik iyi">&#10003; &#304;yi Yapt&#305;klar&#305;n</div>
       <div class="fb-icerik" id="fbIyi"></div>
     </div>
     <div class="fb-blok" id="fbGelistirBlok" style="display:none">
-      <div class="fb-baslik gelistir">💡 Geliştirebileceklerin</div>
+      <div class="fb-baslik gelistir">&#128161; Genel De&#287;erlendirme</div>
       <div class="fb-icerik" id="fbGelistir"></div>
     </div>
     <div class="fb-blok" id="fbHataBlok" style="display:none">
-      <div class="fb-baslik hata">❌ Dikkat Edilmesi Gerekenler</div>
+      <div class="fb-baslik hata">&#10060; D&#252;zeltilmesi Gerekenler</div>
       <div class="fb-icerik" id="fbHata"></div>
     </div>
-
-    <button class="detail-toggle" onclick="toggleYazi(this)">▸ Yazdığın metni gör</button>
+    <button class="detail-toggle" onclick="toggleYazi(this)">&#9656; Yazd&#305;&#287;&#305;n metni g&#246;r</button>
     <div class="ogrenci-yazi-kutu" id="resYaziKutu" style="display:none"></div>
-
-    <div class="kayit-mesaj ok" id="kayitMsg" style="display:block"></div>
+    <div class="kayit-mesaj" id="kayitMsg"></div>
   </div>
 </div>
-
 <script>
-/* ════════════════════════════════════════════════
-   🔧 AYARLAR
-   ════════════════════════════════════════════════ */
-var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
-var ODEV_ADI   = 'H4 – 13-14.Ders';
-var GRUP       = 'B1.1';
-var MIN_KEL    = 350;
-var MAX_KEL    = 420; // biraz tolerans
+var SCRIPT_URL='https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
+var API_KEY='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';
+var ODEV_ADI='H4 \u2013 13-14.Ders';
+var GRUP='B1.1';
+var MIN_KEL=350,MAX_KEL=420;
+var ogrenciAdi='',sonPuan=0,sonYazi='';
 
-var SISTEM = `Eres un profesor de español para estudiantes turcos de nivel B1.1.
-Tu tarea es evaluar el correo electrónico formal que ha escrito el estudiante.
-
-TAREA ASIGNADA:
-El estudiante debía escribir un correo electrónico formal a una escuela de idiomas para pedir información sobre cursos de español. El correo debía incluir:
-- Saludo formal (Estimados señores / Estimada señora/señor)
-- Introducción personal breve
-- Preguntas sobre: qué cursos hay, nivel, fechas de inicio, precios, opción online
-- Mencionar que necesita empezar urgentemente (urgencia)
-- Mencionar que tiene un presupuesto limitado
-- Cierre (agradecimiento)
-- Despedida formal (Atentamente / Saludos cordiales)
-Longitud requerida: 350-400 palabras
-
-CRITERIOS DE EVALUACIÓN (total 100 puntos):
-1. Formato y estructura del correo (saludo, intro, cuerpo, cierre, despedida) → hasta 25 puntos
-2. Contenido completo (todas las preguntas + urgencia + presupuesto) → hasta 25 puntos
-3. Registro formal y vocabulario formal → hasta 20 puntos
-4. Gramática (conjugaciones, género, número, preposiciones, conectores) → hasta 20 puntos
-5. Longitud adecuada (350-400 palabras) → hasta 10 puntos
-
-Responde ÚNICAMENTE en este formato JSON (sin texto adicional, sin bloques de código):
-{
-  "puan": <0-100>,
-  "format_puan": <0-25>,
-  "icerik_puan": <0-25>,
-  "iyi": "<En turco: máx. 2-3 frases sobre lo que hizo bien>",
-  "gelistir": "<En turco: máx. 2-3 frases sobre qué puede mejorar>",
-  "hatalar": "<En turco: lista de errores concretos de gramática/vocabulario/formato, o cadena vacía si no hay errores importantes>"
-}`;
-/* ════════════════════════════════════════════════ */
-
-var ogrenciAdi = '';
-var sonPuan = 0;
-var sonYazi = '';
-
-// ── BAŞLAT ──
-function baslat() {
-  var ad = document.getElementById('ogrenciSec').value;
-  if (!ad) { alert('Lütfen adını seç.'); return; }
-  ogrenciAdi = ad;
-  goster('s-yazma');
+function baslat(){
+  var ad=document.getElementById('ogrenciSec').value;
+  if(!ad){alert('L\u00fctfen ad\u0131n\u0131 se\u00e7.');return;}
+  ogrenciAdi=ad;goster('s-yazma');
 }
 
-// ── KELİME SAYICI ──
-function kelimeGuncelle() {
-  var txt = document.getElementById('yaziAlani').value.trim();
-  var n = txt ? txt.split(/\s+/).length : 0;
-  var sayac = document.getElementById('kSayac');
-  var hint  = document.getElementById('kHint');
-  sayac.textContent = n + ' / 350–400';
-  sayac.className = 'kelime-sayac';
-  hint.className  = 'kelime-hint';
-  if (n < MIN_KEL) {
-    sayac.classList.add('az'); hint.classList.add('az');
-    hint.textContent = 'Daha ' + (MIN_KEL - n) + ' kelime daha ekle.';
-  } else if (n > MAX_KEL) {
-    sayac.classList.add('cok'); hint.classList.add('cok');
-    hint.textContent = (n - MAX_KEL) + ' kelime fazla — biraz kısalt.';
-  } else {
-    sayac.classList.add('iyi'); hint.classList.add('iyi');
-    hint.textContent = '✓ Kelime sayısı uygun!';
-  }
-  document.getElementById('btnTeslim').disabled = (n < MIN_KEL || n > MAX_KEL);
+function kelimeGuncelle(){
+  var txt=document.getElementById('yaziAlani').value.trim();
+  var n=txt?txt.split(/\s+/).length:0;
+  var s=document.getElementById('kSayac'),h=document.getElementById('kHint');
+  s.textContent=n+' / 350\u2013400';s.className='kelime-sayac';h.className='kelime-hint';
+  if(n<MIN_KEL){s.classList.add('az');h.classList.add('az');h.textContent='Daha '+(MIN_KEL-n)+' kelime ekle.';}
+  else if(n>MAX_KEL){s.classList.add('cok');h.classList.add('cok');h.textContent=(n-MAX_KEL)+' kelime fazla.';}
+  else{s.classList.add('iyi');h.classList.add('iyi');h.textContent='\u2713 Kelime say\u0131s\u0131 uygun!';}
+  document.getElementById('btnTeslim').disabled=(n<MIN_KEL||n>MAX_KEL);
 }
 
-// ── TESLİM ──
-function teslimEt() {
-  sonYazi = document.getElementById('yaziAlani').value.trim();
-  if (!sonYazi) return;
-  goster('s-loading');
-  degerlendir();
+function teslimEt(){
+  sonYazi=document.getElementById('yaziAlani').value.trim();
+  if(!sonYazi)return;
+  goster('s-loading');degerlendir();
 }
 
-var loadMsgs = ['Yazın okunuyor…','E-posta formatı kontrol ediliyor…','Gramer analizi yapılıyor…','İçerik değerlendiriliyor…','Puan hesaplanıyor…'];
-var lIdx = 0, lTimer;
+var msgs=['Yaz\u0131n okunuyor...','Format kontrol ediliyor...','Gramer analizi...','Puan hesaplan\u0131yor...'];
+var li=0,lt;
 
-function degerlendir() {
-  lIdx = 0;
-  clearInterval(lTimer);
-  lTimer = setInterval(function(){
-    document.getElementById('loadingMsg').textContent = loadMsgs[lIdx % loadMsgs.length];
-    lIdx++;
-  }, 2000);
-
-  var payload = {
-    tip     : 'yazma',
-    ogrenci : ogrenciAdi,
-    odev    : ODEV_ADI,
-    grup    : GRUP,
-    yazi    : sonYazi,
-    tarih   : new Date().toLocaleDateString('tr-TR'),
-    saat    : new Date().toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'})
-  };
-
-  // JSONP ile gönder
-  var cbName = 'cb' + Date.now();
-  window[cbName] = function(result) {
-    clearInterval(lTimer);
-    var s = document.getElementById('_jsonp');
-    if (s) s.remove();
-    delete window[cbName];
-    if (result && result.ok) {
-      sonPuan = result.toplam || 0;
-      var iyiText = (result.dogru_kullanimlar || []).map(function(d){
-        return d.ornek + '\n\u2192 ' + d.aciklama;
-      }).join('\n\n');
-      var hataText = (result.hatalar || []).map(function(h){
-        return '\u274c ' + h.yanlis + '\n\u2714 Doğrusu: ' + h.dogru + '\n\u2139 ' + h.aciklama;
-      }).join('\n\n');
-      gosterSonuc({
-        puan: result.toplam || 0,
-        iyi: iyiText,
-        gelistir: result.genel_yorum || '',
-        hatalar: hataText
-      });
-    } else {
-      sonPuan = 0;
-      gosterSonuc({puan:0, iyi:'', gelistir:(result&&result.error)||'Bir hata oluştu.', hatalar:''});
-    }
-  };
-
-  var sc = document.createElement('script');
-  sc.id = '_jsonp';
-  sc.src = SCRIPT_URL + '?callback=' + cbName + '&data=' + encodeURIComponent(JSON.stringify(payload));
-  sc.onerror = function() {
-    clearInterval(lTimer);
-    document.getElementById('_jsonp').remove();
-    gosterSonuc({puan:0, iyi:'', gelistir:'Bağlantı hatası. Tekrar deneyin.', hatalar:''});
-  };
-  document.head.appendChild(sc);
+function degerlendir(){
+  li=0;clearInterval(lt);
+  lt=setInterval(function(){document.getElementById('loadingMsg').textContent=msgs[li++%msgs.length];},2000);
+  fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','x-api-key':API_KEY,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+    body:JSON.stringify({
+      model:'claude-haiku-4-5-20251001',max_tokens:1200,
+      system:'Eres un profesor de espanol para estudiantes turcos de nivel B1.1. Evalua el correo electronico formal. La tarea: correo a escuela de idiomas con saludo formal, introduccion, preguntas sobre cursos/nivel/fechas/precios/online, urgencia y presupuesto limitado, 350-400 palabras. Criterios: Formato(25)+Contenido(25)+Registro(20)+Gramatica(20)+Longitud(10)=100. SOLO JSON puro: {"toplam":numero,"dogru_kullanimlar":[{"ornek":"x","aciklama":"Turkce"}],"hatalar":[{"yanlis":"x","dogru":"x","aciklama":"Turkce"}],"genel_yorum":"Turkce 3-4 cumle"}',
+      messages:[{role:'user',content:'Ogrenci: '+ogrenciAdi+'\n\n'+sonYazi}]
+    })
+  })
+  .then(function(r){return r.json();})
+  .then(function(data){
+    clearInterval(lt);
+    var raw=data.content[0].text.trim();
+    var d=JSON.parse(raw.substring(raw.indexOf('{'),raw.lastIndexOf('}')+1));
+    sonPuan=d.toplam||0;
+    var iyi=(d.dogru_kullanimlar||[]).map(function(x){return '\u2713 '+x.ornek+'\n   '+x.aciklama;}).join('\n\n');
+    var hata=(d.hatalar||[]).map(function(x){return '\u274c '+x.yanlis+' \u2192 '+x.dogru+'\n   '+x.aciklama;}).join('\n\n');
+    gosterSonuc({puan:sonPuan,iyi:iyi,gelistir:d.genel_yorum||'',hatalar:hata});
+    fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},
+      body:JSON.stringify({tip:'yazma',ogrenci:ogrenciAdi,odev:ODEV_ADI,grup:GRUP,puan:sonPuan,yazi:sonYazi,
+        tarih:new Date().toLocaleDateString('tr-TR'),saat:new Date().toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'})})});
+  })
+  .catch(function(err){clearInterval(lt);gosterSonuc({puan:0,iyi:'',gelistir:'Hata: '+err.message,hatalar:''}); });
 }
 
-
-function gosterSonuc(r) {
-  document.getElementById('resPuan').textContent = r.puan;
-  document.getElementById('resIsim').textContent = ogrenciAdi;
-
-  var y = '';
-  if (r.puan >= 90)      y = 'Mükemmel bir e-posta! 🎉 Gerçekten çok iyi bir iş çıkardın.';
-  else if (r.puan >= 75) y = 'Çok iyi iş! 👏 Küçük eksiklerini gidersen mükemmel olacak.';
-  else if (r.puan >= 60) y = 'İyi bir çalışma. 💪 Gelişim alanlarına dikkat edersen çok daha güçlü yazılar yazarsın.';
-  else                   y = 'Bu ödevden çok şey öğrendin. 🌱 Geri bildirimleri dikkate alarak tekrar yaz.';
-  document.getElementById('resYorum').textContent = y;
-
-  setFb('fbIyiBlok','fbIyi','iyi', r.iyi);
-  setFb('fbGelistirBlok','fbGelistir','gelistir', r.gelistir);
-  setFb('fbHataBlok','fbHata','hata', r.hatalar);
-
-  document.getElementById('resYaziKutu').textContent = sonYazi;
-  // Otomatik kayıt mesajı
-  var km = document.getElementById('kayitMsg');
-  if (km) {
-    if (r.puan > 0) {
-      km.textContent = '✅ ' + ogrenciAdi + ' – "' + ODEV_ADI + '" ödevi kaydedildi. Puan: ' + r.puan + '/100';
-    } else {
-      km.textContent = '⚠️ Değerlendirme tamamlanamadı, öğretmeninize bildirin.';
-      km.className = 'kayit-mesaj err';
-    }
-    km.style.display = 'block';
-  }
+function gosterSonuc(r){
+  document.getElementById('resPuan').textContent=r.puan;
+  document.getElementById('resIsim').textContent=ogrenciAdi;
+  var y=r.puan>=90?'M\u00fckemmel! \uD83C\uDF89':r.puan>=75?'\u00c7ok iyi! \uD83D\uDC4F':r.puan>=60?'\u0130yi \u00e7al\u0131\u015fma! \uD83D\uDCAA':'Devam et! \uD83C\uDF31';
+  document.getElementById('resYorum').textContent=y;
+  setFb('fbIyiBlok','fbIyi',r.iyi);
+  setFb('fbGelistirBlok','fbGelistir',r.gelistir);
+  setFb('fbHataBlok','fbHata',r.hatalar);
+  document.getElementById('resYaziKutu').textContent=sonYazi;
+  var km=document.getElementById('kayitMsg');
+  km.style.display='block';
+  km.className=r.puan>0?'kayit-mesaj ok':'kayit-mesaj err';
+  km.textContent=r.puan>0?'\u2705 '+ogrenciAdi+' \u2013 Puan: '+r.puan+'/100 \u2014 Sheets\u2019e kaydedildi.':'\u26a0\ufe0f De\u011ferlendirme tamamlanamad\u0131.';
   goster('s-result');
 }
 
-function setFb(blokId, txtId, tip, icerik) {
-  if (icerik && icerik.trim()) {
-    document.getElementById(txtId).textContent = icerik;
-    document.getElementById(blokId).style.display = 'block';
-  }
+function setFb(b,t,ic){if(ic&&ic.trim()){document.getElementById(t).textContent=ic;document.getElementById(b).style.display='block';}}
+
+function toggleYazi(btn){
+  var k=document.getElementById('resYaziKutu'),a=k.style.display!=='none';
+  k.style.display=a?'none':'block';
+  btn.textContent=a?'\u25b8 Yazd\u0131\u011f\u0131n metni g\u00f6r':'\u25be Yazd\u0131\u011f\u0131n metni gizle';
 }
 
-function toggleYazi(btn) {
-  var kutu = document.getElementById('resYaziKutu');
-  var acik = kutu.style.display !== 'none';
-  kutu.style.display = acik ? 'none' : 'block';
-  btn.textContent = acik ? '▸ Yazdığın metni gör' : '▾ Yazdığın metni gizle';
-}
-
-// ── GOOGLE SHEETS ──
-function sheetsGonder() {
-  var btn = document.getElementById('btnKaydet');
-  var msg = document.getElementById('kayitMsg');
-  btn.disabled = true;
-  btn.textContent = 'Gönderiliyor…';
-
-  var yaziKayit = sonYazi;
-
-  var payload = JSON.stringify({
-    tip     : 'yazma',
-    ogrenci : ogrenciAdi,
-    odev    : ODEV_ADI,
-    grup    : GRUP,
-    puan    : sonPuan,
-    yazi    : yaziKayit,
-    tarih   : new Date().toLocaleDateString('tr-TR'),
-    saat    : new Date().toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'})
-  });
-
-  fetch(SCRIPT_URL, {
-    method:'POST', mode:'no-cors',
-    headers:{'Content-Type':'text/plain'},
-    body: payload
-  }).then(function(){
-    tamam(btn, msg);
-  }).catch(function(){
-    tamam(btn, msg); // no-cors her zaman hata gibi görünebilir
-  });
-}
-
-function tamam(btn, msg) {
-  btn.textContent = '✓ Kaydedildi';
-  msg.className = 'kayit-mesaj ok';
-  msg.style.display = 'block';
-  msg.textContent = '✅ ' + ogrenciAdi + ' – "' + ODEV_ADI + '" ödevi Google Sheets\'e kaydedildi. Puan: ' + sonPuan + '/100';
-}
-
-function goster(id) {
-  document.querySelectorAll('.screen').forEach(function(s){ s.classList.remove('active'); });
+function goster(id){
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById(id).classList.add('active');
 }
 </script>
