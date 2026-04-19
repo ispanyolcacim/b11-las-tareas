@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>B1.1 – H5 19-20. Ders Quiz</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f0eef8;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem}
+.card{background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(100,80,160,.15);max-width:720px;width:100%;padding:2rem}
+h1{color:#6c4eb8;font-size:1.3rem;margin-bottom:1.5rem;text-align:center}
+.screen{display:none}.screen.active{display:block}
+.pill{display:inline-block;background:#e8e0f8;color:#6c4eb8;border-radius:20px;padding:.25rem .9rem;font-size:.78rem;font-weight:700;margin-bottom:.75rem;letter-spacing:.3px}
+.intro-title{font-size:1.1rem;font-weight:700;color:#6c4eb8;margin-bottom:.5rem}
+.intro-sub{color:#888;font-size:.85rem;margin-bottom:.4rem}
+.intro-teacher{color:#9b7de0;font-size:.8rem;margin-bottom:1.5rem;font-style:italic}
+select,button{font-family:inherit;font-size:.95rem}
+select{width:100%;padding:.7rem;border:2px solid #d0c8f0;border-radius:8px;color:#333;background:#fff;margin-bottom:1rem;outline:none}
+select:focus{border-color:#6c4eb8}
+.btn-start{width:100%;padding:.8rem;background:#6c4eb8;color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:600;cursor:pointer}
+.btn-start:hover{background:#5a3ea0}
+.prog-bar{height:6px;background:#e8e0f8;border-radius:3px;margin-bottom:1rem;overflow:hidden}
+.prog-fill{height:100%;background:#6c4eb8;transition:width .3s;border-radius:3px}
+.q-meta{display:flex;justify-content:space-between;align-items:center;font-size:.82rem;color:#888;margin-bottom:1rem}
+.cnt{padding:.2rem .6rem;border-radius:6px;font-weight:600}
+.cnt-ok{background:#e6f9f0;color:#2e9e6b}.cnt-err{background:#fde8e8;color:#d94040}
+.q-type-badge{display:inline-block;padding:.2rem .6rem;border-radius:5px;font-size:.72rem;font-weight:700;letter-spacing:.5px;margin-bottom:.8rem}
+.badge-mc{background:#e8e0f8;color:#6c4eb8}
+.q-text{font-size:.95rem;color:#333;line-height:1.6;margin-bottom:1rem;white-space:pre-wrap}
+.opts{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem}
+.opt-btn{text-align:left;padding:.7rem 1rem;border:2px solid #d0c8f0;border-radius:9px;background:#fff;cursor:pointer;font-size:.9rem;color:#333;transition:all .15s}
+.opt-btn:hover:not(:disabled){background:#f3effb;border-color:#9b7de0}
+.opt-btn.correct{background:#e6f9f0;border-color:#2e9e6b;color:#1a5c3a;font-weight:600}
+.opt-btn.wrong{background:#fde8e8;border-color:#d94040;color:#8b1a1a}
+.opt-btn:disabled{cursor:default}
+.exp-box{display:none;background:#f8f5ff;border-left:4px solid #6c4eb8;border-radius:0 8px 8px 0;padding:.85rem 1rem;font-size:.83rem;color:#444;line-height:1.6;white-space:pre-wrap;margin-bottom:1rem}
+.exp-box.show{display:block}
+.nav{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem}
+.nav button{padding:.55rem 1.1rem;border-radius:8px;border:none;cursor:pointer;font-size:.88rem;font-weight:600}
+.btn-back{background:#e8e0f8;color:#6c4eb8}.btn-skip{background:#e8e0f8;color:#6c4eb8}
+.btn-next{background:#6c4eb8;color:#fff}.btn-finish{background:#e05c5c;color:#fff}
+.nav button:disabled{opacity:.4;cursor:not-allowed}
+.res-score{text-align:center;font-size:3.5rem;font-weight:800;color:#6c4eb8;margin:1rem 0}
+.res-stats{display:flex;gap:1rem;justify-content:center;margin-bottom:1rem}
+.res-stat{padding:.4rem 1rem;border-radius:8px;font-weight:600;font-size:.9rem}
+.res-note{text-align:center;color:#888;font-size:.82rem;margin-bottom:1.5rem}
+.btn-submit{width:100%;padding:1.1rem;background:#2e9e6b;color:#fff;border:none;border-radius:10px;font-size:1.15rem;font-weight:800;cursor:pointer;margin-bottom:.75rem;letter-spacing:.3px}
+.btn-submit:hover{background:#257a55}
+.submit-msg{background:#e6f9f0;border:1px solid #b8f0d8;border-radius:8px;padding:.7rem;font-size:.85rem;color:#1a5c3a;display:none;margin-bottom:.75rem;font-weight:600}
+.submit-warning{background:#fde8e8;border:1px solid #f5c0c0;border-radius:8px;padding:.75rem 1rem;font-size:1rem;color:#d94040;font-weight:800;text-align:center;margin-bottom:.75rem;letter-spacing:.2px}
+.btn-review{width:100%;padding:.7rem;background:#e8e0f8;color:#6c4eb8;border:none;border-radius:10px;font-size:.9rem;font-weight:600;cursor:pointer}
+.review-list{display:none;flex-direction:column;gap:.75rem;margin-top:1rem}
+.rev-item{background:#fafafa;border:1px solid #e0d8f8;border-radius:8px;padding:.75rem;font-size:.82rem}
+.rev-q{font-weight:600;color:#333;margin-bottom:.3rem}
+.rev-chosen{color:#d94040;margin-bottom:.2rem}.rev-correct{color:#2e9e6b;margin-bottom:.3rem;font-weight:600}
+.rev-exp{color:#555;line-height:1.5;white-space:pre-wrap}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);align-items:center;justify-content:center;z-index:999;padding:1rem}
+.confirm-box{background:#fff;border-radius:14px;padding:1.5rem;max-width:400px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,.25)}
+.confirm-msg{font-size:.9rem;color:#333;white-space:pre-wrap;margin-bottom:1.25rem;line-height:1.6}
+.confirm-btns{display:flex;gap:.75rem}
+.confirm-btns button{flex:1;padding:.7rem;border-radius:8px;border:none;font-size:.9rem;font-weight:700;cursor:pointer}
+.btn-cancel{background:#e8e0f8;color:#6c4eb8}.btn-ok{background:#e05c5c;color:#fff}
+.res-title{text-align:center;color:#6c4eb8;font-size:1.05rem;font-weight:700;margin-bottom:.5rem}
+</style>
+</head>
+<body>
+<div class="card">
+  <div style="text-align:center">
+    <div class="pill">5. HAFTA ODEVI | B1.1 (19-20. DERS)</div>
+  </div>
+  <h1>&#127466;&#127480; B1.1 &ndash; H5 19-20. Ders &ndash; Subjuntivo Maratonu</h1>
+
+  <div id="introScreen" class="screen active">
+    <div class="intro-title">&#128218; Adinizi secin</div>
+    <div class="intro-sub">100 soru &bull; Coktan secmeli</div>
+    <div class="intro-teacher">@ispanyolcacim &bull; Profe Hazel</div>
+    <select id="introName">
+      <option value="">-- Adinizi Secin --</option>
+      <option>Ceylin &Ouml;z</option>
+      <option>Deneme &Ouml;&#287;rencisi</option>
+      <option>Esra &Ouml;z&ccedil;e&#351;meci</option>
+      <option>Gencay Agocuk</option>
+      <option>Kayhan A&ccedil;an</option>
+      <option>K&uuml;bra Bulut</option>
+      <option>Nihan Karagedik</option>
+      <option>Nur O. Demirci</option>
+      <option>Pelinsu Damgac&#305;</option>
+      <option>Simge G&uuml;ler</option>
+      <option>Ufuk Ayd&#305;n</option>
+      <option>Umre G&uuml;l</option>
+    </select>
+    <button class="btn-start" onclick="startQuiz()">&#9654; Quize Ba&#351;la</button>
+  </div>
+
+  <div id="quizScreen" class="screen">
+    <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+    <div class="q-meta">
+      <span id="qMeta">Soru 1 / 100</span>
+      <span>
+        <span class="cnt cnt-ok" id="cntOk">&#10003; 0</span>&nbsp;
+        <span class="cnt cnt-err" id="cntErr">&#10007; 0</span>
+      </span>
+    </div>
+    <div id="qCard"></div>
+    <div class="nav">
+      <button class="btn-back" id="btnBack" onclick="goBack()" disabled>&#8592; Geri</button>
+      <button class="btn-skip" id="btnSkip" onclick="skipQ()">Atla &#8594;</button>
+      <button class="btn-next" id="btnNext" onclick="goNext()" disabled>&#8594; &#304;leri</button>
+      <button class="btn-finish" onclick="confirmFinish()">&#10004; Bitir</button>
+    </div>
+  </div>
+
+  <div id="resultScreen" class="screen">
+    <input type="hidden" id="resName" value="">
+    <div class="res-title">B1.1 &ndash; H5 19-20. Ders &ndash; Subjuntivo Maratonu</div>
+    <div class="res-score"><span id="resScore">0</span>/100</div>
+    <div class="res-stats">
+      <span class="res-stat" style="background:#e6f9f0;color:#2e9e6b" id="resOk"></span>
+      <span class="res-stat" style="background:#fde8e8;color:#d94040" id="resErr"></span>
+    </div>
+    <div class="res-note" id="resNote"></div>
+    <div class="submit-warning" id="submitWarning">&#214;DEV&#304;N&#304;Z TESLIM EDILMEDI</div>
+    <div class="submit-msg" id="submitMsg"></div>
+    <button class="btn-submit" id="btnSubmit" onclick="submitResult()">&#214;DEV&#304;N&#304;Z&#304; TESLIM ET</button>
+    <button class="btn-review" onclick="toggleReview()">&#128269; Yanl&#305;&#351;lar&#305; G&ouml;r</button>
+    <div class="review-list" id="reviewList"></div>
+    <div style="margin-top:1.5rem;text-align:center">
+      <div class="intro-title" style="margin-bottom:.5rem">Sonuc Ekrani</div>
+      <div class="intro-sub">Ogrenci se&#231;in</div>
+      <select id="resName2" onchange="syncResName()">
+        <option value="">-- Adinizi Secin --</option>
+        <option>Ceylin &Ouml;z</option>
+        <option>Deneme &Ouml;&#287;rencisi</option>
+        <option>Esra &Ouml;z&ccedil;e&#351;meci</option>
+        <option>Gencay Agocuk</option>
+        <option>Kayhan A&ccedil;an</option>
+        <option>K&uuml;bra Bulut</option>
+        <option>Nihan Karagedik</option>
+        <option>Nur O. Demirci</option>
+        <option>Pelinsu Damgac&#305;</option>
+        <option>Simge G&uuml;ler</option>
+        <option>Ufuk Ayd&#305;n</option>
+        <option>Umre G&uuml;l</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <div class="confirm-msg" id="confirmMsg"></div>
+    <div class="confirm-btns">
+      <button class="btn-cancel" onclick="closeConfirm()">&#10060; Iptal</button>
+      <button class="btn-ok" onclick="doFinish()">&#10004; Evet, Bitir</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var SCRIPT_URL='https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
+var ODEV_ADI='H5 \u2013 19-20.Ders';
+var Q=[
+{q:"1. Quiero que t\u00fa ______ a mi fiesta el s\u00e1bado.",o:["vienes","venir","vayas","vengas"],a:3,exp:"C\u00fcmlede iki farkl\u0131 \u00f6zne var (Yo quiero / t\u00fa vengas). \u0130stek bildirdi\u011fi i\u00e7in Subjuntivo kulland\u0131k."},
+{q:"2. Es necesario que nosotros ______ la verdad.",o:["sabemos","saber","sepamos","sep\u00e1is"],a:2,exp:"\"Es necesario que...\" ki\u015fisel olmayan bir gereklilik ifadesidir ve devam\u0131nda Subjuntivo gerektirir."},
+{q:"3. Mi madre me pide que ______ mi habitaci\u00f3n.",o:["limpio","limpie","limpia","limpiado"],a:1,exp:"Birinden bir \u015fey yapmas\u0131n\u0131 istemek/rica etmek (pedir que) Subjuntivo tetikler."},
+{q:"4. Te aconsejo que ______ m\u00e1s agua.",o:["bebas","bebes","beber","bebiste"],a:0,exp:"Tavsiye vermek (aconsejar que) Subjuntivo kullan\u0131m\u0131 gerektirir."},
+{q:"5. Me alegra que t\u00fa ______ bien.",o:["est\u00e9s","est\u00e1s","estar","estuviste"],a:0,exp:"\"Me alegra que...\" bir duygu ifadesidir. Farkl\u0131 \u00f6zneler oldu\u011fu i\u00e7in Subjuntivo gelir."},
+{q:"6. Es una l\u00e1stima que no ______ sol hoy.",o:["hace","haga","hacer","hizo"],a:1,exp:"\"Es una l\u00e1stima que...\" (Yaz\u0131k ki...) bir de\u011ferlendirme c\u00fcmlesidir, Subjuntivo ile devam eder."},
+{q:"7. Siento mucho que ella no ______ venir.",o:["puede","poder","pueda","podr\u00e1"],a:2,exp:"\"Siento que...\" (\u00dczül\u00fcyorum ki...) duygu belirtti\u011fi i\u00e7in Subjuntivo kullan\u0131l\u0131r."},
+{q:"8. Es importante que nosotros ______ el espa\u00f1ol.",o:["practicamos","practicar","practicaste","practiquemos"],a:3,exp:"\u00d6nem (Es importante que) belirten ifadeler Subjuntivo ister."},
+{q:"9. No creo que \u00e9l ______ raz\u00f3n.",o:["tiene","tener","tendr\u00e1","tenga"],a:3,exp:"\"Creo que\" indicativo al\u0131rken, \"No creo que\" (\u0130nanm\u0131yorum ki) \u015f\u00fcphe yaratt\u0131\u011f\u0131 i\u00e7in Subjuntivo al\u0131r."},
+{q:"10. Dudo que ellos ______ a tiempo.",o:["lleguen","llegan","llegar","llegaron"],a:0,exp:"\"Dudar que\" (\u015e\u00fcphe duymak) do\u011frudan Subjuntivo gerektiren bir fiildir."},
+{q:"11. No pienso que esta ______ una buena idea.",o:["es","ser","sea","era"],a:2,exp:"\"No pienso que...\" olumsuz d\u00fc\u015f\u00fcnce belirtti\u011fi i\u00e7in belirsizlik yaratir ve Subjuntivo ister."},
+{q:"12. Quiz\u00e1s ______ ma\u00f1ana, el cielo est\u00e1 muy gris.",o:["llueve","llueva","llover","llovi\u00f3"],a:1,exp:"\"Quiz\u00e1s\" (Belki) belirsizlik i\u00e7erdi\u011fi i\u00e7in Subjuntivo ile kullan\u0131l\u0131r."},
+{q:"13. Te lo explico para que lo ______.",o:["entiendes","entiendas","entender","entendiste"],a:1,exp:"\"Para que\" (Halsin/diye) ba\u011flac\u0131 her zaman Subjuntivo ile kullan\u0131l\u0131r."},
+{q:"14. No salgas a menos que ______ paraguas.",o:["llevas","llevar","lleves","llevaste"],a:2,exp:"\"A menos que\" (-medik\u00e7e) ba\u011flac\u0131 istisnasiz Subjuntivo gerektirir."},
+{q:"15. Puedes ir con tal de que ______ temprano.",o:["vuelves","volver","volviste","vuelvas"],a:3,exp:"\"Con tal de que\" (-\u015fart\u0131yla) ko\u015ful bildirdi\u011fi i\u00e7in Subjuntivo ile kullan\u0131l\u0131r."},
+{q:"16. Te presto el libro a condici\u00f3n de que me lo ______.",o:["devuelvas","devuelves","devolver","devolviste"],a:0,exp:"\"A condici\u00f3n de que\" (-\u015fart\u0131yla) kesinlikle Subjuntivo ister."},
+{q:"17. Cuando ______ a casa, ll\u00e1mame.",o:["llegues","llegas","llegar","llegaste"],a:0,exp:"Henüz ger\u00e7ekle\u015fmemi\u015f, gelece\u011fe dair bir \"cuando\" (oldu\u011funda) kullan\u0131m\u0131 Subjuntivo gerektirir."},
+{q:"18. En cuanto ______ las noticias, te avisar\u00e9.",o:["s\u00e9","saber","supe","sepa"],a:3,exp:"\"En cuanto\" (...olur olmaz) gelecekteki bir eylemi niteledi\u011fi i\u00e7in Subjuntivo al\u0131r."},
+{q:"19. Esperar\u00e9 hasta que t\u00fa ______ de trabajar.",o:["terminas","terminar","termines","termin\u00f3"],a:2,exp:"\"Hasta que\" (...olana kadar) gelecekteki bir s\u0131n\u0131r\u0131 belirtti\u011finde Subjuntivo ister."},
+{q:"20. Tan pronto como ______ el sol, saldremos.",o:["sale","salga","salir","sali\u00f3"],a:1,exp:"\"Tan pronto como\" (...olur olmaz) gelecekteki bir eylemi i\u015faret eder, bu y\u00fczden Subjuntivo."},
+{q:"21. No ______ (t\u00fa) tan r\u00e1pido, es peligroso.",o:["hablas","hables","hablar","habla"],a:1,exp:"Olumsuz emirlerde (t\u00fa i\u00e7in) Subjuntivo \u00e7ekimi kullan\u0131l\u0131r."},
+{q:"22. No ______ (vosotros) tarde a la clase.",o:["llegu\u00e9is","llega\u00efs","llegar","lleguen"],a:0,exp:"\"Vosotros\" i\u00e7in olumsuz emir Subjuntivo (ar -> \u00e9is) formundad\u0131r."},
+{q:"23. Por favor, no ______ (usted) la puerta.",o:["abre","abrir","abras","abra"],a:3,exp:"\"Usted\" i\u00e7in hem olumlu hem olumsuz emirlerde Subjuntivo k\u00f6k\u00fc kullan\u0131l\u0131r."},
+{q:"24. No ______ (nosotros) sin desayunar.",o:["salimos","salir","salgamos","salgan"],a:2,exp:"\"Hadi \u00e7\u0131kmayal\u0131m\" \u015feklindeki olumsuz teklif/emir yap\u0131s\u0131 Subjuntivo ister."},
+{q:"25. Quiero ______ a Espa\u00f1a este verano.",o:["que voy","vaya","ir","que vaya"],a:2,exp:"\u00d6zneler ayn\u0131 (Ben istiyorum / Ben gidece\u011fim). Bu durumda \"que\" kullan\u0131lmaz, mastar (infinitivo) gelir."},
+{q:"26. Ella espera que nosotros ______ \u00e9xito.",o:["tenemos","tener","tuvimos","tengamos"],a:3,exp:"\u00d6zneler farkl\u0131 (O umuyor / Biz ba\u015far\u0131l\u0131 olal\u0131m). Subjuntivo \u015fart."},
+{q:"27. Me alegro de ______ aqu\u00ed con vosotros.",o:["estar","est\u00e9","estoy","que est\u00e9"],a:0,exp:"Duygu ifadesinde \u00f6zneler ayn\u0131ysa \"que\" kalkar ve mastar gelir."},
+{q:"28. Es importante ______ todos los d\u00edas.",o:["estudies","estudiar","estudias","estudie"],a:1,exp:"Belirli bir ki\u015fiye hitap etmeyen genel gereklilik c\u00fcmlelerinde \"que\" yoksa mastar kullan\u0131l\u0131r."},
+{q:"29. Tal vez ______ raz\u00f3n, pero no estoy seguro.",o:["tienes","tengas","tener","tuviste"],a:1,exp:"Belirsizlik/\u015f\u00fcphe a\u011f\u0131r bast\u0131\u011f\u0131 i\u00e7in \"Tal vez\" Subjuntivo ile devam eder."},
+{q:"30. Quiz\u00e1s ______ hoy m\u00e1s tarde.",o:["viene","venir","venga","vino"],a:2,exp:"\"Quiz\u00e1s\" belirsizlik bildirdi\u011fi i\u00e7in Subjuntivo tetikler."},
+{q:"31. Posiblemente ______ fr\u00edo ma\u00f1ana.",o:["hace","hacer","hizo","haga"],a:3,exp:"\"Posiblemente\" (Muhtemelen) ihtimal belirtti\u011fi i\u00e7in Subjuntivo kullan\u0131l\u0131r."},
+{q:"32. Tal vez ______ raz\u00f3n. (Daha kesin bir ifade)",o:["tienes","tengas","tener","tuviste"],a:0,exp:"Notlardaki \"Dikkat!\" k\u0131sm\u0131na g\u00f6re; e\u011fer kesinlik/emin olma durumu fazlaysa \"Tal vez\"den sonra Indicativo gelebilir."},
+{q:"33. Lo hago sin que nadie me ______.",o:["ayude","ayuda","ayudar","ayud\u00f3"],a:0,exp:"\"Sin que\" (-maks\u0131z\u0131n / kimse yard\u0131m etmeden) her zaman Subjuntivo ister."},
+{q:"34. Aunque ______ fr\u00edo, ir\u00e9 a la playa.",o:["hace","hacer","haga","hac\u00eda"],a:2,exp:"Henüz ger\u00e7ekle\u015fmemi\u015f veya belirsiz bir durum (\"So\u011fuk olsa bile\") i\u00e7in \"Aunque\" Subjuntivo al\u0131r."},
+{q:"35. Habla de manera que todos te ______.",o:["entienden","entiendan","entender","entendieron"],a:1,exp:"Ama\u00e7 bildiren \"De manera que\" (Anlasınlar diye) yap\u0131s\u0131 Subjuntivo ister."},
+{q:"36. Sal antes de que ______ oscuro.",o:["se pone","ponerse","se puso","se ponga"],a:3,exp:"\"Antes de que\" (-meden \u00f6nce) ba\u011flac\u0131 her zaman Subjuntivo ile kullan\u0131l\u0131r."},
+{q:"37. Dudo que \u00e9l ______ la respuesta.",o:["sabe","saber","sepa","sabr\u00e1"],a:2,exp:"\"Dudar que\" \u015f\u00fcphe fiilidir. Saber -> Sepa (Irregular)."},
+{q:"38. Es mejor que nosotros ______ ahora.",o:["salimos","salir","saliste","salgamos"],a:3,exp:"\"Es mejor que\" de\u011ferlendirme yap\u0131s\u0131d\u0131r. Salir -> Salgamos."},
+{q:"39. Busco un libro que ______ interesante.",o:["sea","es","ser","era"],a:0,exp:"Belirsiz bir \u015feyi ararken (Varl\u0131\u011f\u0131 kesin de\u011fil) Subjuntivo kullan\u0131l\u0131r."},
+{q:"40. No salgas hasta que ______ de llover.",o:["para","pare","parar","par\u00f3"],a:1,exp:"Gelece\u011fe y\u00f6nelik s\u0131n\u0131r (Durana kadar) Subjuntivo gerektirir."},
+{q:"41. En caso de que ______ dinero, p\u00eddeme lo.",o:["necesitas","necesites","necesitar","necesitaste"],a:1,exp:"\"En caso de que\" (Olursa diye) ihtimal/ko\u015ful ba\u011flac\u0131d\u0131r, Subjuntivo ister."},
+{q:"42. No creo que ella ______ a la fiesta.",o:["vaya","va","ir","fue"],a:0,exp:"\"No creo que\" inan\u00e7s\u0131zl\u0131k/\u015f\u00fcphe belirtir. Ir -> Vaya."},
+{q:"43. Es una pena que no ______ buen tiempo.",o:["hace","hacer","haga","hizo"],a:2,exp:"\u00dczüntü/Duygu ifadesi Subjuntivo tetikler."},
+{q:"44. Te dar\u00e9 el regalo cuando ______ a vernos.",o:["vienes","venir","viniste","vengas"],a:3,exp:"Henüz ger\u00e7ekle\u015fmemi\u015f bir eylem (Geldi\u011finde verece\u011fim)."},
+{q:"45. \u00a1No ______ (t\u00fa) mentiras!",o:["dices","decir","di","digas"],a:3,exp:"Olumsuz emir (t\u00fa). Decir -> Digas."},
+{q:"46. Siento que t\u00fa ______ triste.",o:["est\u00e1s","estar","est\u00e9s","estuviste"],a:2,exp:"Duygu (\u00dczülüyorum ki...). Estar -> Est\u00e9s."},
+{q:"47. Es posible que ellos ______ ma\u00f1ana.",o:["vuelven","vuelvan","volver","volvieron"],a:1,exp:"\u0130htimal (Es posible que...). Volver -> Vuelvan."},
+{q:"48. Quiero que t\u00fa ______ m\u00e1s despacio.",o:["hables","hablas","hablar","hablaste"],a:0,exp:"\u0130stek (Quiero que...). Hablar -> Hables."},
+{q:"49. Te llamo para que me ______ con la tarea.",o:["ayudes","ayudas","ayudar","ayudaste"],a:0,exp:"Ama\u00e7 (Para que...). Ayudar -> Ayudes."},
+{q:"50. No quiero que \u00e9l ______ solo.",o:["come","coma","comer","comi\u00f3"],a:1,exp:"\u0130stek/Arzu (No quiero que...). Comer -> Coma."},
+{q:"51. Tan pronto como ______ el examen, celebrar\u00e9.",o:["termino","terminar","termine","termin\u00f3"],a:2,exp:"Gelecek zaman ba\u011f\u0131ml\u0131 \"as soon as\"."},
+{q:"52. No comas chocolate a menos que ______ hambre.",o:["tienes","tener","tuviste","tengas"],a:3,exp:"\"A menos que\" kural\u0131."},
+{q:"53. Es importante que nosotros ______ la basura.",o:["reciclamos","reciclar","reciclaste","reciclemos"],a:3,exp:"Gereklilik (Es importante que)."},
+{q:"54. Dudo que t\u00fa ______ cocinar paella.",o:["sabes","sepas","saber","supiste"],a:1,exp:"\u015e\u00fcphe (Dudar que)."},
+{q:"55. \u00a1No ______ (t\u00fa) ruidos en la biblioteca!",o:["hagas","haces","haz","hacer"],a:0,exp:"Olumsuz emir (Hacer -> Hagas)."},
+{q:"56. Te prestar\u00e9 mi coche siempre y cuando lo ______.",o:["cuidas","cuidar","cuides","cuidaste"],a:2,exp:"\"Siempre y cuando\" (-ko\u015fuluyla) Subjuntivo ister."},
+{q:"57. Quiz\u00e1s ella ______ la verdad alg\u00fan d\u00eda.",o:["sabe","saber","sepa","supo"],a:2,exp:"\u0130htimal (Quiz\u00e1s)."},
+{q:"58. Me alegra mucho ______ este caf\u00e9 contigo.",o:["tomar","tome","tomo","que tome"],a:0,exp:"\u00d6zne ayn\u0131 (Ben sevindim / Ben i\u00e7iyorum) -> Mastar."},
+{q:"59. Busco a alguien que ______ hablar chino.",o:["sabe","saber","supo","sepa"],a:3,exp:"Belirsiz bir \"birini\" ar\u0131yoruz."},
+{q:"60. No creo que ______ hoy.",o:["llueve","llueva","llover","llovi\u00f3"],a:1,exp:"\u0130nanm\u0131yorum ki (No creo que)."},
+{q:"61. Espero ______ pronto a casa.",o:["llegar","que llegue","llego","llegues"],a:0,exp:"\"Espero\" fiilinde \u00f6zne ayn\u0131ysa mastar gelir."},
+{q:"62. Te pido que ______ silencio.",o:["guardas","guardes","guardar","guardaste"],a:1,exp:"Rica/\u0130stek (Pedir que)."},
+{q:"63. Es necesario que ellos ______ temprano.",o:["salen","salir","salgan","salieron"],a:2,exp:"Gereklilik (Es necesario que)."},
+{q:"64. No salgas antes de que yo ______.",o:["vengo","venir","vine","venga"],a:3,exp:"\"Antes de que\" kural\u0131."},
+{q:"65. \u00bfCrees que ella ______ raz\u00f3n?",o:["tenga","tener","tuviera","tiene"],a:3,exp:"\"Soru c\u00fcmlelerinde\" veya \"Olumlu Creo que\" yap\u0131s\u0131nda Indicativo kullan\u0131l\u0131r."},
+{q:"66. No pienso que el examen ______ dif\u00edcil.",o:["es","ser","sea","era"],a:2,exp:"\"No pienso que\" -> Subjuntivo."},
+{q:"67. Trabaja duro para que su familia ______ vivir bien.",o:["puede","pueda","poder","pudo"],a:1,exp:"Ama\u00e7 (Para que)."},
+{q:"68. \u00a1No ______ (t\u00fa) eso, por favor!",o:["digas","dices","di","decir"],a:0,exp:"Olumsuz emir."},
+{q:"69. Cuando ______ mayor, quiero ser m\u00e9dico.",o:["sea","soy","ser","era"],a:0,exp:"Gelece\u011fe dair \"Cuando\"."},
+{q:"70. Es una l\u00e1stima que t\u00fa no ______ venir.",o:["puedes","poder","pod\u00edas","puedas"],a:3,exp:"De\u011ferlendirme (Yaz\u0131k ki)."},
+{q:"71. Te dar\u00e9 el dinero a no ser que ______ mucho dinero ya.",o:["tienes","tengas","tener","tuviste"],a:1,exp:"\"A no ser que\" (-olmazsa) Subjuntivo ister."},
+{q:"72. \u00a1Que ______ un buen d\u00eda!",o:["tienes","tener","tengas","ten\u00edas"],a:2,exp:"\"Que...\" ile ba\u015flayan dilek c\u00fcmleleri Subjuntivo al\u0131r."},
+{q:"73. Dudo que ellos ______ a la reuni\u00f3n.",o:["vienen","venir","vengan","vinieron"],a:2,exp:"\u015e\u00fcphe (Dudar que)."},
+{q:"74. Hablo espa\u00f1ol para ______ en Espa\u00f1a.",o:["vivir","que viva","vivo","vivas"],a:0,exp:"\"Para\" ba\u011flac\u0131ndan sonra \"que\" yoksa mastar gelir."},
+{q:"75. Tal vez ______ (nosotros) una pel\u00edcula hoy.",o:["vemos","ver","vimos","veamos"],a:3,exp:"\u0130htimal (Tal vez)."},
+{q:"76. \u00a1No ______ (ustedes) en el pasillo!",o:["corren","corran","correr","corr\u00e9is"],a:1,exp:"Olumsuz emir (Ustedes)."},
+{q:"77. Me sorprende que t\u00fa ______ eso.",o:["sabes","sepas","saber","supiste"],a:1,exp:"Duygu/\u015ea\u015f\u0131rma ifadesi."},
+{q:"78. Vamos a salir en cuanto ______ de trabajar.",o:["terminas","terminar","terminaste","termines"],a:3,exp:"Gelecek \"en cuanto\"."},
+{q:"79. Es probable que ______ ma\u00f1ana.",o:["llueva","llueve","llover","llovi\u00f3"],a:0,exp:"\u0130htimal."},
+{q:"80. No quiero ______ tarde.",o:["que llegue","llegas","llegar","llegues"],a:2,exp:"\u00d6zne ayn\u0131 (Ben istemiyorum / Ben ge\u00e7 kalmayay\u0131m) -> Mastar."},
+{q:"81. Aunque ______ (t\u00fa) mucho, no entender\u00e1s.",o:["estudias","estudiar","estudies","estudiaste"],a:2,exp:"Ko\u015ful/Belirsizlik i\u00e7eren \"Aunque\"."},
+{q:"82. Te avisar\u00e9 tan pronto como ______ resultados.",o:["haya","hay","haber","hubo"],a:0,exp:"Gelecek \"tan pronto como\" + Haber fiili Subjuntivo."},
+{q:"83. Salgo de casa antes de que ______ el sol.",o:["sale","salir","sali\u00f3","salga"],a:3,exp:"\"Antes de que\" kural\u0131."},
+{q:"84. Te traigo el libro para que lo ______.",o:["lees","leas","leer","le\u00edste"],a:1,exp:"Ama\u00e7 (Para que)."},
+{q:"85. No hagas nada sin que yo te ______.",o:["digo","diga","decir","dije"],a:1,exp:"\"Sin que\" kural\u0131."},
+{q:"86. Quiz\u00e1s ______ suerte hoy.",o:["tienes","tener","tuviste","tengas"],a:3,exp:"\u0130htimal (Quiz\u00e1s)."},
+{q:"87. Es mejor que t\u00fa ______ la verdad.",o:["dices","decir","digas","dijiste"],a:2,exp:"Gereklilik/De\u011ferlendirme."},
+{q:"88. \u00a1No ______ (t\u00fa) miedo!",o:["tengas","tienes","ten","tener"],a:0,exp:"Olumsuz emir (Tener -> Tengas)."},
+{q:"89. Cuando ______ a casa, descanso siempre. (Al\u0131\u015fkanl\u0131k)",o:["llego","llegue","llegar","lleg\u00fc\u00e9"],a:0,exp:"Notlardaki \"Dikkat!\" -> Al\u0131\u015fkanl\u0131k/Genel ger\u00e7ek bildiren \"Cuando\" Indicativo al\u0131r!"},
+{q:"90. Me alegra que ______ (vosotros) aqu\u00ed.",o:["est\u00e1is","estar","est\u00e9is","estuvisteis"],a:2,exp:"Duygu ifadesi (Vosotros \u00e7ekimi)."},
+{q:"91. Dudo que la tienda ______ abierta.",o:["est\u00e1","est\u00e9","estar","estuvo"],a:1,exp:"\u015e\u00fcphe."},
+{q:"92. No creo que \u00e9l ______ a venir.",o:["va","ir","fue","vaya"],a:3,exp:"\u0130nanm\u0131yorum ki."},
+{q:"93. Esperamos que t\u00fa ______ un buen viaje.",o:["tienes","tener","tuviste","tengas"],a:3,exp:"\u0130stek/Umut."},
+{q:"94. Salgo con tal de que ______ sol.",o:["haga","hace","hacer","hizo"],a:0,exp:"Ko\u015ful (Con tal de que)."},
+{q:"95. Te llamar\u00e9 hasta que ______ la tarea.",o:["terminas","terminar","termines","termin\u00f3"],a:2,exp:"Gelecek s\u0131n\u0131r\u0131 (Hasta que)."},
+{q:"96. Es posible que ______ ma\u00f1ana.",o:["nos vemos","nos veamos","vernos","nos vimos"],a:1,exp:"\u0130htimal."},
+{q:"97. No me gusta que t\u00fa ______ tanto.",o:["fumas","fumes","fumar","fumaste"],a:1,exp:"Duygu/Be\u011feni (Farkl\u0131 \u00f6zneler)."},
+{q:"98. Quiz\u00e1s ______ tarde hoy.",o:["es","ser","sea","era"],a:2,exp:"\u0130htimal."},
+{q:"99. Espero que ______ (nosotros) pronto.",o:["nos veamos","nos vemos","vernos","nos vimos"],a:0,exp:"\u0130stek (Espero que)."},
+{q:"100. No salgas a menos que ______ buen tiempo.",o:["hace","hacer","hizo","haga"],a:3,exp:"\"A menos que\" her zaman Subjuntivo!"}
+];
+
+var state={cur:0,answered:[],scores:[],okCount:0,errCount:0};
+
+function startQuiz(){
+  var name=document.getElementById('introName').value;
+  if(!name){alert('L\u00fctfen ad\u0131n\u0131z\u0131 se\u00e7in.');return;}
+  document.getElementById('resName').value=name;
+  document.getElementById('resName2').value=name;
+  document.getElementById('introScreen').style.display='none';
+  document.getElementById('quizScreen').style.display='block';
+  renderQ();
+}
+
+function syncResName(){
+  var v=document.getElementById('resName2').value;
+  document.getElementById('resName').value=v;
+}
+
+function esc(s){
+  if(!s)return'';
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+}
+
+function renderQ(){
+  var i=state.cur;var q=Q[i];var html='';
+  html+='<span class="q-type-badge badge-mc">\u00c7OKTAN SE\u00c7MEL\u0130</span>';
+  html+='<div class="q-text">'+esc(q.q)+'</div>';
+  html+='<div class="opts">';
+  var L=['A','B','C','D'];
+  for(var j=0;j<q.o.length;j++){
+    var cls='opt-btn';var dis='';var ans=state.answered[i];
+    if(ans!==undefined){dis='disabled';if(j===q.a)cls+=' correct';else if(j===ans&&ans!==q.a)cls+=' wrong';}
+    html+='<button class="'+cls+'" '+dis+' onclick="checkAns('+j+')"><strong>'+L[j]+')</strong> '+esc(q.o[j])+'</button>';
+  }
+  html+='</div>';
+  html+='<div class="exp-box'+(state.answered[i]!==undefined?' show':'')+'">'+esc(q.exp)+'</div>';
+  document.getElementById('qCard').innerHTML=html;
+  var done=state.answered[i]!==undefined;
+  document.getElementById('btnBack').disabled=(i===0);
+  document.getElementById('btnNext').disabled=(!done||i===Q.length-1);
+  document.getElementById('btnSkip').disabled=(i>=Q.length-1);
+  document.getElementById('qMeta').textContent='Soru '+(i+1)+' / '+Q.length;
+  document.getElementById('progFill').style.width=((i+1)/Q.length*100)+'%';
+  document.getElementById('cntOk').textContent='\u2713 '+state.okCount;
+  document.getElementById('cntErr').textContent='\u2717 '+state.errCount;
+}
+
+function checkAns(j){
+  var i=state.cur;
+  if(state.answered[i]!==undefined)return;
+  var q=Q[i];
+  state.answered[i]=j;
+  if(j===q.a){state.okCount++;state.scores[i]=1;}
+  else{state.errCount++;state.scores[i]=0;}
+  renderQ();
+}
+
+function goNext(){if(state.cur<Q.length-1){state.cur++;renderQ();}}
+function goBack(){if(state.cur>0){state.cur--;renderQ();}}
+function skipQ(){if(state.cur<Q.length-1){state.cur++;renderQ();}}
+
+function confirmFinish(){
+  var answered=0;
+  for(var i=0;i<Q.length;i++){if(state.answered[i]!==undefined)answered++;}
+  var unanswered=Q.length-answered;
+  var msg='Toplam '+Q.length+' sorudan '+answered+' tanesini cevaplad\u0131n\u0131z.';
+  if(unanswered>0)msg+='\n\n'+unanswered+' soru cevaps\u0131z kalacak (0 puan).';
+  msg+='\n\nTesti bitirmek istedi\u011finize emin misiniz?';
+  document.getElementById('confirmMsg').textContent=msg;
+  document.getElementById('confirmOverlay').style.display='flex';
+}
+
+function closeConfirm(){document.getElementById('confirmOverlay').style.display='none';}
+function doFinish(){closeConfirm();showResult();}
+
+function showResult(){
+  document.getElementById('quizScreen').style.display='none';
+  document.getElementById('resultScreen').style.display='block';
+  var total=0;
+  for(var i=0;i<Q.length;i++){total+=(state.scores[i]||0);}
+  var pct=Math.round(total*100/Q.length);
+  document.getElementById('resScore').textContent=pct;
+  document.getElementById('resOk').textContent='\u2713 '+state.okCount+' do\u011fru';
+  document.getElementById('resErr').textContent='\u2717 '+state.errCount+' yanl\u0131\u015f';
+  document.getElementById('resNote').textContent='100 sorudan '+state.okCount+' tanesi do\u011fru';
+  document.getElementById('submitWarning').style.display='block';
+  document.getElementById('btnSubmit').style.display='block';
+  var rev=document.getElementById('reviewList');
+  var L=['A','B','C','D'];
+  var html='';
+  for(var i=0;i<Q.length;i++){
+    var ans=state.answered[i];
+    if(ans===undefined||ans===Q[i].a)continue;
+    var q=Q[i];
+    html+='<div class="rev-item"><div class="rev-q">'+esc(q.q.split('\n')[0])+'</div>';
+    html+='<div class="rev-chosen">Verdi\u011finiz cevap: '+esc(q.o[ans])+'</div>';
+    html+='<div class="rev-correct">Do\u011fru cevap: '+esc(q.o[q.a])+'</div>';
+    html+='<div class="rev-exp">'+esc(q.exp)+'</div></div>';
+  }
+  rev.innerHTML=html||'<div style="padding:.5rem;color:#666">Yanl\u0131\u015f soru bulunamad\u0131.</div>';
+}
+
+function toggleReview(){
+  var rv=document.getElementById('reviewList');
+  rv.style.display=(rv.style.display==='flex'?'none':'flex');
+}
+
+var submitted=false;
+function submitResult(){
+  if(submitted)return;
+  var name=document.getElementById('resName').value;
+  if(!name){alert('L\u00fctfen isminizi se\u00e7in.');return;}
+  var total=0;
+  for(var i=0;i<Q.length;i++){total+=(state.scores[i]||0);}
+  var pct=Math.round(total*100/Q.length);
+  var payload=JSON.stringify({ogrenci:name,odev:ODEV_ADI,grup:'B1.1',puan:pct,dogru:state.okCount,yanlis:state.errCount,tarih:new Date().toLocaleDateString('tr-TR')});
+  document.getElementById('submitMsg').style.display='block';
+  document.getElementById('submitMsg').textContent='G\u00f6nderiliyor...';
+  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:payload})
+  .then(function(){
+    submitted=true;
+    document.getElementById('submitWarning').style.display='none';
+    document.getElementById('btnSubmit').style.display='none';
+    document.getElementById('submitMsg').textContent=name+' \u00f6\u011frencisinin \u201c'+ODEV_ADI+'\u201d \u00f6devi teslim edildi. Puan: '+pct+'/100. Te\u015fekk\u00fcrler!';
+  })
+  .catch(function(){
+    submitted=true;
+    document.getElementById('submitWarning').style.display='none';
+    document.getElementById('btnSubmit').style.display='none';
+    document.getElementById('submitMsg').textContent=name+' \u00f6\u011frencisinin \u201c'+ODEV_ADI+'\u201d \u00f6devi teslim edildi. Puan: '+pct+'/100.';
+  });
+}
+</script>
+</body>
+</html>
