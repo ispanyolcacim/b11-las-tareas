@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>B1.1 – H5 17-18. Ders Quiz</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f0eef8;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem}
+.card{background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(100,80,160,.15);max-width:720px;width:100%;padding:2rem}
+h1{color:#6c4eb8;font-size:1.3rem;margin-bottom:1.5rem;text-align:center}
+.screen{display:none}.screen.active{display:block}
+.pill{display:inline-block;background:#e8e0f8;color:#6c4eb8;border-radius:20px;padding:.25rem .9rem;font-size:.78rem;font-weight:700;margin-bottom:.75rem;letter-spacing:.3px}
+.intro-title{font-size:1.1rem;font-weight:700;color:#6c4eb8;margin-bottom:.5rem}
+.intro-sub{color:#888;font-size:.85rem;margin-bottom:.4rem}
+.intro-teacher{color:#9b7de0;font-size:.8rem;margin-bottom:1.5rem;font-style:italic}
+select,button{font-family:inherit;font-size:.95rem}
+select{width:100%;padding:.7rem;border:2px solid #d0c8f0;border-radius:8px;color:#333;background:#fff;margin-bottom:1rem;outline:none}
+select:focus{border-color:#6c4eb8}
+.btn-start{width:100%;padding:.8rem;background:#6c4eb8;color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:600;cursor:pointer}
+.btn-start:hover{background:#5a3ea0}
+.prog-bar{height:6px;background:#e8e0f8;border-radius:3px;margin-bottom:1rem;overflow:hidden}
+.prog-fill{height:100%;background:#6c4eb8;transition:width .3s;border-radius:3px}
+.q-meta{display:flex;justify-content:space-between;align-items:center;font-size:.82rem;color:#888;margin-bottom:1rem}
+.cnt{padding:.2rem .6rem;border-radius:6px;font-weight:600}
+.cnt-ok{background:#e6f9f0;color:#2e9e6b}.cnt-err{background:#fde8e8;color:#d94040}
+.q-type-badge{display:inline-block;padding:.2rem .6rem;border-radius:5px;font-size:.72rem;font-weight:700;letter-spacing:.5px;margin-bottom:.8rem}
+.badge-mc{background:#e8e0f8;color:#6c4eb8}
+.q-text{font-size:.95rem;color:#333;line-height:1.6;margin-bottom:1rem;white-space:pre-wrap}
+.opts{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem}
+.opt-btn{text-align:left;padding:.7rem 1rem;border:2px solid #d0c8f0;border-radius:9px;background:#fff;cursor:pointer;font-size:.9rem;color:#333;transition:all .15s}
+.opt-btn:hover:not(:disabled){background:#f3effb;border-color:#9b7de0}
+.opt-btn.correct{background:#e6f9f0;border-color:#2e9e6b;color:#1a5c3a;font-weight:600}
+.opt-btn.wrong{background:#fde8e8;border-color:#d94040;color:#8b1a1a}
+.opt-btn:disabled{cursor:default}
+.exp-box{display:none;background:#f8f5ff;border-left:4px solid #6c4eb8;border-radius:0 8px 8px 0;padding:.85rem 1rem;font-size:.83rem;color:#444;line-height:1.6;white-space:pre-wrap;margin-bottom:1rem}
+.exp-box.show{display:block}
+.nav{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem}
+.nav button{padding:.55rem 1.1rem;border-radius:8px;border:none;cursor:pointer;font-size:.88rem;font-weight:600}
+.btn-back{background:#e8e0f8;color:#6c4eb8}.btn-skip{background:#e8e0f8;color:#6c4eb8}
+.btn-next{background:#6c4eb8;color:#fff}.btn-finish{background:#e05c5c;color:#fff}
+.nav button:disabled{opacity:.4;cursor:not-allowed}
+.res-score{text-align:center;font-size:3.5rem;font-weight:800;color:#6c4eb8;margin:1rem 0}
+.res-stats{display:flex;gap:1rem;justify-content:center;margin-bottom:1rem}
+.res-stat{padding:.4rem 1rem;border-radius:8px;font-weight:600;font-size:.9rem}
+.res-note{text-align:center;color:#888;font-size:.82rem;margin-bottom:1.5rem}
+.btn-submit{width:100%;padding:1.1rem;background:#2e9e6b;color:#fff;border:none;border-radius:10px;font-size:1.15rem;font-weight:800;cursor:pointer;margin-bottom:.75rem;letter-spacing:.3px}
+.btn-submit:hover{background:#257a55}
+.submit-msg{background:#e6f9f0;border:1px solid #b8f0d8;border-radius:8px;padding:.7rem;font-size:.85rem;color:#1a5c3a;display:none;margin-bottom:.75rem;font-weight:600}
+.submit-warning{background:#fde8e8;border:1px solid #f5c0c0;border-radius:8px;padding:.75rem 1rem;font-size:1rem;color:#d94040;font-weight:800;text-align:center;margin-bottom:.75rem;letter-spacing:.2px}
+.btn-review{width:100%;padding:.7rem;background:#e8e0f8;color:#6c4eb8;border:none;border-radius:10px;font-size:.9rem;font-weight:600;cursor:pointer}
+.review-list{display:none;flex-direction:column;gap:.75rem;margin-top:1rem}
+.rev-item{background:#fafafa;border:1px solid #e0d8f8;border-radius:8px;padding:.75rem;font-size:.82rem}
+.rev-q{font-weight:600;color:#333;margin-bottom:.3rem}
+.rev-chosen{color:#d94040;margin-bottom:.2rem}.rev-correct{color:#2e9e6b;margin-bottom:.3rem;font-weight:600}
+.rev-exp{color:#555;line-height:1.5;white-space:pre-wrap}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);align-items:center;justify-content:center;z-index:999;padding:1rem}
+.confirm-box{background:#fff;border-radius:14px;padding:1.5rem;max-width:400px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,.25)}
+.confirm-msg{font-size:.9rem;color:#333;white-space:pre-wrap;margin-bottom:1.25rem;line-height:1.6}
+.confirm-btns{display:flex;gap:.75rem}
+.confirm-btns button{flex:1;padding:.7rem;border-radius:8px;border:none;font-size:.9rem;font-weight:700;cursor:pointer}
+.btn-cancel{background:#e8e0f8;color:#6c4eb8}.btn-ok{background:#e05c5c;color:#fff}
+.res-title{text-align:center;color:#6c4eb8;font-size:1.05rem;font-weight:700;margin-bottom:.5rem}
+</style>
+</head>
+<body>
+<div class="card">
+  <div style="text-align:center">
+    <div class="pill">5. HAFTA ODEVI | B1.1 (17-18. DERS)</div>
+  </div>
+  <h1>&#127466;&#127480; B1.1 &ndash; H5 17-18. Ders &ndash; Estilo Indirecto</h1>
+
+  <div id="introScreen" class="screen active">
+    <div class="intro-title">&#128218; Adinizi secin</div>
+    <div class="intro-sub">100 soru &bull; Coktan secmeli</div>
+    <div class="intro-teacher">@ispanyolcacim &bull; Profe Hazel</div>
+    <select id="introName">
+      <option value="">-- Adinizi Secin --</option>
+      <option>Ceylin &Ouml;z</option>
+      <option>Deneme &Ouml;&#287;rencisi</option>
+      <option>Esra &Ouml;z&ccedil;e&#351;meci</option>
+      <option>Gencay Agocuk</option>
+      <option>Kayhan A&ccedil;an</option>
+      <option>K&uuml;bra Bulut</option>
+      <option>Nihan Karagedik</option>
+      <option>Nur O. Demirci</option>
+      <option>Pelinsu Damgac&#305;</option>
+      <option>Simge G&uuml;ler</option>
+      <option>Ufuk Ayd&#305;n</option>
+      <option>Umre G&uuml;l</option>
+    </select>
+    <button class="btn-start" onclick="startQuiz()">&#9654; Quize Ba&#351;la</button>
+  </div>
+
+  <div id="quizScreen" class="screen">
+    <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+    <div class="q-meta">
+      <span id="qMeta">Soru 1 / 100</span>
+      <span>
+        <span class="cnt cnt-ok" id="cntOk">&#10003; 0</span>&nbsp;
+        <span class="cnt cnt-err" id="cntErr">&#10007; 0</span>
+      </span>
+    </div>
+    <div id="qCard"></div>
+    <div class="nav">
+      <button class="btn-back" id="btnBack" onclick="goBack()" disabled>&#8592; Geri</button>
+      <button class="btn-skip" id="btnSkip" onclick="skipQ()">Atla &#8594;</button>
+      <button class="btn-next" id="btnNext" onclick="goNext()" disabled>&#8594; &#304;leri</button>
+      <button class="btn-finish" onclick="confirmFinish()">&#10004; Bitir</button>
+    </div>
+  </div>
+
+  <div id="resultScreen" class="screen">
+    <input type="hidden" id="resName" value="">
+    <div class="res-title">B1.1 &ndash; H5 17-18. Ders &ndash; Estilo Indirecto</div>
+    <div class="res-score"><span id="resScore">0</span>/100</div>
+    <div class="res-stats">
+      <span class="res-stat" style="background:#e6f9f0;color:#2e9e6b" id="resOk"></span>
+      <span class="res-stat" style="background:#fde8e8;color:#d94040" id="resErr"></span>
+    </div>
+    <div class="res-note" id="resNote"></div>
+    <div class="submit-warning" id="submitWarning">&#214;DEV&#304;N&#304;Z TESLIM EDILMEDI</div>
+    <div class="submit-msg" id="submitMsg"></div>
+    <button class="btn-submit" id="btnSubmit" onclick="submitResult()">&#214;DEV&#304;N&#304;Z&#304; TESLIM ET</button>
+    <button class="btn-review" onclick="toggleReview()">&#128269; Yanl&#305;&#351;lar&#305; G&ouml;r</button>
+    <div class="review-list" id="reviewList"></div>
+    <div style="margin-top:1.5rem;text-align:center">
+      <div class="intro-title" style="margin-bottom:.5rem">Sonuc Ekrani</div>
+      <div class="intro-sub">Ogrenci se&#231;in</div>
+      <select id="resName2" onchange="syncResName()">
+        <option value="">-- Adinizi Secin --</option>
+        <option>Ceylin &Ouml;z</option>
+        <option>Deneme &Ouml;&#287;rencisi</option>
+        <option>Esra &Ouml;z&ccedil;e&#351;meci</option>
+        <option>Gencay Agocuk</option>
+        <option>Kayhan A&ccedil;an</option>
+        <option>K&uuml;bra Bulut</option>
+        <option>Nihan Karagedik</option>
+        <option>Nur O. Demirci</option>
+        <option>Pelinsu Damgac&#305;</option>
+        <option>Simge G&uuml;ler</option>
+        <option>Ufuk Ayd&#305;n</option>
+        <option>Umre G&uuml;l</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <div class="confirm-msg" id="confirmMsg"></div>
+    <div class="confirm-btns">
+      <button class="btn-cancel" onclick="closeConfirm()">&#10060; Iptal</button>
+      <button class="btn-ok" onclick="doFinish()">&#10004; Evet, Bitir</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var SCRIPT_URL='https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
+var ODEV_ADI='H5 \u2013 17-18.Ders';
+var Q=[
+{q:"1. Marta: \u00abEstoy cansada hoy.\u00bb\nMarta me dijo que\u2026",o:["est\u00e1 cansada hoy","estaba cansada ese d\u00eda","estar\u00e1 cansada hoy","estuvo cansada ayer"],a:1,exp:"Presente \u2192 Pret\u00e9rito imperfecto, hoy \u2192 ese d\u00eda"},
+{q:"2. Luis: \u00abVoy a estudiar ma\u00f1ana.\u00bb\nLuis me dijo que\u2026",o:["iba a estudiar al d\u00eda siguiente","va a estudiar ma\u00f1ana","estudiar\u00e1 ma\u00f1ana","estudi\u00f3 ma\u00f1ana"],a:0,exp:"Ir a + infinitivo \u2192 iba a + infinitivo, ma\u00f1ana \u2192 al d\u00eda siguiente"},
+{q:"3. Ana: \u00abHe terminado el trabajo.\u00bb\nAna me dijo que\u2026",o:["ha terminado el trabajo","termin\u00f3 el trabajo","terminaba el trabajo","hab\u00eda terminado el trabajo"],a:3,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto"},
+{q:"4. Pedro: \u00abTrabajo aqu\u00ed.\u00bb\nPedro me dijo que\u2026",o:["trabaj\u00f3 all\u00ed","trabaja aqu\u00ed","trabajaba all\u00ed","trabajar\u00e1 all\u00ed"],a:2,exp:"Presente \u2192 Imperfecto, aqu\u00ed \u2192 all\u00ed"},
+{q:"5. Laura: \u00abEste a\u00f1o viajo mucho.\u00bb\nLaura me dijo que\u2026",o:["viaja mucho este a\u00f1o","viaj\u00f3 mucho ese a\u00f1o","viajaba mucho ese a\u00f1o","viajar\u00e1 mucho ese a\u00f1o"],a:2,exp:"Presente \u2192 Imperfecto, este a\u00f1o \u2192 ese a\u00f1o"},
+{q:"6. Carlos: \u00abIr\u00e9 al m\u00e9dico.\u00bb\nCarlos me dijo que\u2026",o:["ir\u00e1 al m\u00e9dico","iba al m\u00e9dico","fue al m\u00e9dico","ir\u00eda al m\u00e9dico"],a:3,exp:"Futuro \u2192 Condicional (ana fiil ge\u00e7mi\u015fte)"},
+{q:"7. Elena: \u00abTengo hambre ahora.\u00bb\nElena me dijo que\u2026",o:["tiene hambre ahora","ten\u00eda hambre en ese momento","tuvo hambre ayer","tendr\u00e1 hambre luego"],a:1,exp:"Presente \u2192 Imperfecto, ahora \u2192 en ese momento"},
+{q:"8. Juan: \u00abVivimos aqu\u00ed.\u00bb\nJuan me dijo que\u2026",o:["viv\u00edan all\u00ed","vivimos aqu\u00ed","vivieron all\u00ed","vivir\u00e1n all\u00ed"],a:0,exp:"Presente \u2192 Imperfecto, aqu\u00ed \u2192 all\u00ed"},
+{q:"9. Sof\u00eda: \u00abMi padre trabaja mucho.\u00bb\nSof\u00eda me dijo que\u2026",o:["su padre trabajaba mucho","mi padre trabaja mucho","su padre trabaj\u00f3 mucho","su padre trabajar\u00e1 mucho"],a:0,exp:"Presente \u2192 Imperfecto, mi \u2192 su"},
+{q:"10. Diego: \u00abEstudi\u00e9 ayer.\u00bb\nDiego me dijo que...",o:["estudia ayer","estudiaba ayer","hab\u00eda estudiado el d\u00eda anterior","estudi\u00f3 ayer"],a:2,exp:"Indefinido \u2192 Pluscuamperfecto, ayer \u2192 el d\u00eda anterior."},
+{q:"11. Mar\u00eda: \u00abEstoy en casa ahora.\u00bb\nMar\u00eda me dijo que\u2026",o:["est\u00e1 en casa ahora","estuvo en casa ayer","estar\u00e1 en casa luego","estaba en casa en ese momento"],a:3,exp:"Presente \u2192 Imperfecto, ahora \u2192 en ese momento"},
+{q:"12. Pablo: \u00abCompr\u00e9 este coche.\u00bb\nPablo me dijo que\u2026",o:["compra ese coche","hab\u00eda comprado ese coche","comprar\u00e1 ese coche","compraba ese coche"],a:1,exp:"Indefinido \u2192 Pluscuamperfecto, este \u2192 ese"},
+{q:"13. Marta: \u00abNos vemos ma\u00f1ana.\u00bb\nMarta me dijo que...",o:["nos vemos ma\u00f1ana","nos ver\u00edamos al d\u00eda siguiente","nos vimos ayer","se ven hoy"],a:1,exp:"Presente (gelecek anlaml\u0131) \u2192 Condicional, nos vemos (g\u00f6r\u00fc\u015f\u00fcr\u00fcz - bizi kaps\u0131yor) \u2192 nos ver\u00edamos (g\u00f6r\u00fc\u015fece\u011fimizi s\u00f6yledi)."},
+{q:"14. Luis: \u00abTengo mucho trabajo hoy.\u00bb\nLuis me dijo que\u2026",o:["tuvo mucho trabajo hoy","tiene mucho trabajo hoy","tendr\u00e1 mucho trabajo ese d\u00eda","ten\u00eda mucho trabajo ese d\u00eda"],a:3,exp:"Presente \u2192 Imperfecto, hoy \u2192 ese d\u00eda"},
+{q:"15. Ana: \u00abVoy a salir esta noche.\u00bb\nAna me dijo que\u2026",o:["iba a salir esa noche","va a salir esta noche","sali\u00f3 esa noche","saldr\u00e1 esa noche"],a:0,exp:"Ir a + inf \u2192 iba a + inf, esta noche \u2192 esa noche"},
+{q:"16. Pedro: \u00abHe visto a Juan.\u00bb\nPedro me dijo que\u2026",o:["vio a Juan","ve\u00eda a Juan","hab\u00eda visto a Juan","ha visto a Juan"],a:2,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto"},
+{q:"17. Laura: \u00abMi hermano estudia aqu\u00ed.\u00bb\nLaura me dijo que\u2026",o:["su hermano estudia aqu\u00ed","mi hermano estudiaba all\u00ed","su hermano estudiaba all\u00ed","su hermano estudi\u00f3 all\u00ed"],a:2,exp:"Presente \u2192 Imperfecto, mi \u2192 su, aqu\u00ed \u2192 all\u00ed"},
+{q:"18. Carlos: \u00abHar\u00e9 ejercicio ma\u00f1ana.\u00bb\nCarlos me dijo que\u2026",o:["har\u00eda ejercicio al d\u00eda siguiente","hace ejercicio ma\u00f1ana","hizo ejercicio ayer","har\u00e1 ejercicio ma\u00f1ana"],a:0,exp:"Futuro \u2192 Condicional, ma\u00f1ana \u2192 al d\u00eda siguiente"},
+{q:"19. Elena: \u00abEstoy estudiando ahora.\u00bb\nElena me dijo que\u2026",o:["est\u00e1 estudiando ahora","estudi\u00f3 antes","estudiar\u00e1 luego","estaba estudiando en ese momento"],a:3,exp:"Presente continuo \u2192 Imperfecto continuo, ahora \u2192 en ese momento"},
+{q:"20. Juan: \u00abViv\u00ed en Madrid.\u00bb\nJuan me dijo que\u2026",o:["vive en Madrid","hab\u00eda vivido en Madrid","vivir\u00e1 en Madrid","viv\u00eda en Madrid"],a:1,exp:"Indefinido \u2192 Pluscuamperfecto"},
+{q:"21. Sof\u00eda: \u00abMi madre trabaja aqu\u00ed.\u00bb\nSof\u00eda me dijo que\u2026",o:["mi madre trabajaba aqu\u00ed","su madre trabajaba all\u00ed","su madre trabaja aqu\u00ed","su madre trabaj\u00f3 all\u00ed"],a:1,exp:"Presente \u2192 Imperfecto, mi \u2192 su, aqu\u00ed \u2192 all\u00ed"},
+{q:"22. Andr\u00e9s: \u00abEstoy muy cansado ahora.\u00bb\nAndr\u00e9s me dijo que\u2026",o:["est\u00e1 muy cansado ahora","estuvo muy cansado ayer","estaba muy cansado en ese momento","estar\u00e1 muy cansado luego"],a:2,exp:"Presente \u2192 Imperfecto, ahora \u2192 en ese momento"},
+{q:"23. Luc\u00eda: \u00abAyer vi a Marta.\u00bb\nLuc\u00eda me dijo que\u2026",o:["hab\u00eda visto a Marta el d\u00eda anterior","ve a Marta ayer","ve\u00eda a Marta ayer","ver\u00e1 a Marta ma\u00f1ana"],a:0,exp:"Indefinido \u2192 Pluscuamperfecto, ayer \u2192 el d\u00eda anterior"},
+{q:"24. Diego: \u00abTengo examen ma\u00f1ana.\u00bb\nDiego me dijo que\u2026",o:["tuvo examen ayer","tiene examen ma\u00f1ana","tendr\u00e1 examen ma\u00f1ana","ten\u00eda examen al d\u00eda siguiente"],a:3,exp:"Presente \u2192 Imperfecto, ma\u00f1ana \u2192 al d\u00eda siguiente"},
+{q:"25. Marta: \u00abHe comprado un coche.\u00bb\nMarta me dijo que\u2026",o:["compra un coche","compraba un coche","comprar\u00e1 un coche","hab\u00eda comprado un coche"],a:3,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto"},
+{q:"26. Pablo: \u00abIr\u00e9 a tu casa ma\u00f1ana.\u00bb\nPablo me dijo que\u2026",o:["ir\u00eda a mi casa al d\u00eda siguiente","ir\u00e1 a tu casa ma\u00f1ana","iba a tu casa ayer","fue a tu casa"],a:0,exp:"Futuro \u2192 Condicional, tu \u2192 mi, ma\u00f1ana \u2192 al d\u00eda siguiente"},
+{q:"27. Elena: \u00abTrabajo aqu\u00ed ahora.\u00bb\nElena me dijo que\u2026",o:["trabaj\u00f3 all\u00ed","trabaja aqu\u00ed","trabajaba all\u00ed en ese momento","trabajar\u00e1 all\u00ed"],a:2,exp:"Presente \u2192 Imperfecto, aqu\u00ed \u2192 all\u00ed, ahora \u2192 en ese momento"},
+{q:"28. Sergio: \u00abViv\u00ed en Barcelona.\u00bb\nSergio me dijo que\u2026",o:["vive en Barcelona","hab\u00eda vivido en Barcelona","vivir\u00e1 en Barcelona","viv\u00eda en Barcelona"],a:1,exp:"Indefinido \u2192 Pluscuamperfecto"},
+{q:"29. Laura: \u00abMi padre trabaja mucho.\u00bb\nLaura me dijo que\u2026",o:["mi padre trabajaba mucho","su padre trabajaba mucho","su padre trabaj\u00f3 mucho","su padre trabajar\u00e1 mucho"],a:1,exp:"Presente \u2192 Imperfecto, mi \u2192 su"},
+{q:"30. Juan: \u00abHar\u00e9 deporte ma\u00f1ana.\u00bb\nJuan me dijo que\u2026",o:["hace deporte","hizo deporte","har\u00e1 deporte","har\u00eda deporte al d\u00eda siguiente"],a:3,exp:"Futuro \u2192 Condicional, ma\u00f1ana \u2192 al d\u00eda siguiente"},
+{q:"31. Marta: \u00abEstoy en Madrid ahora.\u00bb\nMarta me dijo que\u2026",o:["estaba en Madrid en ese momento","est\u00e1 en Madrid ahora","estuvo en Madrid ayer","estar\u00e1 en Madrid luego"],a:0,exp:"Presente \u2192 Imperfecto, ahora \u2192 en ese momento"},
+{q:"32. Luis: \u00abHemos comprado las entradas.\u00bb \nLuis me dijo que...",o:["compra las entradas","compr\u00f3 las entradas","hab\u00edan comprado las entradas","comprar\u00e1n las entradas"],a:2,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto (hemos comprado \u2192 hab\u00edan comprado)."},
+{q:"33. Ana: \u00abVoy a estudiar ma\u00f1ana.\u00bb\nAna me dijo que\u2026",o:["va a estudiar ma\u00f1ana","estudi\u00f3 ayer","estudia ahora","iba a estudiar al d\u00eda siguiente"],a:3,exp:"Ir a + inf \u2192 iba a + inf, ma\u00f1ana \u2192 al d\u00eda siguiente"},
+{q:"34. Pedro: \u00abTrabajo aqu\u00ed.\u00bb\nPedro me dijo que\u2026",o:["trabaja aqu\u00ed","trabajaba all\u00ed","trabaj\u00f3 all\u00ed","trabajar\u00e1 all\u00ed"],a:1,exp:"Presente \u2192 Imperfecto, aqu\u00ed \u2192 all\u00ed"},
+{q:"35. Laura: \u00abEste a\u00f1o viajo mucho.\u00bb\nLaura me dijo que\u2026",o:["viajaba mucho ese a\u00f1o","viaja mucho este a\u00f1o","viajar\u00e1 mucho ese a\u00f1o","viaj\u00f3 mucho ese a\u00f1o"],a:0,exp:"Presente \u2192 Imperfecto, este \u2192 ese"},
+{q:"36. Elena: \u00abPodr\u00e9 ir a la fiesta.\u00bb \nElena me dijo que...",o:["podr\u00e1 ir","puede ir","podr\u00eda ir a la fiesta","pod\u00eda ir"],a:2,exp:"Futuro \u2192 Condicional."},
+{q:"37. Elena: \u00abTengo hambre ahora.\u00bb\nElena me dijo que\u2026",o:["tiene hambre ahora","ten\u00eda hambre en ese momento","tuvo hambre ayer","tendr\u00e1 hambre luego"],a:1,exp:"Presente \u2192 Imperfecto, ahora \u2192 en ese momento"},
+{q:"38. Juan: \u00abVivimos aqu\u00ed.\u00bb\nJuan me dijo que\u2026",o:["viv\u00edan all\u00ed","vivimos aqu\u00ed","vivieron all\u00ed","vivir\u00e1n all\u00ed"],a:0,exp:"Presente \u2192 Imperfecto, aqu\u00ed \u2192 all\u00ed"},
+{q:"39. Sof\u00eda: \u00abMi hermano trabaja aqu\u00ed.\u00bb\nSof\u00eda me dijo que\u2026",o:["mi hermano trabaja aqu\u00ed","su hermano trabaj\u00f3 all\u00ed","su hermano trabaja all\u00ed","su hermano trabajaba all\u00ed"],a:3,exp:"Presente \u2192 Imperfecto, mi \u2192 su, aqu\u00ed \u2192 all\u00ed"},
+{q:"40. Diego: \u00abEstudi\u00e9 ayer.\u00bb\nDiego me dijo que\u2026",o:["estudia ayer","estudi\u00f3 ayer","hab\u00eda estudiado el d\u00eda anterior","estudiaba ayer"],a:2,exp:"Indefinido \u2192 Pluscuamperfecto, ayer \u2192 el d\u00eda anterior"},
+{q:"41. Marta: \u00abHe comido ya.\u00bb\nMarta me dijo que\u2026",o:["comi\u00f3 ya","come ya","hab\u00eda comido ya","comer\u00e1 luego"],a:2,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto"},
+{q:"42. Luis: \u00abHemos terminado el trabajo.\u00bb\nLuis me dijo que\u2026",o:["terminamos el trabajo","hab\u00edan terminado el trabajo","terminaban el trabajo","terminar\u00e1n el trabajo"],a:1,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto"},
+{q:"43. Ana: \u00abHaz los deberes.\u00bb\nAna me dijo que\u2026",o:["hiciera los deberes","hace los deberes","hac\u00eda los deberes","har\u00e1 los deberes"],a:0,exp:"Imperativo \u2192 Imperfecto de subjuntivo (ana fiil ge\u00e7mi\u015f)"},
+{q:"44. Pedro: \u00abEstoy aqu\u00ed ahora.\u00bb\nPedro me dijo que\u2026",o:["est\u00e1 aqu\u00ed ahora","estuvo all\u00ed","estar\u00e1 all\u00ed","estaba all\u00ed en ese momento"],a:3,exp:"Presente \u2192 Imperfecto, aqu\u00ed \u2192 all\u00ed, ahora \u2192 en ese momento"},
+{q:"45. Laura: \u00abHe visto a Mar\u00eda esta ma\u00f1ana.\u00bb\nLaura me dijo que\u2026",o:["hab\u00eda visto a Mar\u00eda esa ma\u00f1ana","ve a Mar\u00eda","ve\u00eda a Mar\u00eda","ver\u00e1 a Mar\u00eda"],a:0,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto, esta \u2192 esa"},
+{q:"soru 46. \nCarlos: \u00abVen ma\u00f1ana.\u00bb\nCarlos me dijo que...",o:["viene ma\u00f1ana","ven\u00eda ma\u00f1ana","vendr\u00e1 ma\u00f1ana","fuera al d\u00eda siguiente"],a:3,exp:"Imperativo \u2192 Subjuntivo, Ven (gel) \u2192 fuera (git), ma\u00f1ana \u2192 al d\u00eda siguiente."},
+{q:"47. Elena: \u00abHe estudiado mucho.\u00bb\nElena me dijo que\u2026",o:["estudia mucho","estudiaba mucho","hab\u00eda estudiado mucho","estudiar\u00e1 mucho"],a:2,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto"},
+{q:"48. Juan: \u00abEstamos cansados ahora.\u00bb\nJuan me dijo que\u2026",o:["est\u00e1n cansados ahora","estaban cansados en ese momento","estuvieron cansados","estar\u00e1n cansados"],a:1,exp:"Presente \u2192 Imperfecto"},
+{q:"49. Sof\u00eda: \u00abHemos viajado mucho este a\u00f1o.\u00bb\nSof\u00eda me dijo que\u2026",o:["viajan mucho","hab\u00edan viajado mucho ese a\u00f1o","viajaron mucho","viajar\u00e1n mucho"],a:1,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto, este \u2192 ese"},
+{q:"50. Diego: \u00abEstudia m\u00e1s.\u00bb\nDiego me dijo que\u2026",o:["estudiara m\u00e1s","estudia m\u00e1s","estudiaba m\u00e1s","estudiar\u00e1 m\u00e1s"],a:0,exp:"Imperativo \u2192 Subjuntivo"},
+{q:"51. Marta: \u00abEstoy aprendiendo mucho en este curso.\u00bb\nMarta me dijo que\u2026",o:["est\u00e1 aprendiendo mucho en este curso","aprendi\u00f3 mucho en ese curso","aprender\u00e1 mucho en ese curso","estaba aprendiendo mucho en ese curso"],a:3,exp:"Presente continuo \u2192 Imperfecto continuo, este \u2192 ese"},
+{q:"52. Luis: \u00abHe le\u00eddo tres libros este mes.\u00bb\nLuis me dijo que\u2026",o:["ley\u00f3 tres libros este mes","lee tres libros","hab\u00eda le\u00eddo tres libros ese mes","leer\u00e1 tres libros"],a:2,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto, este \u2192 ese"},
+{q:"53. Ana: \u00abVoy a empezar un nuevo trabajo.\u00bb\nAna me dijo que\u2026",o:["iba a empezar un nuevo trabajo","empieza un nuevo trabajo","empez\u00f3 un nuevo trabajo","empezar\u00e1 un nuevo trabajo"],a:0,exp:"Ir a + inf \u2192 iba a + inf"},
+{q:"54. Pedro: \u00abTrabajo en una empresa internacional.\u00bb\nPedro me dijo que\u2026",o:["trabaj\u00f3 en una empresa internacional","trabajaba en una empresa internacional","trabaja en una empresa internacional","trabajar\u00e1 en una empresa internacional"],a:1,exp:"Presente \u2192 Imperfecto"},
+{q:"55. Laura: \u00abEstar\u00e9 en casa ma\u00f1ana.\u00bb\nLaura me dijo que\u2026",o:["est\u00e1 en casa","estaba en casa","estuvo en casa","estar\u00eda en casa al d\u00eda siguiente"],a:3,exp:"Futuro \u2192 Condicional, ma\u00f1ana \u2192 al d\u00eda siguiente"},
+{q:"56. Carlos: \u00abHe terminado mis deberes.\u00bb\nCarlos me dijo que\u2026",o:["termina sus deberes","termin\u00f3 sus deberes","hab\u00eda terminado sus deberes","terminar\u00e1 sus deberes"],a:2,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto"},
+{q:"57. Elena: \u00abVen conmigo ahora.\u00bb\nElena me dijo que\u2026",o:["viene conmigo ahora","fuera con ella en ese momento","iba con ella","fue con ella"],a:1,exp:"Imperativo \u2192 Subjuntivo, conmigo \u2192 con ella"},
+{q:"58. Juan: \u00abVivimos en esta ciudad.\u00bb\nJuan me dijo que\u2026",o:["viv\u00edan en esa ciudad","viven en esta ciudad","vivieron en esa ciudad","vivir\u00e1n en esa ciudad"],a:0,exp:"Presente \u2192 Imperfecto, esta \u2192 esa"},
+{q:"59. Sof\u00eda: \u00abHe hablado con mi profesor hoy.\u00bb\nSof\u00eda me dijo que\u2026",o:["habl\u00f3 con su profesor","habla con su profesor","hablar\u00e1 con su profesor","hab\u00eda hablado con su profesor ese d\u00eda"],a:3,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto, hoy \u2192 ese d\u00eda"},
+{q:"60. Diego: \u00abEstoy muy ocupado ahora.\u00bb\nDiego me dijo que\u2026",o:["est\u00e1 muy ocupado","estuvo muy ocupado","estaba muy ocupado en ese momento","estar\u00e1 muy ocupado"],a:2,exp:"Presente \u2192 Imperfecto"},
+{q:"61. Marta: \u00abHaz ejercicio todos los d\u00edas.\u00bb\nMarta me dijo que\u2026",o:["hiciera ejercicio todos los d\u00edas","hace ejercicio","hac\u00eda ejercicio","har\u00e1 ejercicio"],a:0,exp:"Imperativo \u2192 Subjuntivo"},
+{q:"62. Luis: \u00abNo salgas esta noche.\u00bb\nLuis me dijo que\u2026",o:["no sale esa noche","no sali\u00f3 esa noche","no sal\u00eda esa noche","no saliera esa noche"],a:3,exp:"Negatif imperativo \u2192 Subjuntivo, esta \u2192 esa"},
+{q:"63. Ana: \u00abHe estado muy ocupada \u00faltimamente.\u00bb\nAna me dijo que\u2026",o:["estaba muy ocupada","estuvo muy ocupada","hab\u00eda estado muy ocupada \u00faltimamente","estar\u00e1 muy ocupada"],a:2,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto"},
+{q:"64. Pedro: \u00abTrabajo desde casa hoy.\u00bb\nPedro me dijo que\u2026",o:["trabaj\u00f3 desde casa","trabajaba desde casa ese d\u00eda","trabaja desde casa hoy","trabajar\u00e1 desde casa"],a:1,exp:"Presente \u2192 Imperfecto, hoy \u2192 ese d\u00eda"},
+{q:"65. Laura: \u00abVoy a visitar a mis abuelos.\u00bb\nLaura me dijo que\u2026",o:["visit\u00f3 a sus abuelos","iba a visitar a sus abuelos","visita a sus abuelos","visitar\u00e1 a sus abuelos"],a:1,exp:"Ir a + inf \u2192 iba a + inf"},
+{q:"66. Carlos: \u00abTerminar\u00e9 el proyecto ma\u00f1ana.\u00bb\nCarlos me dijo que\u2026",o:["terminar\u00eda el proyecto al d\u00eda siguiente","termina el proyecto","termin\u00f3 el proyecto","terminar\u00e1 el proyecto"],a:0,exp:"Futuro \u2192 Condicional, ma\u00f1ana \u2192 al d\u00eda siguiente"},
+{q:"67. Elena: \u00abHe visto esa pel\u00edcula esta semana.\u00bb\nElena me dijo que\u2026",o:["ve esa pel\u00edcula","vio esa pel\u00edcula","ver\u00e1 esa pel\u00edcula","hab\u00eda visto esa pel\u00edcula esa semana"],a:3,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto"},
+{q:"68. Juan: \u00abEstamos estudiando ahora.\u00bb\nJuan me dijo que\u2026",o:["estudian ahora","estudiaron","estaban estudiando en ese momento","estudiar\u00e1n"],a:2,exp:"Presente continuo \u2192 Imperfecto continuo"},
+{q:"69. Sof\u00eda: \u00abMi hermano trabaja aqu\u00ed ahora.\u00bb\nSof\u00eda me dijo que\u2026",o:["mi hermano trabaja aqu\u00ed","su hermano trabaj\u00f3 all\u00ed","su hermano trabajaba all\u00ed en ese momento","su hermano trabajar\u00e1 all\u00ed"],a:2,exp:"Presente \u2192 Imperfecto, mi \u2192 su, aqu\u00ed \u2192 all\u00ed"},
+{q:"70. Diego: \u00abHe comprado este m\u00f3vil hoy.\u00bb\nDiego me dijo que\u2026",o:["compra ese m\u00f3vil","hab\u00eda comprado ese m\u00f3vil ese d\u00eda","compr\u00f3 ese m\u00f3vil","comprar\u00e1 ese m\u00f3vil"],a:1,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto, este \u2192 ese"},
+{q:"71. Marta: \u00abVen a mi casa ma\u00f1ana.\u00bb\nMarta me dijo que...",o:["fuera a su casa al d\u00eda siguiente","viene a su casa","fue a su casa","ir\u00e1 a su casa"],a:0,exp:"Imperativo \u2192 Subjuntivo, Ven \u2192 fuera, mi \u2192 su, ma\u00f1ana \u2192 al d\u00eda siguiente."},
+{q:"72. Luis: \u00abNo hables ahora.\u00bb\nLuis me dijo que\u2026",o:["no habla ahora","no habl\u00f3","no hablaba","no hablara en ese momento"],a:3,exp:"Negatif imperativo \u2192 Subjuntivo"},
+{q:"73. Ana: \u00abHe terminado mis tareas esta tarde.\u00bb\nAna me dijo que\u2026",o:["termina sus tareas","termin\u00f3 sus tareas","terminar\u00e1 sus tareas","hab\u00eda terminado sus tareas esa tarde"],a:3,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto"},
+{q:"74. Pedro: \u00abEstoy muy contento hoy.\u00bb\nPedro me dijo que\u2026",o:["estaba muy contento ese d\u00eda","est\u00e1 muy contento","estuvo muy contento","estar\u00e1 muy contento"],a:0,exp:"Presente \u2192 Imperfecto"},
+{q:"75. Laura: \u00abIr\u00e9 al gimnasio ma\u00f1ana.\u00bb\nLaura me dijo que\u2026",o:["va al gimnasio","ir\u00eda al gimnasio al d\u00eda siguiente","fue al gimnasio","ir\u00e1 al gimnasio"],a:1,exp:"Futuro \u2192 Condicional"},
+{q:"76. Carlos: \u00abHe trabajado mucho este a\u00f1o.\u00bb\nCarlos me dijo que\u2026",o:["trabaja mucho","trabaj\u00f3 mucho","hab\u00eda trabajado mucho ese a\u00f1o","trabajar\u00e1 mucho"],a:2,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto"},
+{q:"77. Elena: \u00abEstamos viviendo aqu\u00ed.\u00bb\nElena me dijo que\u2026",o:["viven aqu\u00ed","vivieron all\u00ed","estaban viviendo all\u00ed","vivir\u00e1n all\u00ed"],a:2,exp:"Presente continuo \u2192 Imperfecto continuo"},
+{q:"78. Juan: \u00abHaz tu trabajo ahora.\u00bb\nJuan me dijo que\u2026",o:["hiciera su trabajo en ese momento","hace su trabajo","hac\u00eda su trabajo","har\u00e1 su trabajo"],a:0,exp:"Imperativo \u2192 Subjuntivo"},
+{q:"79. Sof\u00eda: \u00abNo vengas tarde.\u00bb\nSof\u00eda me dijo que\u2026",o:["no viene tarde","no vino tarde","no ven\u00eda tarde","no viniera tarde"],a:3,exp:"Negatif imperativo \u2192 Subjuntivo"},
+{q:"80. Diego: \u00abHe comido en este restaurante.\u00bb\nDiego me dijo que\u2026",o:["come en ese restaurante","hab\u00eda comido en ese restaurante","comi\u00f3 en ese restaurante","comer\u00e1 en ese restaurante"],a:1,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto"},
+{q:"81. Marta: \u00abEstoy preparando la cena ahora.\u00bb\nMarta me dijo que\u2026",o:["prepara la cena ahora","estaba preparando la cena en ese momento","prepar\u00f3 la cena","preparar\u00e1 la cena"],a:1,exp:"Presente continuo \u2192 Imperfecto continuo"},
+{q:"82. Luis: \u00abHe viajado mucho este a\u00f1o.\u00bb\nLuis me dijo que\u2026",o:["viaja mucho","viaj\u00f3 mucho","hab\u00eda viajado mucho ese a\u00f1o","viajar\u00e1 mucho"],a:2,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto"},
+{q:"83. Ana: \u00abHaz la tarea ahora.\u00bb\nAna me dijo que\u2026",o:["hiciera la tarea en ese momento","hace la tarea","hac\u00eda la tarea","har\u00e1 la tarea"],a:0,exp:"Imperativo \u2192 Subjuntivo"},
+{q:"84. Pedro: \u00abNo llegues tarde.\u00bb\nPedro me dijo que\u2026",o:["no llega tarde","no lleg\u00f3 tarde","no llegaba tarde","no llegara tarde"],a:3,exp:"Negatif imperativo \u2192 Subjuntivo"},
+{q:"85. Laura: \u00abIr\u00e9 a la reuni\u00f3n ma\u00f1ana.\u00bb\nLaura me dijo que\u2026",o:["va a la reuni\u00f3n","fue a la reuni\u00f3n","ir\u00e1 a la reuni\u00f3n","ir\u00eda a la reuni\u00f3n al d\u00eda siguiente"],a:3,exp:"Futuro \u2192 Condicional"},
+{q:"86. Carlos: \u00abEstoy en mi oficina ahora.\u00bb\nCarlos me dijo que\u2026",o:["est\u00e1 en su oficina","estaba en su oficina en ese momento","estuvo en su oficina","estar\u00e1 en su oficina"],a:1,exp:"Presente \u2192 Imperfecto"},
+{q:"87. Elena: \u00abHe terminado el informe.\u00bb\nElena me dijo que\u2026",o:["termina el informe","termin\u00f3 el informe","hab\u00eda terminado el informe","terminar\u00e1 el informe"],a:2,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto"},
+{q:"88. Juan: \u00abVen conmigo ma\u00f1ana.\u00bb\nJuan me dijo que...",o:["fuera con \u00e9l al d\u00eda siguiente","viene con \u00e9l","fue con \u00e9l","ir\u00e1 con \u00e9l"],a:0,exp:"Imperativo \u2192 Subjuntivo, Ven \u2192 fuera, conmigo \u2192 con \u00e9l."},
+{q:"89. Sof\u00eda: \u00abMi hermana trabaja aqu\u00ed.\u00bb\nSof\u00eda me dijo que\u2026",o:["su hermana trabajaba all\u00ed","mi hermana trabaja aqu\u00ed","su hermana trabaj\u00f3 all\u00ed","su hermana trabajar\u00e1 all\u00ed"],a:0,exp:"Presente \u2192 Imperfecto"},
+{q:"90. Diego: \u00abYa he le\u00eddo este libro.\u00bb \nDiego me dijo que...",o:["lee ese libro","ley\u00f3 ese libro","ya hab\u00eda le\u00eddo ese libro","leer\u00e1 ese libro"],a:2,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto, este \u2192 ese."},
+{q:"91. Marta: \u00abNo hables ahora.\u00bb\nMarta me dijo que\u2026",o:["no habla ahora","no habl\u00f3","no hablaba","no hablara en ese momento"],a:3,exp:"Negatif imperativo \u2192 Subjuntivo"},
+{q:"92. Luis: \u00abHe comprado este libro hoy.\u00bb\nLuis me dijo que\u2026",o:["compra ese libro","hab\u00eda comprado ese libro ese d\u00eda","compr\u00f3 ese libro","comprar\u00e1 ese libro"],a:1,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto"},
+{q:"93. Ana: \u00abVoy a salir esta noche.\u00bb\nAna me dijo que\u2026",o:["sale esta noche","iba a salir esa noche","sali\u00f3 esa noche","saldr\u00e1 esa noche"],a:1,exp:"Ir a + inf \u2192 iba a + inf"},
+{q:"94. Pedro: \u00abEstar\u00e9 en casa ma\u00f1ana.\u00bb\nPedro me dijo que\u2026",o:["est\u00e1 en casa","estaba en casa","estuvo en casa","estar\u00eda en casa al d\u00eda siguiente"],a:3,exp:"Futuro \u2192 Condicional"},
+{q:"95. Laura: \u00abEstamos estudiando ahora.\u00bb\nLaura me dijo que\u2026",o:["estudian ahora","estudiaron","estaban estudiando en ese momento","estudiar\u00e1n"],a:2,exp:"Presente continuo \u2192 Imperfecto continuo"},
+{q:"96. Carlos: \u00abHaz tu trabajo.\u00bb\nCarlos me dijo que\u2026",o:["hiciera su trabajo","hace su trabajo","hac\u00eda su trabajo","har\u00e1 su trabajo"],a:0,exp:"Imperativo \u2192 Subjuntivo"},
+{q:"97. Elena: \u00abVivo aqu\u00ed ahora.\u00bb\nElena me dijo que\u2026",o:["viv\u00eda all\u00ed en ese momento","vive aqu\u00ed","vivi\u00f3 all\u00ed","vivir\u00e1 all\u00ed"],a:0,exp:"Presente \u2192 Imperfecto"},
+{q:"98. Juan: \u00abHe visto esa pel\u00edcula.\u00bb\nJuan me dijo que\u2026",o:["ve esa pel\u00edcula","hab\u00eda visto esa pel\u00edcula","vio esa pel\u00edcula","ver\u00e1 esa pel\u00edcula"],a:1,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto"},
+{q:"99. Sof\u00eda: \u00abNo vengas tarde.\u00bb\nSof\u00eda me dijo que\u2026",o:["no viene tarde","no vino tarde","no ven\u00eda tarde","no viniera tarde"],a:3,exp:"Negatif imperativo \u2192 Subjuntivo"},
+{q:"100. Diego: \u00abTrabajo mucho estos d\u00edas.\u00bb\nDiego me dijo que\u2026",o:["trabaj\u00f3 mucho","trabaja mucho","trabajaba mucho esos d\u00edas","trabajar\u00e1 mucho"],a:2,exp:"Presente \u2192 Imperfecto, estos \u2192 esos"}
+];
+
+var state={cur:0,answered:[],scores:[],okCount:0,errCount:0};
+
+function startQuiz(){
+  var name=document.getElementById('introName').value;
+  if(!name){alert('L\u00fctfen ad\u0131n\u0131z\u0131 se\u00e7in.');return;}
+  document.getElementById('resName').value=name;
+  document.getElementById('resName2').value=name;
+  document.getElementById('introScreen').style.display='none';
+  document.getElementById('quizScreen').style.display='block';
+  renderQ();
+}
+
+function syncResName(){
+  var v=document.getElementById('resName2').value;
+  document.getElementById('resName').value=v;
+}
+
+function esc(s){
+  if(!s)return'';
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+}
+
+function renderQ(){
+  var i=state.cur;var q=Q[i];var html='';
+  html+='<span class="q-type-badge badge-mc">\u00c7OKTAN SE\u00c7MEL\u0130</span>';
+  html+='<div class="q-text">'+esc(q.q)+'</div>';
+  html+='<div class="opts">';
+  var L=['A','B','C','D'];
+  for(var j=0;j<q.o.length;j++){
+    var cls='opt-btn';var dis='';var ans=state.answered[i];
+    if(ans!==undefined){dis='disabled';if(j===q.a)cls+=' correct';else if(j===ans&&ans!==q.a)cls+=' wrong';}
+    html+='<button class="'+cls+'" '+dis+' onclick="checkAns('+j+')"><strong>'+L[j]+')</strong> '+esc(q.o[j])+'</button>';
+  }
+  html+='</div>';
+  html+='<div class="exp-box'+(state.answered[i]!==undefined?' show':'')+'">'+esc(q.exp)+'</div>';
+  document.getElementById('qCard').innerHTML=html;
+  var done=state.answered[i]!==undefined;
+  document.getElementById('btnBack').disabled=(i===0);
+  document.getElementById('btnNext').disabled=(!done||i===Q.length-1);
+  document.getElementById('btnSkip').disabled=(i>=Q.length-1);
+  document.getElementById('qMeta').textContent='Soru '+(i+1)+' / '+Q.length;
+  document.getElementById('progFill').style.width=((i+1)/Q.length*100)+'%';
+  document.getElementById('cntOk').textContent='\u2713 '+state.okCount;
+  document.getElementById('cntErr').textContent='\u2717 '+state.errCount;
+}
+
+function checkAns(j){
+  var i=state.cur;
+  if(state.answered[i]!==undefined)return;
+  var q=Q[i];
+  state.answered[i]=j;
+  if(j===q.a){state.okCount++;state.scores[i]=1;}
+  else{state.errCount++;state.scores[i]=0;}
+  renderQ();
+}
+
+function goNext(){if(state.cur<Q.length-1){state.cur++;renderQ();}}
+function goBack(){if(state.cur>0){state.cur--;renderQ();}}
+function skipQ(){if(state.cur<Q.length-1){state.cur++;renderQ();}}
+
+function confirmFinish(){
+  var answered=0;
+  for(var i=0;i<Q.length;i++){if(state.answered[i]!==undefined)answered++;}
+  var unanswered=Q.length-answered;
+  var msg='Toplam '+Q.length+' sorudan '+answered+' tanesini cevaplad\u0131n\u0131z.';
+  if(unanswered>0)msg+='\n\n'+unanswered+' soru cevaps\u0131z kalacak (0 puan).';
+  msg+='\n\nTesti bitirmek istedi\u011finize emin misiniz?';
+  document.getElementById('confirmMsg').textContent=msg;
+  document.getElementById('confirmOverlay').style.display='flex';
+}
+
+function closeConfirm(){document.getElementById('confirmOverlay').style.display='none';}
+function doFinish(){closeConfirm();showResult();}
+
+function showResult(){
+  document.getElementById('quizScreen').style.display='none';
+  document.getElementById('resultScreen').style.display='block';
+  var total=0;
+  for(var i=0;i<Q.length;i++){total+=(state.scores[i]||0);}
+  var pct=Math.round(total*100/Q.length);
+  document.getElementById('resScore').textContent=pct;
+  document.getElementById('resOk').textContent='\u2713 '+state.okCount+' do\u011fru';
+  document.getElementById('resErr').textContent='\u2717 '+state.errCount+' yanl\u0131\u015f';
+  document.getElementById('resNote').textContent='100 sorudan '+state.okCount+' tanesi do\u011fru';
+  document.getElementById('submitWarning').style.display='block';
+  document.getElementById('btnSubmit').style.display='block';
+  var rev=document.getElementById('reviewList');
+  var L=['A','B','C','D'];
+  var html='';
+  for(var i=0;i<Q.length;i++){
+    var ans=state.answered[i];
+    if(ans===undefined||ans===Q[i].a)continue;
+    var q=Q[i];
+    html+='<div class="rev-item"><div class="rev-q">'+esc(q.q.split('\n')[0])+'</div>';
+    html+='<div class="rev-chosen">Verdi\u011finiz cevap: '+esc(q.o[ans])+'</div>';
+    html+='<div class="rev-correct">Do\u011fru cevap: '+esc(q.o[q.a])+'</div>';
+    html+='<div class="rev-exp">'+esc(q.exp)+'</div></div>';
+  }
+  rev.innerHTML=html||'<div style="padding:.5rem;color:#666">Yanl\u0131\u015f soru bulunamad\u0131.</div>';
+}
+
+function toggleReview(){
+  var rv=document.getElementById('reviewList');
+  rv.style.display=(rv.style.display==='flex'?'none':'flex');
+}
+
+var submitted=false;
+function submitResult(){
+  if(submitted)return;
+  var name=document.getElementById('resName').value;
+  if(!name){alert('L\u00fctfen isminizi se\u00e7in.');return;}
+  var total=0;
+  for(var i=0;i<Q.length;i++){total+=(state.scores[i]||0);}
+  var pct=Math.round(total*100/Q.length);
+  var payload=JSON.stringify({ogrenci:name,odev:ODEV_ADI,grup:'B1.1',puan:pct,dogru:state.okCount,yanlis:state.errCount,tarih:new Date().toLocaleDateString('tr-TR')});
+  document.getElementById('submitMsg').style.display='block';
+  document.getElementById('submitMsg').textContent='G\u00f6nderiliyor...';
+  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:payload})
+  .then(function(){
+    submitted=true;
+    document.getElementById('submitWarning').style.display='none';
+    document.getElementById('btnSubmit').style.display='none';
+    document.getElementById('submitMsg').textContent=name+' \u00f6\u011frencisinin \u201c'+ODEV_ADI+'\u201d \u00f6devi teslim edildi. Puan: '+pct+'/100. Te\u015fekk\u00fcrler!';
+  })
+  .catch(function(){
+    submitted=true;
+    document.getElementById('submitWarning').style.display='none';
+    document.getElementById('btnSubmit').style.display='none';
+    document.getElementById('submitMsg').textContent=name+' \u00f6\u011frencisinin \u201c'+ODEV_ADI+'\u201d \u00f6devi teslim edildi. Puan: '+pct+'/100.';
+  });
+}
+</script>
+</body>
+</html>
