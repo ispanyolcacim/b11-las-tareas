@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>B1.1 – H6 23-24. Ders</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f0eef8;min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:1.5rem 1rem}
+.card{background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(100,80,160,.15);max-width:760px;width:100%;padding:2rem}
+h1{color:#6c4eb8;font-size:1.2rem;margin-bottom:1rem;text-align:center}
+.pill{display:inline-block;background:#e8e0f8;color:#6c4eb8;border-radius:20px;padding:.25rem .9rem;font-size:.75rem;font-weight:700;margin-bottom:.6rem}
+.screen{display:none}
+select,button{font-family:inherit}
+select{width:100%;padding:.65rem;border:2px solid #d0c8f0;border-radius:8px;color:#333;background:#fff;margin-bottom:.9rem;outline:none;font-size:.92rem}
+.btn-start{width:100%;padding:.8rem;background:#6c4eb8;color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer}
+.btn-start:hover{background:#5a3ea0}
+
+/* VIDEO EMBED */
+.vid-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;margin-bottom:1rem}
+.vid-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;border-radius:10px}
+.vid-label{font-size:.8rem;color:#9b7de0;text-align:center;margin-bottom:1.2rem;font-style:italic}
+
+/* PROGRESS */
+.prog-bar{height:5px;background:#e8e0f8;border-radius:3px;margin-bottom:.9rem;overflow:hidden}
+.prog-fill{height:100%;background:#6c4eb8;transition:width .3s;border-radius:3px}
+.q-meta{display:flex;justify-content:space-between;font-size:.8rem;color:#888;margin-bottom:.7rem}
+.cnt{padding:.18rem .55rem;border-radius:5px;font-weight:700}
+.cok{background:#e6f9f0;color:#2e9e6b}.cerr{background:#fde8e8;color:#d94040}
+
+/* VIDEO LINK BUTTON */
+.btn-video{display:inline-flex;align-items:center;gap:.4rem;padding:.42rem .9rem;background:#ff0000;color:#fff;border:none;border-radius:7px;font-size:.78rem;font-weight:700;cursor:pointer;text-decoration:none;margin-bottom:.9rem}
+.btn-video:hover{background:#cc0000}
+
+/* BADGE */
+.badge{display:inline-block;padding:.18rem .6rem;border-radius:5px;font-size:.7rem;font-weight:700;letter-spacing:.4px;margin-bottom:.75rem}
+.badge-vid{background:#ffe8e8;color:#cc0000}
+.badge-tr{background:#e8f0ff;color:#3060c0}
+
+/* QUESTION */
+.qtext{font-size:.92rem;color:#333;line-height:1.7;margin-bottom:.9rem;white-space:pre-wrap}
+.opts{display:flex;flex-direction:column;gap:.45rem;margin-bottom:.8rem}
+.ob{text-align:left;padding:.65rem .95rem;border:2px solid #d0c8f0;border-radius:8px;background:#fff;cursor:pointer;font-size:.87rem;color:#333;transition:all .13s;line-height:1.5}
+.ob:hover:not(:disabled){background:#f3effb;border-color:#9b7de0}
+.ob.ok{background:#e6f9f0;border-color:#2e9e6b;color:#1a5c3a;font-weight:600}
+.ob.err{background:#fde8e8;border-color:#d94040;color:#8b1a1a}
+.ob:disabled{cursor:default}
+
+/* EXPLANATION */
+.exp-box{display:none;background:#f8f5ff;border-left:4px solid #6c4eb8;border-radius:0 8px 8px 0;padding:.8rem 1rem;font-size:.82rem;color:#444;line-height:1.65;white-space:pre-wrap;margin-bottom:.8rem}
+.exp-box.show{display:block}
+.exp-ans{font-weight:700;color:#2e9e6b;display:block;margin-bottom:.3rem;font-size:.88rem}
+
+/* NAV */
+.nav{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:.8rem}
+.nav button{padding:.52rem 1.1rem;border-radius:8px;border:none;cursor:pointer;font-size:.87rem;font-weight:600}
+.nbk{background:#e8e0f8;color:#6c4eb8}.nnx{background:#6c4eb8;color:#fff}.nfi{background:#e05c5c;color:#fff}
+.nav button:disabled{opacity:.38;cursor:not-allowed}
+
+/* RESULT */
+.rs{text-align:center;font-size:3.2rem;font-weight:800;color:#6c4eb8;margin:.8rem 0}
+.rstats{display:flex;gap:.8rem;justify-content:center;margin-bottom:.7rem}
+.rstat{padding:.35rem .9rem;border-radius:7px;font-weight:700;font-size:.87rem}
+.rnote{text-align:center;color:#888;font-size:.8rem;margin-bottom:1.2rem}
+.bsub{width:100%;padding:1rem;background:#2e9e6b;color:#fff;border:none;border-radius:10px;font-size:1.1rem;font-weight:800;cursor:pointer;margin-bottom:.65rem}
+.bsub:hover{background:#257a55}
+.smsg{background:#e6f9f0;border:1px solid #b8f0d8;border-radius:8px;padding:.65rem;font-size:.83rem;color:#1a5c3a;display:none;margin-bottom:.65rem;font-weight:600}
+.swarn{background:#fde8e8;border:1px solid #f5c0c0;border-radius:8px;padding:.65rem .9rem;font-size:.95rem;color:#d94040;font-weight:800;text-align:center;margin-bottom:.65rem}
+.brev{width:100%;padding:.65rem;background:#e8e0f8;color:#6c4eb8;border:none;border-radius:9px;font-size:.87rem;font-weight:600;cursor:pointer}
+.revlist{display:none;flex-direction:column;gap:.65rem;margin-top:.8rem}
+.rvi{background:#fafafa;border:1px solid #e0d8f8;border-radius:8px;padding:.65rem;font-size:.8rem}
+.rvq{font-weight:700;color:#333;margin-bottom:.25rem;white-space:pre-wrap}
+.rvg{color:#d94040;margin-bottom:.15rem}.rvc{color:#2e9e6b;margin-bottom:.25rem;font-weight:600}
+.rve{color:#555;line-height:1.5;white-space:pre-wrap}
+.res-title{text-align:center;color:#6c4eb8;font-size:1rem;font-weight:700;margin-bottom:.4rem}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);align-items:center;justify-content:center;z-index:999;padding:1rem}
+.overlay.show{display:flex}
+.cbox{background:#fff;border-radius:13px;padding:1.4rem;max-width:390px;width:100%}
+.cmsg{font-size:.88rem;color:#333;white-space:pre-wrap;margin-bottom:1.1rem;line-height:1.6}
+.cbtns{display:flex;gap:.65rem}
+.cbtns button{flex:1;padding:.65rem;border-radius:7px;border:none;font-size:.88rem;font-weight:700;cursor:pointer}
+.bcancel{background:#e8e0f8;color:#6c4eb8}.bok{background:#e05c5c;color:#fff}
+</style>
+</head>
+<body>
+<div class="card">
+  <div style="text-align:center"><div class="pill">6. HAFTA ODEVI | B1.1 (23-24. DERS)</div></div>
+  <h1>&#127466;&#127480; B1.1 &ndash; H6 23-24. Ders &ndash; Subjuntivo</h1>
+
+  <!-- INTRO -->
+  <div id="sIntro" class="screen" style="display:block">
+    <div class="vid-wrap">
+      <iframe src="https://www.youtube.com/embed/7adQLmQk10k" allowfullscreen></iframe>
+    </div>
+    <div class="vid-label">&#127911; Learn Spanish with a Story | Slow Spanish (Subjuntivo) | A2-B1 &ndash; Profe Hazel</div>
+    <div style="font-size:1rem;font-weight:700;color:#6c4eb8;margin-bottom:.4rem">&#128218; Ad&#305;n&#305;z&#305; se&#231;in</div>
+    <div style="color:#888;font-size:.83rem;margin-bottom:.35rem">50 soru &bull; 1-30 Video sorusu + 31-50 &Ccedil;eviri</div>
+    <div style="color:#9b7de0;font-size:.78rem;margin-bottom:1.2rem;font-style:italic">@ispanyolcacim &bull; Profe Hazel</div>
+    <select id="selName">
+      <option value="">-- Ad&#305;n&#305;z&#305; Se&#231;in --</option>
+      <option>Ceylin &Ouml;z</option>
+      <option>Deneme &Ouml;&#287;rencisi</option>
+      <option>Esra &Ouml;z&ccedil;e&#351;meci</option>
+      <option>Gencay Agocuk</option>
+      <option>Kayhan A&ccedil;an</option>
+      <option>K&uuml;bra Bulut</option>
+      <option>Nihan Karagedik</option>
+      <option>Nur O. Demirci</option>
+      <option>Pelinsu Damgac&#305;</option>
+      <option>Simge G&uuml;ler</option>
+      <option>Ufuk Ayd&#305;n</option>
+      <option>Umre G&uuml;l</option>
+    </select>
+    <button class="btn-start" onclick="startQuiz()">&#9654; Ba&#351;la</button>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="sQuiz" class="screen">
+    <div class="prog-bar"><div class="prog-fill" id="pFill" style="width:0%"></div></div>
+    <div class="q-meta">
+      <span id="qMeta">Soru 1 / 50</span>
+      <span><span class="cnt cok" id="cOk">&#10003; 0</span>&nbsp;<span class="cnt cerr" id="cErr">&#10007; 0</span></span>
+    </div>
+    <div id="qCard"></div>
+    <div class="nav">
+      <button class="nbk" id="btnBk" onclick="goBack()" disabled>&#8592; Geri</button>
+      <button class="nnx" id="btnNx" onclick="goNext()" disabled>&#8594; &#304;leri</button>
+      <button class="nfi" onclick="confirmFinish()">&#10004; Bitir</button>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div id="sResult" class="screen">
+    <input type="hidden" id="rName">
+    <div class="res-title">B1.1 &ndash; H6 23-24. Ders &ndash; Subjuntivo</div>
+    <div class="rs"><span id="rScore">0</span>/50</div>
+    <div class="rstats">
+      <span class="rstat" style="background:#e6f9f0;color:#2e9e6b" id="rOk"></span>
+      <span class="rstat" style="background:#fde8e8;color:#d94040" id="rErr"></span>
+    </div>
+    <div class="rnote" id="rNote"></div>
+    <div class="swarn" id="swarn">&#214;DEV&#304;N&#304;Z TESLIM EDILMEDI</div>
+    <div class="smsg" id="smsg"></div>
+    <button class="bsub" id="bsub" onclick="submitResult()">&#214;DEV&#304;N&#304;Z&#304; TESLIM ET</button>
+    <button class="brev" onclick="toggleRev()">&#128269; Yanl&#305;&#351;lar&#305; G&ouml;r</button>
+    <div class="revlist" id="revList"></div>
+    <div style="margin-top:1.2rem;text-align:center">
+      <select id="rName2" onchange="document.getElementById('rName').value=this.value">
+        <option value="">-- Ad&#305;n&#305;z&#305; Se&#231;in --</option>
+        <option>Ceylin &Ouml;z</option>
+        <option>Deneme &Ouml;&#287;rencisi</option>
+        <option>Esra &Ouml;z&ccedil;e&#351;meci</option>
+        <option>Gencay Agocuk</option>
+        <option>Kayhan A&ccedil;an</option>
+        <option>K&uuml;bra Bulut</option>
+        <option>Nihan Karagedik</option>
+        <option>Nur O. Demirci</option>
+        <option>Pelinsu Damgac&#305;</option>
+        <option>Simge G&uuml;ler</option>
+        <option>Ufuk Ayd&#305;n</option>
+        <option>Umre G&uuml;l</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="cbox">
+    <div class="cmsg" id="cmsg"></div>
+    <div class="cbtns">
+      <button class="bcancel" onclick="closeOv()">&#10060; &#304;ptal</button>
+      <button class="bok" onclick="doFinish()">&#10004; Evet, Bitir</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var SURL='https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
+var ODEV='H6 \u2013 23-24.Ders';
+var VID_URL='https://www.youtube.com/watch?v=7adQLmQk10k&t=4s';
+
+var Q=[
+// 1-30 VIDEO SORULARI
+{type:'vid',q:'1. \u00bfD\u00f3nde est\u00e1 Hazel al inicio del video?',o:['En una cafeter\u00eda','En un parque','En casa','En una oficina'],a:2,exp:'Videoda Hazel "estoy en casa, con un caf\u00e9" der. Bu y\u00fczden do\u011fru cevap C\'dir. Di\u011fer yerler videoda ba\u015flang\u0131\u00e7 yeri olarak s\u00f6ylenmez.'},
+{type:'vid',q:'2. \u00bfQu\u00e9 quiere practicar Hazel en el video?',o:['El subjuntivo de presente','El pasado','El futuro','El imperativo'],a:0,exp:'Hazel videoda "quiero que practiquemos juntos el subjuntivo de presente" der. Bu y\u00fczden do\u011fru cevap A\'d\u0131r.'},
+{type:'vid',q:'3. \u00bfC\u00f3mo quiere Hazel practicar el subjuntivo?',o:['Solo con teor\u00eda','Con una lista de verbos','Con traducciones largas','Con una historia'],a:3,exp:'Hazel videoda bunun sadece teori veya s\u0131k\u0131c\u0131 gramer olmas\u0131n\u0131 istemedi\u011fini, bir hik\u00e2ye dinletmek istedi\u011fini s\u00f6yler. Bu y\u00fczden do\u011fru cevap D\'dir.'},
+{type:'vid',q:'4. \u00bfQu\u00e9 quiere Hazel para este a\u00f1o?',o:['Que sea m\u00e1s corto','Que sea diferente','Que sea m\u00e1s dif\u00edcil','Que sea igual'],a:1,exp:'Videoda Hazel "quiero que este a\u00f1o sea diferente" der. Bu y\u00fczden do\u011fru cevap B\'dir.'},
+{type:'vid',q:'5. \u00bfC\u00f3mo son normalmente las vacaciones de Hazel?',o:['Siempre nuevas','Repetitivas','Muy largas','Muy caras'],a:1,exp:'Hazel normalde ayn\u0131 yerlere gitti\u011fini ve ayn\u0131 planlar\u0131 yapt\u0131\u011f\u0131n\u0131 s\u00f6yler. Bu durum tatillerinin tekrarl\u0131 oldu\u011funu g\u00f6sterir.'},
+{type:'vid',q:'6. \u00bfQu\u00e9 siente Hazel que necesita?',o:['M\u00e1s ropa','M\u00e1s caf\u00e9','Un cambio','Una oficina'],a:2,exp:'Videoda Hazel "siento que necesito un cambio" der. Bu y\u00fczden do\u011fru cevap C\'dir.'},
+{type:'vid',q:'7. \u00bfQu\u00e9 espera Hazel?',o:['Que todo salga bien','Que todo salga mal','Que todo sea aburrido','Que todo sea igual'],a:0,exp:'Hazel videoda "espero que todo salga bien" der. Bu y\u00fczden do\u011fru cevap A\'d\u0131r.'},
+{type:'vid',q:'8. \u00bfC\u00f3mo quiere Hazel que sean sus vacaciones este a\u00f1o?',o:['Normales','Cortas','Aburridas','Especiales'],a:3,exp:'Hazel "quiero que mis vacaciones sean realmente especiales este a\u00f1o" der. Bu y\u00fczden do\u011fru cevap D\'dir. Di\u011fer se\u00e7enekler videodaki iste\u011fi yans\u0131tmaz.'},
+{type:'vid',q:'9. \u00bfPor qu\u00e9 es importante que Hazel aproveche bien cada momento?',o:['Porque no le gusta viajar','Porque tiene mucho dinero','Porque siempre viaja sola','Porque tiene poco tiempo libre'],a:3,exp:'Hazel \u00e7al\u0131\u015ft\u0131\u011f\u0131 i\u00e7in az bo\u015f zaman\u0131 oldu\u011funu s\u00f6yler. Bu y\u00fczden her an\u0131 iyi de\u011ferlendirmek ister.'},
+{type:'vid',q:'10. \u00bfQu\u00e9 siente Hazel cuando algunos amigos la apoyan?',o:['Alegr\u00eda','Tristeza','Miedo','Verg\u00fcenza'],a:0,exp:'Videoda "me alegra que algunos amigos me apoyen" der. "Me alegra" sevin\u00e7 duydu\u011funu g\u00f6sterir.'},
+{type:'vid',q:'11. \u00bfQu\u00e9 duda tiene Hazel sobre sus amigos?',o:['Que no quieran hablar','Que no tengan caf\u00e9','Que todos puedan venir','Que no conozcan el destino'],a:2,exp:'Hazel arkada\u015flar\u0131n\u0131n \u00e7ok \u00e7al\u0131\u015ft\u0131\u011f\u0131n\u0131 ve sorumluluklar\u0131 oldu\u011funu s\u00f6yler. Bu y\u00fczden "dudo que todos puedan venir conmigo" der.'},
+{type:'vid',q:'12. \u00bfQu\u00e9 est\u00e1 haciendo Hazel en internet?',o:['Comprando ropa','Mirando destinos','Buscando trabajo','Escribiendo correos'],a:1,exp:'Hazel internette destinasyonlara bakt\u0131\u011f\u0131n\u0131, foto\u011fraflar g\u00f6rd\u00fc\u011f\u00fcn\u00fc ve yerleri kar\u015f\u0131la\u015ft\u0131rd\u0131\u011f\u0131n\u0131 s\u00f6yler.'},
+{type:'vid',q:'13. \u00bfC\u00f3mo prefiere Hazel que sea el lugar?',o:['Tranquilo','Ruidoso','Caro','Peque\u00f1o'],a:0,exp:'Hazel "prefiero que el lugar sea tranquilo" der. Bu y\u00fczden do\u011fru cevap A\'d\u0131r.'},
+{type:'vid',q:'14. \u00bfQu\u00e9 no quiere Hazel en el destino?',o:['Naturaleza','Aire limpio','Espacios abiertos','Demasiado ruido'],a:3,exp:'Hazel do\u011fa, a\u00e7\u0131k alanlar ve temiz hava istedi\u011fini s\u00f6yler. Ama fazla g\u00fcr\u00fclt\u00fc ve stres istemez.'},
+{type:'vid',q:'15. \u00bfPor qu\u00e9 quiere Hazel un ambiente relajado?',o:['Para trabajar m\u00e1s','Para estudiar m\u00e1s','Para olvidar el trabajo unos d\u00edas','Para tener m\u00e1s responsabilidades'],a:2,exp:'Hazel rahat bir ortam istedi\u011fini \u00e7\u00fcnk\u00fc birka\u00e7 g\u00fcn i\u015fi unutmak istedi\u011fini s\u00f6yler. Bu y\u00fczden do\u011fru cevap C\'dir.'},
+{type:'vid',q:'16. \u00bfQu\u00e9 est\u00e1 haciendo Hazel con el viaje?',o:['Cancel\u00e1ndolo','Organiz\u00e1ndolo','Olvid\u00e1ndolo','Vendiendo billetes'],a:1,exp:'Videoda "estoy organizando todo poco a poco" der. Bu y\u00fczden do\u011fru cevap B\'dir.'},
+{type:'vid',q:'17. \u00bfQu\u00e9 intenta hacer Hazel para evitar problemas?',o:['Viajar sin plan','Planificar bien cada detalle','No mirar precios','No buscar alojamiento'],a:1,exp:'Hazel yolculukta problem olmas\u0131n\u0131 istemedi\u011fi i\u00e7in her detay\u0131 iyi planlamaya \u00e7al\u0131\u015ft\u0131\u011f\u0131n\u0131 s\u00f6yler.'},
+{type:'vid',q:'18. \u00bfQu\u00e9 debe hacer Hazel con el alojamiento?',o:['Buscarlo con tiempo','Evitarlo completamente','Dejarlo para el \u00faltimo d\u00eda','Cambiarlo cada d\u00eda'],a:0,exp:'Hazel "es importante que busque alojamiento con tiempo" der. Bu y\u00fczden do\u011fru cevap A\'d\u0131r.'},
+{type:'vid',q:'19. \u00bfQu\u00e9 le preocupa a Hazel en cuanto al transporte?',o:['Que sea muy lento','Que est\u00e9 muy lejos','Que sea aburrido','Que los precios sean altos'],a:3,exp:'Hazel baz\u0131 fiyatlar\u0131n olduk\u00e7a y\u00fcksek oldu\u011funu ve bunun onu endi\u015felendirdi\u011fini s\u00f6yler.'},
+{type:'vid',q:'20. \u00bfC\u00f3mo quiere Hazel que sean las opciones de transporte?',o:['Complicadas','Lujosas','Econ\u00f3micas','Innecesarias'],a:2,exp:'Hazel ula\u015f\u0131m i\u00e7in \u00e7ok fazla para harcamak istemedi\u011fini ve se\u00e7eneklerin ekonomik olmas\u0131n\u0131 istedi\u011fini s\u00f6yler.'},
+{type:'vid',q:'21. \u00bfCu\u00e1ndo cree Hazel que es mejor comprar los billetes?',o:['Al final del viaje','Despu\u00e9s de volver','Pronto','Nunca'],a:2,exp:'Hazel fiyatlar daha da artmadan biletleri erken alman\u0131n daha iyi oldu\u011funu s\u00f6yler.'},
+{type:'vid',q:'22. \u00bfQu\u00e9 quiere hacer Hazel con su presupuesto?',o:['Ignorarlo','Gastarlo todo','Perderlo','Controlarlo mejor'],a:3,exp:'Hazel normalde seyahatlerde \u00e7ok harcad\u0131\u011f\u0131n\u0131 ama bu kez b\u00fct\u00e7esini daha iyi kontrol etmek istedi\u011fini s\u00f6yler.'},
+{type:'vid',q:'23. \u00bfC\u00f3mo quiere Hazel que sea todo?',o:['R\u00e1pido','Equilibrado','Car\u00eds\u00edmo','Dif\u00edcil'],a:1,exp:'Hazel "quiero que todo sea equilibrado" der. Hem keyif almak hem de ekonomik stres ya\u015famamak ister.'},
+{type:'vid',q:'24. \u00bfC\u00f3mo es la apariencia f\u00edsica de Hazel y qu\u00e9 lleva puesto en el video?',o:['Tiene el pelo corto y rubio, y lleva un vestido rojo muy elegante.','Tiene el pelo largo y casta\u00f1o, lleva gafas de montura oscura y una camiseta de color gris oscuro.','Lleva el pelo recogido en un mo\u00f1o, no usa gafas y tiene una camisa blanca.','Tiene el pelo negro y muy corto, y lleva una chaqueta de invierno grande.'],a:1,exp:'Videoda Hazel\'in uzun ve kahverengi sa\u00e7lar\u0131 oldu\u011fu, siyah/koyu renkli kemik bir g\u00f6zl\u00fck takt\u0131\u011f\u0131 ve \u00fczerinde koyu gri bir ti\u015f\u00f6rt oldu\u011fu net bir \u015fekilde g\u00f6r\u00fcnmektedir. Bu y\u00fczden fiziksel \u00f6zelliklerini ve k\u0131yafetini en do\u011fru tan\u0131mlayan se\u00e7enek B\'dir.'},
+{type:'vid',q:'25. \u00bfQu\u00e9 elementos se ven en el entorno (fondo) donde Hazel graba el video?',o:['Una cocina moderna con muchos platos y una mesa de madera.','Una biblioteca llena de libros de gram\u00e1tica y una pizarra blanca.','Un sof\u00e1 gris, una planta verde de hojas grandes y una l\u00e1mpara con luz naranja al fondo.','Un balc\u00f3n con vistas al mar y muchas sillas de color azul.'],a:2,exp:'Videoda Hazel\'in oturdu\u011fu yerin arkas\u0131nda gri bir koltuk, koltu\u011fun hemen yan\u0131nda b\u00fcy\u00fck yaprakl\u0131 bir deve taban\u0131 bitkisi (Monstera) ve arka planda turuncu/turuncu \u0131\u015f\u0131kl\u0131 bir lamba g\u00f6r\u00fcnmektedir. Bu g\u00f6rsel detaylar ortam\u0131 tan\u0131mlayan C \u015f\u0131kk\u0131n\u0131 do\u011fru k\u0131lar.'},
+{type:'vid',q:'26. \u00bfQu\u00e9 prefiere Hazel sobre el clima?',o:['Que haga mucho fr\u00edo','Que nieve mucho','Que no llueva demasiado','Que siempre haya tormentas'],a:2,exp:'Hazel genelde g\u00fcne\u015f olmas\u0131na sevindi\u011fini ama \u00e7ok ya\u011fmur ya\u011fmamas\u0131n\u0131 tercih etti\u011fini s\u00f6yler.'},
+{type:'vid',q:'27. \u00bfQu\u00e9 suele olvidar Hazel cuando viaja?',o:['El caf\u00e9','El trabajo','La ventana','Algunas cosas importantes'],a:3,exp:'Hazel seyahat ederken her zaman bir \u015feyler unuttu\u011funu s\u00f6yler. Bu y\u00fczden liste yapar.'},
+{type:'vid',q:'28. \u00bfQu\u00e9 necesita llevar Hazel?',o:['Ropa elegante','Ropa c\u00f3moda','Ropa de fiesta','Ropa cara'],a:1,exp:'Hazel rahat k\u0131yafet g\u00f6t\u00fcrmesinin gerekli oldu\u011funu s\u00f6yler. Bu y\u00fczden do\u011fru cevap B\'dir.'},
+{type:'vid',q:'29. \u00bfQu\u00e9 siente Hazel al imaginar todo el viaje?',o:['Miedo','Emoci\u00f3n','Aburrimiento','Enfado'],a:1,exp:'Hazel "me emociona pensar que todo salga bien" der. Bu ifade heyecan duydu\u011funu g\u00f6sterir.'},
+{type:'vid',q:'30. \u00bfQu\u00e9 recomienda Hazel al final del video?',o:['Que dejen de estudiar','Que no escuchen espa\u00f1ol','Que no practiquen m\u00e1s','Que no tengan miedo de equivocarse'],a:3,exp:'Hazel videonun sonunda \u00f6\u011frencilerin pratik yapmaya devam etmesini ve hata yapmaktan korkamamas\u0131n\u0131 s\u00f6yler.'},
+
+// 31-50 ÇEVİRİ SORULARI
+{type:'tr',q:'31. "Umar\u0131m yar\u0131n hava g\u00fczel olur ve pikni\u011fe gideriz." c\u00fcmlesinin en do\u011fru \u00e7evirisi hangisidir?',o:['Espero que ma\u00f1ana haga buen tiempo y vayamos de picnic.','Espero que ma\u00f1ana hace buen tiempo y vamos de picnic.','Espero que ma\u00f1ana haga buen tiempo y vamos de picnic.','Espero que ma\u00f1ana har\u00e1 buen tiempo e ir\u00edamos de picnic.'],a:0,exp:'"Esperar que" yap\u0131s\u0131 bir dilek ve umut bildirdi\u011fi i\u00e7in yan c\u00fcmlede her iki fiilin de Subjuntivo (haga / vayamos) olmas\u0131n\u0131 gerektirir. B \u015f\u0131kk\u0131nda Indicativo kullan\u0131lm\u0131\u015ft\u0131r. C \u015f\u0131kk\u0131nda ikinci fiil hatal\u0131d\u0131r. D \u015f\u0131kk\u0131 ise zaman uyumuna uymaz.'},
+{type:'tr',q:'32. "Sana yard\u0131m edebilmem i\u00e7in bana her \u015feyi anlatman gerekiyor." c\u00fcmlesinin en uygun \u00e7evirisi hangisidir?',o:['Es necesario que me cuentas todo para que puedo ayudarte.','Es necesario que me cuentes todo para que puedo ayudarte.','Es necesario que me cuentes todo para que pueda ayudarte.','Es necesario que me cuentas todo para que pueda ayudarte.'],a:2,exp:'"Es necesario que" gereklilik yap\u0131s\u0131 ve "para que" (amac\u0131yla) ba\u011flac\u0131 her zaman Subjuntivo gerektirir. C \u015f\u0131kk\u0131nda hem "cuentes" hem de "pueda" Subjuntivo formundad\u0131r. Di\u011fer \u015f\u0131klarda en az bir fiil Indicativo kullan\u0131larak hata yap\u0131lm\u0131\u015ft\u0131r.'},
+{type:'tr',q:'33. "E\u011fer daha \u00e7ok vaktim olsayd\u0131, bu kitab\u0131 bitirirdim." c\u00fcmlesinin \u0130spanyolca kar\u015f\u0131l\u0131\u011f\u0131 hangisidir?',o:['Si tengo m\u00e1s tiempo, terminar\u00eda este libro.','Si tuviera m\u00e1s tiempo, terminar\u00e9 este libro.','Si tuviera m\u00e1s tiempo, termino este libro.','Si tuviera m\u00e1s tiempo, terminar\u00eda este libro.'],a:3,exp:'Ger\u00e7ekle\u015fmesi m\u00fcmk\u00fcn olmayan veya varsay\u0131msal \u015fart c\u00fcmlelerinde (Si Clause Type 2) "Si"den sonra Subjuntivo Imperfecto (tuviera), ana c\u00fcmlede ise Condicional Simple (terminar\u00eda) kullan\u0131l\u0131r. D \u015f\u0131kk\u0131 bu kurala tam uyar.'},
+{type:'tr',q:'34. "Onun bu kadar kaba davranmas\u0131 beni \u00e7ok \u015fa\u015f\u0131rtt\u0131." ifadesinin en do\u011fru \u00e7evirisi hangisidir?',o:['Me sorprendi\u00f3 mucho que se comporta de forma tan grosera.','Me sorprendi\u00f3 mucho que se comportara de forma tan grosera.','Me sorprendi\u00f3 mucho que se comportar\u00e1 de forma tan grosera.','Me sorprendi\u00f3 mucho que se comportaba de forma tan grosera.'],a:1,exp:'Duygu bildiren bir fiil (sorprender) ge\u00e7mi\u015f zamanday sa (me sorprendi\u00f3), yan c\u00fcmledeki eylem Subjuntivo Imperfecto (comportara) olmal\u0131d\u0131r. A ve D \u015f\u0131klar\u0131 Indicativo oldu\u011fu i\u00e7in, C \u015f\u0131kk\u0131 ise gelecek zaman oldu\u011fu i\u00e7in yanl\u0131\u015ft\u0131r.'},
+{type:'tr',q:'35. "Ger\u00e7e\u011fi s\u00f6lemen senin i\u00e7in en iyisidir." c\u00fcmlesinin kar\u015f\u0131l\u0131\u011f\u0131 hangisidir?',o:['Es mejor para ti que dices la verdad.','Es mejor para ti que dir\u00e1s la verdad.','Es mejor para ti que digas la verdad.','Es mejor para ti que dijiste la verdad.'],a:2,exp:'"Es mejor que" gibi bir de\u011ferlendirme bildiren \u00f6znesiz yap\u0131lardan sonra Subjuntivo gelir. C \u015f\u0131kk\u0131ndaki "digas" Subjuntivo Presente formundad\u0131r. A, B ve D \u015f\u0131klar\u0131 Indicativo zamanlar\u0131n\u0131 kulland\u0131\u011f\u0131 i\u00e7in hatal\u0131d\u0131r.'},
+{type:'tr',q:'36. "Belki de yan\u0131l\u0131yorumdur ama bu hi\u00e7 mant\u0131kl\u0131 gelmiyor." c\u00fcmlesinin \u00e7evirisi hangisidir?',o:['Quiz\u00e1 me equivoque, pero esto no tiene ning\u00fan sentido.','Quiz\u00e1 me equivoco, pero esto no ten\u00eda ning\u00fan sentido.','Quiz\u00e1 me equivocar\u00e9, pero esto no tiene ning\u00fan sentido.','Quiz\u00e1 me he equivocado, pero esto no tiene ning\u00fan sentido.'],a:0,exp:'"Quiz\u00e1" (belki) kelimesi, \u015f\u00fcphe derecesi y\u00fcksek oldu\u011funda Subjuntivo (equivoque) ile kullan\u0131l\u0131r. Indicativo da m\u00fcmk\u00fcnd\u00fcr ama burada \u015f\u00fcphe vurgusu daha g\u00fc\u00e7l\u00fc oldu\u011fu i\u00e7in Subjuntivo tercih edilir. A \u015f\u0131kk\u0131 hem bu yap\u0131y\u0131 hem de c\u00fcmlenin geri kalan\u0131ndaki zaman uyumunu (tiene) do\u011fru sa\u011flar.'},
+{type:'tr',q:'37. "Senin bu projeyi tek ba\u015f\u0131na bitirebilece\u011fine inanm\u0131yorum." c\u00fcmlesinin kar\u015f\u0131l\u0131\u011f\u0131 hangisidir?',o:['No creo que puedes terminar este proyecto t\u00fa solo.','No creo que puedas terminar este proyecto t\u00fa solo.','No creo que podr\u00e1s terminar este proyecto t\u00fa solo.','No creo que pudieras terminar este proyecto t\u00fa solo.'],a:1,exp:'"Creer" (inanmak) fiili olumlu oldu\u011funda Indicativo al\u0131rken, olumsuz (no creo) oldu\u011funda Subjuntivo (puedas) al\u0131r. B \u015f\u0131kk\u0131 do\u011fru kiptedir. C \u015f\u0131kk\u0131 gelecek zaman Indicativo oldu\u011fu i\u00e7in yanl\u0131\u015ft\u0131r.'},
+{type:'tr',q:'38. "Arkada\u015f\u0131m benden kendisine e\u015flik etmemi istedi." c\u00fcmlesinin \u00e7evirisi hangisidir?',o:['Mi amigo me pidi\u00f3 que le acompa\u00f1o.','Mi amigo me pidi\u00f3 que le acompa\u00f1ar\u00e9.','Mi amigo me pidi\u00f3 que le acompa\u00f1as.','Mi amigo me pidi\u00f3 que le acompa\u00f1ara.'],a:3,exp:'"Pedir que" (istemek/rica etmek) yap\u0131s\u0131 Subjuntivo gerektirir. Ana fiil ge\u00e7mi\u015f zamanda (pidi\u00f3) oldu\u011fu i\u00e7in yan fiil Subjuntivo Imperfecto (acompa\u00f1ara) olmal\u0131d\u0131r. A, B ve C \u015f\u0131klar\u0131 kip ve zaman uyumu a\u00e7\u0131s\u0131ndan yanl\u0131\u015ft\u0131r.'},
+{type:'tr',q:'39. "Hava kararmadan \u00f6nce eve varmam\u0131z laz\u0131m." ifadesinin en do\u011fru \u00e7evirisi hangisidir?',o:['Es preciso que lleguemos a casa antes de que anochezca.','Es preciso que llegamos a casa antes de que anochece.','Es preciso que llegamos a casa antes de que anochezca.','Es preciso que lleguemos a casa antes de que anochecer.'],a:0,exp:'"Es preciso que" gereklilik yap\u0131s\u0131 Subjuntivo (lleguemos) gerektirir. Ayr\u0131ca "antes de que" ba\u011flac\u0131 her zaman Subjuntivo (anochezca) ile kullan\u0131l\u0131r. A \u015f\u0131kk\u0131 her iki kural\u0131 da kar\u015f\u0131lar.'},
+{type:'tr',q:'40. "Kimsenin beni g\u00f6rmeyece\u011fi bir yere gitmek istiyorum." c\u00fcmlesinin \u00e7evirisi hangisidir?',o:['Quiero ir a un lugar donde nadie me ve.','Quiero ir a un lugar donde nadie me ve\u00eda.','Quiero ir a un lugar donde nadie me vea.','Quiero ir a un lugar donde nadie me ver\u00e1.'],a:2,exp:'Henüz bilinmeyen, hayali veya mevcut olmayan bir yer/nesne tan\u0131mlan\u0131rken (antecedente desconocido) s\u0131fat c\u00fcmleciklerinde Subjuntivo (vea) kullan\u0131l\u0131r. A, B ve D \u015f\u0131klar\u0131 kesinlik bildiren Indicativo zamanlar\u0131d\u0131r.'},
+{type:'tr',q:'41. "Ke\u015fke \u015fu an seninle orada olabilseydim." c\u00fcmlesinin \u0130spanyolca kar\u015f\u0131l\u0131\u011f\u0131 nedir?',o:['Ojal\u00e1 puedo estar all\u00ed contigo ahora mismo.','Ojal\u00e1 podr\u00e9 estar all\u00ed contigo ahora mismo.','Ojal\u00e1 pude estar all\u00ed contigo ahora mismo.','Ojal\u00e1 pudiera estar all\u00ed contigo ahora mismo.'],a:3,exp:'"Ojal\u00e1", ger\u00e7ekle\u015fmesi imkans\u0131z veya \u00e7ok zor olan mevcut bir dile\u011fi belirtirken Subjuntivo Imperfecto (pudiera) ile kullan\u0131l\u0131r. Di\u011fer t\u00fcm \u015f\u0131klar Indicativo formunda oldu\u011fu i\u00e7in dilek anlam\u0131n\u0131 gramatik olarak kar\u015f\u0131lamaz.'},
+{type:'tr',q:'42. "Yeni bir araba alabilmesi i\u00e7in biraz para biriktirmesi gerekiyor." c\u00fcmlesinin \u00e7evirisi hangisidir?',o:['Hace falta que ahorra dinero para que puede comprar un coche.','Hace falta que ahorre dinero para que pueda comprar un coche.','Hace falta que ahorra dinero para que pueda comprar un coche.','Hace falta que ahorre dinero para que puede comprar un coche.'],a:1,exp:'"Hace falta que" (gereklilik) ve "para que" (ama\u00e7) yap\u0131lar\u0131 her zaman Subjuntivo tetikler. B \u015f\u0131kk\u0131nda hem "ahorre" hem de "pueda" do\u011fru kiptedir. Di\u011fer \u015f\u0131klarda fiillerden en az biri Indicativo verilmi\u015ftir.'},
+{type:'tr',q:'43. "Sana ger\u00e7e\u011fi s\u00f6ylemedi\u011fim i\u00e7in \u00e7ok pi\u015fman\u0131m." c\u00fcmlesinin en uygun \u00e7evirisi hangisidir?',o:['Lamento mucho no haberte dicho la verdad.','Lamento mucho que no te digo la verdad.','Lamento mucho que no te dir\u00e9 la verdad.','Lamento mucho que no te dije la verdad.'],a:0,exp:'Bir eylemden pi\u015fmanl\u0131k duyarken (lamentar), e\u011fer her iki eylemin de \u00f6znesi ayn\u0131ysa (ben pi\u015fman\u0131m, ben s\u00f6ylemedim), mastar yap\u0131 (no haber dicho) kullanmak en do\u011fru ve do\u011fal y\u00f6ntemdir. B, C ve D \u015f\u0131klar\u0131ndaki Indicativo kullan\u0131mlar\u0131 gramer hatas\u0131d\u0131r.'},
+{type:'tr',q:'44. "Bize ne zaman haber vereceklerini bilmiyoruz." c\u00fcmlesinin kar\u015f\u0131l\u0131\u011f\u0131 hangisidir?',o:['No sabemos cu\u00e1ndo nos den noticias.','No sabemos cu\u00e1ndo nos daban noticias.','No sabemos cu\u00e1ndo nos dar\u00e1n noticias.','No sabemos cu\u00e1ndo nos dar\u00edan noticias.'],a:2,exp:'Dolayl\u0131 soru c\u00fcmlelerinde (cu\u00e1ndo...), e\u011fer eylemin ger\u00e7ekle\u015fece\u011fi bir ger\u00e7eklik olarak bildiriliyorsa Indicativo kullan\u0131l\u0131r. Gelecek zaman kurgusu i\u00e7in C \u015f\u0131kk\u0131ndaki "dar\u00e1n" (Indicativo Futuro) do\u011fru cevaptır.'},
+{type:'tr',q:'45. "Doktor, hastas\u0131n\u0131n birka\u00e7 g\u00fcn dinlenmesini \u00f6nerdi." c\u00fcmlesinin \u00e7evirisi hangisidir?',o:['El m\u00e9dico sugiri\u00f3 que el paciente descansa unos d\u00edas.','El m\u00e9dico sugiri\u00f3 que el paciente descansara unos d\u00edas.','El m\u00e9dico sugiri\u00f3 que el paciente descansar\u00e1 unos d\u00edas.','El m\u00e9dico sugiri\u00f3 que el paciente descanse unos d\u00edas.'],a:1,exp:'Tavsiye/\u00f6neri bildiren fiil (sugerir) ge\u00e7mi\u015fte (sugiri\u00f3) ise, yan c\u00fcmle Subjuntivo Imperfecto (descansara) olur. D \u015f\u0131kk\u0131ndaki "descanse" zaman uyumu nedeniyle (presente oldu\u011fu i\u00e7in) yanl\u0131\u015ft\u0131r.'},
+{type:'tr',q:'46. "S\u0131nav\u0131 ge\u00e7ip ge\u00e7meyece\u011fim \u00e7al\u0131\u015fmama ba\u011fl\u0131d\u0131r." c\u00fcmlesinin \u00e7evirisi hangisidir?',o:['Que paso o no el examen depende de mi estudio.','Que pasar\u00e9 o no el examen depende de mi estudio.','Que he pasado o no el examen depende de mi estudio.','Que pase o no el examen depende de lo mucho que estudie.'],a:3,exp:'C\u00fcmlenin \u00f6znesi olan "s\u0131nav\u0131 ge\u00e7ip ge\u00e7meme" durumu henüz belirsiz ve ger\u00e7ekle\u015fmemi\u015ftir. Bu t\u00fcr belirsiz \u00f6zne c\u00fcmleleri Subjuntivo (pase / estudie) ile kurulur. A, B ve C \u015f\u0131klar\u0131 Indicativo oldu\u011fu i\u00e7in bu belirsizli\u011fi kar\u015f\u0131lamaz.'},
+{type:'tr',q:'47. "Bu kitapta anlamad\u0131\u011f\u0131n herhangi bir kelime var m\u0131?" c\u00fcmlesinin kar\u015f\u0131l\u0131\u011f\u0131 nedir?',o:['\u00bfHay alguna palabra en este libro que no entiendes?','\u00bfHay alguna palabra en este libro que no entendiste?','\u00bfHay alguna palabra en este libro que no entiendas?','\u00bfHay alguna palabra en este libro que no entender\u00e1s?'],a:2,exp:'Soruda "anlamad\u0131\u011f\u0131n herhangi bir kelime" derken, belirli bir kelimeden de\u011fil, var olup olmad\u0131\u011f\u0131 bilinmeyen bir durumdan bahsediliyor. Bu belirsizlik s\u0131fat c\u00fcmleciklerinde Subjuntivo (entiendas) kullan\u0131m\u0131n\u0131 zorunlu k\u0131lar.'},
+{type:'tr',q:'48. "Belki yar\u0131n toplant\u0131ya kat\u0131l\u0131r\u0131m ama s\u00f6z veremem." c\u00fcmlesinin \u00e7evirisi hangisidir?',o:['Tal vez asista a la reuni\u00f3n ma\u00f1ana, pero no puedo prometelo.','Tal vez asisto a la reuni\u00f3n ma\u00f1ana, pero no puedo prometelo.','Tal vez asisitir\u00e9 a la reuni\u00f3n ma\u00f1ana, pero no puedo prometelo.','Tal vez asistiera a la reuni\u00f3n ma\u00f1ana, pero no puedo prometelo.'],a:0,exp:'"Tal vez" (belki) \u015f\u00fcphe belirtir ve arkas\u0131ndan gelen "s\u00f6z veremem" ifadesi bu \u015f\u00fcpheyi g\u00fc\u00e7lendirir. Bu y\u00fczden Subjuntivo Presente (asista) kullan\u0131m\u0131 en do\u011fru tercihtir.'},
+{type:'tr',q:'49. "Oraya vard\u0131\u011f\u0131nda beni araman\u0131 istiyorum." c\u00fcmlesinin kar\u015f\u0131l\u0131\u011f\u0131 hangisidir?',o:['Quiero que me llamas cuando llegas all\u00ed.','Quiero que me llamar\u00e1s cuando llegues all\u00ed.','Quiero que me llames cuando llegas all\u00ed.','Quiero que me llames cuando llegues all\u00ed.'],a:3,exp:'\u0130stek bildiren "Quiero que" ve gelece\u011fe at\u0131f yapan zaman ba\u011flac\u0131 "cuando", her iki eylemin de Subjuntivo (llames / llegues) olmas\u0131n\u0131 gerektirir. D \u015f\u0131kk\u0131 her iki kurala da uyan tek se\u00e7enektir.'},
+{type:'tr',q:'50. "Bunu yapabilece\u011fine inanmakta zorlan\u0131yorum." c\u00fcmlesinin \u00e7evirisi hangisidir?',o:['Me cuesta creer que lo puedes hacer.','Me cuesta creer que lo puedas hacer.','Me cuesta creer que lo podr\u00e1s hacer.','Me cuesta creer que lo hicieras.'],a:1,exp:'Bir \u015feye inanmakta g\u00fc\u00e7l\u00fck \u00e7ekmek (me cuesta creer que) bir \u015f\u00fcphe ve g\u00fcvensizlik bar\u0131nd\u0131r\u0131r. Bu durum yan c\u00fcmlede Subjuntivo (puedas) kullan\u0131lmas\u0131n\u0131 sa\u011flar. A ve C \u015f\u0131klar\u0131 Indicativo oldu\u011fu i\u00e7in \u015f\u00fcphe anlam\u0131n\u0131 zay\u0131flat\u0131r.'}
+];
+
+var ans=[], scores=[], okCount=0, errCount=0, cur=0;
+
+function esc(s){if(!s)return'';return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');}
+
+function startQuiz(){
+  var n=document.getElementById('selName').value;
+  if(!n){alert('L\u00fctfen ad\u0131n\u0131z\u0131 se\u00e7in.');return;}
+  document.getElementById('rName').value=n;
+  document.getElementById('rName2').value=n;
+  document.getElementById('sIntro').style.display='none';
+  document.getElementById('sQuiz').style.display='block';
+  render();
+}
+
+function render(){
+  var i=cur; var q=Q[i];
+  var done=ans[i]!==undefined;
+  var L=['A','B','C','D'];
+  var isVid=q.type==='vid';
+  var h='';
+
+  // Badge + video link
+  if(isVid){
+    h+='<div class="badge badge-vid">&#127917; V\u0130DEO SORUSU (1-30)</div><br>';
+    h+='<a class="btn-video" href="'+VID_URL+'" target="_blank">&#9654; Videoyu Ac</a>';
+  } else {
+    h+='<div class="badge badge-tr">&#127463;&#127479; &#x2192; &#127466;&#127480; \u00c7EV\u0130R\u0130 SORUSU (31-50)</div>';
+  }
+
+  h+='<div class="qtext">'+esc(q.q)+'</div>';
+  h+='<div class="opts">';
+  for(var j=0;j<q.o.length;j++){
+    var cl='ob',di='';
+    if(done){di='disabled';if(j===q.a)cl+=' ok';else if(j===ans[i]&&ans[i]!==q.a)cl+=' err';}
+    h+='<button class="'+cl+'" '+di+' onclick="pick('+j+')"><strong>'+L[j]+')</strong> '+esc(q.o[j])+'</button>';
+  }
+  h+='</div>';
+  if(done){
+    h+='<div class="exp-box show"><span class="exp-ans">&#10003; Do\u011fru cevap: '+L[q.a]+') '+esc(q.o[q.a])+'</span>'+esc(q.exp)+'</div>';
+  }
+  document.getElementById('qCard').innerHTML=h;
+  document.getElementById('btnBk').disabled=(i===0);
+  document.getElementById('btnNx').disabled=(!done||i===Q.length-1);
+  document.getElementById('qMeta').textContent='Soru '+(i+1)+' / '+Q.length;
+  document.getElementById('pFill').style.width=((i+1)/Q.length*100)+'%';
+  document.getElementById('cOk').textContent='\u2713 '+okCount;
+  document.getElementById('cErr').textContent='\u2717 '+errCount;
+  window.scrollTo(0,0);
+}
+
+function pick(j){
+  var i=cur; if(ans[i]!==undefined)return;
+  ans[i]=j;
+  if(j===Q[i].a){okCount++;scores[i]=1;}else{errCount++;scores[i]=0;}
+  render();
+}
+function goNext(){if(cur<Q.length-1){cur++;render();}}
+function goBack(){if(cur>0){cur--;render();}}
+
+function confirmFinish(){
+  var a=ans.filter(function(x){return x!==undefined;}).length;
+  var u=Q.length-a;
+  var msg=Q.length+' sorudan '+a+' tanesini cevaplad\u0131n\u0131z.';
+  if(u>0)msg+='\n\n'+u+' soru cevaps\u0131z kalacak (0 puan).';
+  msg+='\n\nTesti bitirmek istedi\u011finize emin misiniz?';
+  document.getElementById('cmsg').textContent=msg;
+  document.getElementById('overlay').classList.add('show');
+}
+function closeOv(){document.getElementById('overlay').classList.remove('show');}
+function doFinish(){closeOv();showResult();}
+
+function showResult(){
+  document.getElementById('sQuiz').style.display='none';
+  document.getElementById('sResult').style.display='block';
+  var total=0;for(var i=0;i<Q.length;i++)total+=(scores[i]||0);
+  document.getElementById('rScore').textContent=total;
+  document.getElementById('rOk').textContent='\u2713 '+okCount+' do\u011fru';
+  document.getElementById('rErr').textContent='\u2717 '+errCount+' yanl\u0131\u015f';
+  document.getElementById('rNote').textContent='50 sorudan '+okCount+' tanesi do\u011fru';
+  var L=['A','B','C','D'],html='';
+  for(var i=0;i<Q.length;i++){
+    if(scores[i]===1)continue;
+    var q=Q[i];var a=ans[i];
+    html+='<div class="rvi"><div class="rvq">'+esc(q.q)+'</div>';
+    html+='<div class="rvg">Verdi\u011finiz: '+(a!==undefined?L[a]+') '+esc(q.o[a]):'(Cevaps\u0131z)')+'</div>';
+    html+='<div class="rvc">Do\u011fru: '+L[q.a]+') '+esc(q.o[q.a])+'</div>';
+    html+='<div class="rve">'+esc(q.exp)+'</div></div>';
+  }
+  document.getElementById('revList').innerHTML=html||'<div style="padding:.5rem;color:#666">Yanl\u0131\u015f soru bulunamad\u0131.</div>';
+  window.scrollTo(0,0);
+}
+function toggleRev(){var r=document.getElementById('revList');r.style.display=r.style.display==='flex'?'none':'flex';}
+
+var submitted=false;
+function submitResult(){
+  if(submitted)return;
+  var name=document.getElementById('rName').value;
+  if(!name){alert('L\u00fctfen isminizi se\u00e7in.');return;}
+  var total=0;for(var i=0;i<Q.length;i++)total+=(scores[i]||0);
+  var payload=JSON.stringify({ogrenci:name,odev:ODEV,grup:'B1.1',puan:total,dogru:okCount,yanlis:errCount,tarih:new Date().toLocaleDateString('tr-TR')});
+  document.getElementById('smsg').style.display='block';
+  document.getElementById('smsg').textContent='G\u00f6nderiliyor...';
+  fetch(SURL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:payload})
+  .then(function(){fin(name,total);}).catch(function(){fin(name,total);});
+}
+function fin(name,total){
+  submitted=true;
+  document.getElementById('swarn').style.display='none';
+  document.getElementById('bsub').style.display='none';
+  document.getElementById('smsg').textContent=name+' \u00f6\u011frencisinin "'+ODEV+'" \u00f6devi teslim edildi. Puan: '+total+'/50. Te\u015fekk\u00fcrler!';
+}
+</script>
+</body>
+</html>
