@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>B1.1 – H7 25-26. Ders</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f0eef8;min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:1.5rem 1rem}
+.card{background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(100,80,160,.15);max-width:760px;width:100%;padding:2rem}
+h1{color:#6c4eb8;font-size:1.2rem;margin-bottom:1rem;text-align:center}
+.pill{display:inline-block;background:#e8e0f8;color:#6c4eb8;border-radius:20px;padding:.25rem .9rem;font-size:.75rem;font-weight:700;margin-bottom:.6rem}
+.screen{display:none}
+select,button,input{font-family:inherit}
+select{width:100%;padding:.65rem;border:2px solid #d0c8f0;border-radius:8px;color:#333;background:#fff;margin-bottom:.9rem;outline:none;font-size:.92rem}
+.btn-start{width:100%;padding:.8rem;background:#6c4eb8;color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer}
+.btn-start:hover{background:#5a3ea0}
+
+/* PROGRESS */
+.prog-bar{height:5px;background:#e8e0f8;border-radius:3px;margin-bottom:.9rem;overflow:hidden}
+.prog-fill{height:100%;background:#6c4eb8;transition:width .3s;border-radius:3px}
+.q-meta{display:flex;justify-content:space-between;font-size:.8rem;color:#888;margin-bottom:.7rem}
+.cnt{padding:.18rem .55rem;border-radius:5px;font-weight:700}
+.cok{background:#e6f9f0;color:#2e9e6b}.cerr{background:#fde8e8;color:#d94040}
+
+/* BADGE */
+.badge{display:inline-block;padding:.22rem .7rem;border-radius:5px;font-size:.72rem;font-weight:700;letter-spacing:.4px;background:#e8e0f8;color:#6c4eb8;margin-bottom:.85rem}
+
+/* QUESTION */
+.qtext{font-size:.93rem;color:#333;line-height:1.75;margin-bottom:.6rem;font-weight:600}
+.qsub{font-size:.88rem;color:#555;line-height:1.7;margin-bottom:1rem;font-style:italic}
+
+/* FILL AREA */
+.fill-area{margin-bottom:.9rem}
+.fill-label{font-size:.78rem;color:#9b7de0;font-weight:700;margin-bottom:.4rem;letter-spacing:.3px}
+.fill-row{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.fill-input{flex:1;min-width:180px;padding:.6rem .8rem;border:2.5px solid #c8b8f0;border-radius:8px;font-size:.92rem;color:#4a3080;font-weight:600;outline:none;background:#faf8ff;transition:border-color .15s}
+.fill-input:focus{border-color:#6c4eb8}
+.fill-input.ok{border-color:#2e9e6b;background:#e6f9f0;color:#1a5c3a}
+.fill-input.err{border-color:#d94040;background:#fde8e8;color:#8b0000}
+.fill-input:disabled{cursor:default}
+
+/* FULL SENTENCE DISPLAY */
+.full-sentence{font-size:.88rem;color:#333;background:#f0eef8;border-radius:8px;padding:.6rem .85rem;margin-bottom:.6rem;line-height:1.6;display:none}
+.full-sentence.show{display:block}
+.full-sentence .correct-part{color:#2e9e6b;font-weight:700}
+
+/* BUTTONS */
+.btn-check{padding:.6rem 1.4rem;background:#6c4eb8;color:#fff;border:none;border-radius:8px;font-size:.88rem;font-weight:700;cursor:pointer}
+.btn-check:hover{background:#5a3ea0}
+.btn-check:disabled{opacity:.38;cursor:not-allowed}
+
+/* EXP */
+.exp-box{display:none;background:#f8f5ff;border-left:4px solid #6c4eb8;border-radius:0 8px 8px 0;padding:.8rem 1rem;font-size:.82rem;color:#444;line-height:1.65;white-space:pre-wrap;margin-bottom:.8rem}
+.exp-box.show{display:block}
+.exp-ans{font-weight:700;color:#2e9e6b;display:block;margin-bottom:.3rem;font-size:.88rem}
+
+/* NAV */
+.nav{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:.8rem}
+.nav button{padding:.52rem 1.1rem;border-radius:8px;border:none;cursor:pointer;font-size:.87rem;font-weight:600}
+.nbk{background:#e8e0f8;color:#6c4eb8}.nnx{background:#6c4eb8;color:#fff}.nfi{background:#e05c5c;color:#fff}
+.nav button:disabled{opacity:.38;cursor:not-allowed}
+
+/* RESULT */
+.rs{text-align:center;font-size:3.2rem;font-weight:800;color:#6c4eb8;margin:.8rem 0}
+.rstats{display:flex;gap:.8rem;justify-content:center;margin-bottom:.7rem}
+.rstat{padding:.35rem .9rem;border-radius:7px;font-weight:700;font-size:.87rem}
+.rnote{text-align:center;color:#888;font-size:.8rem;margin-bottom:1.2rem}
+.bsub{width:100%;padding:1rem;background:#2e9e6b;color:#fff;border:none;border-radius:10px;font-size:1.1rem;font-weight:800;cursor:pointer;margin-bottom:.65rem}
+.bsub:hover{background:#257a55}
+.smsg{background:#e6f9f0;border:1px solid #b8f0d8;border-radius:8px;padding:.65rem;font-size:.83rem;color:#1a5c3a;display:none;margin-bottom:.65rem;font-weight:600}
+.swarn{background:#fde8e8;border:1px solid #f5c0c0;border-radius:8px;padding:.65rem .9rem;font-size:.95rem;color:#d94040;font-weight:800;text-align:center;margin-bottom:.65rem}
+.brev{width:100%;padding:.65rem;background:#e8e0f8;color:#6c4eb8;border:none;border-radius:9px;font-size:.87rem;font-weight:600;cursor:pointer}
+.revlist{display:none;flex-direction:column;gap:.65rem;margin-top:.8rem}
+.rvi{background:#fafafa;border:1px solid #e0d8f8;border-radius:8px;padding:.65rem;font-size:.8rem}
+.rvq{font-weight:700;color:#333;margin-bottom:.25rem}
+.rvg{color:#d94040;margin-bottom:.15rem}.rvc{color:#2e9e6b;margin-bottom:.25rem;font-weight:600}
+.rve{color:#555;line-height:1.5;white-space:pre-wrap}
+.res-title{text-align:center;color:#6c4eb8;font-size:1rem;font-weight:700;margin-bottom:.4rem}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);align-items:center;justify-content:center;z-index:999;padding:1rem}
+.overlay.show{display:flex}
+.cbox{background:#fff;border-radius:13px;padding:1.4rem;max-width:390px;width:100%}
+.cmsg{font-size:.88rem;color:#333;white-space:pre-wrap;margin-bottom:1.1rem;line-height:1.6}
+.cbtns{display:flex;gap:.65rem}
+.cbtns button{flex:1;padding:.65rem;border-radius:7px;border:none;font-size:.88rem;font-weight:700;cursor:pointer}
+.bcancel{background:#e8e0f8;color:#6c4eb8}.bok{background:#e05c5c;color:#fff}
+</style>
+</head>
+<body>
+<div class="card">
+  <div style="text-align:center"><div class="pill">7. HAFTA ODEVI | B1.1 (25-26. DERS)</div></div>
+  <h1>&#127466;&#127480; B1.1 &ndash; H7 25-26. Ders &ndash; Quiero / Quiero que</h1>
+
+  <!-- INTRO -->
+  <div id="sIntro" class="screen" style="display:block">
+    <div style="font-size:1rem;font-weight:700;color:#6c4eb8;margin-bottom:.4rem">&#128218; Ad&#305;n&#305;z&#305; se&#231;in</div>
+    <div style="color:#888;font-size:.83rem;margin-bottom:.35rem">50 soru &bull; Bo&#351;luk doldurma &bull; Quiero + mastar / Quiero que + Subjuntivo</div>
+    <div style="color:#9b7de0;font-size:.78rem;margin-bottom:1.2rem;font-style:italic">@ispanyolcacim &bull; Profe Hazel</div>
+    <select id="selName">
+      <option value="">-- Ad&#305;n&#305;z&#305; Se&#231;in --</option>
+      <option>Ceylin &Ouml;z</option>
+      <option>Deneme &Ouml;&#287;rencisi</option>
+      <option>Esra &Ouml;z&ccedil;e&#351;meci</option>
+      <option>Gencay Agocuk</option>
+      <option>Kayhan A&ccedil;an</option>
+      <option>K&uuml;bra Bulut</option>
+      <option>Nihan Karagedik</option>
+      <option>Nur O. Demirci</option>
+      <option>Pelinsu Damgac&#305;</option>
+      <option>Simge G&uuml;ler</option>
+      <option>Ufuk Ayd&#305;n</option>
+      <option>Umre G&uuml;l</option>
+    </select>
+    <button class="btn-start" onclick="startQuiz()">&#9654; Ba&#351;la</button>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="sQuiz" class="screen">
+    <div class="prog-bar"><div class="prog-fill" id="pFill" style="width:0%"></div></div>
+    <div class="q-meta">
+      <span id="qMeta">Soru 1 / 50</span>
+      <span><span class="cnt cok" id="cOk">&#10003; 0</span>&nbsp;<span class="cnt cerr" id="cErr">&#10007; 0</span></span>
+    </div>
+    <div id="qCard"></div>
+    <div class="nav">
+      <button class="nbk" id="btnBk" onclick="goBack()" disabled>&#8592; Geri</button>
+      <button class="nnx" id="btnNx" onclick="goNext()" disabled>&#8594; &#304;leri</button>
+      <button class="nfi" onclick="confirmFinish()">&#10004; Bitir</button>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div id="sResult" class="screen">
+    <input type="hidden" id="rName">
+    <div class="res-title">B1.1 &ndash; H7 25-26. Ders &ndash; Quiero / Quiero que</div>
+    <div class="rs"><span id="rScore">0</span>/50</div>
+    <div class="rstats">
+      <span class="rstat" style="background:#e6f9f0;color:#2e9e6b" id="rOk"></span>
+      <span class="rstat" style="background:#fde8e8;color:#d94040" id="rErr"></span>
+    </div>
+    <div class="rnote" id="rNote"></div>
+    <div class="swarn" id="swarn">&#214;DEV&#304;N&#304;Z TESLIM EDILMEDI</div>
+    <div class="smsg" id="smsg"></div>
+    <button class="bsub" id="bsub" onclick="submitResult()">&#214;DEV&#304;N&#304;Z&#304; TESLIM ET</button>
+    <button class="brev" onclick="toggleRev()">&#128269; Yanl&#305;&#351;lar&#305; G&ouml;r</button>
+    <div class="revlist" id="revList"></div>
+    <div style="margin-top:1.2rem;text-align:center">
+      <select id="rName2" onchange="document.getElementById('rName').value=this.value">
+        <option value="">-- Ad&#305;n&#305;z&#305; Se&#231;in --</option>
+        <option>Ceylin &Ouml;z</option>
+        <option>Deneme &Ouml;&#287;rencisi</option>
+        <option>Esra &Ouml;z&ccedil;e&#351;meci</option>
+        <option>Gencay Agocuk</option>
+        <option>Kayhan A&ccedil;an</option>
+        <option>K&uuml;bra Bulut</option>
+        <option>Nihan Karagedik</option>
+        <option>Nur O. Demirci</option>
+        <option>Pelinsu Damgac&#305;</option>
+        <option>Simge G&uuml;ler</option>
+        <option>Ufuk Ayd&#305;n</option>
+        <option>Umre G&uuml;l</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="cbox">
+    <div class="cmsg" id="cmsg"></div>
+    <div class="cbtns">
+      <button class="bcancel" onclick="closeOv()">&#10060; &#304;ptal</button>
+      <button class="bok" onclick="doFinish()">&#10004; Evet, Bitir</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var SURL='https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
+var ODEV='H7 \u2013 25-26.Ders';
+
+// q: Türkçe soru
+// pre: Cümlenin boşluktan önceki sabit kısmı (varsa)
+// post: Cümlenin boşluktan sonraki sabit kısmı
+// a: doğru cevap (boşluğa yazılacak)
+// full: tam doğru cümle
+// exp: açıklama
+var Q=[
+{q:'Soru 1\n"Daha d\u00fczenli \u00e7al\u0131\u015fmak istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'de forma m\u00e1s organizada.',a:'Quiero estudiar',full:'Quiero estudiar de forma m\u00e1s organizada.',exp:'Bu c\u00fcmlede iste\u011fi dile getiren ki\u015fi ile eylemi yapacak ki\u015fi ayn\u0131d\u0131r. Yani "ben istiyorum" ve "ben \u00e7al\u0131\u015faca\u011f\u0131m." Bu y\u00fczden quiero + mastar yap\u0131s\u0131 kullan\u0131l\u0131r.\nEstudiar fiili mastar h\u00e2lindedir.\nBurada quiero que kullan\u0131lmaz \u00e7\u00fcnk\u00fc ikinci bir \u00f6zne yoktur.'},
+{q:'Soru 2\n"\u00d6\u011fretmenimin bana daha fazla \u00f6rnek vermesini istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'mi profesora me d\u00e9 m\u00e1s ejemplos.',a:'Quiero que',full:'Quiero que mi profesora me d\u00e9 m\u00e1s ejemplos.',exp:'Bu c\u00fcmlede iste\u011fi dile getiren ki\u015fi "ben"dir, ama eylemi yapacak ki\u015fi "\u00f6\u011fretmenim"dir. Yani iki farkl\u0131 \u00f6zne vard\u0131r. Bu y\u00fczden quiero que + subjuntivo kullan\u0131l\u0131r.\nDar fiili subjuntivo\'da d\u00e9 olur.\nC\u00fcmlede "bana" anlam\u0131 i\u00e7in me kullan\u0131lm\u0131\u015ft\u0131r.'},
+{q:'Soru 3\n"Bug\u00fcn evde dinlenmek istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'en casa hoy.',a:'Quiero descansar',full:'Quiero descansar en casa hoy.',exp:'Bu c\u00fcmlede isteyen ki\u015fi ile dinlenecek ki\u015fi ayn\u0131d\u0131r. Yani ki\u015fi kendi iste\u011finden bahseder. Bu y\u00fczden quiero + mastar kullan\u0131l\u0131r.\nDescansar fiili mastar h\u00e2linde kal\u0131r.\nQuiero que kullan\u0131lmaz \u00e7\u00fcnk\u00fc ba\u015fka bir ki\u015fiden bir \u015fey yap\u0131lmas\u0131 istenmiyor.'},
+{q:'Soru 4\n"Karde\u015fimin bug\u00fcn evde dinlenmesini istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'mi hermano descanse en casa hoy.',a:'Quiero que',full:'Quiero que mi hermano descanse en casa hoy.',exp:'Bu c\u00fcmlede "ben istiyorum" ama "karde\u015fim dinlensin" anlam\u0131 vard\u0131r. Yani isteyen ki\u015fi ve eylemi yapacak ki\u015fi farkl\u0131d\u0131r. Bu y\u00fczden quiero que + subjuntivo gerekir.\nDescansar fiilinin subjuntivo \u00e7ekimi descanse olur.\nE\u011fer quiero descansar deseydik, "ben dinlenmek istiyorum" anlam\u0131na gelirdi.'},
+{q:'Soru 5\n"\u0130spanyolca konu\u015fmam\u0131 geli\u015ftirmek istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'mi expresi\u00f3n oral en espa\u00f1ol.',a:'Quiero mejorar',full:'Quiero mejorar mi expresi\u00f3n oral en espa\u00f1ol.',exp:'Bu c\u00fcmlede ki\u015fi kendi konu\u015fma becerisini geli\u015ftirmek istiyor. \u0130steyen ki\u015fi ile geli\u015ftirecek ki\u015fi ayn\u0131d\u0131r. Bu y\u00fczden quiero + mastar kullan\u0131l\u0131r.\nMejorar fiili mastar h\u00e2lindedir.\nBurada quiero que kullan\u0131lmaz \u00e7\u00fcnk\u00fc ikinci bir \u00f6zne yoktur.'},
+{q:'Soru 6\n"Arkada\u015f\u0131m\u0131n benimle \u0130spanyolca konu\u015fmas\u0131n\u0131 istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'mi amigo hable espa\u00f1ol conmigo.',a:'Quiero que',full:'Quiero que mi amigo hable espa\u00f1ol conmigo.',exp:'Burada isteyen ki\u015fi "ben"dir, konu\u015facak ki\u015fi ise "arkada\u015f\u0131m"d\u0131r. Yani iki farkl\u0131 \u00f6zne vard\u0131r. Bu y\u00fczden quiero que + subjuntivo kullan\u0131l\u0131r.\nHablar fiili subjuntivo\'da hable olur.\nConmigo "benimle" anlam\u0131na gelir.'},
+{q:'Soru 7\n"Bu hafta daha az telefon kullanmak istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'menos el tel\u00e9fono esta semana.',a:'Quiero usar',full:'Quiero usar menos el tel\u00e9fono esta semana.',exp:'Bu c\u00fcmlede ki\u015fi kendi davran\u0131\u015f\u0131ndan bahsediyor. Yani "ben daha az telefon kullanmak istiyorum" anlam\u0131 vard\u0131r. Bu y\u00fczden quiero + mastar kullan\u0131l\u0131r.\nUsar fiili mastar h\u00e2linde kal\u0131r.\nMenos "daha az" anlam\u0131na gelir.'},
+{q:'Soru 8\n"Ailemin bu hafta daha az telefon kullanmas\u0131n\u0131 istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'mi familia use menos el tel\u00e9fono esta semana.',a:'Quiero que',full:'Quiero que mi familia use menos el tel\u00e9fono esta semana.',exp:'Bu c\u00fcmlede isteyen ki\u015fi "ben"dir, telefonu daha az kullanmas\u0131 istenen ki\u015fi ise "ailem"dir. Bu y\u00fczden quiero que + subjuntivo kullan\u0131l\u0131r.\nUsar fiilinin subjuntivo \u00e7ekimi use olur.\nMi familia tekil kabul edilir, bu nedenle fiil de tekil \u00e7ekimlenir.'},
+{q:'Soru 9\n"Hafta sonu erken kalkmak istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'temprano el fin de semana.',a:'Quiero levantarme',full:'Quiero levantarme temprano el fin de semana.',exp:'Burada ki\u015fi kendisi erken kalkmak istiyor. Bu y\u00fczden quiero + mastar kullan\u0131l\u0131r.\nFiil d\u00f6n\u00fc\u015fl\u00fc oldu\u011fu i\u00e7in levantarse fiili kullan\u0131l\u0131r.\nQuiero levantarme yap\u0131s\u0131nda d\u00f6n\u00fc\u015fl\u00fc zamir me, mastar\u0131n sonuna eklenir.'},
+{q:'Soru 10\n"K\u0131z karde\u015fimin hafta sonu erken kalkmas\u0131n\u0131 istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'mi hermana se levante temprano el fin de semana.',a:'Quiero que',full:'Quiero que mi hermana se levante temprano el fin de semana.',exp:'Bu c\u00fcmlede isteyen ki\u015fi "ben", erken kalkacak ki\u015fi ise "k\u0131z karde\u015fim"dir. Bu y\u00fczden quiero que + subjuntivo kullan\u0131l\u0131r.\nLevantarse d\u00f6n\u00fc\u015fl\u00fc bir fiildir. Subjuntivo \u00e7ekimi se levante olur.\nBurada se zamiri "mi hermana" i\u00e7in kullan\u0131l\u0131r.'},
+{q:'Soru 11\n"Daha sa\u011fl\u0131kl\u0131 yemek yemek istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'de forma m\u00e1s saludable.',a:'Quiero comer',full:'Quiero comer de forma m\u00e1s saludable.',exp:'Bu c\u00fcmlede ki\u015fi kendi iste\u011fini anlat\u0131r. Yani isteyen ki\u015fi ve yemek yiyecek ki\u015fi ayn\u0131d\u0131r. Bu y\u00fczden quiero + mastar yap\u0131s\u0131 kullan\u0131l\u0131r.\nComer fiili mastar h\u00e2lindedir.\nDe forma m\u00e1s saludable "daha sa\u011fl\u0131kl\u0131 bir \u015fekilde" anlam\u0131na gelir.'},
+{q:'Soru 12\n"Annemin daha sa\u011fl\u0131kl\u0131 yemekler pi\u015firmesini istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'mi madre cocine comidas m\u00e1s saludables.',a:'Quiero que',full:'Quiero que mi madre cocine comidas m\u00e1s saludables.',exp:'Burada isteyen ki\u015fi "ben"dir, yemek pi\u015firecek ki\u015fi ise "annem"dir. \u0130ki farkl\u0131 \u00f6zne oldu\u011fu i\u00e7in quiero que + subjuntivo gerekir.\nCocinar fiili subjuntivo\'da cocine olur.\nComidas m\u00e1s saludables "daha sa\u011fl\u0131kl\u0131 yemekler" anlam\u0131na gelir.'},
+{q:'Soru 13\n"Her g\u00fcn biraz y\u00fcr\u00fcmek istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'un poco todos los d\u00edas.',a:'Quiero caminar',full:'Quiero caminar un poco todos los d\u00edas.',exp:'Burada isteyen ki\u015fi ile y\u00fcr\u00fcyen ki\u015fi ayn\u0131d\u0131r. Bu y\u00fczden quiero + mastar kullan\u0131l\u0131r.\nCaminar fiili mastar h\u00e2linde kal\u0131r.\nUn poco "biraz", todos los d\u00edas ise "her g\u00fcn" anlam\u0131na gelir.'},
+{q:'Soru 14\n"Babam\u0131n her g\u00fcn biraz y\u00fcr\u00fcmesini istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'mi padre camine un poco todos los d\u00edas.',a:'Quiero que',full:'Quiero que mi padre camine un poco todos los d\u00edas.',exp:'C\u00fcmlede "ben istiyorum" ama "babam y\u00fcr\u00fcs\u00fcn" anlam\u0131 vard\u0131r. Yani isteyen ki\u015fi ve y\u00fcr\u00fcyen ki\u015fi farkl\u0131d\u0131r. Bu nedenle quiero que + subjuntivo kullan\u0131l\u0131r.\nCaminar fiilinin subjuntivo \u00e7ekimi camine olur.\nE\u011fer quiero caminar deseydik, "ben y\u00fcr\u00fcmek istiyorum" anlam\u0131na gelirdi.'},
+{q:'Soru 15\n"Bu y\u0131l daha \u00e7ok kitap okumak istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'m\u00e1s libros este a\u00f1o.',a:'Quiero leer',full:'Quiero leer m\u00e1s libros este a\u00f1o.',exp:'Ki\u015fi kendi hedefinden bahsediyor. \u0130steyen ki\u015fi ile okuma eylemini yapacak ki\u015fi ayn\u0131d\u0131r. Bu y\u00fczden quiero + mastar kullan\u0131l\u0131r.\nLeer fiili mastar h\u00e2lindedir.\nEste a\u00f1o "bu y\u0131l" anlam\u0131na gelir.'},
+{q:'Soru 16\n"\u00d6\u011frencilerimin bu y\u0131l daha \u00e7ok kitap okumas\u0131n\u0131 istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'mis estudiantes lean m\u00e1s libros este a\u00f1o.',a:'Quiero que',full:'Quiero que mis estudiantes lean m\u00e1s libros este a\u00f1o.',exp:'Burada isteyen ki\u015fi \u00f6\u011fretmendir, kitap okumas\u0131 istenen ki\u015filer ise \u00f6\u011frencileridir. Yani iki farkl\u0131 \u00f6zne vard\u0131r. Bu y\u00fczden quiero que + subjuntivo kullan\u0131l\u0131r.\nLeer fiilinin subjuntivo \u00e7ekimi lean olur.\n\u00d6zne \u00e7o\u011ful oldu\u011fu i\u00e7in fiil de \u00e7o\u011ful \u00e7ekimlenmi\u015ftir.'},
+{q:'Soru 17\n"Daha sab\u0131rl\u0131 olmak istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'m\u00e1s paciente.',a:'Quiero ser',full:'Quiero ser m\u00e1s paciente.',exp:'Bu c\u00fcmlede ki\u015fi kendi karakteriyle ilgili bir iste\u011fini anlat\u0131r. Bu y\u00fczden quiero + mastar kullan\u0131l\u0131r.\nSer fiili mastar h\u00e2linde kal\u0131r.\nM\u00e1s paciente "daha sab\u0131rl\u0131" anlam\u0131na gelir.'},
+{q:'Soru 18\n"Arkada\u015f\u0131m\u0131n bana kar\u015f\u0131 daha sab\u0131rl\u0131 olmas\u0131n\u0131 istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'mi amigo sea m\u00e1s paciente conmigo.',a:'Quiero que',full:'Quiero que mi amigo sea m\u00e1s paciente conmigo.',exp:'Burada isteyen ki\u015fi "ben", sab\u0131rl\u0131 olmas\u0131 istenen ki\u015fi ise "arkada\u015f\u0131m"d\u0131r. Bu nedenle quiero que + subjuntivo gerekir.\nSer fiilinin subjuntivo \u00e7ekimi sea olur.\nConmigo "bana kar\u015f\u0131 / benimle" anlam\u0131n\u0131 verir.'},
+{q:'Soru 19\n"Yar\u0131n ders \u00e7al\u0131\u015fmaya ba\u015flamak istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'a estudiar ma\u00f1ana.',a:'Quiero empezar',full:'Quiero empezar a estudiar ma\u00f1ana.',exp:'Burada ki\u015fi kendisi ders \u00e7al\u0131\u015fmaya ba\u015flamak istiyor. Bu y\u00fczden quiero + mastar kullan\u0131l\u0131r.\nEmpezar a + infinitivo yap\u0131s\u0131 "bir \u015feye ba\u015flamak" anlam\u0131na gelir.\nBu nedenle c\u00fcmlede empezar a estudiar kullan\u0131l\u0131r.'},
+{q:'Soru 20\n"Karde\u015fimin yar\u0131n ders \u00e7al\u0131\u015fmaya ba\u015flamas\u0131n\u0131 istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'mi hermano empiece a estudiar ma\u00f1ana.',a:'Quiero que',full:'Quiero que mi hermano empiece a estudiar ma\u00f1ana.',exp:'C\u00fcmlede isteyen ki\u015fi "ben", ders \u00e7al\u0131\u015fmaya ba\u015flayacak ki\u015fi ise "karde\u015fim"dir. Bu y\u00fczden quiero que + subjuntivo kullan\u0131l\u0131r.\nEmpezar fiili subjuntivo\'da k\u00f6k de\u011fi\u015ftirir: empiece.\nArd\u0131ndan a estudiar gelir \u00e7\u00fcnk\u00fc yap\u0131 empezar a + infinitivo \u015feklindedir.'},
+{q:'Soru 21\n"Bu hafta sonu m\u00fcze gezmek istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'un museo este fin de semana.',a:'Quiero visitar',full:'Quiero visitar un museo este fin de semana.',exp:'Bu c\u00fcmlede iste\u011fi dile getiren ki\u015fi ile eylemi yapacak ki\u015fi ayn\u0131d\u0131r. Yani "ben istiyorum" ve "ben m\u00fcze gezece\u011fim." Bu y\u00fczden quiero + mastar yap\u0131s\u0131 kullan\u0131l\u0131r.\nVisitar fiili mastar h\u00e2lindedir.\nBurada quiero que kullan\u0131lmaz \u00e7\u00fcnk\u00fc ikinci bir \u00f6zne yoktur.'},
+{q:'Soru 22\n"Arkada\u015flar\u0131m\u0131n bu hafta sonu benimle m\u00fcze gezmesini istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'mis amigos visiten un museo conmigo este fin de semana.',a:'Quiero que',full:'Quiero que mis amigos visiten un museo conmigo este fin de semana.',exp:'Bu c\u00fcmlede isteyen ki\u015fi "ben"dir, ama m\u00fczeyi gezecek ki\u015filer "arkada\u015flar\u0131m"d\u0131r. Yani iki farkl\u0131 \u00f6zne vard\u0131r. Bu y\u00fczden quiero que + subjuntivo kullan\u0131l\u0131r.\nVisitar fiilinin subjuntivo \u00e7ekimi \u00e7o\u011ful \u00f6zneyle visiten olur.\nConmigo "benimle" anlam\u0131na gelir.'},
+{q:'Soru 23\n"Yeni bir \u015fark\u0131 dinlemek istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'una canci\u00f3n nueva.',a:'Quiero escuchar',full:'Quiero escuchar una canci\u00f3n nueva.',exp:'Burada isteyen ki\u015fi ile dinleyecek ki\u015fi ayn\u0131d\u0131r. Yani ki\u015fi kendi iste\u011finden bahsediyor. Bu y\u00fczden quiero + mastar kullan\u0131l\u0131r.\nEscuchar fiili mastar h\u00e2lindedir.\nC\u00fcmlede ba\u015fka bir ki\u015finin bir \u015fey yapmas\u0131 istenmedi\u011fi i\u00e7in quiero que kullan\u0131lmaz.'},
+{q:'Soru 24\n"\u00d6\u011frencilerimin yeni bir \u015fark\u0131 dinlemesini istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'mis estudiantes escuchen una canci\u00f3n nueva.',a:'Quiero que',full:'Quiero que mis estudiantes escuchen una canci\u00f3n nueva.',exp:'Bu c\u00fcmlede isteyen ki\u015fi "ben"dir, \u015fark\u0131y\u0131 dinlemesi istenen ki\u015filer ise "\u00f6\u011frencilerim"dir. \u0130ki farkl\u0131 \u00f6zne oldu\u011fu i\u00e7in quiero que + subjuntivo gerekir.\nEscuchar fiilinin subjuntivo \u00e7ekimi \u00e7o\u011ful \u00f6zneyle escuchen olur.\n\u00d6zne \u00e7o\u011ful oldu\u011fu i\u00e7in fiil de \u00e7o\u011ful \u00e7ekimlenmi\u015ftir.'},
+{q:'Soru 25\n"Bu ak\u015fam e-posta yazmak istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'un correo esta noche.',a:'Quiero escribir',full:'Quiero escribir un correo esta noche.',exp:'Bu c\u00fcmlede isteyen ki\u015fi de e-postas\u0131n\u0131 yazacak ki\u015fi de ayn\u0131d\u0131r. Bu nedenle quiero + mastar kullan\u0131l\u0131r.\nEscribir fiili mastar h\u00e2lindedir.\nBurada quiero que kullan\u0131lmaz \u00e7\u00fcnk\u00fc eylemi ba\u015fka bir ki\u015finin yapmas\u0131 istenmiyor.'},
+{q:'Soru 26\n"Sekreterin bu ak\u015fam bana e-posta yazmas\u0131n\u0131 istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'la secretaria me escriba un correo esta noche.',a:'Quiero que',full:'Quiero que la secretaria me escriba un correo esta noche.',exp:'Burada isteyen ki\u015fi "ben"dir, e-postas\u0131n\u0131 yazacak ki\u015fi ise "sekreter"dir. Yani iki farkl\u0131 \u00f6zne vard\u0131r. Bu y\u00fczden quiero que + subjuntivo kullan\u0131l\u0131r.\nEscribir fiilinin subjuntivo \u00e7ekimi escriba olur.\nC\u00fcmlede "bana" anlam\u0131 i\u00e7in me kullan\u0131lm\u0131\u015ft\u0131r.'},
+{q:'Soru 27\n"Toplant\u0131ya zaman\u0131nda gelmek istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'a la reuni\u00f3n a tiempo.',a:'Quiero llegar',full:'Quiero llegar a la reuni\u00f3n a tiempo.',exp:'Bu c\u00fcmlede ki\u015fi kendi eyleminden bahsediyor: "Ben zaman\u0131nda gelmek istiyorum." Bu y\u00fczden quiero + mastar kullan\u0131l\u0131r.\nLlegar fiili mastar h\u00e2lindedir.\nA tiempo "zaman\u0131nda" anlam\u0131na gelir.'},
+{q:'Soru 28\n"M\u00fcd\u00fcr\u00fcn toplant\u0131ya zaman\u0131nda gelmesini istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'el director llegue a la reuni\u00f3n a tiempo.',a:'Quiero que',full:'Quiero que el director llegue a la reuni\u00f3n a tiempo.',exp:'Bu c\u00fcmlede isteyen ki\u015fi "ben", toplant\u0131ya zaman\u0131nda gelmesi istenen ki\u015fi ise "m\u00fcd\u00fcr"d\u00fcr. Bu y\u00fczden quiero que + subjuntivo gerekir.\nLlegar fiilinin subjuntivo \u00e7ekimi llegue olur.\nBurada yaz\u0131m de\u011fi\u015fikli\u011fine dikkat edilir: llegar \u2192 llegue. Bu de\u011fi\u015fiklik telaffuzu korumak i\u00e7in yap\u0131l\u0131r.'},
+{q:'Soru 29\n"Kendi hesab\u0131m\u0131 \u00f6demek istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'mi propia cuenta.',a:'Quiero pagar',full:'Quiero pagar mi propia cuenta.',exp:'Bu c\u00fcmlede isteyen ki\u015fi ile hesab\u0131 \u00f6deyecek ki\u015fi ayn\u0131d\u0131r. Bu y\u00fczden quiero + mastar kullan\u0131l\u0131r.\nPagar fiili mastar h\u00e2lindedir.\nMi propia cuenta "kendi hesab\u0131m" anlam\u0131na gelir.'},
+{q:'Soru 30\n"Arkada\u015f\u0131m\u0131n kendi hesab\u0131n\u0131 \u00f6demesini istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'mi amigo pague su propia cuenta.',a:'Quiero que',full:'Quiero que mi amigo pague su propia cuenta.',exp:'Burada isteyen ki\u015fi "ben", hesab\u0131 \u00f6deyecek ki\u015fi ise "arkada\u015f\u0131m"d\u0131r. Bu nedenle quiero que + subjuntivo kullan\u0131l\u0131r.\nPagar fiilinin subjuntivo \u00e7ekimi pague olur.\nBurada yaz\u0131m de\u011fi\u015fikli\u011fi vard\u0131r: pagar \u2192 pague. Bu de\u011fi\u015fiklik "g" sesini korumak i\u00e7in yap\u0131l\u0131r.'},
+{q:'Soru 31\n"Arabay\u0131 dikkatli s\u00fcrmek istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'con cuidado.',a:'Quiero conducir',full:'Quiero conducir con cuidado.',exp:'Bu c\u00fcmlede ki\u015fi kendi yapmak istedi\u011fi eylemi anlat\u0131r. Arabay\u0131 dikkatli s\u00fcrecek ki\u015fi yine "ben"dir. Bu y\u00fczden quiero + mastar kullan\u0131l\u0131r.\nConducir fiili mastar h\u00e2lindedir.\nCon cuidado "dikkatli bir \u015fekilde" anlam\u0131na gelir.'},
+{q:'Soru 32\n"Karde\u015fimin arabay\u0131 dikkatli s\u00fcrmesini istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'mi hermano conduzca con cuidado.',a:'Quiero que',full:'Quiero que mi hermano conduzca con cuidado.',exp:'Bu c\u00fcmlede isteyen ki\u015fi "ben", arabay\u0131 dikkatli s\u00fcrmesi istenen ki\u015fi ise "karde\u015fim"dir. Bu y\u00fczden quiero que + subjuntivo kullan\u0131l\u0131r.\nConducir fiili subjuntivo\'da d\u00fczensizdir ve conduzca olur.\nBu c\u00fcmlede quiero conducir deseydik, "ben araba s\u00fcrmek istiyorum" anlam\u0131na gelirdi.'},
+{q:'Soru 33\n"Ger\u00e7e\u011fi s\u00f6ylemek istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'la verdad.',a:'Quiero decir',full:'Quiero decir la verdad.',exp:'Bu c\u00fcmlede ki\u015fi kendi iste\u011fini anlat\u0131r. Yani ger\u00e7e\u011fi s\u00f6yleyecek ki\u015fi "ben"dir. Bu y\u00fczden quiero + mastar kullan\u0131l\u0131r.\nDecir fiili mastar h\u00e2lindedir.\nLa verdad "ger\u00e7ek" anlam\u0131na gelir.'},
+{q:'Soru 34\n"Arkada\u015f\u0131m\u0131n bana ger\u00e7e\u011fi s\u00f6ylemesini istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'mi amigo me diga la verdad.',a:'Quiero que',full:'Quiero que mi amigo me diga la verdad.',exp:'Burada isteyen ki\u015fi "ben", ger\u00e7e\u011fi s\u00f6ylemesi istenen ki\u015fi ise "arkada\u015f\u0131m"d\u0131r. Bu nedenle quiero que + subjuntivo gerekir.\nDecir fiilinin subjuntivo \u00e7ekimi diga olur.\nC\u00fcmlede "bana" anlam\u0131 i\u00e7in me kullan\u0131lm\u0131\u015ft\u0131r.'},
+{q:'Soru 35\n"Bu problemi tek ba\u015f\u0131ma \u00e7\u00f6zmek istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'este problema solo/a.',a:'Quiero resolver',full:'Quiero resolver este problema solo/a.',exp:'Bu c\u00fcmlede ki\u015fi problemi kendisi \u00e7\u00f6zmek istiyor. \u0130steyen ki\u015fi ile eylemi yapacak ki\u015fi ayn\u0131d\u0131r. Bu y\u00fczden quiero + mastar kullan\u0131l\u0131r.\nResolver fiili mastar h\u00e2lindedir.\nSolo/a konu\u015fan ki\u015finin cinsiyetine g\u00f6re de\u011fi\u015febilir: erkek i\u00e7in solo, kad\u0131n i\u00e7in sola.'},
+{q:'Soru 36\n"\u00d6\u011fretmenimin bu problemi a\u00e7\u0131klamas\u0131n\u0131 istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'mi profesora explique este problema.',a:'Quiero que',full:'Quiero que mi profesora explique este problema.',exp:'Bu c\u00fcmlede isteyen ki\u015fi "ben", problemi a\u00e7\u0131klayacak ki\u015fi ise "\u00f6\u011fretmenim"dir. Bu y\u00fczden quiero que + subjuntivo kullan\u0131l\u0131r.\nExplicar fiilinin subjuntivo \u00e7ekimi explique olur.\nBurada yaz\u0131m de\u011fi\u015fikli\u011fi vard\u0131r: explicar \u2192 explique. Bu de\u011fi\u015fiklik "k" sesini korumak i\u00e7in yap\u0131l\u0131r.'},
+{q:'Soru 37\n"Daha yarat\u0131c\u0131 olmak istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'m\u00e1s creativo/a.',a:'Quiero ser',full:'Quiero ser m\u00e1s creativo/a.',exp:'Bu c\u00fcmlede ki\u015fi kendi \u00f6zelli\u011fiyle ilgili bir istek belirtir. Yani yarat\u0131c\u0131 olmak isteyen ki\u015fi "ben"dir. Bu y\u00fczden quiero + mastar kullan\u0131l\u0131r.\nSer fiili mastar h\u00e2lindedir.\nCreativo/a konu\u015fan ki\u015finin cinsiyetine g\u00f6re de\u011fi\u015febilir.'},
+{q:'Soru 38\n"Tak\u0131m\u0131m\u0131n daha yarat\u0131c\u0131 olmas\u0131n\u0131 istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'mi equipo sea m\u00e1s creativo.',a:'Quiero que',full:'Quiero que mi equipo sea m\u00e1s creativo.',exp:'Bu c\u00fcmlede isteyen ki\u015fi "ben", daha yarat\u0131c\u0131 olmas\u0131 istenen ki\u015fi/grup ise "tak\u0131m\u0131m"d\u0131r. Bu y\u00fczden quiero que + subjuntivo kullan\u0131l\u0131r.\nSer fiilinin subjuntivo \u00e7ekimi sea olur.\nMi equipo tekil kabul edildi\u011fi i\u00e7in fiil tekil \u00e7ekimlenmi\u015ftir.'},
+{q:'Soru 39\n"Bu ay daha az para harcamak istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'menos dinero este mes.',a:'Quiero gastar',full:'Quiero gastar menos dinero este mes.',exp:'Bu c\u00fcmlede ki\u015fi kendi harcamalar\u0131ndan bahsediyor. Harcayacak ki\u015fi ile isteyen ki\u015fi ayn\u0131d\u0131r. Bu y\u00fczden quiero + mastar kullan\u0131l\u0131r.\nGastar fiili mastar h\u00e2lindedir.\nEste mes "bu ay" anlam\u0131na gelir.'},
+{q:'Soru 40\n"Ailemin bu ay daha az para harcamas\u0131n\u0131 istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'mi familia gaste menos dinero este mes.',a:'Quiero que',full:'Quiero que mi familia gaste menos dinero este mes.',exp:'Burada isteyen ki\u015fi "ben", daha az para harcamas\u0131 istenen ki\u015fi/grup ise "ailem"dir. Bu y\u00fczden quiero que + subjuntivo gerekir.\nGastar fiilinin subjuntivo \u00e7ekimi gaste olur.\nMi familia tekil kabul edildi\u011fi i\u00e7in fiil tekil \u00e7ekimlenmi\u015ftir.'},
+{q:'Soru 41\n"Bu konuda karar vermek istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'sobre este tema.',a:'Quiero decidir',full:'Quiero decidir sobre este tema.',exp:'Bu c\u00fcmlede karar vermek isteyen ki\u015fi "ben"dir. \u0130steyen ki\u015fi ile karar verecek ki\u015fi ayn\u0131d\u0131r. Bu y\u00fczden quiero + mastar kullan\u0131l\u0131r.\nDecidir fiili mastar h\u00e2lindedir.\nSobre este tema "bu konuda" anlam\u0131na gelir.'},
+{q:'Soru 42\n"Annemin bu konuda karar vermesini istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'mi madre decida sobre este tema.',a:'Quiero que',full:'Quiero que mi madre decida sobre este tema.',exp:'Bu c\u00fcmlede isteyen ki\u015fi "ben", karar vermesi istenen ki\u015fi ise "annem"dir. \u0130ki farkl\u0131 \u00f6zne oldu\u011fu i\u00e7in quiero que + subjuntivo kullan\u0131l\u0131r.\nDecidir fiilinin subjuntivo \u00e7ekimi decida olur.\nBurada quiero decidir denirse "ben karar vermek istiyorum" anlam\u0131na gelir.'},
+{q:'Soru 43\n"Bu yaz\u0131y\u0131 T\u00fcrk\u00e7eye \u00e7evirmek istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'este texto al turco.',a:'Quiero traducir',full:'Quiero traducir este texto al turco.',exp:'Bu c\u00fcmlede ki\u015fi kendi yapmak istedi\u011fi eylemi anlat\u0131r. \u00c7eviri yapacak ki\u015fi "ben"dir. Bu y\u00fczden quiero + mastar kullan\u0131l\u0131r.\nTraducir fiili mastar h\u00e2lindedir.\nAl turco "T\u00fcrk\u00e7eye" anlam\u0131na gelir.'},
+{q:'Soru 44\n"Arkada\u015f\u0131m\u0131n bu yaz\u0131y\u0131 T\u00fcrk\u00e7eye \u00e7evirmesini istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'mi amigo traduzca este texto al turco.',a:'Quiero que',full:'Quiero que mi amigo traduzca este texto al turco.',exp:'Burada isteyen ki\u015fi "ben", metni \u00e7evirmesi istenen ki\u015fi ise "arkada\u015f\u0131m"d\u0131r. Bu y\u00fczden quiero que + subjuntivo gerekir.\nTraducir fiili subjuntivo\'da d\u00fczensizdir ve traduzca olur.\nEste texto "bu metin", al turco ise "T\u00fcrk\u00e7eye" anlam\u0131na gelir.'},
+{q:'Soru 45\n"Daha sakin konu\u015fmak istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'con m\u00e1s calma.',a:'Quiero hablar',full:'Quiero hablar con m\u00e1s calma.',exp:'Bu c\u00fcmlede ki\u015fi kendi konu\u015fma bi\u00e7imiyle ilgili bir istek anlat\u0131r. Konu\u015facak ki\u015fi yine "ben"dir. Bu nedenle quiero + mastar kullan\u0131l\u0131r.\nHablar fiili mastar h\u00e2lindedir.\nCon m\u00e1s calma "daha sakin bir \u015fekilde" anlam\u0131na gelir.'},
+{q:'Soru 46\n"Babam\u0131n daha sakin konu\u015fmas\u0131n\u0131 istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'mi padre hable con m\u00e1s calma.',a:'Quiero que',full:'Quiero que mi padre hable con m\u00e1s calma.',exp:'Bu c\u00fcmlede isteyen ki\u015fi "ben", daha sakin konu\u015fmas\u0131 istenen ki\u015fi ise "babam"d\u0131r. Bu y\u00fczden quiero que + subjuntivo kullan\u0131l\u0131r.\nHablar fiilinin subjuntivo \u00e7ekimi hable olur.\nE\u011fer quiero hablar deseydik, "ben konu\u015fmak istiyorum" anlam\u0131na gelirdi.'},
+{q:'Soru 47\n"Bu \u015fehirde ya\u015famak istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'en esta ciudad.',a:'Quiero vivir',full:'Quiero vivir en esta ciudad.',exp:'Bu c\u00fcmlede isteyen ki\u015fi ve ya\u015fayacak ki\u015fi ayn\u0131d\u0131r. Yani "ben bu \u015fehirde ya\u015famak istiyorum" anlam\u0131 vard\u0131r. Bu y\u00fczden quiero + mastar yap\u0131s\u0131 kullan\u0131l\u0131r.\nVivir fiili mastar h\u00e2lindedir.\nEn esta ciudad "bu \u015fehirde" anlam\u0131na gelir.'},
+{q:'Soru 48\n"K\u0131z\u0131m\u0131n bu \u015fehirde ya\u015famas\u0131n\u0131 istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'mi hija viva en esta ciudad.',a:'Quiero que',full:'Quiero que mi hija viva en esta ciudad.',exp:'Bu c\u00fcmlede isteyen ki\u015fi "ben", bu \u015fehirde ya\u015famas\u0131 istenen ki\u015fi ise "k\u0131z\u0131m"d\u0131r. Bu nedenle quiero que + subjuntivo kullan\u0131l\u0131r.\nVivir fiilinin subjuntivo \u00e7ekimi viva olur.\nBu c\u00fcmlede quiero vivir denirse "ben ya\u015famak istiyorum" anlam\u0131na gelir.'},
+{q:'Soru 49\n"Bu f\u0131rsat\u0131 de\u011ferlendirmek istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'esta oportunidad.',a:'Quiero aprovechar',full:'Quiero aprovechar esta oportunidad.',exp:'Bu c\u00fcmlede ki\u015fi kendi iste\u011fini anlat\u0131r. F\u0131rsat\u0131 de\u011ferlendirmek isteyen ki\u015fi "ben"dir. Bu y\u00fczden quiero + mastar kullan\u0131l\u0131r.\nAprovechar fiili mastar h\u00e2lindedir.\nEsta oportunidad "bu f\u0131rsat" anlam\u0131na gelir.'},
+{q:'Soru 50\n"Senin bu f\u0131rsat\u0131 de\u011ferlendirmeni istiyorum." c\u00fcmlesini \u0130spanyolcaya \u00e7evirin.',pre:'',post:'aproveches esta oportunidad.',a:'Quiero que',full:'Quiero que aproveches esta oportunidad.',exp:'Bu c\u00fcmlede isteyen ki\u015fi "ben", f\u0131rsat\u0131 de\u011ferlendirmesi istenen ki\u015fi ise "sen"dir. Yani iki farkl\u0131 \u00f6zne vard\u0131r. Bu y\u00fczden quiero que + subjuntivo kullan\u0131l\u0131r.\nAprovechar fiilinin t\u00fa i\u00e7in subjuntivo \u00e7ekimi aproveches olur.\nBurada tam yap\u0131 quiero que aproveches \u015feklindedir.'}
+];
+
+var checked=[],scores=[],okCount=0,errCount=0,cur=0;
+
+function nrm(s){
+  if(!s)return'';
+  s=s.toLowerCase().replace(/\u0131/g,'i');
+  s=s.replace(/[\u00a1\u00bf!?,.:;'"()\-]/g,'');
+  s=s.replace(/[àáâãä]/g,'a').replace(/[èéêë]/g,'e').replace(/[ìíîï]/g,'i').replace(/[òóôõö]/g,'o').replace(/[ùúûü]/g,'u').replace(/ñ/g,'n').replace(/ç/g,'c');
+  return s.replace(/\s+/g,' ').trim();
+}
+function esc(s){if(!s)return'';return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');}
+
+function startQuiz(){
+  var n=document.getElementById('selName').value;
+  if(!n){alert('Lütfen adınızı seçin.');return;}
+  document.getElementById('rName').value=n;
+  document.getElementById('rName2').value=n;
+  document.getElementById('sIntro').style.display='none';
+  document.getElementById('sQuiz').style.display='block';
+  render();
+}
+
+function render(){
+  var i=cur; var q=Q[i];
+  var done=checked[i]===true;
+  var h='<div class="badge">&#9997; BOSLUK DOLDURMA &ndash; '+
+        (nrm(q.a).indexOf('quiero que')>=0 || nrm(q.a)==='quiero que' ? 'Quiero que + Subjuntivo' : 'Quiero + Mastar')+
+        '</div>';
+  h+='<div class="qtext">'+esc(q.q)+'</div>';
+  h+='<div class="fill-area">';
+  h+='<div class="fill-label">C\u00fcmleyi tamamlay\u0131n:</div>';
+  h+='<div class="fill-row">';
+
+  var correct=done&&scores[i]===1;
+  var wrong=done&&scores[i]===0;
+  var cls='fill-input'+(correct?' ok':wrong?' err':'');
+
+  h+='<input type="text" id="fi" class="'+cls+'" placeholder="Ba\u015flang\u0131c\u0131 yaz\u0131n..." '+(done?'disabled value="'+esc(checked[i]==='skip'?'(cevaps\u0131z)':String(document.querySelector&&document.getElementById?'':q.a))+'\"':'')+' />';
+  if(!done){
+    h+='<button class="btn-check" id="bchk" onclick="doCheck()">Kontrol Et</button>';
+  }
+  h+='</div>';
+  h+='<div style="font-size:.8rem;color:#9b7de0;margin-top:.35rem">...&nbsp;<span style="color:#555">'+esc(q.post)+'</span></div>';
+  h+='</div>';
+
+  if(done){
+    var col=scores[i]===1?'#2e9e6b':'#d94040';
+    h+='<div style="font-size:.88rem;background:#f0eef8;border-radius:8px;padding:.6rem .85rem;margin-bottom:.6rem;line-height:1.7">';
+    h+='<span style="color:#6c4eb8;font-weight:700">Tam c\u00fcmle: </span>';
+    h+='<span style="color:'+col+';font-weight:700">'+esc(q.a)+'</span> '+esc(q.post);
+    h+='</div>';
+    h+='<div class="exp-box show"><span class="exp-ans">&#10003; Do\u011fru cevap: '+esc(q.a)+' '+esc(q.post)+'</span>'+esc(q.exp)+'</div>';
+  }
+  document.getElementById('qCard').innerHTML=h;
+
+  // Restore input value if done
+  if(done){
+    var fi=document.getElementById('fi');
+    if(fi&&_userInputs[i]!==undefined)fi.value=_userInputs[i];
+  } else {
+    // Focus and enter key
+    setTimeout(function(){
+      var fi=document.getElementById('fi');
+      if(fi){fi.focus();fi.onkeydown=function(e){if(e.key==='Enter')doCheck();};}
+    },50);
+  }
+
+  document.getElementById('btnBk').disabled=(i===0);
+  document.getElementById('btnNx').disabled=(!done||i===Q.length-1);
+  document.getElementById('qMeta').textContent='Soru '+(i+1)+' / '+Q.length;
+  document.getElementById('pFill').style.width=((i+1)/Q.length*100)+'%';
+  document.getElementById('cOk').textContent='\u2713 '+okCount;
+  document.getElementById('cErr').textContent='\u2717 '+errCount;
+  window.scrollTo(0,0);
+}
+
+var _userInputs=[];
+
+function doCheck(){
+  var i=cur;
+  if(checked[i])return;
+  var fi=document.getElementById('fi');
+  if(!fi||fi.value.trim()===''){alert('Lütfen bir cevap yazın.');return;}
+  var given=fi.value.trim();
+  _userInputs[i]=given;
+  var correct=nrm(given)===nrm(Q[i].a);
+  // Also accept if they wrote the full sentence starting with the answer
+  if(!correct){
+    var fullGiven=nrm(given+' '+Q[i].post);
+    var fullCorrect=nrm(Q[i].full);
+    if(fullGiven===fullCorrect)correct=true;
+  }
+  checked[i]=true;
+  if(correct){okCount++;scores[i]=1;}else{errCount++;scores[i]=0;}
+  render();
+}
+
+function goNext(){if(cur<Q.length-1){cur++;render();}}
+function goBack(){if(cur>0){cur--;render();}}
+
+function confirmFinish(){
+  var a=checked.filter(function(x){return x;}).length;
+  var u=Q.length-a;
+  var msg=Q.length+' sorudan '+a+' tanesini cevapladınız.';
+  if(u>0)msg+='\n\n'+u+' soru cevapsız kalacak (0 puan).';
+  msg+='\n\nTesti bitirmek istediğinize emin misiniz?';
+  document.getElementById('cmsg').textContent=msg;
+  document.getElementById('overlay').classList.add('show');
+}
+function closeOv(){document.getElementById('overlay').classList.remove('show');}
+function doFinish(){closeOv();showResult();}
+
+function showResult(){
+  document.getElementById('sQuiz').style.display='none';
+  document.getElementById('sResult').style.display='block';
+  var total=0;for(var i=0;i<Q.length;i++)total+=(scores[i]||0);
+  document.getElementById('rScore').textContent=total;
+  document.getElementById('rOk').textContent='\u2713 '+okCount+' do\u011fru';
+  document.getElementById('rErr').textContent='\u2717 '+errCount+' yanl\u0131\u015f';
+  document.getElementById('rNote').textContent='50 sorudan '+okCount+' tanesi do\u011fru';
+  var html='';
+  for(var i=0;i<Q.length;i++){
+    if(scores[i]===1)continue;
+    var q=Q[i];
+    var given=_userInputs[i]||'(Cevaps\u0131z)';
+    html+='<div class="rvi"><div class="rvq">'+esc(q.q.split('\n')[0]+' '+q.q.split('\n').slice(1).join(' '))+'</div>';
+    html+='<div class="rvg">Verdi\u011finiz: '+esc(given)+'</div>';
+    html+='<div class="rvc">Do\u011fru: '+esc(q.full)+'</div>';
+    html+='<div class="rve">'+esc(q.exp)+'</div></div>';
+  }
+  document.getElementById('revList').innerHTML=html||'<div style="padding:.5rem;color:#666">Yanl\u0131\u015f soru bulunamad\u0131.</div>';
+  window.scrollTo(0,0);
+}
+function toggleRev(){var r=document.getElementById('revList');r.style.display=r.style.display==='flex'?'none':'flex';}
+
+var submitted=false;
+function submitResult(){
+  if(submitted)return;
+  var name=document.getElementById('rName').value;
+  if(!name){alert('Lütfen isminizi seçin.');return;}
+  var total=0;for(var i=0;i<Q.length;i++)total+=(scores[i]||0);
+  var payload=JSON.stringify({ogrenci:name,odev:ODEV,grup:'B1.1',puan:total,dogru:okCount,yanlis:errCount,tarih:new Date().toLocaleDateString('tr-TR')});
+  document.getElementById('smsg').style.display='block';
+  document.getElementById('smsg').textContent='Gönderiliyor...';
+  fetch(SURL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:payload})
+  .then(function(){fin(name,total);}).catch(function(){fin(name,total);});
+}
+function fin(name,total){
+  submitted=true;
+  document.getElementById('swarn').style.display='none';
+  document.getElementById('bsub').style.display='none';
+  document.getElementById('smsg').textContent=name+' öğrencisinin "'+ODEV+'" ödevi teslim edildi. Puan: '+total+'/50. Teşekkürler!';
+}
+</script>
+</body>
+</html>
