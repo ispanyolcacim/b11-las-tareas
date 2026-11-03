@@ -122,6 +122,7 @@ body{
 .review-exp{background:var(--card2);border-radius:8px;padding:.5rem .72rem;font-size:.8rem;line-height:1.65;color:var(--muted);}
 </style>
 <script src="student-roster.js" defer></script>
+<link rel="stylesheet" href="b11-theme.css?v=20261103-palettes">
 </head>
 <body>
 
@@ -154,15 +155,17 @@ body{
 </div>
 
 <div id="quiz">
-  <div class="top-bar">
+  <header class="theme-lesson"><span aria-hidden="true">📘</span><div><h2>Imperativo Negativo</h2><p>B1.1 · 3–4. Ders</p></div></header>
+  <div class="theme-status"><div class="top-bar">
     <div class="prog-wrap"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
     <div class="prog-label" id="progLabel">1 / 100</div>
   </div>
   <div class="score-bar">
     <span class="s-correct">✓ <span id="sCorrect">0</span> doğru</span>
-    <button class="finish-btn-sm" onclick="showResult()">Testi Bitir →</button>
+
     <span class="s-wrong">✗ <span id="sWrong">0</span> yanlış</span>
   </div>
+  <button class="finish-btn-sm theme-finish" onclick="showResult()">🏁 Bitir</button></div>
   <div id="qArea"></div>
 </div>
 

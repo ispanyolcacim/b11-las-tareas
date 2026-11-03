@@ -66,6 +66,7 @@ select:focus{border-color:#6c4eb8}
 .btn-cancel{background:#e8e0f8;color:#6c4eb8}.btn-ok{background:#e05c5c;color:#fff}
 </style>
 <script src="student-roster.js" defer></script>
+<link rel="stylesheet" href="b11-theme.css?v=20261103-palettes">
 </head>
 <body>
 <div class="card">
@@ -83,14 +84,15 @@ select:focus{border-color:#6c4eb8}
     <button class="btn-start" onclick="startQuiz()">&#9654; Quize Başla</button>
   </div>
   <div id="quizScreen" class="screen">
+  <header class="theme-lesson"><span aria-hidden="true">📘</span><div><h2>Los Conectores</h2><p>B1.1 · 11–12. Ders</p></div></header>
+    <div class="theme-status">
     <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
-    <div class="q-meta"><span id="qMeta">Soru 1 / 60</span><span><span class="cnt cnt-ok" id="cntOk">&#10003; 0</span>&nbsp;<span class="cnt cnt-err" id="cntErr">&#10007; 0</span></span></div>
+    <div class="q-meta"><span id="qMeta">Soru 1 / 60</span><span><span class="cnt cnt-ok" id="cntOk">&#10003; 0</span>&nbsp;<span class="cnt cnt-err" id="cntErr">&#10007; 0</span></span></div><button class="btn-finish theme-finish" onclick="confirmFinish()">🏁 Bitir</button></div>
     <div id="qCard"></div>
     <div class="nav">
       <button class="btn-back" id="btnBack" onclick="goBack()" disabled>&#8592; Geri</button>
       <button class="btn-skip" id="btnSkip" onclick="skipQ()">Atla &#8594;</button>
       <button class="btn-next" id="btnNext" onclick="goNext()" disabled>&#8594; İleri</button>
-      <button class="btn-finish" onclick="confirmFinish()">✔ Bitir</button>
     </div>
   </div>
   <div id="resultScreen" class="screen">

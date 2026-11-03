@@ -306,6 +306,7 @@ width:100%;}
 .finish-btn-sm{background:var(--primary);color:#fff;border:none;border-radius:8px;padding:6px 14px;font-size:12px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;}
 </style>
 <script src="student-roster.js" defer></script>
+<link rel="stylesheet" href="b11-theme.css?v=20261103-palettes">
 </head>
 <body>
 <div class="wrap">
@@ -354,16 +355,17 @@ width:100%;}
 
 <!-- QUIZ -->
 <div id="quiz">
-  <div class="top-bar">
+  <header class="theme-lesson"><span aria-hidden="true">📘</span><div><h2>Cosas Prohibidas en Mi Casa</h2><p>B1.1 · 5–6. Ders</p></div></header>
+  <div class="theme-status"><div class="top-bar">
     <div class="prog-wrap"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
     <div class="prog-label" id="progLabel">1 / 100</div>
     <div class="score-bar">
       <span class="sc ok">✓ <span id="sCorrect">0</span></span>
       <span class="sc err">✗ <span id="sWrong">0</span></span>
-    
-      <button class="finish-btn-sm" onclick="showResult()">Testi Bitir →</button>
+
       </div>
   </div>
+  <button class="finish-btn-sm theme-finish" onclick="showResult()">🏁 Bitir</button></div>
   <div id="qArea"></div>
 </div>
 

@@ -101,6 +101,7 @@ select{width:100%;padding:.65rem;border:2px solid #d0c8f0;border-radius:8px;colo
 .bcancel{background:#e8e0f8;color:#6c4eb8}.bok{background:#e05c5c;color:#fff}
 </style>
 <script src="student-roster.js" defer></script>
+<link rel="stylesheet" href="b11-theme.css?v=20261103-palettes">
 </head>
 <body>
 <div class="card">
@@ -123,19 +124,21 @@ select{width:100%;padding:.65rem;border:2px solid #d0c8f0;border-radius:8px;colo
     <button class="btn-start" onclick="startQuiz()">&#9654; Ba&#351;la</button>
   </div>
 
-  <div id="sDrag" class="screen"></div>
+  <div id="sDrag" class="screen">
+  <header class="theme-lesson"><span aria-hidden="true">📘</span><div><h2>Subjuntivo</h2><p>B1.1 · 21–22. Ders</p></div></header></div>
 
   <div id="sMC" class="screen">
+  <header class="theme-lesson"><span aria-hidden="true">📘</span><div><h2>Subjuntivo</h2><p>B1.1 · 21–22. Ders</p></div></header>
+    <div class="theme-status">
     <div class="prog-bar"><div class="prog-fill" id="pFill" style="width:0%"></div></div>
     <div class="q-meta">
       <span id="qMeta">Soru 71 / 100</span>
       <span><span class="cnt cok" id="cOk">&#10003; 0</span>&nbsp;<span class="cnt cerr" id="cErr">&#10007; 0</span></span>
-    </div>
+    </div><button class="nfi theme-finish" onclick="confirmFinish()">🏁 Bitir</button></div>
     <div id="mcCard"></div>
     <div class="nav">
       <button class="nbk" id="btnBk" onclick="mcBack()" disabled>&#8592; Geri</button>
       <button class="nnx" id="btnNx" onclick="mcNext()" disabled>&#8594; &#304;leri</button>
-      <button class="nfi" onclick="confirmFinish()">&#10004; Bitir</button>
     </div>
   </div>
 

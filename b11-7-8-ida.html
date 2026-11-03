@@ -304,6 +304,7 @@ select#studentName:focus{border-color:var(--primary);}
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
 </style>
 <script src="student-roster.js" defer></script>
+<link rel="stylesheet" href="b11-theme.css?v=20261103-palettes">
 </head>
 <body>
 
@@ -337,15 +338,17 @@ select#studentName:focus{border-color:var(--primary);}
 </div>
 
 <div id="quiz">
-  <div class="top-bar">
+  <header class="theme-lesson"><span aria-hidden="true">📘</span><div><h2>Los Tiempos Verbales</h2><p>B1.1 · 7–8. Ders</p></div></header>
+  <div class="theme-status"><div class="top-bar">
     <div class="prog-wrap"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
     <div class="prog-label" id="progLabel">1 / 100</div>
   </div>
   <div class="score-bar">
     <span class="s-correct">✓ <span id="sCorrect">0</span> doğru</span>
-    <button class="finish-btn-sm" onclick="showResult()">Testi Bitir →</button>
+
     <span class="s-wrong">✗ <span id="sWrong">0</span> yanlış</span>
   </div>
+  <button class="finish-btn-sm theme-finish" onclick="showResult()">🏁 Bitir</button></div>
   <div id="qArea"></div>
 </div>
 

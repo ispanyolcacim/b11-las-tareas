@@ -96,6 +96,7 @@ h1.main-title{font-size:1.5rem;font-weight:800;color:#6b21a8;text-align:center;l
 @media(max-width:480px){h1.main-title{font-size:1.25rem}.res-score{font-size:2.5rem}.nav-row{gap:.4rem}}
 </style>
 <script src="student-roster.js" defer></script>
+<link rel="stylesheet" href="b11-theme.css?v=20261103-palettes">
 </head>
 <body>
 
@@ -165,6 +166,7 @@ h1.main-title{font-size:1.5rem;font-weight:800;color:#6b21a8;text-align:center;l
 </div>
 
 <div id="quizScreen" style="display:none">
+  <header class="theme-lesson"><span aria-hidden="true">📘</span><div><h2>Nuestro Futuro · Voluntarios</h2><p>B1.1 · 9–10. Ders</p></div></header>
   <div class="quiz-header">
     <div class="quiz-meta" id="qMeta">Soru 1 / 50</div>
     <div class="counters">
@@ -178,7 +180,7 @@ h1.main-title{font-size:1.5rem;font-weight:800;color:#6b21a8;text-align:center;l
     <button class="nav-btn" id="btnBack" onclick="goBack()" disabled>← Geri</button>
     <button class="nav-btn" id="btnSkip" onclick="skipQ()" disabled>Atla</button>
     <button class="nav-btn primary" id="btnNext" onclick="goNext()" disabled>İleri →</button>
-    <button class="nav-btn finish" id="btnFinish" onclick="confirmFinish()">Testi Bitir</button>
+    <button class="nav-btn finish theme-finish" id="btnFinish" onclick="confirmFinish()">🏁 Bitir</button>
   </div>
 </div>
 
