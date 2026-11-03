@@ -2,19 +2,20 @@
 
 /* Shared A1.2-inspired lesson layout and level palette. */
 :root {
-  --theme-primary: #405ca8;
-  --theme-primary-dark: #324888;
-  --theme-primary-light: #7f9beb;
+  --theme-primary: #3159c1;
+  --theme-button-end: #4568d0;
+  --theme-primary-dark: #2848a2;
+  --theme-primary-light: #648bfa;
   --theme-ink: #26324e;
   --theme-muted: #516182;
-  --theme-border: #d5def6;
+  --theme-border: #c6d6fc;
   --theme-soft: #dde7ff;
-  --theme-shadow: 0 4px 24px rgba(64, 92, 168, .12);
+  --theme-shadow: 0 4px 24px rgba(49, 89, 193, .12);
   --c1: #f2f5ff;
   --c2: #dde7ff;
-  --c3: #d5def6;
-  --c4: #7f9beb;
-  --c5: #405ca8;
+  --c3: #c6d6fc;
+  --c4: #648bfa;
+  --c5: #3159c1;
   --dark: #26324e;
   --mid: #516182;
   --white: #fff;
@@ -25,26 +26,26 @@
   --blue1: #eaf3f8;
   --blue2: #507f97;
   --purple1: #dde7ff;
-  --purple2: #405ca8;
+  --purple2: #3159c1;
   --bg: #f2f5ff;
   --card: #fff;
   --text: #26324e;
   --muted: #516182;
-  --accent: #405ca8;
-  --accent2: #7f9beb;
+  --accent: #3159c1;
+  --accent2: #648bfa;
   --ok: #27956c;
   --bad: #d56e66;
-  --border: #d5def6;
-  --shadow: 0 4px 24px rgba(64, 92, 168, .12);
+  --border: #c6d6fc;
+  --shadow: 0 4px 24px rgba(49, 89, 193, .12);
   --r: 16px;
-  --pink: #405ca8;
+  --pink: #3159c1;
   --pink1: #dde7ff;
-  --pink2: #7f9beb;
-  --pink3: #7f9beb;
-  --light: #d5def6;
-  --primary: #405ca8;
-  --primary-dark: #324888;
-  --primary-light: #7f9beb;
+  --pink2: #648bfa;
+  --pink3: #648bfa;
+  --light: #c6d6fc;
+  --primary: #3159c1;
+  --primary-dark: #2848a2;
+  --primary-light: #648bfa;
   --surface: #fff;
 }
 
@@ -55,10 +56,9 @@ body {
   font-family: 'Nunito Sans', sans-serif;
   color: var(--theme-ink);
   background:
-    radial-gradient(ellipse at 10% 15%, rgba(127, 155, 235, .19), transparent 52%),
-    radial-gradient(ellipse at 90% 85%, rgba(237, 189, 194, .12), transparent 50%),
-    radial-gradient(ellipse at 50% 50%, rgba(64, 92, 168, .035), transparent 70%),
-    #f2f5ff;
+    radial-gradient(ellipse at 10% 12%, rgba(100, 139, 250, .32), transparent 55%),
+    radial-gradient(ellipse at 87% 83%, rgba(100, 139, 250, .16), transparent 55%),
+    #f2f6ff;
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
 }
@@ -74,7 +74,7 @@ body > :is(.header,.hdr), .hero {
   max-width: 960px;
   margin: 20px auto 18px;
   padding: 30px 28px 24px;
-  border: 1px solid rgba(64, 92, 168, .08);
+  border: 1px solid rgba(49, 89, 193, .08);
   border-top: 5px solid var(--theme-primary);
   border-radius: 16px;
   background: #fff;
@@ -93,7 +93,7 @@ body > :is(.header,.hdr)::before, .hero::before {
   margin: 2px 0 22px;
   border-radius: 50%;
   background: var(--theme-primary-light);
-  box-shadow: 20px 0 #e9a6ba, 40px 0 #efcf86;
+  box-shadow: 20px 0 #f3a0bb, 40px 0 #ffce66;
   opacity: 1;
   transform: none;
   pointer-events: none;
@@ -121,7 +121,7 @@ body > :is(.header,.hdr)::before, .hero::before {
   padding: 5px 12px;
   border: 0;
   border-radius: 20px;
-  background: linear-gradient(135deg, var(--theme-primary), #405ca8);
+  background: linear-gradient(135deg, var(--theme-primary), var(--theme-button-end));
   color: #fff;
   font-size: 11px;
   font-weight: 800;
@@ -133,7 +133,7 @@ body > :is(.header,.hdr)::before, .hero::before {
   max-width: 608px;
   margin: 0 auto 28px;
   padding: 20px 28px 32px;
-  border: 1px solid rgba(64, 92, 168, .08);
+  border: 1px solid rgba(49, 89, 193, .08);
   border-top: 0;
   border-radius: 0 0 16px 16px;
   background: #fff;
@@ -145,7 +145,7 @@ body:has(:is(#sc-name,#screen-name).active) > .header {
   margin-bottom: 0;
   border-bottom: 0;
   border-radius: 16px 16px 0 0;
-  box-shadow: 0 -2px 24px rgba(64, 92, 168, .07);
+  box-shadow: 0 -2px 24px rgba(49, 89, 193, .07);
 }
 :is(.nb,.name-body) h2 { margin: 0 0 7px; color: var(--theme-primary); font-size: 18px; font-weight: 800; }
 :is(.nb,.name-body) p, .start p { color: var(--theme-muted); font-size: 14px; line-height: 1.7; }
@@ -177,7 +177,7 @@ body:has(:is(#sc-name,#screen-name).active) > .header {
 .ib, .gameinfo, .info, .instr, .konu, .story, .sectionbox {
   border-color: var(--theme-border);
   border-radius: 12px;
-  background: rgba(64, 92, 168, .045);
+  background: rgba(49, 89, 193, .045);
   box-shadow: none;
   color: var(--theme-ink);
 }
@@ -203,14 +203,14 @@ body:has(:is(#sc-name,#screen-name).active) > .header {
 }
 .btn.bm, .btn.primary, .btn.bg, button.next, button.restart {
   border: 1px solid transparent;
-  background: linear-gradient(135deg, #405ca8, #405ca8);
+  background: linear-gradient(135deg, var(--theme-primary), var(--theme-button-end));
   color: #fff;
-  box-shadow: 0 4px 16px rgba(64, 92, 168, .23);
+  box-shadow: 0 4px 16px rgba(49, 89, 193, .23);
 }
 .btn.bm:hover:not(:disabled), .btn.primary:hover:not(:disabled), .btn.bg:hover:not(:disabled),
 button.next:hover:not(:disabled), button.restart:hover:not(:disabled) {
-  background: linear-gradient(135deg, #324888, #324888);
-  box-shadow: 0 6px 20px rgba(64, 92, 168, .3);
+  background: linear-gradient(135deg, #2848a2, #2848a2);
+  box-shadow: 0 6px 20px rgba(49, 89, 193, .3);
   transform: translateY(-2px);
 }
 :is(.nb,.name-body) > .btn, .start .btn.bf, .start .btn.full { padding: 14px 18px; font-size: 17px; }
@@ -234,7 +234,7 @@ button.next:hover:not(:disabled), button.restart:hover:not(:disabled) {
 }
 button:disabled { cursor: not-allowed; transform: none; }
 button:focus-visible, a:focus-visible, summary:focus-visible {
-  outline: 3px solid rgba(64, 92, 168, .4);
+  outline: 3px solid rgba(49, 89, 193, .4);
   outline-offset: 3px;
 }
 
@@ -252,14 +252,14 @@ select.sel {
   font-size: 15px;
   text-align: left;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23405ca8' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%233159c1' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 14px center;
 }
 select:focus, input:focus, textarea:focus {
   border-color: var(--theme-primary);
   outline: none;
-  box-shadow: 0 0 0 3px rgba(64, 92, 168, .1);
+  box-shadow: 0 0 0 3px rgba(49, 89, 193, .1);
 }
 .opt, .ob, .choice, button.choice {
   border: 2px solid var(--theme-border);
@@ -313,7 +313,7 @@ select:focus, input:focus, textarea:focus {
   border-color: var(--theme-border);
   border-radius: 14px;
   background: #fff;
-  box-shadow: 0 2px 12px rgba(64, 92, 168, .07);
+  box-shadow: 0 2px 12px rgba(49, 89, 193, .07);
 }
 .topbar { padding: 15px 20px; }
 .brand { color: var(--theme-primary); font-size: clamp(17px, 2.1vw, 24px); font-weight: 900; }
@@ -406,7 +406,7 @@ body > .wrap:has(> #intro) { box-sizing: border-box; max-width: 800px; margin-in
 }
 :is(.writing-card,.wcard,.result-card) { background: #fff; box-shadow: var(--theme-shadow); }
 :is(.btn.btn-main,.btn.btn-pink,.start-btn,.btn-start,.btn-submit,.submit-btn,.confirm-btn.submit-big,.writing-submit-btn,.btn-next,.nav-btn.primary,.nxt,.bnext,.bm,.btn.primary,.btn.bm,.btn.bg) {
-  background: var(--theme-primary);
+  background: linear-gradient(135deg, var(--theme-primary), var(--theme-button-end));
   color: #fff;
   border-color: transparent;
   border-radius: 12px;
@@ -490,3 +490,23 @@ body button.theme-finish.theme-finish:hover:not(:disabled) { background: #fff0f6
   :is(.rubric-table,.vocab-table) { table-layout: fixed; overflow-wrap: anywhere; }
   .q-card { padding-inline: clamp(12px,4vw,20px); }
 }
+
+/* A compact badge and clear spacing bring the cover into the shared layout. */
+body > .wrap:has(> #intro) { margin-block-start: 0; }
+#intro { margin-block-start: 0; }
+#intro .intro-icon { display: block; font-size: 26px; margin-bottom: 8px; }
+#intro .week-pill, #introScreen .week-pill, body > .card > .pill {
+  display: inline-block;
+  max-width: 100%;
+  padding: 5px 12px;
+  margin-bottom: 12px;
+  font: 800 .72rem/1.35 'Nunito', sans-serif;
+  letter-spacing: .4px;
+}
+#intro h1 { margin: 0 0 5px; }
+#intro .teacher-badge { margin-bottom: 16px; color: var(--theme-muted); }
+#intro .name-box label { display: block; margin-bottom: 7px; color: var(--theme-primary); font-weight: 800; }
+#intro .name-select { width: 100%; }
+
+/* The cover's older decorative overlay otherwise tints the new blue violet. */
+body::before { background: none; }
