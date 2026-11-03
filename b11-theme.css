@@ -507,3 +507,6 @@ body > .wrap:has(> #intro) { margin-block-start: 0; }
 #intro .teacher-badge { margin-bottom: 16px; color: var(--theme-muted); }
 #intro .name-box label { display: block; margin-bottom: 7px; color: var(--theme-primary); font-weight: 800; }
 #intro .name-select { width: 100%; }
+
+/* The cover's older decorative overlay otherwise tints the new blue violet. */
+body::before { background: none; }
