@@ -58,6 +58,12 @@ body::before{
 #intro h1{font-family:'Nunito',sans-serif;font-size:26px;font-weight:900;color:var(--primary);margin-bottom:6px;}
 .intro-sub{font-size:14px;color:var(--muted);margin-bottom:4px;}
 .intro-desc{font-size:13px;color:var(--primary-light);font-weight:700;margin-bottom:24px;}
+.intro-reading-note{
+  margin:0 0 20px;padding:14px 16px;border:1px solid var(--border);
+  border-radius:12px;background:var(--bg);font-size:14px;line-height:1.55;
+}
+.intro-reading-note h2{margin:0 0 6px;color:var(--primary);font-size:15px;font-weight:800;}
+.intro-reading-note p + p{margin-top:7px;}
 
 .chip-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;}
 .chip{
@@ -316,6 +322,12 @@ width:100%;}
   <div class="intro-sub">Comprensión Lectora — Frida Kahlo</div>
   <p class="intro-desc">50 soru · Çoktan seçmeli</p>
   <div class="teacher-badge"><span class="handle">@ispanyolcacim</span><span style="color:var(--border)">•</span><span style="color:var(--muted)">Profe Hazel</span></div>
+  <section class="intro-reading-note" aria-labelledby="intro-reading-title">
+    <h2 id="intro-reading-title">📖 Ödeve Başlamadan Önce</h2>
+    <p>Bu ödev <strong>Frida Kahlo – Viva la Vida</strong> kitabına dayanıyor. Kitaba Öğrenci Portalı’ndaki <strong>B1.1 → 1+2. Ders Ödevi</strong> kutusunda yer alan <strong>📖 Frida Kahlo Kitabını Aç</strong> butonuyla ulaşabilirsiniz.</p>
+    <p>✍️ Okurken önemli olayları ve dikkatinizi çeken ayrıntıları hatırlamak için küçük notlar almanızı tavsiye ederim.</p>
+    <p>✅ <strong>Kitabı bitirdikten sonra ödeve başlayın.</strong></p>
+  </section>
   <div class="name-box">
     <label>👤 Adınızı seçin</label>
     <select id="introName" class="name-select">
