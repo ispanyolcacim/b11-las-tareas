@@ -344,6 +344,26 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--primary-light);outl
 .review-explanation{font-size:13px;line-height:1.8;color:var(--muted);white-space:pre-line;margin-top:10px;}
 #reviewSection .review-item{margin-top:14px;}
 @media(max-width:540px){.video-card{padding:12px;}.vocab-section{padding:16px 12px;}.section-heading h2{font-size:18px;}.vocab-row{font-size:14px;}.word-gap{min-width:112px;margin-inline:3px;}.q-card{padding:20px 16px;}.result-card{padding:26px 18px;}.score-row{gap:18px;}}
+
+/* Sequential listening questions and an explicit vocabulary feedback step. */
+.lesson-started .video-card{max-width:608px;padding:12px;margin:0 auto 12px;}
+.lesson-started .video-card>p{display:none;}
+.lesson-started .video-card h2{font-size:16px;}
+.lesson-started .section-heading{margin:12px 0;}
+.lesson-started .section-heading p{margin-bottom:8px;}
+.mc-nav{justify-content:space-between;flex-wrap:wrap;}
+.mc-nav .nav-btn{min-height:44px;white-space:normal;}
+.choice-btn.ok{border-color:var(--ok);background:#effbf4;}
+.choice-btn.err{border-color:var(--err);background:#fff1ee;}
+.correct-answer{font-weight:800;margin-top:7px;}
+.answer-explanation{white-space:pre-line;margin-top:9px;line-height:1.8;}
+.vocab-row{align-items:flex-start;}
+.vocab-item{flex:1;min-width:0;}
+.word-gap.gap-correct{border-color:var(--ok);background:#effbf4;color:#176d49;}
+.word-gap.gap-wrong{border-color:var(--err);background:#fff1ee;color:#9a3925;}
+.vocab-item .explanation{line-height:1.7;text-align:left;}
+#vocabCompleteBtn:disabled{background:#e8f5ef;color:#176d49;box-shadow:none;cursor:default;}
+@media(max-width:540px){.mc-nav .nav-btn{padding:9px 12px;font-size:12px;}#mcQuestions .q-card{padding:18px 14px;}}
 </style>
 </head>
 <body>
@@ -385,25 +405,24 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--primary-light);outl
 </section>
 
 <div id="quiz">
-  <header class="theme-lesson"><span aria-hidden="true">🎧</span><div><h2>Comprensión auditiva</h2><p>B1.1 · 1. Hafta · 3–4. Ders · Dinleme</p></div></header>
   <div class="theme-status"><div class="top-bar">
     <div class="prog-wrap"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
-    <div class="prog-label" id="progLabel">0 / 20 yanıtlandı</div>
+    <div class="prog-label" id="progLabel">1. Kısım · Soru 1 / 10</div>
   </div><a class="video-jump" href="#videoSection">↑ Videoya dön</a></div>
-  <nav class="section-nav" aria-label="Çalışma bölümleri"><a href="#comprehension">1 · Comprensión</a><a href="#vocabulary">2 · Vocabulario</a></nav>
   <section id="comprehension" aria-labelledby="comprehensionTitle">
     <div class="section-heading"><h2 id="comprehensionTitle">1 · Preguntas de comprensión</h2><p>Escucha el video y elige la respuesta correcta. · 10 soru × 5 puan</p></div>
     <div id="mcQuestions"></div>
   </section>
-  <section class="vocab-section" id="vocabulary" aria-labelledby="vocabularyTitle">
+  <section class="vocab-section" style="display:none" id="vocabulary" aria-labelledby="vocabularyTitle">
     <div class="section-heading"><h2 id="vocabularyTitle">2 · Vocabulario</h2><p>Arrastra cada palabra al hueco correcto. Hay 12 palabras y 10 huecos: ¡sobran dos! · 10 soru × 5 puan</p></div>
-    <p class="touch-hint">📱 Kelimeyi sürükleyebilir veya önce kelimeye, sonra boşluğa dokunabilirsin. Yerleştirdiğin kelimeyi geri almak için boşluğa tekrar dokun.</p>
+    <p class="touch-hint" id="touchHint">📱 Kelimeyi sürükleyebilir veya önce kelimeye, sonra boşluğa dokunabilirsin. Yerleştirdiğin kelimeyi geri almak için boşluğa tekrar dokun.</p>
     <div class="word-bank" id="wordBank" aria-label="Banco de palabras"></div>
     <p id="wordAnnouncement" class="word-announcement" role="status" aria-live="polite"></p>
     <ol class="vocab-list" id="vocabQuestions"></ol>
+    <p id="completionMessage" class="completion-message" role="status" aria-live="polite"></p>
+    <button type="button" class="start-btn results-button" id="vocabCompleteBtn" onclick="completeVocab()">✅ Bu Kısmı Tamamla</button>
+    <button type="button" class="start-btn results-button" id="toSubmissionBtn" style="display:none" onclick="showResult()">Ödev Teslim Sayfasına Geç →</button>
   </section>
-  <p id="completionMessage" class="completion-message" role="status" aria-live="polite"></p>
-  <button type="button" class="start-btn results-button" onclick="showResult()">🏁 Sonucumu Gör</button>
 </div>
 
 <div id="result">
@@ -488,6 +507,9 @@ let mcAnswers = Array(MC.length).fill(null);
 let vocabAnswers = Array(VOCAB.length).fill('');
 let bankOrder = [];
 let selectedWord = '';
+let currentMC = 0;
+let phase = 'mc';
+let vocabChecked = false;
 let finished = false;
 let submitted = false;
 let submitting = false;
@@ -510,28 +532,75 @@ function startQuiz() {
   const name = document.getElementById('introName').value;
   if (!name) { alert('Lütfen adınızı seçin!'); return; }
   window._introName = name;
+  document.body.classList.add('lesson-started');
   document.getElementById('intro').style.display = 'none';
   document.getElementById('quiz').style.display = 'block';
-  shuffleWords();
-  renderQuestions();
-  document.getElementById('quiz').scrollIntoView({behavior:'smooth',block:'start'});
+  document.getElementById('comprehension').style.display = 'block';
+  document.getElementById('vocabulary').style.display = 'none';
+  renderCurrentMC();
+  document.getElementById('videoSection').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
-function renderQuestions() {
-  document.getElementById('mcQuestions').innerHTML = MC.map((q, i) => `
+function chooseMC(index, option) {
+  if (finished || phase !== 'mc' || index !== currentMC || mcAnswers[index] !== null || !Number.isInteger(option) || option < 0 || option >= MC[index].o.length) return;
+  mcAnswers[index] = option;
+  renderCurrentMC();
+  document.getElementById('mcFeedback').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function renderCurrentMC() {
+  const i = currentMC, q = MC[i], chosen = mcAnswers[i];
+  const answered = chosen !== null;
+  const ok = chosen === q.a;
+  document.getElementById('mcQuestions').innerHTML = `
     <article class="q-card" id="question${i}">
-      <div class="q-num">PREGUNTA ${i + 1} · 5 PUAN</div>
+      <div class="q-num">SORU ${i + 1} / ${MC.length} · 5 PUAN</div>
       <h3 class="q-text">${escapeHtml(q.q)}</h3>
       <div class="choices" role="group" aria-label="Pregunta ${i + 1}">
-        ${q.o.map((option, j) => `<button type="button" class="choice-btn" id="choice${i}_${j}" aria-pressed="false" onclick="chooseMC(${i},${j})"><span class="cletter">${'abcd'[j]}</span><span>${escapeHtml(option)}</span></button>`).join('')}
+        ${q.o.map((option, j) => `<button type="button" class="choice-btn${chosen === j ? ' selected' : ''}${answered && j === q.a ? ' ok' : answered && chosen === j ? ' err' : ''}" id="choice${i}_${j}" aria-pressed="${chosen === j}" ${answered ? 'disabled' : ''} onclick="chooseMC(${i},${j})"><span class="cletter">${'abcd'[j]}</span><span>${escapeHtml(option)}</span></button>`).join('')}
       </div>
-    </article>`).join('');
+      <div id="mcFeedback" class="explanation${answered ? ' show ' + (ok ? 'exp-ok' : 'exp-err') : ''}" role="status" aria-live="polite">${answered ? `<strong>${ok ? '✅ Doğru cevap!' : '❌ Yanlış cevap.'}</strong><p class="correct-answer">Doğru cevap: ${'ABCD'[q.a]}) ${escapeHtml(q.o[q.a])}</p><p class="answer-explanation">🇹🇷 ${escapeHtml(q.exp)}</p>` : ''}</div>
+      <div class="nav-row mc-nav">
+        <button type="button" class="nav-btn" onclick="previousMC()" ${i === 0 ? 'disabled' : ''}>← Önceki Soru</button>
+        <button type="button" class="nav-btn primary" id="nextMC" onclick="nextMC()" ${answered ? '' : 'disabled'}>${i === MC.length - 1 ? '2. Kısma Geç →' : 'Sonraki Soru →'}</button>
+      </div>
+    </article>`;
+  updateProgress();
+}
+
+function previousMC() {
+  if (phase !== 'mc' || currentMC === 0 || finished) return;
+  currentMC--;
+  renderCurrentMC();
+  document.getElementById('videoSection').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function nextMC() {
+  if (phase !== 'mc' || finished || mcAnswers[currentMC] === null) return;
+  if (currentMC === MC.length - 1) { startVocab(); return; }
+  currentMC++;
+  renderCurrentMC();
+  document.getElementById('videoSection').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function startVocab() {
+  if (phase !== 'mc' || mcAnswers.some(answer => answer === null)) return;
+  phase = 'vocab';
+  document.getElementById('comprehension').style.display = 'none';
+  document.getElementById('vocabulary').style.display = 'block';
+  shuffleWords();
+  renderVocab();
+  updateProgress();
+  document.getElementById('vocabulary').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function renderVocab() {
   document.getElementById('vocabQuestions').innerHTML = VOCAB.map((q, i) => {
     const [before, after] = q.q.split('____');
-    return `<li class="vocab-row" id="vocabRow${i}"><span class="vocab-number">${i + 1}.</span><span>${escapeHtml(before)}<button type="button" class="word-gap" id="gap${i}" data-gap="${i}" aria-label="${i + 1}. boşluk" onclick="clickGap(${i})">________</button>${escapeHtml(after)}</span></li>`;
+    return `<li class="vocab-row" id="vocabRow${i}"><span class="vocab-number">${i + 1}.</span><div class="vocab-item"><p>${escapeHtml(before)}<button type="button" class="word-gap" id="gap${i}" data-gap="${i}" aria-label="${i + 1}. boşluk" onclick="clickGap(${i})">________</button>${escapeHtml(after)}</p><div id="vocabFeedback${i}" class="explanation" hidden></div></div></li>`;
   }).join('');
   document.querySelectorAll('[data-gap]').forEach(gap => {
-    gap.addEventListener('dragover', event => { if (!finished) { event.preventDefault(); gap.classList.add('drag-over'); } });
+    gap.addEventListener('dragover', event => { if (!finished && !vocabChecked) { event.preventDefault(); gap.classList.add('drag-over'); } });
     gap.addEventListener('dragleave', () => gap.classList.remove('drag-over'));
     gap.addEventListener('drop', event => {
       event.preventDefault();
@@ -540,35 +609,55 @@ function renderQuestions() {
     });
     gap.addEventListener('dragstart', event => {
       const word = vocabAnswers[Number(gap.dataset.gap)];
-      if (finished || !word) { event.preventDefault(); return; }
+      if (finished || vocabChecked || !word) { event.preventDefault(); return; }
       event.dataTransfer.setData('text/plain', word);
       event.dataTransfer.effectAllowed = 'move';
     });
   });
   updateVocab();
-  updateProgress();
 }
 
-function chooseMC(index, option) {
-  if (finished || !MC[index] || !Number.isInteger(option) || option < 0 || option >= MC[index].o.length) return;
-  mcAnswers[index] = option;
-  MC[index].o.forEach((_, j) => {
-    const button = document.getElementById(`choice${index}_${j}`);
-    button.classList.toggle('selected', j === option);
-    button.setAttribute('aria-pressed', String(j === option));
+function completeVocab() {
+  if (phase !== 'vocab' || vocabChecked || finished) return;
+  const missing = vocabAnswers.filter(word => !word).length;
+  if (missing) {
+    document.getElementById('completionMessage').textContent = `Bu kısmı tamamlamak için kalan ${missing} boşluğu da doldur.`;
+    document.getElementById('vocabRow' + vocabAnswers.findIndex(word => !word)).scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+  vocabChecked = true;
+  selectedWord = '';
+  VOCAB.forEach((q, i) => {
+    const ok = vocabAnswers[i] === q.a;
+    const gap = document.getElementById('gap' + i);
+    gap.disabled = true;
+    gap.draggable = false;
+    gap.classList.add(ok ? 'gap-correct' : 'gap-wrong');
+    const feedback = document.getElementById('vocabFeedback' + i);
+    feedback.hidden = false;
+    feedback.className = 'explanation show ' + (ok ? 'exp-ok' : 'exp-err');
+    feedback.innerHTML = `<strong>${ok ? '✅ Doğru cevap!' : '❌ Yanlış cevap.'}</strong><p class="correct-answer">Doğru cevap: ${escapeHtml(q.a)}</p><p class="answer-explanation">🇹🇷 ${escapeHtml(q.exp)}</p>`;
   });
+  document.getElementById('wordBank').style.display = 'none';
+  document.getElementById('touchHint').style.display = 'none';
+  document.getElementById('wordAnnouncement').textContent = '';
+  document.getElementById('vocabCompleteBtn').disabled = true;
+  document.getElementById('vocabCompleteBtn').textContent = '✓ Bu kısım tamamlandı';
+  document.getElementById('toSubmissionBtn').style.display = 'block';
   updateProgress();
+  document.getElementById('completionMessage').textContent = 'Cevapları ve her sorunun altındaki açıklamaları inceledikten sonra ödev teslim sayfasına geçebilirsin.';
+  document.getElementById('vocabRow0').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 function chooseWord(word) {
-  if (finished || !WORD_BANK.includes(word) || vocabAnswers.includes(word)) return;
+  if (finished || vocabChecked || phase !== 'vocab' || !WORD_BANK.includes(word) || vocabAnswers.includes(word)) return;
   selectedWord = selectedWord === word ? '' : word;
   updateVocab();
   document.getElementById('wordAnnouncement').textContent = selectedWord ? `${selectedWord} seçildi. Şimdi boşluğa dokun.` : 'Bir kelime seçebilirsin.';
 }
 
 function clickGap(index) {
-  if (finished) return;
+  if (finished || vocabChecked || phase !== 'vocab') return;
   if (selectedWord) { placeWord(index, selectedWord); return; }
   if (vocabAnswers[index]) {
     const word = vocabAnswers[index];
@@ -582,7 +671,7 @@ function clickGap(index) {
 }
 
 function placeWord(index, word) {
-  if (finished || !Number.isInteger(index) || index < 0 || index >= VOCAB.length || !WORD_BANK.includes(word)) return;
+  if (finished || vocabChecked || phase !== 'vocab' || !Number.isInteger(index) || index < 0 || index >= VOCAB.length || !WORD_BANK.includes(word)) return;
   const previousIndex = vocabAnswers.indexOf(word);
   const displaced = vocabAnswers[index];
   if (previousIndex !== -1 && previousIndex !== index) vocabAnswers[previousIndex] = displaced;
@@ -616,20 +705,14 @@ function answeredCount() { return mcAnswers.filter(answer => answer !== null).le
 
 function updateProgress() {
   const count = answeredCount();
-  document.getElementById('progLabel').textContent = `${count} / ${TOTAL} yanıtlandı`;
+  document.getElementById('progLabel').textContent = phase === 'mc' ? `1. Kısım · Soru ${currentMC + 1} / ${MC.length}` : vocabChecked ? '2. Kısım tamamlandı' : `2. Kısım · ${count} / ${TOTAL} yanıtlandı`;
   document.getElementById('progFill').style.width = `${count / TOTAL * 100}%`;
   document.getElementById('completionMessage').textContent = '';
 }
 
 function showResult() {
-  if (finished) return;
-  if (answeredCount() !== TOTAL) {
-    document.getElementById('completionMessage').textContent = `Sonucunu görmek için kalan ${TOTAL - answeredCount()} soruyu da yanıtla.`;
-    const firstMC = mcAnswers.findIndex(answer => answer === null);
-    const firstGap = vocabAnswers.findIndex(answer => !answer);
-    document.getElementById(firstMC !== -1 ? 'question' + firstMC : 'vocabRow' + firstGap).scrollIntoView({behavior:'smooth',block:'center'});
-    return;
-  }
+  if (finished || phase !== 'vocab' || !vocabChecked || answeredCount() !== TOTAL) return;
+  phase = 'result';
   finished = true;
   score = 0;
   wrongList = [];
@@ -713,6 +796,7 @@ function restart() {
   vocabAnswers = Array(VOCAB.length).fill('');
   selectedWord = '';
   finished = false; submitted = false; score = 0; wrongList = [];
+  currentMC = 0; phase = 'mc'; vocabChecked = false;
   document.getElementById('result').style.display = 'none';
   document.getElementById('reviewSection').innerHTML = '';
   document.getElementById('reviewSection').style.display = 'none';
@@ -726,8 +810,15 @@ function restart() {
   document.getElementById('sendStatus').textContent = '';
   document.getElementById('wordAnnouncement').textContent = '';
   document.getElementById('quiz').style.display = 'block';
-  shuffleWords(); renderQuestions();
-  document.getElementById('quiz').scrollIntoView({behavior:'smooth',block:'start'});
+  document.getElementById('comprehension').style.display = 'block';
+  document.getElementById('vocabulary').style.display = 'none';
+  document.getElementById('wordBank').style.display = 'flex';
+  document.getElementById('touchHint').style.display = 'block';
+  document.getElementById('vocabCompleteBtn').disabled = false;
+  document.getElementById('vocabCompleteBtn').textContent = '✅ Bu Kısmı Tamamla';
+  document.getElementById('toSubmissionBtn').style.display = 'none';
+  renderCurrentMC();
+  document.getElementById('videoSection').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 </script>
