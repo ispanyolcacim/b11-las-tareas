@@ -65,6 +65,11 @@ textarea:focus{border-color:#6c4eb8}
 .kayit-mesaj{padding:.7rem 1rem;border-radius:8px;font-size:.84rem;text-align:center;display:none;margin-top:.5rem}
 .kayit-mesaj.ok{background:#e6f9f0;color:#1a5c3a}
 .kayit-mesaj.err{background:#fde8e8;color:#8b1a1a}
+
+/* Yazma tesliminden önce öğrencinin kendi kopyasını saklama onayı */
+.writing-copy-confirm{display:flex;align-items:flex-start;gap:10px;margin:18px 0 12px;padding:14px 16px;border:1.5px solid #e6bd64;border-radius:12px;background:#fff8e7;color:#634b1b;font-size:14px;line-height:1.6;text-align:left;cursor:pointer}
+.writing-copy-confirm input{flex:0 0 auto;width:20px;height:20px;margin:2px 0 0;accent-color:#b88016;cursor:pointer}
+.writing-copy-confirm small{display:block;font-size:12px;font-weight:400}
 </style>
 <script src="student-roster.js" defer></script>
 <link rel="stylesheet" href="b11-theme.css?v=20261103-vivid">
@@ -131,6 +136,10 @@ textarea:focus{border-color:#6c4eb8}
     </div>
     <textarea id="yaziAlani" placeholder="E-postan&#305; buraya yaz..." oninput="kelimeGuncelle()"></textarea>
     <div class="kelime-hint" id="kHint"></div>
+    <label class="writing-copy-confirm" for="writing-copy-confirm">
+      <input type="checkbox" id="writing-copy-confirm" onchange="updateWritingCopyGate()">
+      <span><strong>Ödevimin fotoğrafını çektim / yazımın bir kopyasını aldım.</strong><small>Bu kutucuğu işaretlemeden yazma ödevinizi teslim edemezsiniz.</small></span>
+    </label>
     <button class="btn-teslim" id="btnTeslim" onclick="teslimEt()" disabled>De&#287;erlendirmeye G&#246;nder &#10003;</button>
   </div>
 
@@ -191,10 +200,11 @@ function kelimeGuncelle(){
   if(n<MIN_KEL){s.classList.add('az');h.classList.add('az');h.textContent='Daha '+(MIN_KEL-n)+' kelime ekle.';}
   else if(n>MAX_KEL){s.classList.add('cok');h.classList.add('cok');h.textContent=(n-MAX_KEL)+' kelime fazla.';}
   else{s.classList.add('iyi');h.classList.add('iyi');h.textContent='\u2713 Kelime say\u0131s\u0131 uygun!';}
-  document.getElementById('btnTeslim').disabled=(n<MIN_KEL||n>MAX_KEL);
+  document.getElementById('btnTeslim').disabled=(n<MIN_KEL||n>MAX_KEL||!document.getElementById('writing-copy-confirm').checked);
 }
 
 function teslimEt(){
+  if(!requireWritingCopy()) return;
   sonYazi=document.getElementById('yaziAlani').value.trim();
   if(!sonYazi)return;
   goster('s-loading');degerlendir();
@@ -258,6 +268,21 @@ function toggleYazi(btn){
 function goster(id){
   document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById(id).classList.add('active');
+}
+
+function updateWritingCopyGate(){
+  kelimeGuncelle();
+}
+function requireWritingCopy(){
+  if(document.getElementById('writing-copy-confirm').checked) return true;
+  alert('Lütfen önce ödevinizin fotoğrafını çekin veya yazınızın bir kopyasını alın ve kutucuğu işaretleyin.');
+  return false;
+}
+function resetWritingCopy(){
+  const checkbox=document.getElementById('writing-copy-confirm');
+  checkbox.checked=false;
+  checkbox.disabled=false;
+  updateWritingCopyGate();
 }
 </script>
 </body>
