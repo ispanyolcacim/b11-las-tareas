@@ -29,6 +29,69 @@ body{background:radial-gradient(ellipse at 10% 12%,rgba(100,139,250,.17),transpa
 @media print{.expressions-intro{background:#eee;color:#111}.expression-grid{grid-template-columns:1fr 1fr}.expression-card,.situation-card{break-inside:avoid;padding:14px}.expression-card p{font-size:11px}.expression-card h4{font-size:13px}.expression-group-heading{margin-top:18px}.situations-grid{grid-template-columns:1fr 1fr}.situation-text{font-size:12px}.situation-heading h4{font-size:13px}.situation-controls,.expression-help,#toggle-turkish{display:none}.situation-input-line input{border:0;border-bottom:1px solid #777;background:white;border-radius:0}.situation-solution:not([open]){display:none}.situation-card{display:block}.turkish-meanings td{font-size:10px}.expression-outro{background:#eee}}
 
 </style>
+<style>
+
+/* Clear shared-screen layout for a teacher-led group lesson. */
+body{background:#f3f6fd}
+.topbar{height:76px}
+.hero{display:block;padding:28px 0 24px}
+.hero .eyebrow{margin-bottom:9px;letter-spacing:1.3px}
+h1{font-size:36px;letter-spacing:-1.2px;line-height:1.25;margin-bottom:8px}
+.hero-description{font-size:14px;margin-bottom:14px}
+.grammar-tags span{background:transparent;border-color:#d2dced;padding:3px 10px}
+.lesson-nav{margin-bottom:30px;box-shadow:none;background:#fff}
+.nav-tab{padding:13px 15px}
+.instruction-strip{background:#eaf0fc;border:0;border-left:3px solid #648bfa;border-radius:4px;padding:13px 17px}
+.instruction-strip p{color:#425679;font-size:14px}
+.exercise-top{margin:27px 0 10px}
+.exercise-top h3{font-size:20px}
+.dialogue{border:0;background:transparent;padding:0 8px}
+.dialogue-turn{display:block;padding:17px 0;border-bottom:1px solid #dce4f2}
+.dialogue-turn p{font-size:18px;line-height:2.3;margin:0}
+.speaker-name{color:#2848a2;font-weight:800;margin-right:6px}
+.blank-wrap{gap:4px;margin:2px 4px;max-width:100%;vertical-align:middle}
+.blank-letter{font-size:10px;color:#7181a3;width:12px}
+.blank-wrap input{height:36px;font-size:17px;min-width:65px;padding:3px 7px;background:#fff;border:0;border-bottom:1.5px solid #a2b8e5;border-radius:3px 3px 0 0}
+.blank-wrap.is-revealed input{background:#e4edff;color:#2848a2;border-color:#648bfa;font-weight:650}
+.reveal-answer{flex:0 0 37px;display:inline-flex;align-items:center;justify-content:center;width:37px;height:37px;font-size:19px;line-height:1;background:transparent;border:0;border-radius:6px;padding:0}
+.reveal-answer:hover{background:#dde7ff}
+.reveal-answer:focus-visible{outline:2px solid #3159c1;outline-offset:2px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+#listening .exercise-actions{margin-top:14px}
+#listening .exercise-actions .text-button{color:#516182;font-size:11px}
+.scenario-card{background:#e6edff;color:#26324e;padding:24px 28px}
+.scenario-card h3{font-size:29px;margin-top:0}
+.scenario-card p{opacity:1;max-width:100%}
+.role-card{box-shadow:none}
+.role-b{background:#f6f8fe;border-color:#c6d6fc}
+.role-b .eyebrow{color:#3159c1}.role-b .role-letter{color:#c6d6fc}
+.speaking-tools{display:block}
+.reading-article{box-shadow:none}
+.question-item{box-shadow:none}
+.closing-card{background:#edf2fc}
+.expression-card,.situation-card{box-shadow:none}
+.proverb-grid .expression-card{background:#edf3ff}
+.expression-outro{background:#edf2fc}
+@media(max-width:650px){
+ .topbar{height:68px}
+ .hero{padding:22px 3px 20px}
+ h1{font-size:28px;letter-spacing:-.8px}
+ .hero-description{font-size:12px}
+ .hero .eyebrow{font-size:7px;letter-spacing:1.1px}
+ .nav-tab{padding:10px 12px}
+ .dialogue{padding:0}
+ .dialogue-turn{padding:14px 0}
+ .dialogue-turn p{font-size:16px;line-height:2.4}
+ .blank-wrap{margin-right:1px;gap:3px}
+ .blank-wrap input{height:34px;font-size:15px;min-width:55px}
+ .reveal-answer{width:34px;height:34px;flex-basis:34px;font-size:18px}
+ .instruction-strip p{font-size:12px}
+ .scenario-card{padding:22px}
+ .scenario-card h3{font-size:26px}
+}
+@media print{.reveal-answer{display:none}.hero{padding:10px 0}.hero h1{font-size:27px}.dialogue-turn p{font-size:13px}.blank-wrap.is-revealed input{background:transparent}}
+
+</style>
   
   
 </head>
@@ -40,48 +103,47 @@ body{background:radial-gradient(ellipse at 10% 12%,rgba(100,139,250,.17),transpa
   </header>
   <main id="main">
     <section class="hero" aria-labelledby="page-title">
-      <div class="hero-copy"><p class="eyebrow">ESPAÑOL EN CLASE <span>✦</span> DERS İÇİ ETKİNLİK</p><h1 id="page-title">Escucha. Habla.<br><span>Descubre.</span></h1><p class="hero-description">Biraz kulak ver, biraz söz al, birlikte keşfet.<br>Dört bölümde İspanyolcayı hayata taşıyoruz.</p><div class="grammar-tags"><span>Imperativo afirmativo</span><span>Imperativo negativo</span><span>Presente de subjuntivo</span></div></div>
-      <div class="hero-art" aria-hidden="true"><div class="art-paper paper-back"></div><div class="art-paper paper-front"><div class="art-top">MI PRÓXIMA AVENTURA <span><svg class="arrow-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 15 15 5M5 5h10v10"/></svg></span></div><svg class="route" viewBox="0 0 300 190" fill="none"><path d="M46 150C-10 90 150 120 118 70S201 1 247 57 235 138 186 127" stroke="#7f93d4" stroke-width="2" stroke-dasharray="6 6"/><circle cx="46" cy="150" r="8" fill="#f5cf57" stroke="#273b76" stroke-width="2"/><circle cx="186" cy="127" r="8" fill="#f5cf57" stroke="#273b76" stroke-width="2"/><path d="m171 43 48-18-18 49-8-22-22-9Z" fill="#526cc6"/><path d="m193 52 26-27" stroke="white" stroke-width="1.5"/></svg><div class="art-bottom"><span>MENOS PLANES,<br><b>MÁS HISTORIAS.</b></span><span class="stamp">¡VAMOS!<br>07 + 08</span></div></div><span class="art-spark spark-one">✦</span><span class="art-spark spark-two">✧</span><span class="art-label">tu español, en movimiento</span></div>
+      <div class="hero-copy"><p class="eyebrow">ESPAÑOL EN CLASE <span>✦</span> DERS İÇİ ETKİNLİK</p><h1 id="page-title">B1.1 · 7+8. Ders</h1><p class="hero-description">Dinleme · Konuşma · Okuma · Deyimler ve atasözleri</p><div class="grammar-tags"><span>Imperativo afirmativo</span><span>Imperativo negativo</span><span>Presente de subjuntivo</span></div></div>
     </section>
     <nav class="lesson-nav" aria-label="Ders bölümleri"><button type="button" class="nav-tab active" data-section="listening" aria-selected="true"><span class="nav-number">01</span><span>Dinleme<small>Ricardo y Daniela</small></span><span class="nav-arrow"><svg class="arrow-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 15 15 5M5 5h10v10"/></svg></span></button><button type="button" class="nav-tab" data-section="speaking" aria-selected="false"><span class="nav-number">02</span><span>Konuşma<small>Un viaje contigo</small></span><span class="nav-arrow"><svg class="arrow-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 15 15 5M5 5h10v10"/></svg></span></button><button type="button" class="nav-tab" data-section="reading" aria-selected="false"><span class="nav-number">03</span><span>Okuma<small>El viaje perfecto no existe</small></span><span class="nav-arrow"><svg class="arrow-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 15 15 5M5 5h10v10"/></svg></span></button><button type="button" class="nav-tab" data-section="expressions" aria-selected="false"><span class="nav-number">04</span><span>Deyimler<small>Expresiones y refranes</small></span><span class="nav-arrow"><svg class="arrow-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 15 15 5M5 5h10v10"/></svg></span></button></nav>
     <section class="lesson-panel" id="listening" aria-labelledby="listening-title">
-      <div class="section-heading"><div><p class="eyebrow">1. KISIM <span> / </span> COMPRENSIÓN AUDITIVA</p><h2 id="listening-title">¿Te has enterado?</h2><p>Ricardo ve Daniela'nın sohbetine kulak ver.</p></div><span class="time-badge">◷ 15 dakika</span></div>
+      <div class="section-heading"><div><p class="eyebrow">1. KISIM <span> / </span> COMPRENSIÓN AUDITIVA</p><h2 id="listening-title">¿Te has enterado?</h2><p>Ricardo ve Daniela'nın sohbetine kulak ver.</p></div></div>
       <div class="audio-card"><div class="audio-heading"><span class="audio-symbol" aria-hidden="true">♫</span><div><h3>Ricardo y Daniela</h3><p>B1.1 · 7–8 · Sayfa 6</p></div><a href="https://soundcloud.com/profe-hazel/b11-78-sayfa-6-ricardo-daniela" target="_blank" rel="noopener noreferrer" class="external-link">SoundCloud'da aç <svg class="arrow-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 15 15 5M5 5h10v10"/></svg></a></div><iframe title="Ricardo ve Daniela dinleme kaydı — Profe Hazel" width="100%" height="166" scrolling="no" frameborder="0" allow="autoplay" loading="eager" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fprofe-hazel%2Fb11-78-sayfa-6-ricardo-daniela&amp;color=%23526cc6&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=false"></iframe></div>
-      <div class="instruction-strip"><span class="instruction-icon" aria-hidden="true">✎</span><p><b>Escucha y completa.</b> İlk dinlemede konuyu anlamaya çalış. İkinci dinlemede a–n boşluklarını duyduğun ifadelerle doldur. İstersen kaydı durdurup yeniden dinleyebilirsin.</p></div>
-      <div class="exercise-top"><h3>Una noticia en el instituto</h3><span id="listening-progress" class="muted">0 / 14 boşluk dolu</span></div>
+      <div class="instruction-strip"><p>Kaydı dinleyelim ve boşlukları sınıfça tamamlayalım. Doğru cevabı açmak için boşluğun yanındaki 🔒 simgesine tıklayabilirsin.</p></div>
+      <div class="exercise-top"><h3>Una noticia en el instituto</h3></div>
       <div class="dialogue" lang="es">
-        <div class="dialogue-turn ricardo"><span class="avatar">R</span><div><h4>Ricardo</h4><p>¿Te has enterado de los talleres de este curso? <span data-blank="a"></span> van a ser totalmente diferentes.</p></div></div>
-        <div class="dialogue-turn daniela"><span class="avatar">D</span><div><h4>Daniela</h4><p><span data-blank="b"></span></p></div></div>
-        <div class="dialogue-turn ricardo"><span class="avatar">R</span><div><h4>Ricardo</h4><p>Pues <span data-blank="c"></span> han contratado a dos famosos para organizar un taller con el Departamento de Literatura.</p></div></div>
-        <div class="dialogue-turn daniela"><span class="avatar">D</span><div><h4>Daniela</h4><p><span data-blank="d"></span> Dos famosos trabajando en un instituto…</p></div></div>
-        <div class="dialogue-turn ricardo"><span class="avatar">R</span><div><h4>Ricardo</h4><p>Ya, tía, pero, <span data-blank="e"></span>, a estos los han elegido por su relación con la cultura y por su carrera profesional. He oído que son amigos de Paco, el de Literatura, parece que se conocieron cuando trabajaban juntos en una escuela de idiomas, creo que enseñaban español.</p></div></div>
-        <div class="dialogue-turn daniela"><span class="avatar">D</span><div><h4>Daniela</h4><p><span data-blank="f"></span> Dos profesores famosos, <span data-blank="g"></span> Pero, <span data-blank="h"></span>, que <span data-blank="i"></span>. ¿De qué es el taller? ¿Quién lo va a impartir?</p></div></div>
-        <div class="dialogue-turn ricardo"><span class="avatar">R</span><div><h4>Ricardo</h4><p><span data-blank="j"></span>, es un taller de cine y teatro.</p></div></div>
-        <div class="dialogue-turn daniela"><span class="avatar">D</span><div><h4>Daniela</h4><p><span data-blank="k"></span></p></div></div>
-        <div class="dialogue-turn ricardo"><span class="avatar">R</span><div><h4>Ricardo</h4><p>La parte de cine la va a impartir la directora y guionista Anamar Orson y la parte de teatro el actor Cristian Pascual.</p></div></div>
-        <div class="dialogue-turn daniela"><span class="avatar">D</span><div><h4>Daniela</h4><p><span data-blank="l"></span> Pero si los dos son conocidísimos… ¡Cristian Pascual en el instituto! <span data-blank="m"></span> <span data-blank="n"></span></p></div></div>
-        <div class="dialogue-turn ricardo"><span class="avatar">R</span><div><h4>Ricardo</h4><p>Sí, Daniela, sí, hablo en serio, aunque si quieres, llamamos para preguntar al Departamento de Literatura, porque no estoy demasiado seguro.</p></div></div>
+        <div class="dialogue-turn ricardo"><p><strong class="speaker-name">Ricardo: </strong>¿Te has enterado de los talleres de este curso? <span data-blank="a"></span> van a ser totalmente diferentes.</p></div>
+        <div class="dialogue-turn daniela"><p><strong class="speaker-name">Daniela: </strong><span data-blank="b"></span></p></div>
+        <div class="dialogue-turn ricardo"><p><strong class="speaker-name">Ricardo: </strong>Pues <span data-blank="c"></span> han contratado a dos famosos para organizar un taller con el Departamento de Literatura.</p></div>
+        <div class="dialogue-turn daniela"><p><strong class="speaker-name">Daniela: </strong><span data-blank="d"></span> Dos famosos trabajando en un instituto…</p></div>
+        <div class="dialogue-turn ricardo"><p><strong class="speaker-name">Ricardo: </strong>Ya, tía, pero, <span data-blank="e"></span>, a estos los han elegido por su relación con la cultura y por su carrera profesional. He oído que son amigos de Paco, el de Literatura, parece que se conocieron cuando trabajaban juntos en una escuela de idiomas, creo que enseñaban español.</p></div>
+        <div class="dialogue-turn daniela"><p><strong class="speaker-name">Daniela: </strong><span data-blank="f"></span> Dos profesores famosos, <span data-blank="g"></span> Pero, <span data-blank="h"></span>, que <span data-blank="i"></span>. ¿De qué es el taller? ¿Quién lo va a impartir?</p></div>
+        <div class="dialogue-turn ricardo"><p><strong class="speaker-name">Ricardo: </strong><span data-blank="j"></span>, es un taller de cine y teatro.</p></div>
+        <div class="dialogue-turn daniela"><p><strong class="speaker-name">Daniela: </strong><span data-blank="k"></span></p></div>
+        <div class="dialogue-turn ricardo"><p><strong class="speaker-name">Ricardo: </strong>La parte de cine la va a impartir la directora y guionista Anamar Orson y la parte de teatro el actor Cristian Pascual.</p></div>
+        <div class="dialogue-turn daniela"><p><strong class="speaker-name">Daniela: </strong><span data-blank="l"></span> Pero si los dos son conocidísimos… ¡Cristian Pascual en el instituto! <span data-blank="m"></span> <span data-blank="n"></span></p></div>
+        <div class="dialogue-turn ricardo"><p><strong class="speaker-name">Ricardo: </strong>Sí, Daniela, sí, hablo en serio, aunque si quieres, llamamos para preguntar al Departamento de Literatura, porque no estoy demasiado seguro.</p></div>
       </div>
-      <div class="exercise-actions"><button class="button primary" id="check-listening">Cevaplarımı kontrol et <span><svg class="arrow-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 15 15 5M5 5h10v10"/></svg></span></button><button class="button secondary" id="show-listening">Cevap anahtarını aç</button><button class="text-button" id="clear-listening">Bu bölümü temizle</button></div><p id="listening-result" class="result" role="status" aria-live="polite"></p><div id="listening-key" class="answer-key" hidden></div>
+      <div class="exercise-actions"><button class="text-button" id="clear-listening" type="button">Dinleme boşluklarını sıfırla</button></div><p id="listening-result" class="sr-only" role="status" aria-live="polite"></p>
       <details class="reflection"><summary>Bir adım daha · ¿Qué expresan?</summary><div class="reflection-body"><p>Metindeki ifadeleri üç grupta düşün: haber aktarma, şaşırma ve ilgi gösterme. Her gruba iki örnek bul.</p><p lang="es"><b>Para conversar:</b> ¿Qué taller te gustaría hacer? ¿A quién te gustaría conocer?</p><div class="mini-note"><b>Gramer köprüsü:</b> <span lang="es">Dime</span>, olumlu <span lang="es">tú</span> emri ve sona eklenen zamirden oluşur: <span lang="es">di + me → dime.</span> Olumsuzu: <span lang="es">no me digas.</span></div></div></details>
       <div class="panel-bottom"><span>Escuchar también es descubrir.</span><button class="button primary next-section" data-next="speaking">2. Kısım · Konuşma →</button></div>
     </section>
     <section class="lesson-panel" id="speaking" aria-labelledby="speaking-title" hidden>
-      <div class="section-heading"><div><p class="eyebrow">2. KISIM <span> / </span> EXPRESIÓN ORAL</p><h2 id="speaking-title">Un viaje contigo</h2><p>Aynı yolculuk. İki farklı tatil anlayışı.</p></div><span class="time-badge">◷ 10 dakika</span></div>
-      <div class="scenario-card"><span class="scenario-label">VUESTRA MISIÓN</span><h3 lang="es">Tres días. Un destino.<br>¿Un plan en común?</h3><p>İkili eşleşin. Birlikte üç günlük bir seyahate çıkacaksınız. Biriniz her şeyi planlamak, diğeriniz daha rahat ve spontane bir tatil yapmak istiyor. Beklentilerinizi anlatın ve ortak bir yol bulun.</p><span class="scenario-plane" aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 15 15 5M5 5h10v10"/></svg></span></div>
-      <div class="roles"><article class="role-card role-a"><span class="role-letter">A</span><p class="eyebrow">ESTUDIANTE A</p><h3>Todo bajo control.</h3><p>Her şeyi planlamak istiyorsun.</p><ul lang="es"><li>Te gusta reservar con antelación.</li><li>Quieres aprovechar cada minuto.</li><li>Los cambios de última hora te ponen nervioso/a.</li></ul></article><article class="role-card role-b"><span class="role-letter">B</span><p class="eyebrow">ESTUDIANTE B</p><h3>Vamos viendo.</h3><p>Daha rahat ve spontane bir tatil istiyorsun.</p><ul lang="es"><li>Prefieres decidir sobre la marcha.</li><li>Quieres descansar y descubrir lugares.</li><li>No quieres mirar el reloj todo el día.</li></ul></article></div>
-      <div class="content-card"><h3>Konuşmanızda bunlar olsun</h3><div class="table-scroll"><table><thead><tr><th>Kullanılacak yapı</th><th>Örnek</th></tr></thead><tbody><tr><td><span class="grammar-dot affirmative"></span>İki olumlu emir</td><td lang="es">Trae una mochila pequeña.</td></tr><tr><td><span class="grammar-dot negative"></span>İki olumsuz emir</td><td lang="es">No reserves todas las actividades.</td></tr><tr><td><span class="grammar-dot subjunctive"></span>İki subjuntivo cümlesi</td><td lang="es">Quiero que tengamos tiempo libre.</td></tr></tbody></table></div><p class="small-note">Her öğrenci kendi konuşmasında bu üç yapıdan ikişer cümle kullansın.</p></div>
-      <div class="speaking-tools"><div class="content-card"><h3 lang="es">Para empezar…</h3><div class="sentence-starters" lang="es"><span>Quiero que…</span><span>Prefiero que…</span><span>Es importante que…</span><span>Por favor, no…</span><span>¿Qué te parece si…?</span></div></div><div class="timer-card"><div><span class="eyebrow">¡A HABLAR!</span><span class="timer-value" id="timer" role="timer" aria-label="Konuşma süresi">10:00</span></div><div class="timer-actions"><button class="button primary" id="timer-toggle">Başlat</button><button class="text-button" id="timer-reset">Sıfırla</button></div><p id="timer-status" role="status"></p></div></div>
-      <div class="content-card agreements"><span class="eyebrow">EL ACUERDO FINAL</span><h3 lang="es">Nuestras tres reglas de viaje</h3><p>Üzerinde anlaştığınız üç tatil kuralını yazın ve sınıfa sunun.</p><label><span>01</span><input data-save="rule-1" type="text" aria-label="Birinci ortak tatil kuralı" placeholder="Nuestra primera regla…"></label><label><span>02</span><input data-save="rule-2" type="text" aria-label="İkinci ortak tatil kuralı" placeholder="Nuestra segunda regla…"></label><label><span>03</span><input data-save="rule-3" type="text" aria-label="Üçüncü ortak tatil kuralı" placeholder="Nuestra tercera regla…"></label><div class="discussion-question" lang="es">¿Viajarías con ellos? <em>¿Por qué?</em></div></div>
+      <div class="section-heading"><div><p class="eyebrow">2. KISIM <span> / </span> EXPRESIÓN ORAL</p><h2 id="speaking-title">Un viaje contigo</h2><p>Aynı yolculuk. İki farklı tatil anlayışı.</p></div></div>
+      <div class="scenario-card"><h3 lang="es">Tres días. Un destino.<br>¿Un plan en común?</h3><p>Sınıfça üç günlük bir seyahat planlayalım. Planlı ve spontane tatil anlayışlarını tartışalım; beklentilerimizi söyleyip ortak kurallar belirleyelim.</p></div>
+      <div class="roles"><article class="role-card role-a"><span class="role-letter">A</span><p class="eyebrow">A GÖRÜŞÜ · PLANLI TATİL</p><h3>Todo bajo control.</h3><p>Her şeyi planlamak istiyorsun.</p><ul lang="es"><li>Te gusta reservar con antelación.</li><li>Quieres aprovechar cada minuto.</li><li>Los cambios de última hora te ponen nervioso/a.</li></ul></article><article class="role-card role-b"><span class="role-letter">B</span><p class="eyebrow">B GÖRÜŞÜ · SPONTANE TATİL</p><h3>Vamos viendo.</h3><p>Daha rahat ve spontane bir tatil istiyorsun.</p><ul lang="es"><li>Prefieres decidir sobre la marcha.</li><li>Quieres descansar y descubrir lugares.</li><li>No quieres mirar el reloj todo el día.</li></ul></article></div>
+      <div class="content-card"><h3>Konuşmanızda bunlar olsun</h3><div class="table-scroll"><table><thead><tr><th>Kullanılacak yapı</th><th>Örnek</th></tr></thead><tbody><tr><td><span class="grammar-dot affirmative"></span>İki olumlu emir</td><td lang="es">Trae una mochila pequeña.</td></tr><tr><td><span class="grammar-dot negative"></span>İki olumsuz emir</td><td lang="es">No reserves todas las actividades.</td></tr><tr><td><span class="grammar-dot subjunctive"></span>İki subjuntivo cümlesi</td><td lang="es">Quiero que tengamos tiempo libre.</td></tr></tbody></table></div><p class="small-note">Bu yapılardan ikişer cümleyi sınıfça üretelim.</p></div>
+      <div class="speaking-tools"><div class="content-card"><h3 lang="es">Para empezar…</h3><div class="sentence-starters" lang="es"><span>Quiero que…</span><span>Prefiero que…</span><span>Es importante que…</span><span>Por favor, no…</span><span>¿Qué te parece si…?</span></div></div></div>
+      <div class="content-card agreements"><span class="eyebrow">EL ACUERDO FINAL</span><h3 lang="es">Nuestras tres reglas de viaje</h3><p>Sınıfça üzerinde anlaştığımız üç tatil kuralını yazalım.</p><label><span>01</span><input data-save="rule-1" type="text" aria-label="Birinci ortak tatil kuralı" placeholder="Nuestra primera regla…"></label><label><span>02</span><input data-save="rule-2" type="text" aria-label="İkinci ortak tatil kuralı" placeholder="Nuestra segunda regla…"></label><label><span>03</span><input data-save="rule-3" type="text" aria-label="Üçüncü ortak tatil kuralı" placeholder="Nuestra tercera regla…"></label><div class="discussion-question" lang="es">¿Viajarías con ellos? <em>¿Por qué?</em></div></div>
       <div class="panel-bottom"><button class="text-button next-section" data-next="listening">← Dinleme</button><button class="button primary next-section" data-next="reading">3. Kısım · Okuma →</button></div>
     </section>
     <section class="lesson-panel" id="reading" aria-labelledby="reading-title" hidden>
-      <div class="section-heading"><div><p class="eyebrow">3. KISIM <span> / </span> COMPRENSIÓN LECTORA</p><h2 id="reading-title">El viaje perfecto no existe</h2><p>Tatil mi yapıyoruz, emir mi alıyoruz?</p></div><span class="time-badge">◷ 25 dakika</span></div>
+      <div class="section-heading"><div><p class="eyebrow">3. KISIM <span> / </span> COMPRENSIÓN LECTORA</p><h2 id="reading-title">El viaje perfecto no existe</h2><p>Tatil mi yapıyoruz, emir mi alıyoruz?</p></div></div>
       <details class="reflection pre-reading"><summary>Antes de leer · Okumadan önce konuşalım</summary><div class="reflection-body" lang="es"><ol><li>¿Prefieres organizar un viaje o dejar que otra persona lo organice?</li><li>¿Qué tipo de compañero de viaje te molesta?</li><li>¿Es posible planificar demasiado unas vacaciones?</li></ol></div></details>
       <div class="instruction-strip"><span class="instruction-icon" aria-hidden="true">↳</span><p><b>İlk okuma:</b> Hikâyeyi anlamaya odaklan. <b>İkinci okuma:</b> Emirleri ve subjuntivo çekimlerini ara. “Yapıları göster” ile bulduklarını karşılaştırabilirsin.</p></div>
-      <div class="reading-layout"><article class="reading-article" lang="es"><div class="article-kicker">UNA HISTORIA SOBRE VIAJAR JUNTOS <span>01 — 05</span></div><h3>Un plan para todo.<br>Hasta para descansar.</h3><div class="article-controls"><button class="button secondary" id="highlight-toggle" aria-pressed="false">Yapıları göster</button><div class="text-size"><button type="button" id="font-minus" aria-label="Okuma yazısını küçült">A−</button><button type="button" id="font-plus" aria-label="Okuma yazısını büyüt">A+</button></div></div><div id="reading-story"></div><div id="grammar-legend" class="grammar-legend" hidden><span><i class="grammar-dot affirmative"></i>Olumlu emir</span><span><i class="grammar-dot negative"></i>Olumsuz emir</span><span><i class="grammar-dot subjunctive"></i>Subjuntivo</span></div></article><aside class="reading-aside"><div class="vocabulary-card"><span class="eyebrow">PEQUEÑO DICCIONARIO</span><h3>Yol arkadaşın kelimeler</h3><dl><dt>el billete</dt><dd>bilet</dd><dt>la maleta</dt><dd>valiz</dd><dt>reservar</dt><dd>rezervasyon yapmak; ayırmak</dd><dt>perderse por las calles</dt><dd>sokaklarda kaybolup dolaşmak</dd><dt>ponerse nervioso/a</dt><dd>gerilmek, telaşlanmak</dd><dt>la dueña</dt><dd>kadın işletme sahibi</dd><dt>estar de acuerdo</dt><dd>aynı fikirde olmak</dd></dl></div><div class="quote-card"><span aria-hidden="true">“</span><p lang="es">¿Se puede planificar<br>la espontaneidad?</p><small>BİRAZ DÜŞÜNELİM.</small></div></aside></div>
+      <div class="reading-layout"><article class="reading-article" lang="es"><h3>Un plan para todo.<br>Hasta para descansar.</h3><div class="article-controls"><button class="button secondary" id="highlight-toggle" aria-pressed="false">Yapıları göster</button><div class="text-size"><button type="button" id="font-minus" aria-label="Okuma yazısını küçült">A−</button><button type="button" id="font-plus" aria-label="Okuma yazısını büyüt">A+</button></div></div><div id="reading-story"></div><div id="grammar-legend" class="grammar-legend" hidden><span><i class="grammar-dot affirmative"></i>Olumlu emir</span><span><i class="grammar-dot negative"></i>Olumsuz emir</span><span><i class="grammar-dot subjunctive"></i>Subjuntivo</span></div></article><aside class="reading-aside"><div class="vocabulary-card"><span class="eyebrow">PEQUEÑO DICCIONARIO</span><h3>Yol arkadaşın kelimeler</h3><dl><dt>el billete</dt><dd>bilet</dd><dt>la maleta</dt><dd>valiz</dd><dt>reservar</dt><dd>rezervasyon yapmak; ayırmak</dd><dt>perderse por las calles</dt><dd>sokaklarda kaybolup dolaşmak</dd><dt>ponerse nervioso/a</dt><dd>gerilmek, telaşlanmak</dd><dt>la dueña</dt><dd>kadın işletme sahibi</dd><dt>estar de acuerdo</dt><dd>aynı fikirde olmak</dd></dl></div></aside></div>
       <div class="reading-activities">
-        <div class="activity-heading"><span>01</span><div><h3>Lee entre líneas</h3><p>Cevabını yaz; metinden bir kanıt bul. Sonra eşinle karşılaştır.</p></div></div><div id="reading-questions" class="question-list"></div><details class="reflection"><summary>Örnek cevapları göster</summary><div class="reflection-body" lang="es"><ol><li>Clara prepara un documento muy detallado; Pablo solo compra el billete.</li><li>Porque Clara ha planificado cada minuto, incluso el tiempo para descansar.</li><li>Es una contradicción: hasta el descanso «libre» tiene un horario fijo.</li><li>No. Quiere decidir algunas cosas con Clara cuando estén allí: «Tenemos que decidirlo juntos» y «Prefiero que decidamos algunas cosas allí» muestran la importancia de compartir las decisiones.</li><li>Comprende que tanto control molesta a Pablo y descubre que una experiencia sin plan puede salir muy bien.</li><li>El nuevo plan de Clara deja espacio para decidir juntos y ser flexibles; por eso Pablo está de acuerdo.</li></ol></div></details>
+        <div class="activity-heading"><span>01</span><div><h3>Lee entre líneas</h3><p>Cevapları sınıfça tartışalım ve metinden kanıt bulalım.</p></div></div><div id="reading-questions" class="question-list"></div><details class="reflection"><summary>Örnek cevapları göster</summary><div class="reflection-body" lang="es"><ol><li>Clara prepara un documento muy detallado; Pablo solo compra el billete.</li><li>Porque Clara ha planificado cada minuto, incluso el tiempo para descansar.</li><li>Es una contradicción: hasta el descanso «libre» tiene un horario fijo.</li><li>No. Quiere decidir algunas cosas con Clara cuando estén allí: «Tenemos que decidirlo juntos» y «Prefiero que decidamos algunas cosas allí» muestran la importancia de compartir las decisiones.</li><li>Comprende que tanto control molesta a Pablo y descubre que una experiencia sin plan puede salir muy bien.</li><li>El nuevo plan de Clara deja espacio para decidir juntos y ser flexibles; por eso Pablo está de acuerdo.</li></ol></div></details>
         <div class="discussion-question small" lang="es">¿Quién tiene más razón: Clara o Pablo? <em>Justifica tu respuesta.</em></div>
         <div class="activity-heading"><span>02</span><div><h3>Detectives de gramática</h3><p>Metindeki olumlu emirleri bul, olumsuzlarını tamamla. Bu tabloda kişi: <b>tú</b>.</p></div></div><div class="content-card"><div class="table-scroll"><table class="grammar-table"><thead><tr><th>Infinitivo</th><th>Afirmativo · tú</th><th>Negativo · tú</th></tr></thead><tbody id="grammar-rows"></tbody></table></div><div class="exercise-actions"><button class="button primary" id="check-grammar">Tabloyu kontrol et</button><button class="button secondary" id="show-grammar">Cevapları göster</button></div><p id="grammar-result" class="result" role="status"></p><div id="grammar-key" class="answer-key" hidden></div></div>
         <details class="reflection"><summary>Keşfet · Aynı çekim, farklı görev</summary><div class="reflection-body"><p><b>Tú kişisinde olumsuz emir, presente de subjuntivo çekimiyle kurulur.</b></p><div class="comparison-pair" lang="es"><p><b>Ven</b> temprano.<br><small>Erken gel.</small></p><p><b>No vengas</b> tarde.<br><small>Geç gelme.</small></p><p>Quiero que <b>vengas</b> temprano.<br><small>Erken gelmeni istiyorum.</small></p></div><p>Olumsuz emir ile istek cümlesindeki <span lang="es">vengas</span> aynı biçimdedir; cümledeki işlevini bağlam belirler.</p><p><b>Zamir varsa:</b> <span lang="es">dime → no me digas; preocúpate → no te preocupes.</span></p><p><b>Düşün:</b> <span lang="es">Quiero descansar.</span> / <span lang="es">Quiero que descanses.</span> İlk cümlede dinlenen kim? İkinci cümlede kim?</p><p class="small-note">İlk cümlede isteyen ve dinlenen aynı kişi (yo). İkinci cümlede isteyen yo, dinlenmesi istenen tú.</p></div></details>
@@ -92,18 +154,20 @@ body{background:radial-gradient(ellipse at 10% 12%,rgba(100,139,250,.17),transpa
     </section>
 
     <section class="lesson-panel" id="expressions" aria-labelledby="expressions-title" hidden>
-      <div class="section-heading"><div><p class="eyebrow">4. KISIM <span> / </span> EXPRESIONES Y REFRANES</p><h2 id="expressions-title">No es lo que parece.</h2><p>Kelimelerin ötesine geç: 12 deyim, 3 atasözü, 15 günlük durum.</p></div><span class="time-badge">◷ 25–30 dakika</span></div>
-      <div class="expressions-intro"><div><p class="eyebrow">UN POCO MÁS DE ESPAÑOL REAL</p><h3 lang="es">Las palabras dicen una cosa.<br>La expresión cuenta otra.</h3><p>Önce basit İspanyolca açıklamaları oku ve anlamı tahmin et. Sonra Türkçe anlamları açıp karşılaştır. En sonda ifadeleri günlük durumlarda kullan.</p></div><div class="expression-stamp" aria-hidden="true"><b>12 + 3</b>¡A DESCUBRIR!</div></div>
+      <div class="section-heading"><div><p class="eyebrow">4. KISIM <span> / </span> EXPRESIONES Y REFRANES</p><h2 id="expressions-title">No es lo que parece.</h2><p>Kelimelerin ötesine geç: 12 deyim, 3 atasözü, 15 günlük durum.</p></div></div>
+      
       <div class="expression-stage-one"><div class="activity-heading"><span>01</span><div><h3 lang="es">Primero, en español</h3><p>İfadeleri kelime kelime çevirmeden açıklamalarından anlamaya çalış.</p></div></div><h3 class="expression-group-heading">💡 İfade kutusu <span>12 DEYİM · A–L</span></h3><div id="idiom-cards" class="expression-grid"></div><h3 class="expression-group-heading">💬 Atasözü kutusu <span>3 ATASÖZÜ · M–O</span></h3><div id="proverb-cards" class="expression-grid proverb-grid"></div></div>
       <div class="meaning-stage"><div class="activity-heading"><span>02</span><div><h3>Şimdi Türkçeyle karşılaştır</h3><p>Anlamları tahmin ettin mi? Türkçe açıklamalar, ifadelerin bu etkinlikte kullanılan anlamlarını gösterir.</p></div></div><button class="button primary" id="toggle-turkish" aria-expanded="false" aria-controls="turkish-meanings">Türkçe anlamları aç</button><div id="turkish-meanings" class="turkish-meanings" hidden></div></div>
       <div class="activity-heading expression-exercise-heading"><span>03</span><div><h3 lang="es">Completa las situaciones</h3><p>Her ifadeyi bir kez kullan. Fiilleri duruma göre çekimle; gerekiyorsa zamiri de değiştir.</p></div></div>
       <div class="instruction-strip"><span class="instruction-icon" aria-hidden="true">✎</span><p><b>Önce sen dene.</b> Boşluklara yalnızca eksik ifadeyi yaz. Yanıtını yazdıktan sonra “Örnek çözümü aç” ile karşılaştır; birden fazla uygun çekim olabileceğini unutma.</p></div>
       <div class="situation-controls"><span id="expressions-progress" role="status" aria-live="polite">0 / 15 yanıt yazıldı</span><div><button class="button secondary" id="toggle-solutions" aria-expanded="false">Tüm örnek çözümleri aç</button><button class="text-button" id="clear-expressions">Bu bölümü temizle</button></div></div><div id="situation-cards" class="situations-grid"></div>
-      <div class="expression-outro"><h3 lang="es">¿Y en tu vida?</h3><p lang="es">Elige dos expresiones y cuenta una situación real. Tu compañero/a tiene que adivinar qué expresión corresponde a cada situación.</p></div>
+      <div class="expression-outro"><h3 lang="es">¿Y en tu vida?</h3><p lang="es">Una persona cuenta una situación real sin decir la expresión. El resto de la clase intenta adivinar qué expresión corresponde.</p></div>
       <div class="panel-bottom"><button class="text-button next-section" data-next="reading">← Okuma</button><span>¡Buen trabajo! Tu español va más allá. ✦</span></div>
     </section>
   </main>
   <footer><div class="brand footer-brand"><span class="brand-icon">h.</span><span>profe hazel<small>español con confianza</small></span></div><p>B1.1 · 7+8. Ders İçi Etkinlik<br><small id="save-status">Yazdıkların bu tarayıcıda otomatik saklanır.</small></p><button type="button" id="reset-all" class="text-button">Tüm yanıtları temizle</button></footer>
+
+
 <script>
 'use strict';
 const listeningAnswers={a:'He oído que',b:'¿Y eso?',c:'parece que',d:'¡No me lo puedo creer!',e:'según dicen',f:'¡Anda ya!',g:'¡Imposible!',h:'dime, dime',i:'estoy intrigadísima',j:'Al parecer',k:'¡Qué guay!',l:'¿En serio?',m:'¡Qué fuerte!',n:'¿Hablas en serio?'};
@@ -113,16 +177,50 @@ let storageAvailable=true;
 try{saved=JSON.parse(localStorage.getItem(storageKey)||'{}');if(!saved||typeof saved!=='object'||Array.isArray(saved))saved={}}catch{storageAvailable=false;saved={}}
 function persist(){try{localStorage.setItem(storageKey,JSON.stringify(saved));return true}catch{storageAvailable=false;document.getElementById('save-status').textContent='Bu tarayıcıda otomatik kayıt kullanılamıyor.';return false}}
 function normalize(value){return value.toLocaleLowerCase('es').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim()}
-function bindSave(input){const key=input.dataset.save;if(typeof saved[key]==='string')input.value=saved[key];input.addEventListener('input',()=>{saved[key]=input.value;persist();input.classList.remove('correct-input','incorrect-input','empty-input');input.removeAttribute('aria-invalid');const wrap=input.closest('.blank-wrap');if(wrap){wrap.classList.remove('correct','incorrect');wrap.querySelector('.blank-status').textContent=''}updateListeningProgress()})}
+function bindSave(input){const key=input.dataset.save;if(typeof saved[key]==='string')input.value=saved[key];input.addEventListener('input',()=>{saved[key]=input.value;persist();input.classList.remove('correct-input','incorrect-input','empty-input');input.removeAttribute('aria-invalid');const wrap=input.closest('.blank-wrap');if(wrap){const letter=wrap.dataset.blank;saved['revealed-'+letter]=false;wrap.classList.remove('is-revealed');const key=wrap.querySelector('.reveal-answer');key.textContent='🔒';key.setAttribute('aria-pressed','false');key.setAttribute('aria-label',letter+' boşluğunun cevabını aç');input.readOnly=false;persist()}})}
 function switchSection(id,scroll=true){const panel=document.getElementById(id);if(!panel||!panel.classList.contains('lesson-panel'))return;document.querySelectorAll('.lesson-panel').forEach(p=>p.hidden=p.id!==id);document.querySelectorAll('.nav-tab').forEach(b=>{const active=b.dataset.section===id;b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));b.setAttribute('aria-current',active?'step':'false')});history.replaceState(null,'','#'+id);if(scroll)panel.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'})}
 document.querySelectorAll('.nav-tab').forEach(b=>b.addEventListener('click',()=>switchSection(b.dataset.section)));
 document.querySelectorAll('.next-section').forEach(b=>b.addEventListener('click',()=>switchSection(b.dataset.next)));
-document.querySelectorAll('[data-blank]').forEach(container=>{const letter=container.dataset.blank;const width=Math.max(90,Math.min(235,listeningAnswers[letter].length*7.3+24));container.className='blank-wrap';const label=document.createElement('label');label.className='blank-letter';label.htmlFor='listen-'+letter;label.textContent=letter;const input=document.createElement('input');input.type='text';input.id='listen-'+letter;input.dataset.save='listen-'+letter;input.autocomplete='off';input.spellcheck=false;input.style.width=width+'px';input.setAttribute('aria-label',letter+' boşluğu');const status=document.createElement('span');status.className='blank-status';status.setAttribute('aria-hidden','true');container.append(label,input,status)});
-function updateListeningProgress(){const count=Object.keys(listeningAnswers).filter(letter=>document.getElementById('listen-'+letter)?.value.trim()).length;document.getElementById('listening-progress').textContent=count+' / 14 boşluk dolu'}
-document.getElementById('check-listening').addEventListener('click',()=>{let correct=0;let empty=0;for(const [letter,answer] of Object.entries(listeningAnswers)){const input=document.getElementById('listen-'+letter);const isCorrect=normalize(input.value)===normalize(answer);if(!input.value.trim())empty++;if(isCorrect)correct++;const wrap=input.closest('.blank-wrap');wrap.classList.toggle('correct',isCorrect);wrap.classList.toggle('incorrect',!isCorrect);wrap.querySelector('.blank-status').textContent=isCorrect?'✓':'×';input.setAttribute('aria-invalid',String(!isCorrect))}document.getElementById('listening-result').textContent=correct===14?'¡Muy bien! 14 / 14 doğru. Şimdi ifadelerin konuşmadaki görevlerini keşfet.':`${correct} / 14 doğru.${empty?' '+empty+' boşluk henüz doldurulmadı.':''} İşaretli yerleri tekrar dinle. Büyük harf, aksan ve noktalama farkları puanı etkilemez.`});
+function setListeningReveal(letter,revealed){
+  const input=document.getElementById('listen-'+letter);
+  const wrap=input.closest('.blank-wrap');
+  const key=wrap.querySelector('.reveal-answer');
+  input.value=revealed?listeningAnswers[letter]:'';
+  input.readOnly=revealed;
+  wrap.classList.toggle('is-revealed',revealed);
+  key.textContent=revealed?'🔓':'🔒';
+  key.setAttribute('aria-pressed',String(revealed));
+  key.setAttribute('aria-label',letter+' boşluğunun cevabını '+(revealed?'gizle':'aç'));
+  key.title=revealed?'Cevabı gizle':'Cevabı aç';
+  saved[input.dataset.save]=input.value;
+  saved['revealed-'+letter]=revealed;
+  persist();
+  document.getElementById('listening-result').textContent=letter+' cevabı '+(revealed?'açıldı.':'gizlendi.');
+}
+function resetListening(){
+  Object.keys(listeningAnswers).forEach(letter=>setListeningReveal(letter,false));
+  document.getElementById('listening-result').textContent='Dinleme boşlukları sıfırlandı.';
+}
+document.querySelectorAll('[data-blank]').forEach(container=>{
+  const letter=container.dataset.blank;
+  container.className='blank-wrap';
+  const label=document.createElement('label');
+  label.className='blank-letter';label.htmlFor='listen-'+letter;label.textContent=letter;
+  const input=document.createElement('input');
+  input.type='text';input.id='listen-'+letter;input.dataset.save='listen-'+letter;
+  input.autocomplete='off';input.spellcheck=false;
+  input.style.width=Math.max(100,Math.min(245,listeningAnswers[letter].length*8+20))+'px';
+  input.setAttribute('aria-label',letter+' boşluğu');
+  const key=document.createElement('button');
+  key.type='button';key.className='reveal-answer';key.textContent='🔒';
+  key.setAttribute('aria-label',letter+' boşluğunun cevabını aç');
+  key.setAttribute('aria-controls',input.id);key.setAttribute('aria-pressed','false');
+  key.title='Cevabı aç';
+  key.addEventListener('click',()=>setListeningReveal(letter,!container.classList.contains('is-revealed')));
+  container.append(label,input,key);
+});
 function toggleKey(button,target,html){const key=document.getElementById(target);const isOpening=key.hidden;key.hidden=!isOpening;if(isOpening)key.innerHTML=html;button.setAttribute('aria-expanded',String(isOpening));button.textContent=isOpening?'Cevap anahtarını kapat':'Cevap anahtarını aç'}
-document.getElementById('show-listening').addEventListener('click',e=>toggleKey(e.currentTarget,'listening-key','<div class="answer-grid" lang="es">'+Object.entries(listeningAnswers).map(([k,v])=>`<p><b>${k}.</b> ${v}</p>`).join('')+'</div>'));
-document.getElementById('clear-listening').addEventListener('click',()=>{if(!window.confirm('Yalnızca dinleme bölümündeki yanıtlar temizlensin mi?'))return;for(const letter of Object.keys(listeningAnswers)){const input=document.getElementById('listen-'+letter);input.value='';delete saved[input.dataset.save];input.removeAttribute('aria-invalid');input.closest('.blank-wrap').classList.remove('correct','incorrect');input.closest('.blank-wrap').querySelector('.blank-status').textContent=''}persist();updateListeningProgress();document.getElementById('listening-result').textContent='Dinleme yanıtları temizlendi.';document.getElementById('listening-key').hidden=true;document.getElementById('show-listening').textContent='Cevap anahtarını aç';document.getElementById('show-listening').setAttribute('aria-expanded','false')});
+document.getElementById('clear-listening').addEventListener('click',resetListening);
 const story=[
 `<p>Clara y Pablo son amigos desde hace años, pero nunca han viajado juntos. Para su primer viaje, deciden pasar un fin de semana en Granada. Clara prepara un documento con horarios, restaurantes y actividades. Pablo solo compra el billete de tren.</p><p>El jueves por la noche, Clara le envía varios mensajes:</p><p>—Pablo, <mark class="affirmative">ven</mark> a mi casa a las siete. <mark class="affirmative">Trae</mark> tu mochila y <mark class="affirmative">pon</mark> el billete en un lugar seguro. <mark class="negative">No traigas</mark> una maleta enorme: solo vamos dos días. Y, por favor, <mark class="negative">no llegues</mark> tarde.</p>`,
 `<p>Pablo responde con un pulgar arriba. Sin embargo, los mensajes continúan:</p><p>—<mark class="affirmative">Haz</mark> una lista de los lugares que quieres visitar. <mark class="affirmative">Mira</mark> también los restaurantes, pero <mark class="negative">no reserves</mark> nada todavía. Tenemos que decidirlo juntos.</p><p>Pablo empieza a preocuparse. Abre el documento y descubre que Clara incluso ha reservado veinte minutos para «descansar libremente».</p>`,
@@ -147,16 +245,13 @@ const conjugations=[{before:'Espero que yo',after:'más flexible.',verb:'ser',an
 document.getElementById('conjugations').innerHTML=conjugations.map((q,i)=>`<li>${q.before} <input type="text" id="conj-${i}" data-save="conj-${i}" aria-label="${i+1}. cümle, ${q.verb} subjuntivo çekimi" autocomplete="off" spellcheck="false"> ${q.after}<span class="verb-hint">(${q.verb})</span></li>`).join('');
 document.getElementById('check-conjugations').addEventListener('click',()=>checkInputs(conjugations.map((q,i)=>({id:'conj-'+i,answer:q.answer})),'conjugations-result'));
 document.getElementById('show-conjugations').addEventListener('click',e=>toggleKey(e.currentTarget,'conjugations-key','<div class="answer-grid" lang="es">'+conjugations.map((q,i)=>`<p><b>${i+1}.</b> ${q.answer}</p>`).join('')+'</div>'));
-let timerInterval=null;let remainingSeconds=600;let timerDeadline=0;
-function renderTimer(){const m=Math.floor(remainingSeconds/60);const s=remainingSeconds%60;document.getElementById('timer').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')}
-function pauseTimer(){clearInterval(timerInterval);timerInterval=null;document.getElementById('timer-toggle').textContent=remainingSeconds===0?'Yeniden başlat':'Devam et'}
-document.getElementById('timer-toggle').addEventListener('click',()=>{if(timerInterval){remainingSeconds=Math.max(0,Math.ceil((timerDeadline-Date.now())/1000));pauseTimer();renderTimer();return}if(remainingSeconds===0)remainingSeconds=600;document.getElementById('timer-status').textContent='';timerDeadline=Date.now()+remainingSeconds*1000;document.getElementById('timer-toggle').textContent='Durdur';timerInterval=setInterval(()=>{remainingSeconds=Math.max(0,Math.ceil((timerDeadline-Date.now())/1000));renderTimer();if(remainingSeconds===0){pauseTimer();document.getElementById('timer-status').textContent='¡Tiempo! Şimdi üç ortak kuralınızı sınıfa sunun.'}},250)});
-document.getElementById('timer-reset').addEventListener('click',()=>{clearInterval(timerInterval);timerInterval=null;remainingSeconds=600;renderTimer();document.getElementById('timer-toggle').textContent='Başlat';document.getElementById('timer-status').textContent=''});
 document.getElementById('print').addEventListener('click',()=>window.print());
-document.getElementById('reset-all').addEventListener('click',()=>{if(!window.confirm('Bu dersteki tüm yanıtların bu tarayıcıdan silinmesini istiyor musun?'))return;saved={};persist();document.querySelectorAll('[data-save]').forEach(input=>{input.value='';input.classList.remove('correct-input','incorrect-input','empty-input');input.removeAttribute('aria-invalid')});document.querySelectorAll('.blank-wrap').forEach(w=>{w.classList.remove('correct','incorrect');w.querySelector('.blank-status').textContent=''});document.querySelectorAll('.result').forEach(r=>r.textContent='');document.querySelectorAll('.answer-key').forEach(k=>k.hidden=true);['show-listening','show-grammar','show-conjugations'].forEach(id=>{document.getElementById(id).textContent='Cevap anahtarını aç';document.getElementById(id).setAttribute('aria-expanded','false')});updateListeningProgress()});
-document.querySelectorAll('[data-save]').forEach(bindSave);updateListeningProgress();
+document.getElementById('reset-all').addEventListener('click',()=>{if(!window.confirm('Bu dersteki tüm yanıtların bu tarayıcıdan silinmesini istiyor musun?'))return;saved={};persist();document.querySelectorAll('[data-save]').forEach(input=>{input.value='';input.classList.remove('correct-input','incorrect-input','empty-input');input.removeAttribute('aria-invalid')});resetListening();document.querySelectorAll('.result').forEach(r=>r.textContent='');document.querySelectorAll('.answer-key').forEach(k=>k.hidden=true);['show-grammar','show-conjugations'].forEach(id=>{document.getElementById(id).textContent='Cevap anahtarını aç';document.getElementById(id).setAttribute('aria-expanded','false')});});
+document.querySelectorAll('[data-save]').forEach(bindSave);
+Object.keys(listeningAnswers).forEach(letter=>{if(saved['revealed-'+letter])setListeningReveal(letter,true)});
 if(!storageAvailable)document.getElementById('save-status').textContent='Bu tarayıcıda otomatik kayıt kullanılamıyor.';
 const initial=location.hash.slice(1);if(['listening','speaking','reading','expressions'].includes(initial))switchSection(initial,false);
+
 
 'use strict';
 const expressions = [
@@ -210,3 +305,4 @@ updateExpressionsProgress();
 </script>
 </body>
 </html>
+
