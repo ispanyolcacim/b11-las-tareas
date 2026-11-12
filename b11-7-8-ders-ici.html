@@ -92,6 +92,33 @@ h1{font-size:36px;letter-spacing:-1.2px;line-height:1.25;margin-bottom:8px}
 @media print{.reveal-answer{display:none}.hero{padding:10px 0}.hero h1{font-size:27px}.dialogue-turn p{font-size:13px}.blank-wrap.is-revealed input{background:transparent}}
 
 </style>
+<style>
+.vocabulary-hint{font-size:12px;color:#516182;margin:-15px 0 26px;padding-left:2px}
+.vocab-word{display:inline;border:0;border-radius:3px;padding:0;margin:0;box-shadow:none;background:none;color:inherit;font:inherit;letter-spacing:inherit;text-align:inherit;line-height:inherit;cursor:pointer;vertical-align:baseline;text-decoration:none;text-transform:none;appearance:none;-webkit-appearance:none}
+.vocab-word:hover,.vocab-word[aria-expanded="true"]{background:#dce8ff;color:#2848a2}
+.vocab-word:focus-visible{outline:2px solid #648bfa;outline-offset:2px;background:#e3edff}
+.gloss-phrase{display:inline}
+.revealed-word-answer{display:inline-block;max-width:100%;min-width:80px;padding:1px 7px;border-bottom:1.5px solid #648bfa;border-radius:3px 3px 0 0;background:#e4edff;font-size:17px;font-weight:650;line-height:1.9;color:#2848a2;white-space:normal}
+.blank-wrap.is-revealed.has-word-answer{flex-wrap:wrap}
+.blank-wrap.is-revealed.has-word-answer>input{display:none}
+.blank-wrap:not(.is-revealed)>.revealed-word-answer{display:none}
+.word-popover{position:fixed;z-index:1000;max-width:calc(100vw - 24px);width:330px;padding:20px 22px;border:1px solid #b8cbed;border-radius:13px;background:#fff;color:#26324e;box-shadow:0 12px 42px #213c7426;font-family:'Nunito Sans',Arial,sans-serif;font-size:14px;line-height:1.75}
+.word-popover[hidden]{display:none!important}
+.word-popover-top{display:flex;justify-content:space-between;align-items:start;gap:12px}
+.word-popover h3{font-family:'Nunito',Arial,sans-serif;font-size:23px;line-height:1.3;letter-spacing:-.3px;margin:0;overflow-wrap:anywhere}
+.word-popover-label{display:block;font-size:9px;font-weight:750;letter-spacing:1.4px;color:#7486ab;margin:0 0 7px}
+.word-popover-close{width:30px;height:30px;flex:0 0 30px;padding:0;border:0;border-radius:50%;background:#eef3fc;color:#516182;font:24px/1 Arial,sans-serif;cursor:pointer}
+.word-popover-close:hover{background:#dce8ff}
+.word-popover-close:focus-visible{outline:2px solid #648bfa;outline-offset:2px}
+.word-meaning{margin:12px 0 0;font-size:15px;line-height:1.8}
+.word-phrase{border-top:1px solid #e0e8f6;margin-top:15px;padding-top:13px}
+.word-phrase p{margin:0;font-size:13px;line-height:1.8}
+.word-phrase p:first-child{font-weight:750;color:#3159c1;margin-bottom:5px}
+.word-popover-note{font-size:10px;color:#7486ab;line-height:1.5;margin:14px 0 0}
+@media(max-width:650px){.vocabulary-hint{font-size:11px;margin-top:-14px;margin-bottom:23px}.revealed-word-answer{font-size:15px}.word-popover{width:auto;left:12px!important;right:12px!important;top:auto!important;bottom:12px;max-height:55vh;overflow-y:auto;padding:18px 20px}.word-popover h3{font-size:22px}.word-meaning{font-size:15px}}
+@media print{.word-popover,.vocabulary-hint{display:none!important}.vocab-word{background:none!important;color:inherit!important;outline:none!important}.blank-wrap.is-revealed.has-word-answer>input{display:none}.revealed-word-answer{background:none}}
+
+</style>
   
   
 </head>
@@ -103,14 +130,15 @@ h1{font-size:36px;letter-spacing:-1.2px;line-height:1.25;margin-bottom:8px}
   </header>
   <main id="main">
     <section class="hero" aria-labelledby="page-title">
-      <div class="hero-copy"><p class="eyebrow">ESPAÑOL EN CLASE <span>✦</span> DERS İÇİ ETKİNLİK</p><h1 id="page-title">B1.1 · 7+8. Ders</h1><p class="hero-description">Dinleme · Konuşma · Okuma · Deyimler ve atasözleri</p><div class="grammar-tags"><span>Imperativo afirmativo</span><span>Imperativo negativo</span><span>Presente de subjuntivo</span></div></div>
+      <div class="hero-copy"><p class="eyebrow"><span lang="es">ESPAÑOL EN CLASE</span> <span>✦</span> DERS İÇİ ETKİNLİK</p><h1 id="page-title">B1.1 · 7+8. Ders</h1><p class="hero-description">Dinleme · Konuşma · Okuma · Deyimler ve atasözleri</p><div class="grammar-tags" lang="es"><span>Imperativo afirmativo</span><span>Imperativo negativo</span><span>Presente de subjuntivo</span></div></div>
     </section>
     <nav class="lesson-nav" aria-label="Ders bölümleri"><button type="button" class="nav-tab active" data-section="listening" aria-selected="true"><span class="nav-number">01</span><span>Dinleme<small>Ricardo y Daniela</small></span><span class="nav-arrow"><svg class="arrow-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 15 15 5M5 5h10v10"/></svg></span></button><button type="button" class="nav-tab" data-section="speaking" aria-selected="false"><span class="nav-number">02</span><span>Konuşma<small>Un viaje contigo</small></span><span class="nav-arrow"><svg class="arrow-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 15 15 5M5 5h10v10"/></svg></span></button><button type="button" class="nav-tab" data-section="reading" aria-selected="false"><span class="nav-number">03</span><span>Okuma<small>El viaje perfecto no existe</small></span><span class="nav-arrow"><svg class="arrow-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 15 15 5M5 5h10v10"/></svg></span></button><button type="button" class="nav-tab" data-section="expressions" aria-selected="false"><span class="nav-number">04</span><span>Deyimler<small>Expresiones y refranes</small></span><span class="nav-arrow"><svg class="arrow-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 15 15 5M5 5h10v10"/></svg></span></button></nav>
+<p class="vocabulary-hint">İspanyolca bir kelimeye tıkla, Türkçe anlamını gör.</p>
     <section class="lesson-panel" id="listening" aria-labelledby="listening-title">
-      <div class="section-heading"><div><p class="eyebrow">1. KISIM <span> / </span> COMPRENSIÓN AUDITIVA</p><h2 id="listening-title">¿Te has enterado?</h2><p>Ricardo ve Daniela'nın sohbetine kulak ver.</p></div></div>
-      <div class="audio-card"><div class="audio-heading"><span class="audio-symbol" aria-hidden="true">♫</span><div><h3>Ricardo y Daniela</h3><p>B1.1 · 7–8 · Sayfa 6</p></div><a href="https://soundcloud.com/profe-hazel/b11-78-sayfa-6-ricardo-daniela" target="_blank" rel="noopener noreferrer" class="external-link">SoundCloud'da aç <svg class="arrow-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 15 15 5M5 5h10v10"/></svg></a></div><iframe title="Ricardo ve Daniela dinleme kaydı — Profe Hazel" width="100%" height="166" scrolling="no" frameborder="0" allow="autoplay" loading="eager" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fprofe-hazel%2Fb11-78-sayfa-6-ricardo-daniela&amp;color=%23526cc6&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=false"></iframe></div>
+      <div class="section-heading"><div><p class="eyebrow">1. KISIM <span> / </span> <span lang="es">COMPRENSIÓN AUDITIVA</span></p><h2 id="listening-title" lang="es">¿Te has enterado?</h2><p>Ricardo ve Daniela'nın sohbetine kulak ver.</p></div></div>
+      <div class="audio-card"><div class="audio-heading"><span class="audio-symbol" aria-hidden="true">♫</span><div><h3 lang="es">Ricardo y Daniela</h3><p>B1.1 · 7–8 · Sayfa 6</p></div><a href="https://soundcloud.com/profe-hazel/b11-78-sayfa-6-ricardo-daniela" target="_blank" rel="noopener noreferrer" class="external-link">SoundCloud'da aç <svg class="arrow-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 15 15 5M5 5h10v10"/></svg></a></div><iframe title="Ricardo ve Daniela dinleme kaydı — Profe Hazel" width="100%" height="166" scrolling="no" frameborder="0" allow="autoplay" loading="eager" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fprofe-hazel%2Fb11-78-sayfa-6-ricardo-daniela&amp;color=%23526cc6&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=false"></iframe></div>
       <div class="instruction-strip"><p>Kaydı dinleyelim ve boşlukları sınıfça tamamlayalım. Doğru cevabı açmak için boşluğun yanındaki 🔒 simgesine tıklayabilirsin.</p></div>
-      <div class="exercise-top"><h3>Una noticia en el instituto</h3></div>
+      <div class="exercise-top"><h3 lang="es">Una noticia en el instituto</h3></div>
       <div class="dialogue" lang="es">
         <div class="dialogue-turn ricardo"><p><strong class="speaker-name">Ricardo: </strong>¿Te has enterado de los talleres de este curso? <span data-blank="a"></span> van a ser totalmente diferentes.</p></div>
         <div class="dialogue-turn daniela"><p><strong class="speaker-name">Daniela: </strong><span data-blank="b"></span></p></div>
@@ -129,32 +157,32 @@ h1{font-size:36px;letter-spacing:-1.2px;line-height:1.25;margin-bottom:8px}
       <div class="panel-bottom"><span>Escuchar también es descubrir.</span><button class="button primary next-section" data-next="speaking">2. Kısım · Konuşma →</button></div>
     </section>
     <section class="lesson-panel" id="speaking" aria-labelledby="speaking-title" hidden>
-      <div class="section-heading"><div><p class="eyebrow">2. KISIM <span> / </span> EXPRESIÓN ORAL</p><h2 id="speaking-title">Un viaje contigo</h2><p>Aynı yolculuk. İki farklı tatil anlayışı.</p></div></div>
+      <div class="section-heading"><div><p class="eyebrow">2. KISIM <span> / </span> <span lang="es">EXPRESIÓN ORAL</span></p><h2 id="speaking-title" lang="es">Un viaje contigo</h2><p>Aynı yolculuk. İki farklı tatil anlayışı.</p></div></div>
       <div class="scenario-card"><h3 lang="es">Tres días. Un destino.<br>¿Un plan en común?</h3><p>Sınıfça üç günlük bir seyahat planlayalım. Planlı ve spontane tatil anlayışlarını tartışalım; beklentilerimizi söyleyip ortak kurallar belirleyelim.</p></div>
-      <div class="roles"><article class="role-card role-a"><span class="role-letter">A</span><p class="eyebrow">A GÖRÜŞÜ · PLANLI TATİL</p><h3>Todo bajo control.</h3><p>Her şeyi planlamak istiyorsun.</p><ul lang="es"><li>Te gusta reservar con antelación.</li><li>Quieres aprovechar cada minuto.</li><li>Los cambios de última hora te ponen nervioso/a.</li></ul></article><article class="role-card role-b"><span class="role-letter">B</span><p class="eyebrow">B GÖRÜŞÜ · SPONTANE TATİL</p><h3>Vamos viendo.</h3><p>Daha rahat ve spontane bir tatil istiyorsun.</p><ul lang="es"><li>Prefieres decidir sobre la marcha.</li><li>Quieres descansar y descubrir lugares.</li><li>No quieres mirar el reloj todo el día.</li></ul></article></div>
+      <div class="roles"><article class="role-card role-a"><span class="role-letter">A</span><p class="eyebrow">A GÖRÜŞÜ · PLANLI TATİL</p><h3 lang="es">Todo bajo control.</h3><p>Her şeyi planlamak istiyorsun.</p><ul lang="es"><li>Te gusta reservar con antelación.</li><li>Quieres aprovechar cada minuto.</li><li>Los cambios de última hora te ponen nervioso/a.</li></ul></article><article class="role-card role-b"><span class="role-letter">B</span><p class="eyebrow">B GÖRÜŞÜ · SPONTANE TATİL</p><h3 lang="es">Vamos viendo.</h3><p>Daha rahat ve spontane bir tatil istiyorsun.</p><ul lang="es"><li>Prefieres decidir sobre la marcha.</li><li>Quieres descansar y descubrir lugares.</li><li>No quieres mirar el reloj todo el día.</li></ul></article></div>
       <div class="content-card"><h3>Konuşmanızda bunlar olsun</h3><div class="table-scroll"><table><thead><tr><th>Kullanılacak yapı</th><th>Örnek</th></tr></thead><tbody><tr><td><span class="grammar-dot affirmative"></span>İki olumlu emir</td><td lang="es">Trae una mochila pequeña.</td></tr><tr><td><span class="grammar-dot negative"></span>İki olumsuz emir</td><td lang="es">No reserves todas las actividades.</td></tr><tr><td><span class="grammar-dot subjunctive"></span>İki subjuntivo cümlesi</td><td lang="es">Quiero que tengamos tiempo libre.</td></tr></tbody></table></div><p class="small-note">Bu yapılardan ikişer cümleyi sınıfça üretelim.</p></div>
       <div class="speaking-tools"><div class="content-card"><h3 lang="es">Para empezar…</h3><div class="sentence-starters" lang="es"><span>Quiero que…</span><span>Prefiero que…</span><span>Es importante que…</span><span>Por favor, no…</span><span>¿Qué te parece si…?</span></div></div></div>
       <div class="content-card agreements"><span class="eyebrow">EL ACUERDO FINAL</span><h3 lang="es">Nuestras tres reglas de viaje</h3><p>Sınıfça üzerinde anlaştığımız üç tatil kuralını yazalım.</p><label><span>01</span><input data-save="rule-1" type="text" aria-label="Birinci ortak tatil kuralı" placeholder="Nuestra primera regla…"></label><label><span>02</span><input data-save="rule-2" type="text" aria-label="İkinci ortak tatil kuralı" placeholder="Nuestra segunda regla…"></label><label><span>03</span><input data-save="rule-3" type="text" aria-label="Üçüncü ortak tatil kuralı" placeholder="Nuestra tercera regla…"></label><div class="discussion-question" lang="es">¿Viajarías con ellos? <em>¿Por qué?</em></div></div>
       <div class="panel-bottom"><button class="text-button next-section" data-next="listening">← Dinleme</button><button class="button primary next-section" data-next="reading">3. Kısım · Okuma →</button></div>
     </section>
     <section class="lesson-panel" id="reading" aria-labelledby="reading-title" hidden>
-      <div class="section-heading"><div><p class="eyebrow">3. KISIM <span> / </span> COMPRENSIÓN LECTORA</p><h2 id="reading-title">El viaje perfecto no existe</h2><p>Tatil mi yapıyoruz, emir mi alıyoruz?</p></div></div>
+      <div class="section-heading"><div><p class="eyebrow">3. KISIM <span> / </span> <span lang="es">COMPRENSIÓN LECTORA</span></p><h2 id="reading-title" lang="es">El viaje perfecto no existe</h2><p>Tatil mi yapıyoruz, emir mi alıyoruz?</p></div></div>
       <details class="reflection pre-reading"><summary>Antes de leer · Okumadan önce konuşalım</summary><div class="reflection-body" lang="es"><ol><li>¿Prefieres organizar un viaje o dejar que otra persona lo organice?</li><li>¿Qué tipo de compañero de viaje te molesta?</li><li>¿Es posible planificar demasiado unas vacaciones?</li></ol></div></details>
       <div class="instruction-strip"><span class="instruction-icon" aria-hidden="true">↳</span><p><b>İlk okuma:</b> Hikâyeyi anlamaya odaklan. <b>İkinci okuma:</b> Emirleri ve subjuntivo çekimlerini ara. “Yapıları göster” ile bulduklarını karşılaştırabilirsin.</p></div>
-      <div class="reading-layout"><article class="reading-article" lang="es"><h3>Un plan para todo.<br>Hasta para descansar.</h3><div class="article-controls"><button class="button secondary" id="highlight-toggle" aria-pressed="false">Yapıları göster</button><div class="text-size"><button type="button" id="font-minus" aria-label="Okuma yazısını küçült">A−</button><button type="button" id="font-plus" aria-label="Okuma yazısını büyüt">A+</button></div></div><div id="reading-story"></div><div id="grammar-legend" class="grammar-legend" hidden><span><i class="grammar-dot affirmative"></i>Olumlu emir</span><span><i class="grammar-dot negative"></i>Olumsuz emir</span><span><i class="grammar-dot subjunctive"></i>Subjuntivo</span></div></article><aside class="reading-aside"><div class="vocabulary-card"><span class="eyebrow">PEQUEÑO DICCIONARIO</span><h3>Yol arkadaşın kelimeler</h3><dl><dt>el billete</dt><dd>bilet</dd><dt>la maleta</dt><dd>valiz</dd><dt>reservar</dt><dd>rezervasyon yapmak; ayırmak</dd><dt>perderse por las calles</dt><dd>sokaklarda kaybolup dolaşmak</dd><dt>ponerse nervioso/a</dt><dd>gerilmek, telaşlanmak</dd><dt>la dueña</dt><dd>kadın işletme sahibi</dd><dt>estar de acuerdo</dt><dd>aynı fikirde olmak</dd></dl></div></aside></div>
+      <div class="reading-layout"><article class="reading-article" lang="es"><h3>Un plan para todo.<br>Hasta para descansar.</h3><div class="article-controls"><button class="button secondary" id="highlight-toggle" aria-pressed="false">Yapıları göster</button><div class="text-size"><button type="button" id="font-minus" aria-label="Okuma yazısını küçült">A−</button><button type="button" id="font-plus" aria-label="Okuma yazısını büyüt">A+</button></div></div><div id="reading-story"></div><div id="grammar-legend" class="grammar-legend" lang="tr" hidden><span><i class="grammar-dot affirmative"></i>Olumlu emir</span><span><i class="grammar-dot negative"></i>Olumsuz emir</span><span><i class="grammar-dot subjunctive"></i>Subjuntivo</span></div></article><aside class="reading-aside"><div class="vocabulary-card"><span class="eyebrow">PEQUEÑO DICCIONARIO</span><h3>Yol arkadaşın kelimeler</h3><dl><dt lang="es">el billete</dt><dd>bilet</dd><dt lang="es">la maleta</dt><dd>valiz</dd><dt lang="es">reservar</dt><dd>rezervasyon yapmak; ayırmak</dd><dt lang="es">perderse por las calles</dt><dd>sokaklarda kaybolup dolaşmak</dd><dt lang="es">ponerse nervioso/a</dt><dd>gerilmek, telaşlanmak</dd><dt lang="es">la dueña</dt><dd>kadın işletme sahibi</dd><dt lang="es">estar de acuerdo</dt><dd>aynı fikirde olmak</dd></dl></div></aside></div>
       <div class="reading-activities">
-        <div class="activity-heading"><span>01</span><div><h3>Lee entre líneas</h3><p>Cevapları sınıfça tartışalım ve metinden kanıt bulalım.</p></div></div><div id="reading-questions" class="question-list"></div><details class="reflection"><summary>Örnek cevapları göster</summary><div class="reflection-body" lang="es"><ol><li>Clara prepara un documento muy detallado; Pablo solo compra el billete.</li><li>Porque Clara ha planificado cada minuto, incluso el tiempo para descansar.</li><li>Es una contradicción: hasta el descanso «libre» tiene un horario fijo.</li><li>No. Quiere decidir algunas cosas con Clara cuando estén allí: «Tenemos que decidirlo juntos» y «Prefiero que decidamos algunas cosas allí» muestran la importancia de compartir las decisiones.</li><li>Comprende que tanto control molesta a Pablo y descubre que una experiencia sin plan puede salir muy bien.</li><li>El nuevo plan de Clara deja espacio para decidir juntos y ser flexibles; por eso Pablo está de acuerdo.</li></ol></div></details>
+        <div class="activity-heading"><span>01</span><div><h3 lang="es">Lee entre líneas</h3><p>Cevapları sınıfça tartışalım ve metinden kanıt bulalım.</p></div></div><div id="reading-questions" class="question-list"></div><details class="reflection"><summary>Örnek cevapları göster</summary><div class="reflection-body" lang="es"><ol><li>Clara prepara un documento muy detallado; Pablo solo compra el billete.</li><li>Porque Clara ha planificado cada minuto, incluso el tiempo para descansar.</li><li>Es una contradicción: hasta el descanso «libre» tiene un horario fijo.</li><li>No. Quiere decidir algunas cosas con Clara cuando estén allí: «Tenemos que decidirlo juntos» y «Prefiero que decidamos algunas cosas allí» muestran la importancia de compartir las decisiones.</li><li>Comprende que tanto control molesta a Pablo y descubre que una experiencia sin plan puede salir muy bien.</li><li>El nuevo plan de Clara deja espacio para decidir juntos y ser flexibles; por eso Pablo está de acuerdo.</li></ol></div></details>
         <div class="discussion-question small" lang="es">¿Quién tiene más razón: Clara o Pablo? <em>Justifica tu respuesta.</em></div>
-        <div class="activity-heading"><span>02</span><div><h3>Detectives de gramática</h3><p>Metindeki olumlu emirleri bul, olumsuzlarını tamamla. Bu tabloda kişi: <b>tú</b>.</p></div></div><div class="content-card"><div class="table-scroll"><table class="grammar-table"><thead><tr><th>Infinitivo</th><th>Afirmativo · tú</th><th>Negativo · tú</th></tr></thead><tbody id="grammar-rows"></tbody></table></div><div class="exercise-actions"><button class="button primary" id="check-grammar">Tabloyu kontrol et</button><button class="button secondary" id="show-grammar">Cevapları göster</button></div><p id="grammar-result" class="result" role="status"></p><div id="grammar-key" class="answer-key" hidden></div></div>
-        <details class="reflection"><summary>Keşfet · Aynı çekim, farklı görev</summary><div class="reflection-body"><p><b>Tú kişisinde olumsuz emir, presente de subjuntivo çekimiyle kurulur.</b></p><div class="comparison-pair" lang="es"><p><b>Ven</b> temprano.<br><small>Erken gel.</small></p><p><b>No vengas</b> tarde.<br><small>Geç gelme.</small></p><p>Quiero que <b>vengas</b> temprano.<br><small>Erken gelmeni istiyorum.</small></p></div><p>Olumsuz emir ile istek cümlesindeki <span lang="es">vengas</span> aynı biçimdedir; cümledeki işlevini bağlam belirler.</p><p><b>Zamir varsa:</b> <span lang="es">dime → no me digas; preocúpate → no te preocupes.</span></p><p><b>Düşün:</b> <span lang="es">Quiero descansar.</span> / <span lang="es">Quiero que descanses.</span> İlk cümlede dinlenen kim? İkinci cümlede kim?</p><p class="small-note">İlk cümlede isteyen ve dinlenen aynı kişi (yo). İkinci cümlede isteyen yo, dinlenmesi istenen tú.</p></div></details>
-        <div class="activity-heading"><span>03</span><div><h3>Cambia la persona</h3><p>Clara'nın yeni seyahatten beklentilerini presente de subjuntivo ile tamamla.</p></div></div><div class="content-card"><ol class="conjugation-list" id="conjugations" lang="es"></ol><div class="exercise-actions"><button class="button primary" id="check-conjugations">Çekimleri kontrol et</button><button class="button secondary" id="show-conjugations">Cevapları göster</button></div><p id="conjugations-result" class="result" role="status"></p><div id="conjugations-key" class="answer-key" hidden></div></div>
+        <div class="activity-heading"><span>02</span><div><h3 lang="es">Detectives de gramática</h3><p>Metindeki olumlu emirleri bul, olumsuzlarını tamamla. Bu tabloda kişi: <b>tú</b>.</p></div></div><div class="content-card"><div class="table-scroll"><table class="grammar-table"><thead><tr><th lang="es">Infinitivo</th><th lang="es">Afirmativo · tú</th><th lang="es">Negativo · tú</th></tr></thead><tbody id="grammar-rows"></tbody></table></div><div class="exercise-actions"><button class="button primary" id="check-grammar">Tabloyu kontrol et</button><button class="button secondary" id="show-grammar">Cevapları göster</button></div><p id="grammar-result" class="result" role="status"></p><div id="grammar-key" class="answer-key" hidden></div></div>
+        <details class="reflection"><summary>Keşfet · Aynı çekim, farklı görev</summary><div class="reflection-body"><p><b><span lang="es">Tú</span> kişisinde olumsuz emir, presente de subjuntivo çekimiyle kurulur.</b></p><div class="comparison-pair" lang="es"><p><b>Ven</b> temprano.<br><small lang="tr">Erken gel.</small></p><p><b>No vengas</b> tarde.<br><small lang="tr">Geç gelme.</small></p><p>Quiero que <b>vengas</b> temprano.<br><small lang="tr">Erken gelmeni istiyorum.</small></p></div><p>Olumsuz emir ile istek cümlesindeki <span lang="es">vengas</span> aynı biçimdedir; cümledeki işlevini bağlam belirler.</p><p><b>Zamir varsa:</b> <span lang="es">dime → no me digas; preocúpate → no te preocupes.</span></p><p><b>Düşün:</b> <span lang="es">Quiero descansar.</span> / <span lang="es">Quiero que descanses.</span> İlk cümlede dinlenen kim? İkinci cümlede kim?</p><p class="small-note">İlk cümlede isteyen ve dinlenen aynı kişi (yo). İkinci cümlede isteyen yo, dinlenmesi istenen tú.</p></div></details>
+        <div class="activity-heading"><span>03</span><div><h3 lang="es">Cambia la persona</h3><p>Clara'nın yeni seyahatten beklentilerini presente de subjuntivo ile tamamla.</p></div></div><div class="content-card"><ol class="conjugation-list" id="conjugations" lang="es"></ol><div class="exercise-actions"><button class="button primary" id="check-conjugations">Çekimleri kontrol et</button><button class="button secondary" id="show-conjugations">Cevapları göster</button></div><p id="conjugations-result" class="result" role="status"></p><div id="conjugations-key" class="answer-key" hidden></div></div>
       </div>
       <div class="closing-card"><span>✦</span><div><h3 lang="es">Tu turno de cerrar la historia.</h3><p lang="es">Dale un consejo a Clara, otro a Pablo y expresa un deseo para su próximo viaje.</p><p class="small-note">Bir olumlu emir, bir olumsuz emir ve bir subjuntivo cümlesiyle dersi tamamla.</p><textarea data-save="closing" aria-label="Ders sonu üç cümlem" placeholder="Clara, … / Pablo, no… / Espero que…"></textarea></div></div>
       <div class="panel-bottom"><button class="text-button next-section" data-next="speaking">← Konuşma</button><button class="button primary next-section" data-next="expressions">4. Kısım · Deyimler ve atasözleri →</button></div>
     </section>
 
     <section class="lesson-panel" id="expressions" aria-labelledby="expressions-title" hidden>
-      <div class="section-heading"><div><p class="eyebrow">4. KISIM <span> / </span> EXPRESIONES Y REFRANES</p><h2 id="expressions-title">No es lo que parece.</h2><p>Kelimelerin ötesine geç: 12 deyim, 3 atasözü, 15 günlük durum.</p></div></div>
+      <div class="section-heading"><div><p class="eyebrow">4. KISIM <span> / </span> <span lang="es">EXPRESIONES Y REFRANES</span></p><h2 id="expressions-title" lang="es">No es lo que parece.</h2><p>Kelimelerin ötesine geç: 12 deyim, 3 atasözü, 15 günlük durum.</p></div></div>
       
       <div class="expression-stage-one"><div class="activity-heading"><span>01</span><div><h3 lang="es">Primero, en español</h3><p>İfadeleri kelime kelime çevirmeden açıklamalarından anlamaya çalış.</p></div></div><h3 class="expression-group-heading">💡 İfade kutusu <span>12 DEYİM · A–L</span></h3><div id="idiom-cards" class="expression-grid"></div><h3 class="expression-group-heading">💬 Atasözü kutusu <span>3 ATASÖZÜ · M–O</span></h3><div id="proverb-cards" class="expression-grid proverb-grid"></div></div>
       <div class="meaning-stage"><div class="activity-heading"><span>02</span><div><h3>Şimdi Türkçeyle karşılaştır</h3><p>Anlamları tahmin ettin mi? Türkçe açıklamalar, ifadelerin bu etkinlikte kullanılan anlamlarını gösterir.</p></div></div><button class="button primary" id="toggle-turkish" aria-expanded="false" aria-controls="turkish-meanings">Türkçe anlamları aç</button><div id="turkish-meanings" class="turkish-meanings" hidden></div></div>
@@ -166,6 +194,7 @@ h1{font-size:36px;letter-spacing:-1.2px;line-height:1.25;margin-bottom:8px}
     </section>
   </main>
   <footer><div class="brand footer-brand"><span class="brand-icon">h.</span><span>profe hazel<small>español con confianza</small></span></div><p>B1.1 · 7+8. Ders İçi Etkinlik<br><small id="save-status">Yazdıkların bu tarayıcıda otomatik saklanır.</small></p><button type="button" id="reset-all" class="text-button">Tüm yanıtları temizle</button></footer>
+
 
 
 <script>
@@ -196,6 +225,7 @@ function setListeningReveal(letter,revealed){
   saved['revealed-'+letter]=revealed;
   persist();
   document.getElementById('listening-result').textContent=letter+' cevabı '+(revealed?'açıldı.':'gizlendi.');
+  document.dispatchEvent(new CustomEvent('lesson:answer',{detail:{letter,revealed}}));
 }
 function resetListening(){
   Object.keys(listeningAnswers).forEach(letter=>setListeningReveal(letter,false));
@@ -293,7 +323,13 @@ document.getElementById('idiom-cards').innerHTML=expressions.slice(0,12).map(def
 document.getElementById('proverb-cards').innerHTML=expressions.slice(12).map(definitionCard).join('');
 document.getElementById('turkish-meanings').innerHTML='<div class="table-scroll"><table><thead><tr><th></th><th>İfade / Atasözü</th><th>Bu etkinlikteki anlamı</th></tr></thead><tbody>'+expressions.map(x=>`<tr><td class="meaning-letter">${x.letter}</td><td lang="es"><b>${x.title}</b></td><td>${x.tr}</td></tr>`).join('')+'</tbody></table></div>';
 document.getElementById('toggle-turkish').addEventListener('click',e=>{const meanings=document.getElementById('turkish-meanings');meanings.hidden=!meanings.hidden;e.currentTarget.setAttribute('aria-expanded',String(!meanings.hidden));e.currentTarget.textContent=meanings.hidden?'Türkçe anlamları aç':'Türkçe anlamları gizle'});
-document.getElementById('situation-cards').innerHTML=situations.map((q,i)=>`<article class="situation-card"><div class="situation-heading"><span class="situation-number">${String(i+1).padStart(2,'0')}</span><h4 lang="es">${q.title}</h4></div><p class="situation-text" lang="es">${q.before.replace(/\n/g,'<br>')}</p><div class="situation-input-line"><input type="text" id="situation-${i}" data-save="situation-${i}" aria-label="${i+1}. durum cümlesini tamamla" placeholder="Completa la frase…" lang="es" autocomplete="off" spellcheck="false"><span lang="es">${q.after||'.'}</span></div><details class="situation-solution"><summary>Örnek çözümü aç</summary><div><p class="model-answer" lang="es"><b>${q.letter}</b> ${q.after==='!'?'¡':''}${q.answer}${q.after||(/[.!?]$/.test(q.answer)?'':'.')}</p><p class="solution-note">${q.note}</p></div></details></article>`).join('');
+function vocabularyNote(text,index){
+ const fragments=[['Anoche','pretérito indefinido','pegué'],['el hotel','cuesta'],['Yo','echo','te'],['Ana','está'],['Ayer','pretérito indefinido','metí'],['Tener que','infinitivo','yo','me','ponerme'],['estoy hecho polvo','estoy hecha polvo'],['ser','es pan comido'],['Toma el pelo','Me'],['Quedarse','Yo','me he quedado','me quedé de piedra'],['Mi tío','habla'],['yo','estoy'],[],[],[]][index]||[];
+ const ranges=[];
+ for(const fragment of fragments){const start=text.indexOf(fragment);if(start!==-1&&!ranges.some(r=>start<r.end&&start+fragment.length>r.start))ranges.push({start,end:start+fragment.length})}
+ ranges.sort((a,b)=>a.start-b.start);let cursor=0;let result='';for(const range of ranges){result+=text.slice(cursor,range.start)+'<span lang="es">'+text.slice(range.start,range.end)+'</span>';cursor=range.end}return result+text.slice(cursor);
+}
+document.getElementById('situation-cards').innerHTML=situations.map((q,i)=>`<article class="situation-card"><div class="situation-heading"><span class="situation-number">${String(i+1).padStart(2,'0')}</span><h4 lang="es">${q.title}</h4></div><p class="situation-text" lang="es">${q.before.replace(/\n/g,'<br>')}</p><div class="situation-input-line"><input type="text" id="situation-${i}" data-save="situation-${i}" aria-label="${i+1}. durum cümlesini tamamla" placeholder="Completa la frase…" lang="es" autocomplete="off" spellcheck="false"><span lang="es">${q.after||'.'}</span></div><details class="situation-solution"><summary>Örnek çözümü aç</summary><div><p class="model-answer" lang="es"><b>${q.letter}</b> ${q.after==='!'?'¡':''}${q.answer}${q.after||(/[.!?]$/.test(q.answer)?'':'.')}</p><p class="solution-note">${vocabularyNote(q.note,i)}</p></div></details></article>`).join('');
 function updateExpressionsProgress(){const count=situations.filter((_,i)=>document.getElementById('situation-'+i).value.trim()).length;document.getElementById('expressions-progress').textContent=count+' / 15 yanıt yazıldı'}
 document.querySelectorAll('#situation-cards input').forEach(input=>{bindSave(input);input.addEventListener('input',updateExpressionsProgress)});
 document.getElementById('toggle-solutions').addEventListener('click',e=>{const items=Array.from(document.querySelectorAll('.situation-solution'));const shouldOpen=items.some(x=>!x.open);items.forEach(x=>x.open=shouldOpen);e.currentTarget.setAttribute('aria-expanded',String(shouldOpen));e.currentTarget.textContent=shouldOpen?'Tüm çözümleri gizle':'Tüm örnek çözümleri aç'});
@@ -301,6 +337,760 @@ document.querySelectorAll('.situation-solution').forEach(item=>item.addEventList
 document.getElementById('clear-expressions').addEventListener('click',()=>{if(!confirm('Yalnızca 4. bölümdeki yanıtlar temizlensin mi?'))return;document.querySelectorAll('#situation-cards [data-save]').forEach(input=>{input.value='';delete saved[input.dataset.save]});persist();updateExpressionsProgress();document.querySelectorAll('.situation-solution').forEach(x=>x.open=false)});
 document.getElementById('reset-all').addEventListener('click',()=>{updateExpressionsProgress()});
 updateExpressionsProgress();
+
+'use strict';
+const glossaryEntries = `
+comprensión|anlama, kavrama.
+auditiva|işitsel; dinlemeyle ilgili.
+oral|sözlü, konuşmayla ilgili.
+lectora|okumayla ilgili.
+
+actividad|etkinlik, aktivite.
+algo|bir şey.
+hablas|konuşuyorsun / konuşursun (hablar).
+horario|saat, zaman çizelgesi, program.
+noticia|haber.
+perderse|kaybolmak; bir şeyi kaçırmak.
+planificado|planlamış / planlanmış (planificar).
+temprano|erken.
+unas|birkaç; dişil çoğul belirsiz artikel.
+pretérito|geçmiş zaman; dilbilgisinde zaman adı.
+indefinido|belirli bir geçmişte tamamlanmış olayları anlatan zamanın adı.
+quedé|kaldım (quedar). Me quedé de piedra: donakaldım.
+toma|alıyor / alır; ayrıca al! (tomar). Toma el pelo: işletiyor.
+
+a|-e / -a; yönelme edatı. Kişi nesnelerinden önce de kullanılabilir.
+abre|açıyor / açar (abrir: açmak).
+acepto|kabul ediyorum / ederim (aceptar).
+actividades|etkinlikler, aktiviteler.
+actor|erkek oyuncu, aktör.
+acuerdo|fikir birliği, anlaşma.
+adivinar|tahmin etmek, bilmek.
+agotador|çok yorucu, tüketici.
+ahora|şimdi.
+al|a + el birleşimi: -e / -a; bazı yapılarda “... sırasında”.
+alguien|biri, bir kişi.
+algunas|bazı; dişil çoğul.
+allí|orada.
+amigos|arkadaşlar.
+ana,anamar,clara,cristian,daniela,laura,orson,pablo,paco,pascual,ricardo,rosalía|Özel kişi adı; Türkçeye çevrilmez.
+animada|canlı, hareketli, neşeli.
+anoche|dün gece.
+antelación|önceden olma; con antelación: önceden.
+antes|önce, önceden.
+aparece|görünüyor, ortaya çıkıyor; aquí: yer alıyor (aparecer).
+aprender|öğrenmek.
+aprovechar|değerlendirmek; zamandan veya fırsattan yararlanmak.
+arriba|yukarı, yukarıda.
+aunque|... olmasına rağmen; -se de.
+avería|arıza.
+ayer|dün.
+ayudar|yardım etmek.
+añade|ekliyor / ekler (añadir).
+años|yaş; yıllar (año: yıl).
+barrio|mahalle, semt.
+billete|bilet.
+boda|düğün.
+broma|şaka.
+buena|iyi; dişil tekil.
+buscar|aramak; burada bir restoran bulmaya çalışmak.
+cada|her, her bir.
+cafetería|kafe.
+cajas|kutular (caja).
+calles|sokaklar (calle).
+cambio|değişiklik, değişim.
+cambios|değişiklikler.
+camino|yol, güzergâh.
+cancela|iptal ediyor / edilir (cancelar).
+cancelado|iptal etmiş / iptal edilmiş (cancelar fiilinin participio biçimi).
+cara|yüz; caro/cara sıfatında “pahalı”.
+carrera|kariyer; öğrenim. Carrera profesional: meslek hayatı.
+carretera|kara yolu, şehirler arası yol.
+casa|ev.
+cenado|akşam yemeği yemiş (cenar).
+cerrado|kapalı; kapatılmış (cerrar).
+cerrar|kapatmak, bitirmek.
+cinco|beş.
+cine|sinema.
+claro|açık, belli. Está claro que: ... olduğu belli.
+clase|ders; sınıf.
+coche|araba.
+codos|dirsekler (codo).
+comentario|yorum, söylenen söz.
+comida|yemek; öğün.
+comido|yemiş / yenmiş (comer). Pan comido ifadesi: çok kolay.
+completa|tamamla! (completar fiilinin olumlu tú emri).
+completamente|tamamen.
+compra|satın alıyor / alır (comprar).
+comprende|anlıyor / anlar (comprender).
+común|ortak. En común: ortak olarak.
+con|ile; beraber.
+concierto|konser.
+conmigo|benimle.
+conocer|tanımak, tanışmak; bir yeri tanımak.
+conocidísimos|çok ünlü, çok tanınmış kişiler.
+conocieron|tanıdılar; se conocieron: tanıştılar (conocer).
+conozco|tanıyorum, biliyorum (conocer fiilinin yo çekimi).
+consejo|tavsiye, öğüt.
+continúan|devam ediyorlar / ederler (continuar).
+contratado|işe almış, sözleşmeyle görevlendirmiş (contratar).
+conversar|sohbet etmek.
+corresponde|karşılık geliyor; uygun düşüyor (corresponder).
+cosas|şeyler.
+costar|fiyatı ... olmak; birine zor gelmek.
+creo|sanıyorum, düşünüyorum, inanıyorum (creer).
+cuando|... olduğunda, ... iken.
+cuenta|anlatıyor / anlatır; ayrıca “anlat!” (contar).
+cuesta|fiyatı ...; ... tutuyor (costar). Cuesta mucho: çok pahalı / çok zor.
+cultura|kültür.
+curar|iyileştirmek; tedavi etmek.
+curso|kurs; eğitim dönemi.
+dado|vermiş / verilmiş (dar). Dar pena: üzmek, üzüntü vermek.
+dale|ona ver! (da + le); burada dale un consejo: ona tavsiye ver.
+de|-in / -ın; -den / -dan; ilişki, kaynak veya aidiyet bildirir.
+decidamos|karar verelim / karar vermemizi (decidir, nosotros subjuntivo).
+deciden|karar veriyorlar / verirler (decidir).
+decidir|karar vermek.
+decidirlo|buna / ona karar vermek (decidir + lo).
+decir|söylemek, demek.
+decisión|karar.
+deja|bırak! (dejar fiilinin olumlu tú emri).
+del|de + el birleşimi; -in / -ın, -den / -dan.
+demasiado|fazla, gereğinden çok.
+departamento|bölüm, birim. Departamento de Literatura: Edebiyat Bölümü.
+desayunar|kahvaltı yapmak.
+descansar|dinlenmek.
+descanses|dinlenmeni / dinlenesin (descansar, tú subjuntivo).
+descubierto|keşfetmiş, öğrenmiş, fark etmiş (descubrir).
+descubre|keşfediyor, fark ediyor (descubrir); ayrıca “keşfet!” emri.
+descubrir|keşfetmek, fark etmek.
+desde|...-den beri; ...-den itibaren.
+deseo|dilek, istek.
+después|sonra.
+destino|gidilecek yer, seyahat noktası; kader.
+di|söyle! (decir fiilinin olumlu tú emri).
+dice|diyor, söylüyor (decir).
+diferentes|farklı.
+difícil|zor.
+digas|söylemeni / söyleyesin (decir, tú subjuntivo). No digas: söyleme!
+digo|diyorum, söylüyorum (decir).
+dime|bana söyle! (di + me).
+directora|kadın yönetmen; kadın müdür.
+disfrutemos|keyif almamız / keyif alalım (disfrutar, nosotros subjuntivo).
+doce|on iki.
+documento|belge, doküman.
+dos|iki.
+dramático|dramatik; burada fazla büyüten, abartan.
+dueña|kadın işletme sahibi, kadın sahip.
+durante|boyunca; sırasında.
+día|gün.
+días|günler; ... gün.
+e|ve; i/hi sesiyle başlayan kelimelerden önce y yerine kullanılır.
+echar|atmak; pek çok ifadede kullanılır. Echar una mano: yardım etmek.
+echo|echar fiilinin yo çekimi. Echo una mano: yardım ediyorum.
+ejercicio|alıştırma, egzersiz.
+el|eril tekil belirli artikel; çoğu zaman ayrı çevrilmez.
+elegido|seçilmiş / seçmiş (elegir).
+elijamos|seçelim / seçmemizi (elegir, nosotros subjuntivo).
+ella|o; kadın / dişil özne.
+ellos|onlar; erkek veya karma grup.
+embargo|sin embargo ifadesinde “ancak, bununla birlikte”.
+empezado|başlamış (empezar).
+empezar|başlamak.
+empieza|başlıyor / başlar (empezar).
+en|-de / -da; içinde, üzerinde.
+encuentran|buluyorlar / bulurlar (encontrar).
+enorme|kocaman, çok büyük.
+enseñaban|öğretiyorlardı, ders veriyorlardı (enseñar, imperfecto).
+enterado|haberdar olmuş (enterarse). ¿Te has enterado?: haberin oldu mu?
+entonces|o zaman; öyleyse.
+entre|arasında.
+envía|gönderiyor / gönderir (enviar).
+es|ser fiilinin él/ella/usted çekimi: ...-dır / ...-dir.
+escribe|yazıyor / yazar (escribir).
+escucha|dinle!; ayrıca dinliyor / dinler (escuchar).
+escuchando|dinliyor olmak; dinleyerek (escuchar fiilinin gerundio biçimi).
+escuela|okul.
+ese|o; eril tekil. Ese día: o gün.
+espada|kılıç.
+español|İspanyolca; İspanyol.
+espera|bekle!; ayrıca bekliyor / bekler (esperar).
+esperaba|bekliyordum / bekliyordu; umuyordum / umuyordu (esperar).
+esperábamos|bekliyorduk, dört gözle bekliyorduk (esperar).
+esta|bu; dişil tekil. Esta mañana: bu sabah.
+estar|bulunmak; bir durumda olmak.
+estas|bu; dişil çoğul. Estas cajas: bu kutular.
+este|bu; eril tekil.
+estos|bunlar; bu, eril çoğul.
+estoy|estar fiilinin yo çekimi: bulunuyorum / ... durumundayım.
+estudiar|ders çalışmak, öğrenim görmek.
+está|estar fiilinin él/ella/usted çekimi: bulunuyor / ... durumunda.
+estás|estar fiilinin tú çekimi: bulunuyorsun / ... durumundasın.
+euros|avro, euro.
+examen|sınav.
+expresa|ifade et! (expresar fiilinin olumlu tú emri).
+expresión|ifade; deyim.
+facilísimo|çok kolay, son derece kolay.
+famosos|ünlü kişiler; ünlü.
+favor|iyilik; por favor: lütfen.
+fin|son. Fin de semana: hafta sonu.
+final|son, bitiş. Al final: sonunda.
+fácil|kolay.
+ganado|kazanmış (ganar).
+genial|harika, şahane.
+granada|Granada; İspanya'da bir şehir.
+guarda|kaldırıyor, saklıyor; burada telefonu yerine koyuyor (guardar).
+guionista|senarist.
+gusta|hoşuna gidiyor, seviyor (gustar).
+gustaría|hoşuna giderdi; le gustaría: isterdi (gustar, condicional).
+ha|haber yardımcı fiilinin él/ella/usted çekimi; perfecto kurar: ...-miş / ...-di.
+habla|konuşuyor / konuşur; ayrıca “konuş!” (hablar).
+hablando|konuşuyor olmak; konuşarak (hablar, gerundio).
+hablar|konuşmak.
+hablo|konuşuyorum / konuşurum (hablar).
+habían|haber yardımcı fiilinin çoğul imperfecto çekimi; pluscuamperfecto kurar.
+hace|yapıyor / yapar; hace años: yıllar önce / yıllardır (hacer).
+hacer|yapmak.
+hagas|yapmanı / yapasın (hacer, tú subjuntivo). No hagas: yapma!
+han|haber yardımcı fiilinin ellos/ellas/ustedes çekimi; perfecto kurar.
+has|haber yardımcı fiilinin tú çekimi; perfecto kurar: ...-din / ...-mişsin.
+hasta|...-e kadar; hatta.
+haz|yap! (hacer fiilinin olumlu tú emri).
+hazme|bana yap! (haz + me). Hazme un favor: bana bir iyilik yap.
+he|haber yardımcı fiilinin yo çekimi; perfecto kurar: ...-dim / ...-mişim.
+hecha|yapılmış; dişil biçim. Hecha polvo: çok yorgun, bitkin.
+hecho|yapmış / yapılmış (hacer). Hecho polvo: çok yorgun, bitkin.
+hemos|haber yardımcı fiilinin nosotros çekimi; perfecto kurar: ...-dik / ...-mişiz.
+hermana|kız kardeş; abla.
+hermano|erkek kardeş; ağabey.
+hicieron|yaptılar (hacer, indefinido).
+historia|hikâye; tarih.
+hora|saat. Última hora: son dakika.
+horarios|saatler; zaman çizelgeleri, programlar.
+horas|saatler; ... saat.
+hotel|otel.
+hoy|bugün.
+idiomas|diller, yabancı diller.
+ido|gitmiş (ir, participio).
+impartir|ders / eğitim vermek, bir atölyeyi yürütmek.
+importante|önemli.
+incluso|hatta; ... bile.
+incómodo|rahatsız edici, insanı zor durumda bırakan.
+instituto|ortaöğretim okulu, lise; bağlama göre enstitü.
+intención|niyet, amaç.
+intenta|deniyor, çalışıyor (intentar).
+jefa|kadın patron, kadın amir.
+jueves|perşembe.
+juntos|birlikte, beraber.
+justifica|gerekçelendir, nedenini açıkla! (justificar).
+la|dişil tekil belirli artikel; ayrıca “onu” dişil nesne zamiri.
+las|dişil çoğul belirli artikel; ayrıca “onları” dişil nesne zamiri.
+le|ona; dolaylı nesne zamiri.
+lee|okuyor / okur; ayrıca “oku!” (leer).
+les|onlara; dolaylı nesne zamiri.
+libre|serbest, boş, özgür.
+libremente|özgürce, serbestçe.
+limpiado|temizlemiş / temizlenmiş (limpiar).
+lista|liste.
+literatura|edebiyat.
+llamamos|arıyoruz / ararız (llamar); bağlama göre “aradık”.
+llegan|geliyorlar, varıyorlar (llegar).
+llegues|gelmeni / varmanı (llegar, tú subjuntivo). No llegues: geç kalma / gelme.
+llevar|taşımak, götürmek; giymek.
+llover|yağmur yağmak.
+lo|onu; eril tekil nesne zamiri. Lo que: ...-diği şey.
+local|iş yeri, mekân; burada küçük bir kafe.
+los|eril çoğul belirli artikel; ayrıca “onları” nesne zamiri.
+lugar|yer.
+lugares|yerler.
+lujo|lüks. De lujo: lüks, gösterişli.
+mal|kötü; kötü biçimde.
+maleta|valiz.
+mano|el.
+marcha|gidiş, ilerleyiş. Sobre la marcha: o anda, gelişine göre.
+mañana|yarın; sabah. Esta mañana: bu sabah.
+me|beni / bana; yo ile kullanılan dönüşlü zamir.
+mensaje|mesaj.
+mensajes|mesajlar.
+mesa|masa.
+meter|sokmak, içine koymak. Meter la pata: pot kırmak.
+metí|soktum / koydum (meter). Metí la pata: pot kırdım.
+mi|benim; iyelik sıfatı.
+minuto|dakika.
+minutos|dakikalar; ... dakika.
+mira|bak! (mirar fiilinin olumlu tú emri); ayrıca bakıyor.
+mirar|bakmak, izlemek.
+mires|bakmanı / izleyesin (mirar, tú subjuntivo). No mires: bakma!
+misma|aynı; dişil tekil.
+mochila|sırt çantası.
+muchísimo|çok fazla, aşırı derecede.
+mudanza|taşınma, ev taşıma.
+muy|çok; sıfat veya zarfın önünde kullanılır.
+más|daha; daha fazla.
+méxico|Meksika.
+mí|ben; edattan sonra kullanılır. Para mí: benim için / bana göre.
+móvil|cep telefonu.
+música|müzik.
+nada|hiçbir şey; olumsuz yapılarda “hiç”.
+nerviosa|gergin, telaşlı; dişil biçim.
+nervioso|gergin, telaşlı; eril biçim.
+ni|ne de; olumsuz cümlede “bile”.
+no|hayır; değil; fiili olumsuz yapan sözcük.
+noche|gece.
+nos|bizi / bize; nosotros ile kullanılan dönüşlü zamir.
+novio|erkek arkadaş, sevgili.
+nubes|bulutlar. Estar en las nubes: dalgın olmak.
+nuestras|bizim; dişil çoğul isimle kullanılır.
+nunca|asla, hiçbir zaman; olumsuzlukla “hiç”.
+o|veya, ya da.
+ojo|göz.
+ordenador|bilgisayar.
+organizado|düzenlemiş / düzenlenmiş (organizar).
+organizar|düzenlemek, organize etmek.
+otro|başka, diğer; eril tekil.
+oído|duymuş (oír fiilinin participio biçimi); ayrıca “kulak/işitme”.
+paciencia|sabır.
+pan|ekmek.
+para|için; ... amacıyla.
+parece|görünüyor; ... gibi geliyor (parecer).
+pared|duvar.
+parte|bölüm, kısım.
+pasado|geçmiş; pasado: geçirmiş (pasar). Pasarlo bien: iyi vakit geçirmek.
+pasan|geçiriyorlar / geçirirler (pasar).
+pasar|geçirmek, geçmek.
+pata|hayvan bacağı; mobilya ayağı. Meter la pata: pot kırmak.
+pegar|yapıştırmak; vurmak. No pegar ojo: hiç uyuyamamak.
+pegué|pegar fiilinin yo geçmiş çekimi. No pegué ojo: gözüme uyku girmedi.
+pelo|saç, kıl. Tomar el pelo: birini işletmek.
+pena|üzüntü; yazık olma duygusu.
+pequeña|küçük; dişil tekil.
+pequeño|küçük; eril tekil.
+perdernos|kaybolmak, yolumuzu kaybetmek (perder + nos). Burada sokaklarda amaçsızca dolaşmak.
+pero|ama, fakat.
+persona|kişi, insan.
+pide|istiyor, talep ediyor (pedir).
+piedra|taş. Quedarse de piedra: şaşkınlıktan donakalmak.
+piensas|düşünüyorsun / düşünürsün (pensar).
+pierdo|kaybediyorum (perder). Me pierdo la boda: düğünü kaçırırım.
+pilas|piller. Ponerse las pilas: kendini toparlayıp harekete geçmek.
+plan|plan.
+planes|planlar.
+polvo|toz. Estar hecho/a polvo: çok yorgun olmak.
+pon|koy! (poner fiilinin olumlu tú emri).
+pone|koyuyor (poner). Se pone nerviosa: geriliyor, telaşlanıyor.
+ponen|koyuyorlar (poner). Me ponen nervioso/a: beni geriyorlar.
+poner|koymak, yerleştirmek.
+ponerme|kendimi ... durumuna getirmek (poner + me). Ponerme las pilas: toparlanıp çalışmaya başlamak.
+ponerse|bir duruma gelmek; üzerine giymek; bağlama göre anlamı değişir.
+por|için, yüzünden, boyunca, aracılığıyla; bağlama göre kullanılan edat.
+porque|çünkü.
+prefieres|tercih ediyorsun / edersin (preferir).
+prefiero|tercih ediyorum / ederim (preferir).
+pregunta|soru.
+preguntar|sormak.
+pregunté|sordum (preguntar).
+preocuparse|endişelenmek, kaygılanmak.
+preocupes|preocuparse fiilinin tú subjuntivo biçimi. No te preocupes: endişelenme!
+preocúpate|endişelen! (preocúpate: olumlu tú emri).
+prepara|hazırlıyor / hazırlar (preparar).
+prevenir|önlemek, önlem almak.
+primer|ilk, birinci; eril tekil isimden önce kullanılır.
+primera|ilk, birinci; dişil tekil.
+primero|ilk, birinci; önce.
+problema|sorun, problem.
+problemas|sorunlar, problemler.
+profesional|mesleki, profesyonel.
+profesores|öğretmenler.
+próximo|gelecek, bir sonraki.
+puedo|yapabilirim; gücüm / imkânım var (poder).
+pues|peki, yani, o hâlde; konuşmayı bağlayan ifade.
+pulgar|başparmak.
+páginas|sayfalar.
+que|ki; ...-diği / ...-mesi. Cümleleri birbirine bağlar; tek bir sabit Türkçesi yoktur.
+quedado|kalmış (quedar). Me he quedado de piedra: donakaldım.
+quedarse|kalmak; bir durumda kalmak.
+querido|istemiş (querer); sıfat olarak “sevgili”.
+quieres|istiyorsun / istersin (querer).
+quiero|istiyorum / isterim (querer).
+quién|kim?
+qué|ne?; nasıl? Ünlemde “ne kadar ...!”
+razón|haklılık; neden. Tener razón: haklı olmak.
+real|gerçek.
+recomienda|öneriyor, tavsiye ediyor (recomendar).
+reglas|kurallar.
+relación|ilişki, bağlantı.
+reloj|saat; zamanı gösteren eşya.
+reservado|ayırmış; rezervasyon yapmış (reservar).
+reservar|rezervasyon yapmak; ayırmak.
+reserves|rezervasyon yapmanı (reservar, tú subjuntivo). No reserves: rezervasyon yapma!
+responde|cevap veriyor / verir (responder).
+respuesta|cevap, yanıt.
+respuestas|cevaplar, yanıtlar.
+restaurante|restoran.
+restaurantes|restoranlar.
+resto|geri kalan. El resto de la clase: sınıfın geri kalanı.
+revisar|kontrol etmek, gözden geçirmek.
+reírse|gülmek.
+ruido|gürültü.
+ríe|gülüyor / güler (reírse: se ríe).
+sabía|biliyordum / biliyordu (saber, imperfecto).
+salir|çıkmak; yola çıkmak.
+se|dönüşlü, karşılıklı veya edilgen yapılarda kullanılan zamir; tek bir sabit Türkçesi yoktur.
+seas|olmanı / olasın (ser, tú subjuntivo). No seas: olma!
+segundo|saniye; ikinci.
+seguro|emin; güvenli.
+seis|altı.
+semana|hafta. Fin de semana: hafta sonu.
+sentamos|oturuyoruz / oturduk (sentarse: nos sentamos).
+ser|olmak; kimlik, özellik veya tanım bildirmek.
+serio|ciddi. En serio: ciddi olarak, gerçekten.
+setenta|yetmiş.
+si|eğer; koşul bağlacı. Aksanlı sí ile farklıdır.
+siempre|her zaman; hep.
+siete|yedi.
+sin|... olmadan, ...-sız / ...-siz.
+sincero|dürüst, açık sözlü; eril biçim.
+situaciones|durumlar.
+situación|durum.
+sobre|hakkında; üzerinde. Sobre la marcha: o anda, gelişine göre.
+sola|yalnız, tek başına; dişil biçim.
+solo|yalnızca, sadece; yalnız.
+son|ser fiilinin ellos/ellas/ustedes çekimi: onlar ...-dır.
+sorpresa|sürpriz, şaşkınlık.
+su|onun / onların; bağlama göre sizin (usted/ustedes).
+sábado|cumartesi.
+sé|ol! (ser fiilinin olumlu tú emri). Başka bağlamda saber fiilinin yo çekimi: biliyorum.
+sí|evet. Aksansız si “eğer” demektir.
+taller|atölye çalışması.
+talleres|atölye çalışmaları.
+también|de, da; ayrıca.
+tan|o kadar; bu kadar.
+tanto|o kadar çok; bu kadar çok.
+tarde|geç; öğleden sonra / akşamüstü.
+te|seni / sana; tú ile kullanılan dönüşlü zamir.
+teatro|tiyatro.
+ten|sahip ol! (tener fiilinin olumlu tú emri). Ten paciencia: sabırlı ol!
+tenemos|sahibiz, var (tener, nosotros). Tenemos que: ... yapmalıyız.
+tener|sahip olmak; var olmak. Tener que: ... zorunda olmak.
+tenga|sahip olması / olmasını (tener, yo/él/ella/usted subjuntivo).
+tengamos|sahip olmamız / olalım (tener, nosotros subjuntivo).
+tengo|sahibim, var (tener, yo). Tengo que: ... yapmalıyım.
+terminado|bitirmiş / sona erdirmiş (terminar).
+tiempo|zaman; hava durumu.
+tiene|sahip, var (tener, él/ella/usted).
+tienes|sahipsin, var (tener, tú).
+toda|bütün, tüm; dişil tekil.
+todas|bütün, tüm; dişil çoğul.
+todavía|hâlâ; olumsuz cümlede “henüz”.
+todo|bütün, tüm; her şey.
+tomando|alıyor olmak (tomar, gerundio). Tomando el pelo: işletiyor.
+tomar|almak; içmek. Tomar el pelo: birini işletmek.
+totalmente|tamamen, bütünüyle.
+trabajaban|çalışıyorlardı (trabajar, imperfecto).
+trabajado|çalışmış (trabajar).
+trabajando|çalışıyor olmak; çalışarak (trabajar, gerundio).
+trabaje|çalışması / çalışmasını (trabajar, yo/él/ella/usted subjuntivo).
+trabajo|iş, çalışma; ayrıca “çalışıyorum” (trabajar).
+trae|getir! (traer fiilinin olumlu tú emri); ayrıca getiriyor.
+traer|getirmek.
+traigas|getirmeni (traer, tú subjuntivo). No traigas: getirme!
+tren|tren.
+tres|üç.
+tu|senin; iyelik sıfatı. Aksanlı tú “sen” demektir.
+turno|sıra. Tu turno: senin sıran.
+tía|teyze / hala; burada samimi hitap: kız, arkadaşım.
+tío|amca / dayı; bazı bağlamlarda samimi hitap.
+tú|sen; özne zamiri. Aksansız tu “senin” demektir.
+un|bir; eril tekil belirsiz artikel.
+una|bir; dişil tekil belirsiz artikel.
+va|gidiyor (ir). Va a + infinitivo: ... yapacak.
+vale|değer, eder; “tamam” anlamına da gelir (valer).
+vamos|gidiyoruz / gidelim (ir). Vamos a + infinitivo: ... yapacağız.
+van|gidiyorlar (ir). Van a + infinitivo: ... yapacaklar.
+varios|birkaç, çeşitli.
+veces|kez, defa; çoğul.
+vecinos|komşular.
+veinte|yirmi.
+ven|gel! (venir fiilinin olumlu tú emri).
+vengas|gelmeni (venir, tú subjuntivo). No vengas: gelme!
+venir|gelmek.
+vez|kez, defa. Por primera vez: ilk kez.
+viajado|seyahat etmiş (viajar).
+viajarías|seyahat eder miydin / ederdin (viajar, tú condicional).
+viaje|seyahat, yolculuk.
+vida|hayat, yaşam.
+visita|ziyaret.
+visitar|ziyaret etmek.
+voy|gidiyorum (ir). Voy a + infinitivo: ... yapacağım.
+y|ve.
+ya|artık, zaten; burada bağlama göre “evet, öyle”.
+yo|ben.
+última|son; dişil tekil. Última hora: son dakika.
+afirmativo|olumlu.
+negativo|olumsuz.
+imperativo|emir kipi.
+presente|şimdiki / geniş zaman; dilbilgisinde zaman adı.
+subjuntivo|istek, dilek, değerlendirme gibi yapılarda kullanılan kip.
+infinitivo|fiilin mastar biçimi.
+expresiones|ifadeler, deyimler.
+refranes|atasözleri.
+contigo|seninle.
+perfecto|mükemmel; ayrıca bir zamanın adı.
+existe|var (existir).
+parecer|görünmek; birine ... gibi gelmek.
+imposible|imkânsız, olanaksız.
+anda|andar fiilinin emri. ¡Anda ya!: hadi canım, yok artık!
+intrigadísima|çok meraklanmış, çok merak içinde; dişil biçim.
+guay|harika, çok güzel; gündelik dil.
+fuerte|güçlü; ¡Qué fuerte!: vay be, yok artık!
+según|...-e göre; ...-diği üzere.
+dicen|diyorlar, söylüyorlar (decir).
+creer|inanmak.
+sal|çık! (salir, olumlu tú emri).
+salgas|çıkmanı (salir, tú subjuntivo). No salgas: çıkma!
+ve|git! (ir, olumlu tú emri); ayrıca ver fiilinde “görüyor”.
+vayas|gitmeni (ir, tú subjuntivo). No vayas: gitme!
+pongas|koymanı (poner, tú subjuntivo). No pongas: koyma!
+tengas|sahip olmanı (tener, tú subjuntivo). No tengas: ... olmasın / ... duyma!
+sea|olması / olmam (ser, yo/él/ella/usted subjuntivo).
+elijas|seçmeni (elegir, tú subjuntivo).
+busque|araması / aramam (buscar, yo/él/ella/usted subjuntivo).
+compartáis|paylaşmanızı (compartir, vosotros subjuntivo).
+estén|olmaları / bulunmaları (estar, ellos/ellas/ustedes subjuntivo).
+espero|umuyorum, bekliyorum (esperar).
+flexible|esnek, değişikliklere uyum sağlayan.
+elegir|seçmek.
+nosotros|biz; erkek veya karma grup.
+vosotros|siz; samimi çoğul, erkek veya karma grup.
+vuestras|sizin; vosotros için, dişil çoğul iyelik.
+opiniones|görüşler, fikirler.
+compartir|paylaşmak.
+mis|benim; çoğul isimle kullanılır.
+cómodos|rahat; erkek veya karma çoğul.
+encontrar|bulmak.
+leer|okumak.
+entre|arasında.
+líneas|satırlar, çizgiler. Leer entre líneas: satır aralarını okumak.
+detectives|dedektifler.
+gramática|dilbilgisi.
+cambia|değiştir!; ayrıca değiştiriyor (cambiar).
+control|kontrol.
+bajo|altında. Bajo control: kontrol altında.
+viendo|görüyor olmak (ver, gerundio). Vamos viendo: duruma göre bakarız.
+empezar|başlamak.
+aprender|öğrenmek.
+antemano|önceden.
+fin|son; fin de semana: hafta sonu.
+descanso|dinlenme, mola.
+detallado|ayrıntılı.
+detallados|ayrıntılı; çoğul.
+específico|belirli, özel.
+contradicción|çelişki.
+fijo|sabit, değişmeyen.
+minutos|dakikalar; ... dakika.
+quiere|istiyor (querer).
+estén|olmaları / bulunmaları (estar, çoğul subjuntivo).
+muestran|gösteriyorlar (mostrar).
+importancia|önem.
+compartir|paylaşmak.
+decisiones|kararlar.
+comprende|anlıyor (comprender).
+tanto|bu kadar, o kadar.
+molesta|rahatsız ediyor (molestar).
+experiencia|deneyim, yaşantı.
+puede|yapabilir; mümkün olabilir (poder).
+bien|iyi. Salir bien: iyi sonuçlanmak.
+nuevo|yeni.
+deja|bırakıyor; ayrıca bırak! (dejar).
+espacio|alan, yer; burada fırsat / imkân.
+ser|olmak.
+flexibles|esnek, uyumlu; çoğul.
+eso|o, bu; daha önce söylenen şeyi belirtir.
+por|için, yüzünden, boyunca; bağlama göre kullanılan edat.
+diferencia|fark.
+hay|var.
+la|dişil tekil belirli artikel; ayrıca “onu” dişil nesne zamiri.
+preparar|hazırlamak.
+qué|ne?; nasıl? Ünlemde “ne kadar ...!”
+divertido|eğlenceli, komik.
+significa|anlamına geliyor (significar).
+frase|cümle; ifade.
+texto|metin.
+cambia|değiştir!; değiştiriyor / değişiyor (cambiar).
+actitud|tutum, yaklaşım.
+necesita|ihtiyacı var (necesitar).
+demasiado|çok fazla; gereğinden fazla.
+amigo|arkadaş.
+compañero|arkadaş; yol / çalışma arkadaşı.
+molesta|rahatsız ediyor (molestar).
+posible|mümkün.
+planificar|planlamak.
+vacaciones|tatil.
+prefieres|tercih ediyorsun (preferir).
+dejar|bırakmak; izin vermek.
+otra|başka, diğer; dişil tekil.
+organice|düzenlemesi / düzenlemesini (organizar, subjuntivo).
+tipo|tür, tip.
+consejos|tavsiyeler.
+común|ortak.
+tenido|sahip olmuş (tener).
+mal|kötü; kötü biçimde.
+tiempo|zaman; hava durumu.
+escribir|yazmak.
+ir|gitmek.
+ver|görmek.
+estar|bulunmak; bir durumda olmak.
+hacer|yapmak.
+decir|söylemek, demek.
+ayudar|yardım etmek.
+mantener|korumak, sürdürmek.
+positiva|olumlu, pozitif; dişil biçim.
+energía|enerji.
+trabajar|çalışmak.
+actuar|harekete geçmek; rol yapmak.
+pensar|düşünmek.
+otras|başka, diğer; dişil çoğul.
+prestar|ödünç vermek; prestar atención: dikkat etmek.
+atención|dikkat.
+pasa|oluyor, geçiyor (pasar).
+caro|pahalı; eril tekil.
+costar|fiyatı ... olmak; birine zor gelmek.
+dinero|para.
+equivocado|yanlış, hatalı.
+provoca|yol açıyor, neden oluyor (provocar).
+incómoda|rahatsız edici, uygunsuz; dişil biçim.
+cansado|yorgun; eril biçim.
+cansada|yorgun; dişil biçim.
+falso|yanlış, gerçek olmayan.
+hacerle|ona yapmak (hacer + le).
+dormir|uyumak.
+sorprenderse|şaşırmak.
+muchísimo|çok fazla, çok büyük ölçüde.
+saber|bilmek.
+mucho|çok, çok fazla.
+casi|neredeyse.
+parar|durmak.
+opciones|seçenekler.
+difíciles|zor; çoğul.
+ninguna|hiçbiri; hiçbir, dişil tekil.
+mejor|daha iyi; en iyi.
+tarde|geç; öğleden sonra.
+hacerlo|onu / bunu yapmak (hacer + lo).
+evitar|önlemek, kaçınmak.
+solucionarlo|onu çözmek (solucionar + lo).
+hay|var.
+bueno|iyi; eril tekil.
+cuánto|ne kadar?
+cuál|hangisi?
+menos|daha az; eksi.
+disfrutar|keyif almak.
+cuando|... olduğunda, ... iken.
+conocido|tanınmış; bilinen.
+conocidos|tanınmış; bilinen, çoğul.
+esperar|beklemek; ummak.
+sinceramente|içtenlikle, dürüstçe.
+favorito|en sevilen, favori.
+estudiamos|ders çalışıyoruz / çalıştık (estudiar).
+entender|anlamak.
+están|bulunuyorlar / ... durumundalar (estar).
+estamos|bulunuyoruz / ... durumundayız (estar).
+estáis|bulunuyorsunuz / ... durumundasınız (estar, vosotros).
+comer|yemek yemek.
+querer|istemek; sevmek.
+palabras|kelimeler, sözcükler.
+refrán|atasözü.
+deberes|ödevler.
+entender|anlamak.
+venga|gelmesi / gelmem (venir, subjuntivo).
+`;
+const wordDefinitions=new Map();
+glossaryEntries.trim().split('\n').forEach(line=>{const divider=line.indexOf('|');if(divider<1)return;const meaning=line.slice(divider+1).trim();line.slice(0,divider).split(',').forEach(word=>wordDefinitions.set(word.trim().toLocaleLowerCase('es').normalize('NFC'),meaning))});
+
+const phraseDefinitions=[
+ ['he oído que','Duyduğuma göre; ... diye duydum.'],
+ ['parece que','Görünüşe göre; ... gibi görünüyor.'],
+ ['según dicen','Söylenenlere göre.'],
+ ['al parecer','Görünüşe göre, anlaşılan.'],
+ ['no me lo puedo creer','İnanamıyorum!'],
+ ['anda ya','Hadi canım! Yok artık!'],
+ ['qué guay','Ne güzel! Harika!'],
+ ['qué fuerte','Vay be! Yok artık!'],
+ ['en serio','Ciddi olarak; gerçekten. ¿En serio?: Ciddi misin?'],
+ ['dime, dime','Söyle, söyle! Anlat, anlat!'],
+ ['por favor','Lütfen.'],
+ ['fin de semana','Hafta sonu.'],
+ ['un pulgar arriba','Başparmak yukarı işareti; onay veya tamam anlamı.'],
+ ['tener razón','Haklı olmak.'],['tienes razón','Haklısın.'],
+ ['estar de acuerdo','Aynı fikirde olmak.'],['está completamente de acuerdo','Tamamen aynı fikirde.'],
+ ['se pone nerviosa','Geriliyor, telaşlanıyor.'],['no te preocupes','Endişelenme!'],['ten paciencia','Sabırlı ol!'],['bajo control','Kontrol altında.'],['sobre la marcha','O anda, gelişine göre.'],
+ ['vamos viendo','Duruma göre bakarız; gelişine göre karar veririz.'],
+ ['última hora','Son dakika.'],['con antelación','Önceden.'],
+ ['lo hemos pasado genial','Harika vakit geçirdik.'],
+ ['nos ha dado pena','Üzüldük; bizi üzdü.'],
+ ['echar una mano','Yardım etmek, el atmak.'],['echo una mano','Yardım ediyorum; el atıyorum.'],
+ ['estar en las nubes','Aklı başka yerde olmak, dalgın olmak.'],['está en las nubes','Aklı başka yerde, dalgın.'],
+ ['costar un ojo de la cara','Çok pahalı olmak.'],['cuesta un ojo de la cara','Çok pahalı; ateş pahası.'],
+ ['ponerse las pilas','Kendini toparlayıp harekete geçmek, çabalamaya başlamak.'],['ponerme las pilas','Kendimi toparlayıp harekete geçmek.'],
+ ['meter la pata','Pot kırmak, uygunsuz bir şey söyleyip hata yapmak.'],['metí la pata','Pot kırdım.'],
+ ['estar hecho/a polvo','Çok yorgun, bitkin olmak.'],['estoy hecho polvo','Çok yorgunum, bitkinim.'],['estoy hecha polvo','Çok yorgunum, bitkinim.'],
+ ['ser pan comido','Çocuk oyuncağı olmak, çok kolay olmak.'],['es pan comido','Çocuk oyuncağı, çok kolay.'],
+ ['tomar el pelo a alguien','Birini işletmek, şaka yaparak kandırmak.'],['tomar el pelo','Birini işletmek.'],['está tomando el pelo','İşletiyor, şakayla kandırıyor.'],
+ ['no pegar ojo','Gözüne uyku girmemek.'],['no pegué ojo','Gözüme uyku girmedi.'],
+ ['quedarse de piedra','Şaşkınlıktan donakalmak.'],['me he quedado de piedra','Şaşkınlıktan donakaldım.'],['me quedé de piedra','Şaşkınlıktan donakaldım.'],
+ ['hablar por los codos','Durmadan konuşmak.'],['habla por los codos','Durmadan konuşuyor.'],
+ ['estar entre la espada y la pared','İki zor seçenek arasında sıkışıp kalmak.'],['estoy entre la espada y la pared','İki zor seçenek arasında sıkışıp kaldım.'],
+ ['más vale tarde que nunca','Geç de olsa yapmak, hiç yapmamaktan iyidir.'],
+ ['más vale prevenir que curar','Sorun çıkmadan önlem almak, sonradan çözmeye çalışmaktan iyidir.'],
+ ['a mal tiempo, buena cara','Zorluklar karşısında olumlu ve güler yüzlü kalmak gerekir.']
+].sort((a,b)=>b[0].length-a[0].length);
+
+const lessonMain=document.querySelector('main');
+const popover=document.createElement('aside');
+popover.id='word-popover';popover.className='word-popover';popover.hidden=true;
+popover.lang='tr';popover.setAttribute('role','dialog');popover.setAttribute('aria-modal','false');popover.setAttribute('aria-labelledby','word-title');
+popover.innerHTML='<div class="word-popover-top"><div><span class="word-popover-label">KELİME ANLAMI</span><h3 id="word-title" lang="es"></h3></div><button type="button" class="word-popover-close" aria-label="Kelime anlamını kapat">×</button></div><p id="word-meaning" class="word-meaning"></p><div id="word-phrase" class="word-phrase" hidden><p id="word-phrase-es" lang="es"></p><p id="word-phrase-tr"></p></div>';
+document.body.append(popover);
+let activeWord=null;
+let activeTerm=null;
+function closeWord(restoreFocus=false){if(activeWord){activeWord.setAttribute('aria-expanded','false');if(restoreFocus&&document.contains(activeWord))activeWord.focus({preventScroll:true})}popover.hidden=true;activeWord=null;activeTerm=null}
+function positionWord(){if(popover.hidden||!activeWord)return;const rect=activeWord.getBoundingClientRect();const width=popover.offsetWidth;const height=popover.offsetHeight;const left=Math.max(12,Math.min(window.innerWidth-width-12,rect.left));const below=rect.bottom+9;const top=below+height<window.innerHeight-12?below:Math.max(12,rect.top-height-9);popover.style.left=left+'px';popover.style.top=top+'px'}
+function openWord(word,selectedWord=null){
+  const original=selectedWord||word.dataset.word;
+  if(activeWord===word&&activeTerm===original&&!popover.hidden){closeWord();return}
+  closeWord();activeWord=word;activeTerm=original;
+  word.setAttribute('aria-expanded','true');word.setAttribute('aria-controls','word-popover');
+  const key=original.toLocaleLowerCase('es').normalize('NFC');
+  let meaning=wordDefinitions.get(key);
+  const paragraph=word.closest('p');
+  const inflection=word.closest('h4');
+  if(key==='a'&&inflection&&inflection.textContent.includes('hecho/a'))meaning='Dişil biçimi gösteren -a eki: hecho / hecha.';
+  if(key==='si'&&paragraph&&paragraph.textContent.includes('Pero si los dos'))meaning='Burada vurgulama bildiriyor: oysa, ama zaten. Bu kullanımda koşul anlamı taşımaz.';
+  document.getElementById('word-title').textContent=original;
+  document.getElementById('word-meaning').textContent=meaning||'Bu kelimenin Türkçe karşılığı henüz eklenmedi.';
+  const phrase=word.closest('.gloss-phrase');
+  document.getElementById('word-phrase').hidden=!phrase;
+  if(phrase){document.getElementById('word-phrase-es').textContent=phrase.dataset.phrase;document.getElementById('word-phrase-tr').textContent=phrase.dataset.meaning}
+  popover.hidden=false;positionWord();
+}
+popover.querySelector('.word-popover-close').addEventListener('click',()=>closeWord(true));
+document.addEventListener('input',()=>{if(!popover.hidden)closeWord()});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!popover.hidden){event.preventDefault();closeWord(true)}});
+document.addEventListener('click',event=>{const word=event.target.closest('.vocab-word');if(word){event.preventDefault();event.stopPropagation();openWord(word);return}const field=event.target.closest('input[type="text"],textarea');if(field&&lessonMain.contains(field)&&field.value){const offset=field.selectionStart||0;const tokens=[...field.value.matchAll(/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+/g)];const selected=tokens.find(match=>offset>=match.index&&offset<=match.index+match[0].length);if(selected&&wordDefinitions.has(selected[0].toLocaleLowerCase('es').normalize('NFC'))){openWord(field,selected[0]);return}}if(!popover.contains(event.target))closeWord()});
+window.addEventListener('resize',positionWord);
+document.addEventListener('scroll',event=>{if(!popover.contains(event.target))closeWord()},true);
+
+const skipWords='button,input,textarea,select,script,style,code,kbd,.blank-letter,.expression-letter,.paragraph-number,.situation-number,.role-letter,.nav-number,.model-answer>b,.vocab-word,.word-popover,[data-no-gloss]';
+function makeWordFragment(text){const fragment=document.createDocumentFragment();const regex=/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+/g;let end=0;let match;while((match=regex.exec(text))!==null){fragment.append(document.createTextNode(text.slice(end,match.index)));const button=document.createElement('button');button.type='button';button.className='vocab-word';button.textContent=match[0];button.dataset.word=match[0];button.setAttribute('aria-label',match[0]);button.title='Türkçe anlamını aç';button.setAttribute('aria-controls','word-popover');button.setAttribute('aria-expanded','false');if(!wordDefinitions.has(match[0].toLocaleLowerCase('es').normalize('NFC')))button.dataset.untranslated='true';fragment.append(button);end=match.index+match[0].length}fragment.append(document.createTextNode(text.slice(end)));return fragment}
+function wordChar(character){return character&&/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]/.test(character)}
+function makePhraseFragment(text){const fragment=document.createDocumentFragment();const lower=text.toLocaleLowerCase('es');const ranges=[];for(const [phrase,meaning] of phraseDefinitions){let index=lower.indexOf(phrase);while(index!==-1){const end=index+phrase.length;if(!wordChar(text[index-1])&&!wordChar(text[end])&&!ranges.some(r=>index<r.end&&end>r.start))ranges.push({start:index,end,meaning});index=lower.indexOf(phrase,index+1)}}ranges.sort((a,b)=>a.start-b.start);let cursor=0;for(const range of ranges){fragment.append(makeWordFragment(text.slice(cursor,range.start)));const group=document.createElement('span');group.className='gloss-phrase';group.dataset.phrase=text.slice(range.start,range.end);group.dataset.meaning=range.meaning;group.append(makeWordFragment(text.slice(range.start,range.end)));fragment.append(group);cursor=range.end}fragment.append(makeWordFragment(text.slice(cursor)));return fragment}
+function enhanceWords(root=lessonMain){const nodes=[];const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode(node){const parent=node.parentElement;if(!parent||parent.closest(skipWords)||!/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]/.test(node.nodeValue))return NodeFilter.FILTER_REJECT;const language=parent.closest('[lang]');return language&&language.getAttribute('lang')==='es'?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT}});while(walker.nextNode())nodes.push(walker.currentNode);for(const node of nodes)node.replaceWith(makePhraseFragment(node.nodeValue))}
+function enhanceListening(){document.querySelectorAll('.blank-wrap').forEach(wrap=>{const input=wrap.querySelector('input');let view=wrap.querySelector('.revealed-word-answer');if(!view){view=document.createElement('span');view.className='revealed-word-answer';view.id=input.id+'-words';view.lang='es';wrap.insertBefore(view,wrap.querySelector('.reveal-answer'));wrap.classList.add('has-word-answer')}const revealed=wrap.classList.contains('is-revealed');if(revealed){if(view.textContent!==input.value){view.textContent=input.value;enhanceWords(view)}input.setAttribute('aria-hidden','true');wrap.querySelector('.reveal-answer').setAttribute('aria-controls',view.id)}else{input.removeAttribute('aria-hidden');wrap.querySelector('.reveal-answer').setAttribute('aria-controls',input.id)}})}
+document.addEventListener('lesson:answer',()=>{closeWord();enhanceListening()});
+document.querySelectorAll('.next-section,.nav-tab').forEach(button=>button.addEventListener('click',()=>closeWord()));
+enhanceListening();enhanceWords();
+let enhancementPending=false;
+const vocabularyObserver=new MutationObserver(records=>{if(!records.some(record=>record.addedNodes.length||record.type==='characterData')||enhancementPending)return;enhancementPending=true;requestAnimationFrame(()=>{enhancementPending=false;enhanceWords()})});
+vocabularyObserver.observe(lessonMain,{childList:true,subtree:true,characterData:true});
 
 </script>
 </body>
