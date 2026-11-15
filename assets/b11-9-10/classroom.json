@@ -547,6 +547,912 @@
         }
       ],
       "note": ""
+    },
+    {
+      "id": "grammar-person-0",
+      "tr": "ben",
+      "chunks": [
+        {
+          "text": "yo",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "grammar-hablar-0",
+      "tr": "konuşmak · birinci tekil kişi",
+      "chunks": [
+        {
+          "text": "yo",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        },
+        {
+          "text": "hablaré",
+          "role": "Futuro simple · birinci tekil kişi"
+        }
+      ],
+      "note": "Düzenli çekim: hablar + -é. Mastarın -ar / -er / -ir sonu korunur."
+    },
+    {
+      "id": "grammar-comer-0",
+      "tr": "yemek · birinci tekil kişi",
+      "chunks": [
+        {
+          "text": "yo",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        },
+        {
+          "text": "comeré",
+          "role": "Futuro simple · birinci tekil kişi"
+        }
+      ],
+      "note": "Düzenli çekim: comer + -é. Mastarın -ar / -er / -ir sonu korunur."
+    },
+    {
+      "id": "grammar-vivir-0",
+      "tr": "yaşamak · birinci tekil kişi",
+      "chunks": [
+        {
+          "text": "yo",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        },
+        {
+          "text": "viviré",
+          "role": "Futuro simple · birinci tekil kişi"
+        }
+      ],
+      "note": "Düzenli çekim: vivir + -é. Mastarın -ar / -er / -ir sonu korunur."
+    },
+    {
+      "id": "grammar-person-1",
+      "tr": "sen",
+      "chunks": [
+        {
+          "text": "tú",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "grammar-hablar-1",
+      "tr": "konuşmak · ikinci tekil kişi",
+      "chunks": [
+        {
+          "text": "tú",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        },
+        {
+          "text": "hablarás",
+          "role": "Futuro simple · ikinci tekil kişi"
+        }
+      ],
+      "note": "Düzenli çekim: hablar + -ás. Mastarın -ar / -er / -ir sonu korunur."
+    },
+    {
+      "id": "grammar-comer-1",
+      "tr": "yemek · ikinci tekil kişi",
+      "chunks": [
+        {
+          "text": "tú",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        },
+        {
+          "text": "comerás",
+          "role": "Futuro simple · ikinci tekil kişi"
+        }
+      ],
+      "note": "Düzenli çekim: comer + -ás. Mastarın -ar / -er / -ir sonu korunur."
+    },
+    {
+      "id": "grammar-vivir-1",
+      "tr": "yaşamak · ikinci tekil kişi",
+      "chunks": [
+        {
+          "text": "tú",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        },
+        {
+          "text": "vivirás",
+          "role": "Futuro simple · ikinci tekil kişi"
+        }
+      ],
+      "note": "Düzenli çekim: vivir + -ás. Mastarın -ar / -er / -ir sonu korunur."
+    },
+    {
+      "id": "grammar-person-2",
+      "tr": "o / siz (resmî)",
+      "chunks": [
+        {
+          "text": "él / ella / usted",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "grammar-hablar-2",
+      "tr": "konuşmak · üçüncü tekil kişi",
+      "chunks": [
+        {
+          "text": "él / ella / usted",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        },
+        {
+          "text": "hablará",
+          "role": "Futuro simple · üçüncü tekil kişi"
+        }
+      ],
+      "note": "Düzenli çekim: hablar + -á. Mastarın -ar / -er / -ir sonu korunur."
+    },
+    {
+      "id": "grammar-comer-2",
+      "tr": "yemek · üçüncü tekil kişi",
+      "chunks": [
+        {
+          "text": "él / ella / usted",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        },
+        {
+          "text": "comerá",
+          "role": "Futuro simple · üçüncü tekil kişi"
+        }
+      ],
+      "note": "Düzenli çekim: comer + -á. Mastarın -ar / -er / -ir sonu korunur."
+    },
+    {
+      "id": "grammar-vivir-2",
+      "tr": "yaşamak · üçüncü tekil kişi",
+      "chunks": [
+        {
+          "text": "él / ella / usted",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        },
+        {
+          "text": "vivirá",
+          "role": "Futuro simple · üçüncü tekil kişi"
+        }
+      ],
+      "note": "Düzenli çekim: vivir + -á. Mastarın -ar / -er / -ir sonu korunur."
+    },
+    {
+      "id": "grammar-person-3",
+      "tr": "biz",
+      "chunks": [
+        {
+          "text": "nosotros / nosotras",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "grammar-hablar-3",
+      "tr": "konuşmak · birinci çoğul kişi",
+      "chunks": [
+        {
+          "text": "nosotros / nosotras",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        },
+        {
+          "text": "hablaremos",
+          "role": "Futuro simple · birinci çoğul kişi"
+        }
+      ],
+      "note": "Düzenli çekim: hablar + -emos. Mastarın -ar / -er / -ir sonu korunur."
+    },
+    {
+      "id": "grammar-comer-3",
+      "tr": "yemek · birinci çoğul kişi",
+      "chunks": [
+        {
+          "text": "nosotros / nosotras",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        },
+        {
+          "text": "comeremos",
+          "role": "Futuro simple · birinci çoğul kişi"
+        }
+      ],
+      "note": "Düzenli çekim: comer + -emos. Mastarın -ar / -er / -ir sonu korunur."
+    },
+    {
+      "id": "grammar-vivir-3",
+      "tr": "yaşamak · birinci çoğul kişi",
+      "chunks": [
+        {
+          "text": "nosotros / nosotras",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        },
+        {
+          "text": "viviremos",
+          "role": "Futuro simple · birinci çoğul kişi"
+        }
+      ],
+      "note": "Düzenli çekim: vivir + -emos. Mastarın -ar / -er / -ir sonu korunur."
+    },
+    {
+      "id": "grammar-person-4",
+      "tr": "siz",
+      "chunks": [
+        {
+          "text": "vosotros / vosotras",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "grammar-hablar-4",
+      "tr": "konuşmak · ikinci çoğul kişi",
+      "chunks": [
+        {
+          "text": "vosotros / vosotras",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        },
+        {
+          "text": "hablaréis",
+          "role": "Futuro simple · ikinci çoğul kişi"
+        }
+      ],
+      "note": "Düzenli çekim: hablar + -éis. Mastarın -ar / -er / -ir sonu korunur."
+    },
+    {
+      "id": "grammar-comer-4",
+      "tr": "yemek · ikinci çoğul kişi",
+      "chunks": [
+        {
+          "text": "vosotros / vosotras",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        },
+        {
+          "text": "comeréis",
+          "role": "Futuro simple · ikinci çoğul kişi"
+        }
+      ],
+      "note": "Düzenli çekim: comer + -éis. Mastarın -ar / -er / -ir sonu korunur."
+    },
+    {
+      "id": "grammar-vivir-4",
+      "tr": "yaşamak · ikinci çoğul kişi",
+      "chunks": [
+        {
+          "text": "vosotros / vosotras",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        },
+        {
+          "text": "viviréis",
+          "role": "Futuro simple · ikinci çoğul kişi"
+        }
+      ],
+      "note": "Düzenli çekim: vivir + -éis. Mastarın -ar / -er / -ir sonu korunur."
+    },
+    {
+      "id": "grammar-person-5",
+      "tr": "onlar / siz",
+      "chunks": [
+        {
+          "text": "ellos / ellas / ustedes",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "grammar-hablar-5",
+      "tr": "konuşmak · üçüncü çoğul kişi",
+      "chunks": [
+        {
+          "text": "ellos / ellas / ustedes",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        },
+        {
+          "text": "hablarán",
+          "role": "Futuro simple · üçüncü çoğul kişi"
+        }
+      ],
+      "note": "Düzenli çekim: hablar + -án. Mastarın -ar / -er / -ir sonu korunur."
+    },
+    {
+      "id": "grammar-comer-5",
+      "tr": "yemek · üçüncü çoğul kişi",
+      "chunks": [
+        {
+          "text": "ellos / ellas / ustedes",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        },
+        {
+          "text": "comerán",
+          "role": "Futuro simple · üçüncü çoğul kişi"
+        }
+      ],
+      "note": "Düzenli çekim: comer + -án. Mastarın -ar / -er / -ir sonu korunur."
+    },
+    {
+      "id": "grammar-vivir-5",
+      "tr": "yaşamak · üçüncü çoğul kişi",
+      "chunks": [
+        {
+          "text": "ellos / ellas / ustedes",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        },
+        {
+          "text": "vivirán",
+          "role": "Futuro simple · üçüncü çoğul kişi"
+        }
+      ],
+      "note": "Düzenli çekim: vivir + -án. Mastarın -ar / -er / -ir sonu korunur."
+    },
+    {
+      "id": "grammar-inf-caber",
+      "tr": "Mastar",
+      "chunks": [
+        {
+          "text": "caber",
+          "role": "Fiilin sözlük / mastar biçimi"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "grammar-irr-caber",
+      "tr": "Yo çekimi",
+      "chunks": [
+        {
+          "text": "yo",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        },
+        {
+          "text": "cabré",
+          "role": "Futuro simple · birinci tekil kişi; düzensiz cabr- gövdesi"
+        }
+      ],
+      "note": "caber → cabr- + -é = cabré. Aynı gövdeye -ás, -á, -emos, -éis, -án eklenebilir."
+    },
+    {
+      "id": "grammar-inf-decir",
+      "tr": "Mastar",
+      "chunks": [
+        {
+          "text": "decir",
+          "role": "Fiilin sözlük / mastar biçimi"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "grammar-irr-decir",
+      "tr": "Yo çekimi",
+      "chunks": [
+        {
+          "text": "yo",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        },
+        {
+          "text": "diré",
+          "role": "Futuro simple · birinci tekil kişi; düzensiz dir- gövdesi"
+        }
+      ],
+      "note": "decir → dir- + -é = diré. Aynı gövdeye -ás, -á, -emos, -éis, -án eklenebilir."
+    },
+    {
+      "id": "grammar-inf-haber",
+      "tr": "Mastar",
+      "chunks": [
+        {
+          "text": "haber",
+          "role": "Fiilin sözlük / mastar biçimi"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "grammar-irr-haber",
+      "tr": "Yo çekimi",
+      "chunks": [
+        {
+          "text": "yo",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        },
+        {
+          "text": "habré",
+          "role": "Futuro simple · birinci tekil kişi; düzensiz habr- gövdesi"
+        }
+      ],
+      "note": "haber → habr- + -é = habré. Aynı gövdeye -ás, -á, -emos, -éis, -án eklenebilir."
+    },
+    {
+      "id": "grammar-inf-hacer",
+      "tr": "Mastar",
+      "chunks": [
+        {
+          "text": "hacer",
+          "role": "Fiilin sözlük / mastar biçimi"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "grammar-irr-hacer",
+      "tr": "Yo çekimi",
+      "chunks": [
+        {
+          "text": "yo",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        },
+        {
+          "text": "haré",
+          "role": "Futuro simple · birinci tekil kişi; düzensiz har- gövdesi"
+        }
+      ],
+      "note": "hacer → har- + -é = haré. Aynı gövdeye -ás, -á, -emos, -éis, -án eklenebilir."
+    },
+    {
+      "id": "grammar-inf-poder",
+      "tr": "Mastar",
+      "chunks": [
+        {
+          "text": "poder",
+          "role": "Fiilin sözlük / mastar biçimi"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "grammar-irr-poder",
+      "tr": "Yo çekimi",
+      "chunks": [
+        {
+          "text": "yo",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        },
+        {
+          "text": "podré",
+          "role": "Futuro simple · birinci tekil kişi; düzensiz podr- gövdesi"
+        }
+      ],
+      "note": "poder → podr- + -é = podré. Aynı gövdeye -ás, -á, -emos, -éis, -án eklenebilir."
+    },
+    {
+      "id": "grammar-inf-poner",
+      "tr": "Mastar",
+      "chunks": [
+        {
+          "text": "poner",
+          "role": "Fiilin sözlük / mastar biçimi"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "grammar-irr-poner",
+      "tr": "Yo çekimi",
+      "chunks": [
+        {
+          "text": "yo",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        },
+        {
+          "text": "pondré",
+          "role": "Futuro simple · birinci tekil kişi; düzensiz pondr- gövdesi"
+        }
+      ],
+      "note": "poner → pondr- + -é = pondré. Aynı gövdeye -ás, -á, -emos, -éis, -án eklenebilir."
+    },
+    {
+      "id": "grammar-inf-querer",
+      "tr": "Mastar",
+      "chunks": [
+        {
+          "text": "querer",
+          "role": "Fiilin sözlük / mastar biçimi"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "grammar-irr-querer",
+      "tr": "Yo çekimi",
+      "chunks": [
+        {
+          "text": "yo",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        },
+        {
+          "text": "querré",
+          "role": "Futuro simple · birinci tekil kişi; düzensiz querr- gövdesi"
+        }
+      ],
+      "note": "querer → querr- + -é = querré. Aynı gövdeye -ás, -á, -emos, -éis, -án eklenebilir."
+    },
+    {
+      "id": "grammar-inf-saber",
+      "tr": "Mastar",
+      "chunks": [
+        {
+          "text": "saber",
+          "role": "Fiilin sözlük / mastar biçimi"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "grammar-irr-saber",
+      "tr": "Yo çekimi",
+      "chunks": [
+        {
+          "text": "yo",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        },
+        {
+          "text": "sabré",
+          "role": "Futuro simple · birinci tekil kişi; düzensiz sabr- gövdesi"
+        }
+      ],
+      "note": "saber → sabr- + -é = sabré. Aynı gövdeye -ás, -á, -emos, -éis, -án eklenebilir."
+    },
+    {
+      "id": "grammar-inf-salir",
+      "tr": "Mastar",
+      "chunks": [
+        {
+          "text": "salir",
+          "role": "Fiilin sözlük / mastar biçimi"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "grammar-irr-salir",
+      "tr": "Yo çekimi",
+      "chunks": [
+        {
+          "text": "yo",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        },
+        {
+          "text": "saldré",
+          "role": "Futuro simple · birinci tekil kişi; düzensiz saldr- gövdesi"
+        }
+      ],
+      "note": "salir → saldr- + -é = saldré. Aynı gövdeye -ás, -á, -emos, -éis, -án eklenebilir."
+    },
+    {
+      "id": "grammar-inf-tener",
+      "tr": "Mastar",
+      "chunks": [
+        {
+          "text": "tener",
+          "role": "Fiilin sözlük / mastar biçimi"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "grammar-irr-tener",
+      "tr": "Yo çekimi",
+      "chunks": [
+        {
+          "text": "yo",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        },
+        {
+          "text": "tendré",
+          "role": "Futuro simple · birinci tekil kişi; düzensiz tendr- gövdesi"
+        }
+      ],
+      "note": "tener → tendr- + -é = tendré. Aynı gövdeye -ás, -á, -emos, -éis, -án eklenebilir."
+    },
+    {
+      "id": "grammar-inf-valer",
+      "tr": "Mastar",
+      "chunks": [
+        {
+          "text": "valer",
+          "role": "Fiilin sözlük / mastar biçimi"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "grammar-irr-valer",
+      "tr": "Yo çekimi",
+      "chunks": [
+        {
+          "text": "yo",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        },
+        {
+          "text": "valdré",
+          "role": "Futuro simple · birinci tekil kişi; düzensiz valdr- gövdesi"
+        }
+      ],
+      "note": "valer → valdr- + -é = valdré. Aynı gövdeye -ás, -á, -emos, -éis, -án eklenebilir."
+    },
+    {
+      "id": "grammar-inf-venir",
+      "tr": "Mastar",
+      "chunks": [
+        {
+          "text": "venir",
+          "role": "Fiilin sözlük / mastar biçimi"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "grammar-irr-venir",
+      "tr": "Yo çekimi",
+      "chunks": [
+        {
+          "text": "yo",
+          "role": "Özne zamiri · eylemi yapan kişi"
+        },
+        {
+          "text": "vendré",
+          "role": "Futuro simple · birinci tekil kişi; düzensiz vendr- gövdesi"
+        }
+      ],
+      "note": "venir → vendr- + -é = vendré. Aynı gövdeye -ás, -á, -emos, -éis, -án eklenebilir."
+    },
+    {
+      "id": "grammar-inf-hablar",
+      "tr": "Mastar",
+      "chunks": [
+        {
+          "text": "hablar",
+          "role": "Fiilin mastar biçimi; gelecek zamanda sonundaki -ar / -er / -ir korunur"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "grammar-inf-comer",
+      "tr": "Mastar",
+      "chunks": [
+        {
+          "text": "comer",
+          "role": "Fiilin mastar biçimi; gelecek zamanda sonundaki -ar / -er / -ir korunur"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "grammar-inf-vivir",
+      "tr": "Mastar",
+      "chunks": [
+        {
+          "text": "vivir",
+          "role": "Fiilin mastar biçimi; gelecek zamanda sonundaki -ar / -er / -ir korunur"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "grammar-negative",
+      "tr": "Geç kalmayacağım.",
+      "chunks": [
+        {
+          "text": "No",
+          "role": "Olumsuzluk sözcüğü · çekimli fiilden önce"
+        },
+        {
+          "text": "llegaré",
+          "role": "Futuro simple · yo"
+        },
+        {
+          "text": "tarde.",
+          "role": "Zaman / gecikme bildiren zarf"
+        }
+      ],
+      "note": "Olumsuzluk için no, çekimli fiilin önüne gelir. Llegaré = llegar + -é."
+    },
+    {
+      "id": "grammar-question",
+      "tr": "Yarın gelecek misin?",
+      "chunks": [
+        {
+          "text": "¿Vendrás",
+          "role": "Futuro simple · tú; venir → vendr-"
+        },
+        {
+          "text": "mañana?",
+          "role": "Zaman zarfı"
+        }
+      ],
+      "note": "Soru yapmak için ayrı bir yardımcı fiil gerekmez. Vendrás, soru cümlesinde de aynı çekimi korur."
+    },
+    {
+      "id": "grammar-reflexive",
+      "tr": "Erken kalkacağım.",
+      "chunks": [
+        {
+          "text": "Me",
+          "role": "Özneyle uyumlu dönüşlü / pronominal zamir · yo"
+        },
+        {
+          "text": "levantaré",
+          "role": "Futuro simple · yo"
+        },
+        {
+          "text": "temprano.",
+          "role": "Zaman zarfı"
+        }
+      ],
+      "note": "Levantarse → me levantaré. Futuro simple tek bir çekimli fiildir; zamir fiilden önce ve ayrı yazılır."
+    },
+    {
+      "id": "grammar-haber",
+      "tr": "Yeni fırsatlar olacak.",
+      "chunks": [
+        {
+          "text": "Habrá",
+          "role": "Kişisiz haber · üçüncü tekil futuro simple; var olacak"
+        },
+        {
+          "text": "nuevas oportunidades.",
+          "role": "Var olacağı bildirilen isim grubu; dilbilgisel özne değildir"
+        }
+      ],
+      "note": "Var olmayı bildiren haber kişisizdir: ardından çoğul bir isim gelse de habrá tekil kalır."
+    },
+    {
+      "id": "grammar-use-1",
+      "tr": "Kurs pazartesi başlayacak.",
+      "chunks": [
+        {
+          "text": "El curso",
+          "role": "Özne"
+        },
+        {
+          "text": "empezará",
+          "role": "Futuro simple · üçüncü tekil kişi"
+        },
+        {
+          "text": "el lunes.",
+          "role": "Zaman bildiren grup"
+        }
+      ],
+      "note": "Empezar → empezará. Presente çekimindeki empiezo biçimini geleceğe taşımayız; düzenli futuro mastardan kurulur."
+    },
+    {
+      "id": "grammar-use-2",
+      "tr": "2050’de birçok kişi evden çalışacak.",
+      "chunks": [
+        {
+          "text": "En 2050,",
+          "role": "Zaman bildiren grup"
+        },
+        {
+          "text": "muchas personas",
+          "role": "Özne"
+        },
+        {
+          "text": "trabajarán",
+          "role": "Futuro simple · üçüncü çoğul kişi"
+        },
+        {
+          "text": "desde casa.",
+          "role": "Çalışmanın gerçekleştiği yeri / başlangıç noktasını bildiren grup"
+        }
+      ],
+      "note": "Burada 2050 yılına ilişkin bir öngörü ifade ediliyor."
+    },
+    {
+      "id": "grammar-use-3",
+      "tr": "Bavul çok ağır; onu ben taşıyacağım.",
+      "chunks": [
+        {
+          "text": "La maleta",
+          "role": "İlk cümlenin öznesi"
+        },
+        {
+          "text": "pesa mucho;",
+          "role": "Presente + miktar zarfı; mevcut durumu bildirir"
+        },
+        {
+          "text": "yo",
+          "role": "İkinci cümlenin öznesi; işi kimin üstlendiği vurgulanır"
+        },
+        {
+          "text": "la",
+          "role": "Doğrudan nesne zamiri; la maleta yerine"
+        },
+        {
+          "text": "llevaré.",
+          "role": "Futuro simple · yo; o anda üstlenilen iş"
+        }
+      ],
+      "note": "İlk cümledeki duruma karşılık konuşan kişi bavulu taşımayı üstleniyor. Kullanım amacı, cümlenin bağlamıyla anlaşılır."
+    },
+    {
+      "id": "grammar-use-4",
+      "tr": "Kitabı cuma günü sana geri vereceğim.",
+      "chunks": [
+        {
+          "text": "Te",
+          "role": "Dolaylı nesne zamiri; sana"
+        },
+        {
+          "text": "devolveré",
+          "role": "Futuro simple · yo"
+        },
+        {
+          "text": "el libro",
+          "role": "Doğrudan nesne"
+        },
+        {
+          "text": "el viernes.",
+          "role": "Zaman bildiren grup"
+        }
+      ],
+      "note": "Bu bağlamda konuşan kişi kitabı geri vermeyi taahhüt eder. Devolver, futuro simpleda düzenlidir: devolver + -é."
+    },
+    {
+      "id": "grammar-use-5",
+      "tr": "Cevap vermiyor; herhalde bir toplantıdadır.",
+      "chunks": [
+        {
+          "text": "No contesta;",
+          "role": "Olumsuz presente; şu an gözlenen durum"
+        },
+        {
+          "text": "estará",
+          "role": "Futuro simple · üçüncü tekil kişi; şimdiki zamana ilişkin çıkarım"
+        },
+        {
+          "text": "en una reunión.",
+          "role": "Yer / bulunulan etkinlik bildiren grup"
+        }
+      ],
+      "note": "Estará burada gelecekte olacak demek değildir; muhtemelen şu anda bir toplantıda anlamını verir."
+    },
+    {
+      "id": "grammar-use-6",
+      "tr": "Yarın projeyi saat ikiden önce teslim edeceksiniz.",
+      "chunks": [
+        {
+          "text": "Mañana",
+          "role": "Zaman zarfı"
+        },
+        {
+          "text": "entregaréis",
+          "role": "Futuro simple · vosotros; bu bağlamda talimat"
+        },
+        {
+          "text": "el proyecto",
+          "role": "Doğrudan nesne"
+        },
+        {
+          "text": "antes de las dos.",
+          "role": "Son zamanı bildiren grup"
+        }
+      ],
+      "note": "Biçim gelecek zaman olsa da bu bağlamda öğretmen bir teslim talimatı veriyor."
+    },
+    {
+      "id": "grammar-use-7",
+      "tr": "Ders çalışmazsan sınavda zorlanacaksın.",
+      "chunks": [
+        {
+          "text": "Si no estudias,",
+          "role": "Koşul cümlesi · si + olumsuz presente"
+        },
+        {
+          "text": "tendrás",
+          "role": "Sonuç cümlesi · futuro simple, tú; tener → tendr-"
+        },
+        {
+          "text": "dificultades",
+          "role": "Doğrudan nesne; zorluklar"
+        },
+        {
+          "text": "en el examen.",
+          "role": "Durumun ortaya çıkacağı bağlam"
+        }
+      ],
+      "note": "Gerçekleşmesi mümkün bu koşul yapısında si + presente, sonuçta futuro simple kullanılır. Si no estudiarás biçimi bu anlam için kullanılmaz."
     }
   ],
   "steps": [
@@ -649,6 +1555,14 @@
       "form": "El ambiente · eril tekil",
       "note": ""
     },
+    "antes": {
+      "lemma": "antes",
+      "tr": "önceden, daha önce",
+      "en": "before",
+      "type": "Zarf",
+      "form": "Zaman zarfı",
+      "note": ""
+    },
     "anuncio": {
       "lemma": "anuncio",
       "tr": "reklam, ilan",
@@ -688,6 +1602,22 @@
       "type": "Sıfat",
       "form": "Tekil sıfat; anuncio sözcüğünü niteler",
       "note": ""
+    },
+    "caber": {
+      "lemma": "caber",
+      "tr": "sığmak",
+      "en": "fit",
+      "type": "Fiil",
+      "form": "Mastar",
+      "note": "Düzensiz gelecek zaman gövdesi: cabr-. Kişi ekleri düzenli fiillerle aynıdır."
+    },
+    "cabré": {
+      "lemma": "caber",
+      "tr": "sığmak",
+      "en": "fit",
+      "type": "Fiil",
+      "form": "Futuro simple · birinci tekil (yo)",
+      "note": "Düzensiz gövde cabr- + -é. Diğer kişilerin ekleri de bu gövdeye eklenir."
     },
     "cada": {
       "lemma": "cada",
@@ -729,6 +1659,14 @@
       "form": "La capacidad · dişil tekil",
       "note": ""
     },
+    "casa": {
+      "lemma": "casa",
+      "tr": "ev",
+      "en": "home; house",
+      "type": "İsim",
+      "note": "La casa: dişil isim.",
+      "form": "Sözlükteki temel biçim."
+    },
     "claridad": {
       "lemma": "claridad",
       "tr": "açıklık, anlaşılırlık",
@@ -744,6 +1682,62 @@
       "type": "İsim",
       "note": "La clase: dişil isim.",
       "form": "Sözlükteki temel biçim."
+    },
+    "comer": {
+      "lemma": "comer",
+      "tr": "yemek",
+      "en": "eat",
+      "type": "Fiil",
+      "form": "Mastar",
+      "note": "Futuro simpleda -ar / -er / -ir sonu kesilmez; kişi eki mastara eklenir."
+    },
+    "comeremos": {
+      "lemma": "comer",
+      "tr": "yemek",
+      "en": "eat",
+      "type": "Fiil",
+      "form": "Futuro simple · birinci çoğul (nosotros / nosotras)",
+      "note": "comer + -emos; düzenli gelecek zaman çekimi."
+    },
+    "comerá": {
+      "lemma": "comer",
+      "tr": "yemek",
+      "en": "eat",
+      "type": "Fiil",
+      "form": "Futuro simple · üçüncü tekil (él / ella / usted)",
+      "note": "comer + -á; düzenli gelecek zaman çekimi."
+    },
+    "comerán": {
+      "lemma": "comer",
+      "tr": "yemek",
+      "en": "eat",
+      "type": "Fiil",
+      "form": "Futuro simple · üçüncü çoğul (ellos / ellas / ustedes)",
+      "note": "comer + -án; düzenli gelecek zaman çekimi."
+    },
+    "comerás": {
+      "lemma": "comer",
+      "tr": "yemek",
+      "en": "eat",
+      "type": "Fiil",
+      "form": "Futuro simple · ikinci tekil (tú)",
+      "note": "comer + -ás; düzenli gelecek zaman çekimi."
+    },
+    "comeré": {
+      "lemma": "comer",
+      "tr": "yemek",
+      "en": "eat",
+      "type": "Fiil",
+      "form": "Futuro simple · birinci tekil (yo)",
+      "note": "comer + -é; düzenli gelecek zaman çekimi."
+    },
+    "comeréis": {
+      "lemma": "comer",
+      "tr": "yemek",
+      "en": "eat",
+      "type": "Fiil",
+      "form": "Futuro simple · ikinci çoğul (vosotros / vosotras)",
+      "note": "comer + -éis; düzenli gelecek zaman çekimi."
     },
     "como": {
       "lemma": "como",
@@ -768,6 +1762,14 @@
       "type": "Edat",
       "note": "Araç, eşlik veya tarz ilişkisi kurar.",
       "form": "Sözlükteki temel biçim."
+    },
+    "contesta": {
+      "lemma": "contestar",
+      "tr": "cevap vermek",
+      "en": "answer, reply",
+      "type": "Fiil",
+      "form": "Presente · üçüncü tekil kişi",
+      "note": "No contesta = cevap vermiyor."
     },
     "convincente": {
       "lemma": "convincente",
@@ -825,6 +1827,14 @@
       "form": "Çoğul sıfat; ideas sözcüğünü niteler",
       "note": ""
     },
+    "curso": {
+      "lemma": "curso",
+      "tr": "kurs",
+      "en": "course",
+      "type": "İsim",
+      "form": "El curso · eril tekil",
+      "note": ""
+    },
     "cómo": {
       "lemma": "cómo",
       "tr": "nasıl",
@@ -857,6 +1867,14 @@
       "form": "Futuro simple · üçüncü çoğul kişi",
       "note": "Deberán + mastar, gelecekte yerine getirilecek gerekliliği anlatır."
     },
+    "decir": {
+      "lemma": "decir",
+      "tr": "söylemek",
+      "en": "say, tell",
+      "type": "Fiil",
+      "form": "Mastar",
+      "note": "Düzensiz gelecek zaman gövdesi: dir-. Kişi ekleri düzenli fiillerle aynıdır."
+    },
     "del": {
       "lemma": "del",
       "tr": "-ın/-in + belirli eril isim",
@@ -873,6 +1891,14 @@
       "form": "El desarrollo · eril tekil",
       "note": ""
     },
+    "desde": {
+      "lemma": "desde",
+      "tr": "...den itibaren",
+      "en": "from, since",
+      "type": "Edat",
+      "form": "Edat",
+      "note": "Desde cero = sıfırdan."
+    },
     "después": {
       "lemma": "después",
       "tr": "sonra",
@@ -881,6 +1907,30 @@
       "note": "Media hora después = yarım saat sonra.",
       "form": "Sözlükteki temel biçim."
     },
+    "devolveré": {
+      "lemma": "devolver",
+      "tr": "geri vermek, iade etmek",
+      "en": "return, give back",
+      "type": "Fiil",
+      "form": "Futuro simple · yo",
+      "note": "Devolver + -é; futuro simpleda düzenlidir."
+    },
+    "dificultades": {
+      "lemma": "dificultad",
+      "tr": "zorluklar",
+      "en": "difficulties",
+      "type": "İsim",
+      "form": "La dificultad · çoğul",
+      "note": ""
+    },
+    "diré": {
+      "lemma": "decir",
+      "tr": "söylemek",
+      "en": "say, tell",
+      "type": "Fiil",
+      "form": "Futuro simple · birinci tekil (yo)",
+      "note": "Düzensiz gövde dir- + -é. Diğer kişilerin ekleri de bu gövdeye eklenir."
+    },
     "divide": {
       "lemma": "dividir",
       "tr": "bölmek, ayırmak",
@@ -888,6 +1938,14 @@
       "type": "Fiil",
       "form": "Olumlu emir · tú",
       "note": "Dividir fiilinden gelen tú olumlu emridir; burada sınıfı gruplara ayırma yönergesidir."
+    },
+    "dos": {
+      "lemma": "dos",
+      "tr": "iki",
+      "en": "two",
+      "type": "Sayı",
+      "form": "Las dos: saat iki",
+      "note": ""
     },
     "durante": {
       "lemma": "durante",
@@ -921,6 +1979,38 @@
       "note": "Bir ismi belirli hâle getirir. Zamir olan él ile karıştırma.",
       "form": "Sözlükteki temel biçim."
     },
+    "ella": {
+      "lemma": "ella",
+      "tr": "o (kadın)",
+      "en": "she",
+      "type": "Özne zamiri",
+      "note": "Üçüncü tekil kişi.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "ellas": {
+      "lemma": "ellas",
+      "tr": "onlar (kadın grubu)",
+      "en": "they",
+      "type": "Özne zamiri",
+      "note": "Üçüncü çoğul kişi.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "ellos": {
+      "lemma": "ellos",
+      "tr": "onlar (erkek/karma grup)",
+      "en": "they",
+      "type": "Özne zamiri",
+      "note": "Üçüncü çoğul kişi.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "empezará": {
+      "lemma": "empezar",
+      "tr": "başlamak",
+      "en": "start",
+      "type": "Fiil",
+      "form": "Futuro simple · üçüncü tekil kişi",
+      "note": "Empezar + -á; presente çekimindeki e → ie değişimi futuro simpleda yapılmaz."
+    },
     "en": {
       "lemma": "en",
       "tr": "-da/-de, içinde",
@@ -929,6 +2019,14 @@
       "note": "Yer veya bir eylemin ortamını belirtir.",
       "form": "Sözlükteki temel biçim."
     },
+    "entregaréis": {
+      "lemma": "entregar",
+      "tr": "teslim etmek",
+      "en": "hand in, submit",
+      "type": "Fiil",
+      "form": "Futuro simple · vosotros",
+      "note": "Entregar + -éis. Bu örneğin bağlamında bir talimat verilir."
+    },
     "es": {
       "lemma": "ser",
       "tr": "...dır; olmak",
@@ -936,6 +2034,14 @@
       "type": "Fiil",
       "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
       "form": "Presente de indicativo, 3. tekil kişi."
+    },
+    "estará": {
+      "lemma": "estar",
+      "tr": "olmak, bulunmak; bu bağlamda herhalde ...dır",
+      "en": "be; probably be",
+      "type": "Fiil",
+      "form": "Futuro simple · üçüncü tekil kişi",
+      "note": "Bu örnekte şimdiki zamana ilişkin bir olasılık / çıkarım anlatır."
     },
     "estas": {
       "lemma": "este",
@@ -952,6 +2058,22 @@
       "type": "İsim",
       "note": "Kişiye göre eril veya dişil artikel alabilir.",
       "form": "Çoğul isim. Tekili: estudiante."
+    },
+    "estudias": {
+      "lemma": "estudiar",
+      "tr": "ders çalışmak",
+      "en": "study",
+      "type": "Fiil",
+      "form": "Presente · tú",
+      "note": "Si no estudias = ders çalışmazsan. Bu koşulda si sonrasında presente kullanılır."
+    },
+    "examen": {
+      "lemma": "examen",
+      "tr": "sınav",
+      "en": "exam",
+      "type": "İsim",
+      "form": "el examen",
+      "note": ""
     },
     "festivales": {
       "lemma": "festival",
@@ -1001,6 +2123,14 @@
       "form": "El grupo · çoğul",
       "note": ""
     },
+    "haber": {
+      "lemma": "haber",
+      "tr": "yardımcı fiil; var olmak",
+      "en": "auxiliary have; exist",
+      "type": "Fiil",
+      "form": "Mastar",
+      "note": "Düzensiz gelecek zaman gövdesi: habr-. Kişi ekleri düzenli fiillerle aynıdır."
+    },
     "hablan": {
       "lemma": "hablar",
       "tr": "konuşmak",
@@ -1009,13 +2139,85 @@
       "form": "Presente · üçüncü çoğul kişi",
       "note": ""
     },
+    "hablar": {
+      "lemma": "hablar",
+      "tr": "konuşmak",
+      "en": "speak",
+      "type": "Fiil",
+      "form": "Mastar",
+      "note": "Futuro simpleda -ar / -er / -ir sonu kesilmez; kişi eki mastara eklenir."
+    },
+    "hablaremos": {
+      "lemma": "hablar",
+      "tr": "konuşmak",
+      "en": "speak",
+      "type": "Fiil",
+      "form": "Futuro simple · birinci çoğul (nosotros / nosotras)",
+      "note": "hablar + -emos; düzenli gelecek zaman çekimi."
+    },
+    "hablará": {
+      "lemma": "hablar",
+      "tr": "konuşmak",
+      "en": "speak",
+      "type": "Fiil",
+      "form": "Futuro simple · üçüncü tekil (él / ella / usted)",
+      "note": "hablar + -á; düzenli gelecek zaman çekimi."
+    },
+    "hablarán": {
+      "lemma": "hablar",
+      "tr": "konuşmak",
+      "en": "speak",
+      "type": "Fiil",
+      "form": "Futuro simple · üçüncü çoğul (ellos / ellas / ustedes)",
+      "note": "hablar + -án; düzenli gelecek zaman çekimi."
+    },
+    "hablarás": {
+      "lemma": "hablar",
+      "tr": "konuşmak",
+      "en": "speak",
+      "type": "Fiil",
+      "form": "Futuro simple · ikinci tekil (tú)",
+      "note": "hablar + -ás; düzenli gelecek zaman çekimi."
+    },
+    "hablaré": {
+      "lemma": "hablar",
+      "tr": "konuşmak",
+      "en": "speak",
+      "type": "Fiil",
+      "form": "Futuro simple · birinci tekil (yo)",
+      "note": "hablar + -é; düzenli gelecek zaman çekimi."
+    },
+    "hablaréis": {
+      "lemma": "hablar",
+      "tr": "konuşmak",
+      "en": "speak",
+      "type": "Fiil",
+      "form": "Futuro simple · ikinci çoğul (vosotros / vosotras)",
+      "note": "hablar + -éis; düzenli gelecek zaman çekimi."
+    },
+    "habrá": {
+      "lemma": "haber",
+      "tr": "var olacak; olacak",
+      "en": "there will be",
+      "type": "Fiil",
+      "form": "Kişisiz haber · üçüncü tekil futuro simple",
+      "note": "Var olmayı bildiren kişisiz kullanımda isim çoğul da olsa habrá kullanılır."
+    },
+    "habré": {
+      "lemma": "haber",
+      "tr": "yardımcı fiil; var olmak",
+      "en": "auxiliary have; exist",
+      "type": "Fiil",
+      "form": "Futuro simple · birinci tekil (yo)",
+      "note": "Düzensiz gövde habr- + -é. Diğer kişilerin ekleri de bu gövdeye eklenir."
+    },
     "hacer": {
       "lemma": "hacer",
       "tr": "yapmak",
-      "en": "do; make",
+      "en": "do, make",
       "type": "Fiil",
-      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
-      "form": "Sözlükteki temel biçim."
+      "form": "Mastar",
+      "note": "Düzensiz gelecek zaman gövdesi: har-. Kişi ekleri düzenli fiillerle aynıdır."
     },
     "harán": {
       "lemma": "hacer",
@@ -1024,6 +2226,14 @@
       "type": "Fiil",
       "form": "Futuro simple · üçüncü çoğul kişi; düzensiz har- kökü",
       "note": "Hacer → har- + -án = harán."
+    },
+    "haré": {
+      "lemma": "hacer",
+      "tr": "yapmak",
+      "en": "do, make",
+      "type": "Fiil",
+      "form": "Futuro simple · birinci tekil (yo)",
+      "note": "Düzensiz gövde har- + -é. Diğer kişilerin ekleri de bu gövdeye eklenir."
     },
     "idea": {
       "lemma": "idea",
@@ -1081,6 +2291,22 @@
       "note": "Dişil çoğul isim grubunu belirler.",
       "form": "Sözlükteki temel biçim."
     },
+    "levantaré": {
+      "lemma": "levantarse",
+      "tr": "kalkmak",
+      "en": "get up",
+      "type": "Fiil",
+      "form": "Futuro simple · yo; me zamiriyle",
+      "note": "Levantarse → me levantaré. Zamir çekimli fiilden önce ve ayrı yazılır."
+    },
+    "libro": {
+      "lemma": "libro",
+      "tr": "kitap",
+      "en": "book",
+      "type": "İsim",
+      "note": "El libro: eril isim.",
+      "form": "Sözlükteki temel biçim."
+    },
     "limpieza": {
       "lemma": "limpieza",
       "tr": "temizlik",
@@ -1089,6 +2315,22 @@
       "form": "La limpieza · dişil tekil",
       "note": ""
     },
+    "llegaré": {
+      "lemma": "llegar",
+      "tr": "varmak, gelmek",
+      "en": "arrive",
+      "type": "Fiil",
+      "form": "Futuro simple · yo",
+      "note": "No llegaré tarde = geç kalmayacağım."
+    },
+    "llevaré": {
+      "lemma": "llevar",
+      "tr": "taşımak, götürmek",
+      "en": "carry, take",
+      "type": "Fiil",
+      "form": "Futuro simple · yo",
+      "note": "La llevaré = onu, yani bavulu taşıyacağım."
+    },
     "los": {
       "lemma": "los",
       "tr": "belirli artikel (eril/karma çoğul)",
@@ -1096,6 +2338,38 @@
       "type": "Artikel",
       "note": "Çoğul isim grubunu belirler.",
       "form": "Sözlükteki temel biçim."
+    },
+    "lunes": {
+      "lemma": "lunes",
+      "tr": "pazartesi",
+      "en": "Monday",
+      "type": "Gün adı",
+      "form": "Gün adı",
+      "note": ""
+    },
+    "maleta": {
+      "lemma": "maleta",
+      "tr": "bavul",
+      "en": "suitcase",
+      "type": "İsim",
+      "form": "La maleta · dişil tekil",
+      "note": ""
+    },
+    "mañana": {
+      "lemma": "mañana",
+      "tr": "sabah",
+      "en": "morning",
+      "type": "İsim",
+      "note": "La mañana: dişil isim.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "me": {
+      "lemma": "me",
+      "tr": "bana",
+      "en": "to me",
+      "type": "Nesne zamiri",
+      "form": "Birinci tekil kişi.",
+      "note": "Bu videodaki traer cümlesinde dolaylı nesne görevindedir."
     },
     "medio": {
       "lemma": "medio",
@@ -1113,6 +2387,22 @@
       "note": "Bu cümlede conocer eyleminin derecesini anlatıyor. Sıfat olarak da kullanılabilir.",
       "form": "Sözlükteki temel biçim."
     },
+    "muchas": {
+      "lemma": "mucho",
+      "tr": "birçok",
+      "en": "many",
+      "type": "Belirleyici",
+      "form": "Dişil çoğul; personas ile uyumlu",
+      "note": ""
+    },
+    "mucho": {
+      "lemma": "mucho",
+      "tr": "çok",
+      "en": "a lot; much",
+      "type": "Miktar sözcüğü",
+      "note": "İsim önünde belirleyici; fiili niteliyorsa zarf olabilir.",
+      "form": "Sözlükteki temel biçim."
+    },
     "mundo": {
       "lemma": "mundo",
       "tr": "dünya",
@@ -1127,6 +2417,46 @@
       "en": "businesses",
       "type": "İsim",
       "form": "El negocio · çoğul",
+      "note": ""
+    },
+    "no": {
+      "lemma": "no",
+      "tr": "hayır; değil, -me/-ma",
+      "en": "no; not",
+      "type": "Olumsuzluk zarfı",
+      "note": "Fiilin önünde eylemi olumsuz yapar.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "nosotras": {
+      "lemma": "nosotras",
+      "tr": "biz (kadın grubu)",
+      "en": "we",
+      "type": "Özne zamiri",
+      "note": "Birinci çoğul kişi.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "nosotros": {
+      "lemma": "nosotros",
+      "tr": "biz (erkek/karma grup)",
+      "en": "we",
+      "type": "Özne zamiri",
+      "note": "Birinci çoğul kişi.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "nuevas": {
+      "lemma": "nuevo",
+      "tr": "yeni",
+      "en": "new",
+      "type": "Sıfat",
+      "form": "Dişil çoğul; oportunidades ile uyumlu",
+      "note": ""
+    },
+    "oportunidades": {
+      "lemma": "oportunidad",
+      "tr": "fırsatlar",
+      "en": "opportunities",
+      "type": "İsim",
+      "form": "La oportunidad · çoğul",
       "note": ""
     },
     "oral": {
@@ -1161,6 +2491,14 @@
       "note": "Para + mastar amaç bildirebilir.",
       "form": "Sözlükteki temel biçim."
     },
+    "personas": {
+      "lemma": "persona",
+      "tr": "kişi",
+      "en": "person",
+      "type": "İsim",
+      "note": "La persona: dişil isim.",
+      "form": "Çoğul isim. Tekili: persona."
+    },
     "persuasión": {
       "lemma": "persuasión",
       "tr": "ikna",
@@ -1169,6 +2507,14 @@
       "form": "La persuasión · dişil tekil",
       "note": ""
     },
+    "pesa": {
+      "lemma": "pesar",
+      "tr": "ağır gelmek, ağırlığı olmak",
+      "en": "weigh, be heavy",
+      "type": "Fiil",
+      "form": "Presente · üçüncü tekil kişi",
+      "note": "La maleta pesa mucho = bavul çok ağır."
+    },
     "planear": {
       "lemma": "planear",
       "tr": "planlamak",
@@ -1176,6 +2522,38 @@
       "type": "Fiil",
       "form": "Mastar",
       "note": ""
+    },
+    "poder": {
+      "lemma": "poder",
+      "tr": "yapabilmek",
+      "en": "can, be able to",
+      "type": "Fiil",
+      "form": "Mastar",
+      "note": "Düzensiz gelecek zaman gövdesi: podr-. Kişi ekleri düzenli fiillerle aynıdır."
+    },
+    "podré": {
+      "lemma": "poder",
+      "tr": "yapabilmek",
+      "en": "can, be able to",
+      "type": "Fiil",
+      "form": "Futuro simple · birinci tekil (yo)",
+      "note": "Düzensiz gövde podr- + -é. Diğer kişilerin ekleri de bu gövdeye eklenir."
+    },
+    "pondré": {
+      "lemma": "poner",
+      "tr": "koymak",
+      "en": "put",
+      "type": "Fiil",
+      "form": "Futuro simple · birinci tekil (yo)",
+      "note": "Düzensiz gövde pondr- + -é. Diğer kişilerin ekleri de bu gövdeye eklenir."
+    },
+    "poner": {
+      "lemma": "poner",
+      "tr": "koymak",
+      "en": "put",
+      "type": "Fiil",
+      "form": "Mastar",
+      "note": "Düzensiz gelecek zaman gövdesi: pondr-. Kişi ekleri düzenli fiillerle aynıdır."
     },
     "por": {
       "lemma": "por",
@@ -1257,6 +2635,22 @@
       "form": "El póster · çoğul",
       "note": ""
     },
+    "querer": {
+      "lemma": "querer",
+      "tr": "istemek",
+      "en": "want",
+      "type": "Fiil",
+      "form": "Mastar",
+      "note": "Düzensiz gelecek zaman gövdesi: querr-. Kişi ekleri düzenli fiillerle aynıdır."
+    },
+    "querré": {
+      "lemma": "querer",
+      "tr": "istemek",
+      "en": "want",
+      "type": "Fiil",
+      "form": "Futuro simple · birinci tekil (yo)",
+      "note": "Düzensiz gövde querr- + -é. Diğer kişilerin ekleri de bu gövdeye eklenir."
+    },
     "quiénes": {
       "lemma": "quién",
       "tr": "kimler",
@@ -1289,6 +2683,46 @@
       "note": "La respuesta: dişil isim.",
       "form": "Çoğul isim. Tekili: respuesta."
     },
+    "reunión": {
+      "lemma": "reunión",
+      "tr": "toplantı",
+      "en": "meeting",
+      "type": "İsim",
+      "form": "La reunión · dişil tekil",
+      "note": ""
+    },
+    "saber": {
+      "lemma": "saber",
+      "tr": "bilmek",
+      "en": "know",
+      "type": "Fiil",
+      "form": "Mastar",
+      "note": "Düzensiz gelecek zaman gövdesi: sabr-. Kişi ekleri düzenli fiillerle aynıdır."
+    },
+    "sabré": {
+      "lemma": "saber",
+      "tr": "bilmek",
+      "en": "know",
+      "type": "Fiil",
+      "form": "Futuro simple · birinci tekil (yo)",
+      "note": "Düzensiz gövde sabr- + -é. Diğer kişilerin ekleri de bu gövdeye eklenir."
+    },
+    "saldré": {
+      "lemma": "salir",
+      "tr": "çıkmak",
+      "en": "leave, go out",
+      "type": "Fiil",
+      "form": "Futuro simple · birinci tekil (yo)",
+      "note": "Düzensiz gövde saldr- + -é. Diğer kişilerin ekleri de bu gövdeye eklenir."
+    },
+    "salir": {
+      "lemma": "salir",
+      "tr": "çıkmak",
+      "en": "leave, go out",
+      "type": "Fiil",
+      "form": "Mastar",
+      "note": "Düzensiz gelecek zaman gövdesi: saldr-. Kişi ekleri düzenli fiillerle aynıdır."
+    },
     "se": {
       "lemma": "se",
       "tr": "zamirli fiilin öznesiyle uyumlu zamir",
@@ -1304,6 +2738,14 @@
       "type": "İsim",
       "form": "La seguridad · dişil tekil",
       "note": ""
+    },
+    "si": {
+      "lemma": "si",
+      "tr": "-ip -mediğini; eğer",
+      "en": "whether; if",
+      "type": "Bağlaç",
+      "note": "Comprobar si funciona = çalışıp çalışmadığını kontrol etmek. Sí (evet) ile farklı.",
+      "form": "Sözlükteki temel biçim."
     },
     "simple": {
       "lemma": "simple",
@@ -1337,6 +2779,22 @@
       "note": "Su’nun çoğulu; sahip olunan şey çoğul.",
       "form": "Çoğul iyelik belirleyicisi."
     },
+    "tarde": {
+      "lemma": "tarde",
+      "tr": "geç",
+      "en": "late",
+      "type": "Zarf",
+      "form": "Llegar tarde kalıbında; zaman / gecikme bildirir",
+      "note": ""
+    },
+    "te": {
+      "lemma": "te",
+      "tr": "kendini/kendine; seni/sana",
+      "en": "yourself; you",
+      "type": "Nesne/dönüşlü zamir",
+      "note": "Cümleye göre dönüşlü veya nesne zamiri.",
+      "form": "Sözlükteki temel biçim."
+    },
     "teatro": {
       "lemma": "teatro",
       "tr": "tiyatro",
@@ -1344,6 +2802,38 @@
       "type": "İsim",
       "form": "El teatro · eril tekil",
       "note": ""
+    },
+    "temprano": {
+      "lemma": "temprano",
+      "tr": "erken",
+      "en": "early",
+      "type": "Zarf",
+      "form": "Zaman zarfı",
+      "note": ""
+    },
+    "tendrás": {
+      "lemma": "tener",
+      "tr": "sahip olmak; dificultades ile zorlanmak",
+      "en": "have; have difficulties",
+      "type": "Fiil",
+      "form": "Futuro simple · tú",
+      "note": "Tener → tendr- + -ás. Tener dificultades = zorluk yaşamak, zorlanmak."
+    },
+    "tendré": {
+      "lemma": "tener",
+      "tr": "sahip olmak",
+      "en": "have",
+      "type": "Fiil",
+      "form": "Futuro simple · birinci tekil (yo)",
+      "note": "Düzensiz gövde tendr- + -é. Diğer kişilerin ekleri de bu gövdeye eklenir."
+    },
+    "tener": {
+      "lemma": "tener",
+      "tr": "sahip olmak",
+      "en": "have",
+      "type": "Fiil",
+      "form": "Mastar",
+      "note": "Düzensiz gelecek zaman gövdesi: tendr-. Kişi ekleri düzenli fiillerle aynıdır."
     },
     "tiendas": {
       "lemma": "tienda",
@@ -1369,6 +2859,22 @@
       "form": "Futuro simple · üçüncü tekil kişi",
       "note": "Trabajar + -á = trabajará."
     },
+    "trabajarán": {
+      "lemma": "trabajar",
+      "tr": "çalışmak",
+      "en": "work",
+      "type": "Fiil",
+      "form": "Futuro simple · üçüncü çoğul kişi",
+      "note": "Trabajar + -án."
+    },
+    "tú": {
+      "lemma": "tú",
+      "tr": "sen",
+      "en": "you",
+      "type": "Özne zamiri",
+      "note": "İkinci tekil kişi. Aksanı olmayan tu = senin.",
+      "form": "Sözlükteki temel biçim."
+    },
     "un": {
       "lemma": "un",
       "tr": "bir (eril)",
@@ -1376,6 +2882,14 @@
       "type": "Belirsiz artikel",
       "note": "Eril tekil isimden önce.",
       "form": "Sözlükteki temel biçim."
+    },
+    "una": {
+      "lemma": "una",
+      "tr": "bir; saat bir",
+      "en": "one; a",
+      "type": "Sayı / belirsiz artikel",
+      "form": "Sayı / belirsiz artikel",
+      "note": ""
     },
     "usar": {
       "lemma": "usar",
@@ -1393,6 +2907,22 @@
       "form": "El uso · eril tekil; burada isim",
       "note": ""
     },
+    "usted": {
+      "lemma": "usted",
+      "tr": "siz (resmî, tekil)",
+      "en": "you (formal singular)",
+      "type": "Özne zamiri",
+      "note": "Anlamca siz, fiil çekiminde üçüncü tekil kişi.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "ustedes": {
+      "lemma": "ustedes",
+      "tr": "siz (çoğul)",
+      "en": "you (plural)",
+      "type": "Özne zamiri",
+      "note": "Fiil üçüncü çoğul çekilir; Latin Amerika’da genel çoğul hitaptır.",
+      "form": "Sözlükteki temel biçim."
+    },
     "utilizan": {
       "lemma": "utilizar",
       "tr": "kullanmak",
@@ -1400,6 +2930,126 @@
       "type": "Fiil",
       "form": "Presente · üçüncü çoğul kişi",
       "note": ""
+    },
+    "valdré": {
+      "lemma": "valer",
+      "tr": "değeri olmak, etmek",
+      "en": "be worth",
+      "type": "Fiil",
+      "form": "Futuro simple · birinci tekil (yo)",
+      "note": "Düzensiz gövde valdr- + -é. Diğer kişilerin ekleri de bu gövdeye eklenir."
+    },
+    "valer": {
+      "lemma": "valer",
+      "tr": "değeri olmak, etmek",
+      "en": "be worth",
+      "type": "Fiil",
+      "form": "Mastar",
+      "note": "Düzensiz gelecek zaman gövdesi: valdr-. Kişi ekleri düzenli fiillerle aynıdır."
+    },
+    "vendrás": {
+      "lemma": "venir",
+      "tr": "gelmek",
+      "en": "come",
+      "type": "Fiil",
+      "form": "Futuro simple · tú",
+      "note": "Venir → vendr- + -ás; düzensiz gelecek zaman gövdesi."
+    },
+    "vendré": {
+      "lemma": "venir",
+      "tr": "gelmek",
+      "en": "come",
+      "type": "Fiil",
+      "form": "Futuro simple · birinci tekil (yo)",
+      "note": "Düzensiz gövde vendr- + -é. Diğer kişilerin ekleri de bu gövdeye eklenir."
+    },
+    "venir": {
+      "lemma": "venir",
+      "tr": "gelmek",
+      "en": "come",
+      "type": "Fiil",
+      "form": "Mastar",
+      "note": "Düzensiz gelecek zaman gövdesi: vendr-. Kişi ekleri düzenli fiillerle aynıdır."
+    },
+    "viernes": {
+      "lemma": "viernes",
+      "tr": "cuma",
+      "en": "Friday",
+      "type": "Gün adı",
+      "form": "Gün adı",
+      "note": ""
+    },
+    "vivir": {
+      "lemma": "vivir",
+      "tr": "yaşamak",
+      "en": "live",
+      "type": "Fiil",
+      "form": "Mastar",
+      "note": "Futuro simpleda -ar / -er / -ir sonu kesilmez; kişi eki mastara eklenir."
+    },
+    "viviremos": {
+      "lemma": "vivir",
+      "tr": "yaşamak",
+      "en": "live",
+      "type": "Fiil",
+      "form": "Futuro simple · birinci çoğul (nosotros / nosotras)",
+      "note": "vivir + -emos; düzenli gelecek zaman çekimi."
+    },
+    "vivirá": {
+      "lemma": "vivir",
+      "tr": "yaşamak",
+      "en": "live",
+      "type": "Fiil",
+      "form": "Futuro simple · üçüncü tekil (él / ella / usted)",
+      "note": "vivir + -á; düzenli gelecek zaman çekimi."
+    },
+    "vivirán": {
+      "lemma": "vivir",
+      "tr": "yaşamak",
+      "en": "live",
+      "type": "Fiil",
+      "form": "Futuro simple · üçüncü çoğul (ellos / ellas / ustedes)",
+      "note": "vivir + -án; düzenli gelecek zaman çekimi."
+    },
+    "vivirás": {
+      "lemma": "vivir",
+      "tr": "yaşamak",
+      "en": "live",
+      "type": "Fiil",
+      "form": "Futuro simple · ikinci tekil (tú)",
+      "note": "vivir + -ás; düzenli gelecek zaman çekimi."
+    },
+    "viviré": {
+      "lemma": "vivir",
+      "tr": "yaşamak",
+      "en": "live",
+      "type": "Fiil",
+      "form": "Futuro simple · birinci tekil (yo)",
+      "note": "vivir + -é; düzenli gelecek zaman çekimi."
+    },
+    "viviréis": {
+      "lemma": "vivir",
+      "tr": "yaşamak",
+      "en": "live",
+      "type": "Fiil",
+      "form": "Futuro simple · ikinci çoğul (vosotros / vosotras)",
+      "note": "vivir + -éis; düzenli gelecek zaman çekimi."
+    },
+    "vosotras": {
+      "lemma": "vosotras",
+      "tr": "siz (kadın grubu)",
+      "en": "you (plural, Spain)",
+      "type": "Özne zamiri",
+      "note": "İspanya’da samimi çoğul hitap.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "vosotros": {
+      "lemma": "vosotros",
+      "tr": "siz (erkek/karma grup)",
+      "en": "you (plural, Spain)",
+      "type": "Özne zamiri",
+      "note": "İspanya’da samimi çoğul hitap.",
+      "form": "Sözlükteki temel biçim."
     },
     "votación": {
       "lemma": "votación",
@@ -1425,6 +3075,22 @@
       "note": "Sözcükleri veya cümleleri birbirine bağlar.",
       "form": "Sözlükteki temel biçim."
     },
+    "yo": {
+      "lemma": "yo",
+      "tr": "ben",
+      "en": "I",
+      "type": "Özne zamiri",
+      "note": "Birinci tekil kişi.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "él": {
+      "lemma": "él",
+      "tr": "o (erkek)",
+      "en": "he",
+      "type": "Özne zamiri",
+      "note": "Üçüncü tekil kişi; aksansız el ise artikeldir.",
+      "form": "Sözlükteki temel biçim."
+    },
     "única": {
       "lemma": "único",
       "tr": "benzersiz, tek",
@@ -1433,5 +3099,172 @@
       "form": "Dişil tekil sıfat; idea ile uyumlu",
       "note": ""
     }
+  },
+  "grammar": {
+    "regular": [
+      {
+        "person": "grammar-person-0",
+        "ending": "-é",
+        "hablar": "grammar-hablar-0",
+        "comer": "grammar-comer-0",
+        "vivir": "grammar-vivir-0"
+      },
+      {
+        "person": "grammar-person-1",
+        "ending": "-ás",
+        "hablar": "grammar-hablar-1",
+        "comer": "grammar-comer-1",
+        "vivir": "grammar-vivir-1"
+      },
+      {
+        "person": "grammar-person-2",
+        "ending": "-á",
+        "hablar": "grammar-hablar-2",
+        "comer": "grammar-comer-2",
+        "vivir": "grammar-vivir-2"
+      },
+      {
+        "person": "grammar-person-3",
+        "ending": "-emos",
+        "hablar": "grammar-hablar-3",
+        "comer": "grammar-comer-3",
+        "vivir": "grammar-vivir-3"
+      },
+      {
+        "person": "grammar-person-4",
+        "ending": "-éis",
+        "hablar": "grammar-hablar-4",
+        "comer": "grammar-comer-4",
+        "vivir": "grammar-vivir-4"
+      },
+      {
+        "person": "grammar-person-5",
+        "ending": "-án",
+        "hablar": "grammar-hablar-5",
+        "comer": "grammar-comer-5",
+        "vivir": "grammar-vivir-5"
+      }
+    ],
+    "irregular": [
+      {
+        "verb": "grammar-inf-caber",
+        "stem": "cabr-",
+        "form": "grammar-irr-caber"
+      },
+      {
+        "verb": "grammar-inf-decir",
+        "stem": "dir-",
+        "form": "grammar-irr-decir"
+      },
+      {
+        "verb": "grammar-inf-haber",
+        "stem": "habr-",
+        "form": "grammar-irr-haber"
+      },
+      {
+        "verb": "grammar-inf-hacer",
+        "stem": "har-",
+        "form": "grammar-irr-hacer"
+      },
+      {
+        "verb": "grammar-inf-poder",
+        "stem": "podr-",
+        "form": "grammar-irr-poder"
+      },
+      {
+        "verb": "grammar-inf-poner",
+        "stem": "pondr-",
+        "form": "grammar-irr-poner"
+      },
+      {
+        "verb": "grammar-inf-querer",
+        "stem": "querr-",
+        "form": "grammar-irr-querer"
+      },
+      {
+        "verb": "grammar-inf-saber",
+        "stem": "sabr-",
+        "form": "grammar-irr-saber"
+      },
+      {
+        "verb": "grammar-inf-salir",
+        "stem": "saldr-",
+        "form": "grammar-irr-salir"
+      },
+      {
+        "verb": "grammar-inf-tener",
+        "stem": "tendr-",
+        "form": "grammar-irr-tener"
+      },
+      {
+        "verb": "grammar-inf-valer",
+        "stem": "valdr-",
+        "form": "grammar-irr-valer"
+      },
+      {
+        "verb": "grammar-inf-venir",
+        "stem": "vendr-",
+        "form": "grammar-irr-venir"
+      }
+    ],
+    "rules": [
+      {
+        "title": "Olumsuz cümle",
+        "formula": "no + çekimli fiil",
+        "id": "grammar-negative"
+      },
+      {
+        "title": "Soru cümlesi",
+        "formula": "¿ + soru cümlesi + ?",
+        "id": "grammar-question"
+      },
+      {
+        "title": "Dönüşlü fiil ve zamir",
+        "formula": "me / te / se / nos / os / se + fiil",
+        "id": "grammar-reflexive"
+      },
+      {
+        "title": "“Var olacak”: habrá",
+        "formula": "haber → habrá",
+        "id": "grammar-haber"
+      }
+    ],
+    "uses": [
+      {
+        "title": "Gelecekteki olay ve durumlar",
+        "description": "Henüz gerçekleşmemiş bir olayın veya durumun gelecekte ne zaman olacağını bildirir.",
+        "id": "grammar-use-1"
+      },
+      {
+        "title": "Geleceğe ilişkin tahmin ve öngörü",
+        "description": "Geleceğin nasıl olacağına dair bir öngörü sunar.",
+        "id": "grammar-use-2"
+      },
+      {
+        "title": "O anda alınan karar ve yardım teklifi",
+        "description": "Konuşma sırasında verilen bir kararı veya üstlenilen bir işi ifade edebilir.",
+        "id": "grammar-use-3"
+      },
+      {
+        "title": "Söz verme ve taahhüt",
+        "description": "Bir işi yapmaya söz verirken veya sorumluluk üstlenirken kullanılır.",
+        "id": "grammar-use-4"
+      },
+      {
+        "title": "Şimdiki zamana ilişkin olasılık / çıkarım",
+        "description": "Gelecek biçimiyle, şu anda doğru olabileceğini düşündüğümüz bir durumu anlatabiliriz.",
+        "id": "grammar-use-5"
+      },
+      {
+        "title": "Talimat ve kesin istek",
+        "description": "Özellikle kurallarda veya talimatlarda ne yapılması gerektiğini güçlü biçimde bildirebilir.",
+        "id": "grammar-use-6"
+      },
+      {
+        "title": "Uyarı ve gerçekleşmesi mümkün koşulun sonucu",
+        "description": "Olması mümkün bir koşulun gelecekteki sonucunu belirtir; bağlama göre uyarı anlamı taşır.",
+        "id": "grammar-use-7"
+      }
+    ]
   }
 }

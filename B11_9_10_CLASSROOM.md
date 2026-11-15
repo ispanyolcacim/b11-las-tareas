@@ -2,7 +2,7 @@
 
 Classroom activity: `b11-9-10-ders-ici.html`.
 
-1. Wordwall, B1.1 Futuro Simple / 3. The official oEmbed API for the user-provided play URL returns `https://wordwall.net/embed/play/84312/823/806?ref=oembed`. The original assignment requests Google Classroom sign-in when opened without a session. Preserve the supplied assignment and its access conditions; keep the external Wordwall link beside the frame.
+1. Futuro simple structure and Wordwall. Regular infinitive + ending formula; six-person tables for hablar/comer/vivir; twelve irregular stems; negation, questions, pronominal placement and impersonal habrá; seven usage contexts with exactly one annotated original example each. The user-supplied embed is https://wordwall.net/es/embed/7d624eb22b12417f8b9c366192204db9?themeId=65&templateId=3&fontStackId=0 . The external link opens the same resource. The former assignment/sign-in note is removed.
 2. Anuncio del Futuro. Five bilingual steps, three project categories, three guiding questions, four evaluation criteria, and two extension ideas from the supplied lesson. Spanish words open an anchored TR/EN vocabulary panel with lemma, form, phrase role and sentence context. The explicit request for groups of 3–4 applies to this activity.
 
 The final 9–10 homework panel includes the actual 50-question homework and the portal-listed B1.1 11+12 preparation set (82 terms). It opens independently of lesson navigation and has its own print action.
