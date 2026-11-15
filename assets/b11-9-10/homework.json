@@ -1,0 +1,738 @@
+{
+  "Q": [
+    {
+      "t": "mc",
+      "video": "https://www.youtube.com/watch?v=am9jTBARa-o",
+      "vlabel": "Voces 3 U5 – Nuestro futuro (SGEL ELE)",
+      "q": "¿En qué situación se encuentra Martina al principio del video?",
+      "o": [
+        "Está comenzando su primer año de estudios.",
+        "Está buscando un trabajo en su país de origen.",
+        "Está trabajando en un hotel en España.",
+        "Está terminando el último año de su carrera."
+      ],
+      "a": 3,
+      "exp": "[00:10] Martina, \"estoy terminando el último año de la carrera\" diyerek eğitiminin son yılında olduğunu ve geleceği için heyecanlı/gergin olduğunu belirtiyor."
+    },
+    {
+      "t": "mc",
+      "video": "https://www.youtube.com/watch?v=am9jTBARa-o",
+      "vlabel": "Voces 3 U5 – Nuestro futuro (SGEL ELE)",
+      "q": "¿Qué cree Jaime que estudiará después de aprobar el bachillerato?",
+      "o": [
+        "Ingeniería en robótica",
+        "Hostelería y turismo",
+        "Ciencias de la información",
+        "Diseño gráfico"
+      ],
+      "a": 2,
+      "exp": "[00:43] Jaime, lise eğitimini tamamladıktan sonra \"creo que estudiaré ciencias de la información\" diyerek bilgi bilimleri okumayı planladığını söylüyor."
+    },
+    {
+      "t": "mc",
+      "video": "https://www.youtube.com/watch?v=am9jTBARa-o",
+      "vlabel": "Voces 3 U5 – Nuestro futuro (SGEL ELE)",
+      "q": "¿Hacia qué área de estudio se inclina Sara para su futuro?",
+      "o": [
+        "Medicina tradicional",
+        "Ingeniería en robótica",
+        "Relaciones internacionales",
+        "Historia del arte"
+      ],
+      "a": 1,
+      "exp": "[00:50] Sara, teknoloji ve tasarımla ilgilendiğini belirterek \"quizá ingeniería en robótica\" (belki robotik mühendisliği) ifadesini kullanıyor."
+    },
+    {
+      "t": "mc",
+      "video": "https://www.youtube.com/watch?v=am9jTBARa-o",
+      "vlabel": "Voces 3 U5 – Nuestro futuro (SGEL ELE)",
+      "q": "¿Cuál es el plan de Luis Alberto después de terminar sus estudios?",
+      "o": [
+        "Quedarse en España para hacer prácticas en un hotel.",
+        "Volver inmediatamente a Venezuela.",
+        "Abrir su propio restaurante en España.",
+        "Estudiar una segunda carrera en ingeniería."
+      ],
+      "a": 0,
+      "exp": "[01:08] Luis Alberto, eğitimini tamamladıktan sonra bir süre İspanya'da kalarak otellerde staj yapmayı planladığını belirtiyor."
+    },
+    {
+      "t": "mc",
+      "video": "https://www.youtube.com/watch?v=am9jTBARa-o",
+      "vlabel": "Voces 3 U5 – Nuestro futuro (SGEL ELE)",
+      "q": "¿Por qué quiere Luis Alberto ganar experiencia laboral en España?",
+      "o": [
+        "Para conseguir más fácil un buen trabajo en su país.",
+        "Para aprender a cocinar comida española.",
+        "Porque no quiere volver a Venezuela nunca.",
+        "Porque es un requisito para graduarse."
+      ],
+      "a": 0,
+      "exp": "[01:14] Luis Alberto, edindiği deneyim sayesinde Venezuela'ya döndüğünde iyi bir iş bulmasının daha kolay olacağını (\"me va a ser más fácil conseguir un buen trabajo allá\") ifade ediyor."
+    },
+    {
+      "t": "mc",
+      "video": "https://www.youtube.com/watch?v=am9jTBARa-o",
+      "vlabel": "Voces 3 U5 – Nuestro futuro (SGEL ELE)",
+      "q": "¿Cómo imagina Jaime el mercado laboral del futuro?",
+      "o": [
+        "Con muy pocas personas preparadas.",
+        "Con mucha competencia y gente muy preparada.",
+        "Muy fácil para encontrar un buen trabajo.",
+        "Sin necesidad de estudiar una carrera."
+      ],
+      "a": 1,
+      "exp": "[01:26] Jaime geleceğe dair pesimist bir bakış açısıyla \"habrá mucha competencia, la gente estará más preparada\" diyerek çok fazla rekabet olacağını öngörüyor."
+    },
+    {
+      "t": "mc",
+      "video": "https://www.youtube.com/watch?v=am9jTBARa-o",
+      "vlabel": "Voces 3 U5 – Nuestro futuro (SGEL ELE)",
+      "q": "¿En qué tipo de organización se imagina trabajando Jaime?",
+      "o": [
+        "En una empresa de robótica",
+        "En una escuela de idiomas",
+        "En una agencia de noticias o televisión",
+        "En una oficina de turismo"
+      ],
+      "a": 2,
+      "exp": "[01:33] Jaime gelecekte bir haber ajansı veya televizyon kanalı için çalışacağını hayal ettiğini söylüyor (\"trabajando para una agencia de noticias o para una televisión\")."
+    },
+    {
+      "t": "mc",
+      "video": "https://www.youtube.com/watch?v=am9jTBARa-o",
+      "vlabel": "Voces 3 U5 – Nuestro futuro (SGEL ELE)",
+      "q": "¿Qué opina Sara sobre la importancia de la robótica en el futuro?",
+      "o": [
+        "Cree que las máquinas no serán importantes.",
+        "Piensa que será una carrera muy aburrida.",
+        "Opina que ya no se necesitarán trabajadores humanos.",
+        "Cree que será muy importante y se necesitará gente formada."
+      ],
+      "a": 3,
+      "exp": "[01:42] Sara iyimser bir tavırla gelecekte robotiğin çok önemli olacağını ve kendisi gibi eğitimli insanlara ihtiyaç duyulacağını belirtiyor."
+    },
+    {
+      "t": "mc",
+      "video": "https://www.youtube.com/watch?v=am9jTBARa-o",
+      "vlabel": "Voces 3 U5 – Nuestro futuro (SGEL ELE)",
+      "q": "¿Por qué es optimista Luis Alberto sobre su futuro profesional en Venezuela?",
+      "o": [
+        "Porque el país ya tiene demasiados robots.",
+        "Porque quiere estudiar periodismo allí.",
+        "Porque no habrá competencia en su área.",
+        "Porque Venezuela quiere desarrollar su potencial turístico."
+      ],
+      "a": 3,
+      "exp": "[01:52] Luis Alberto, Venezuela'nın turizm potansiyelini geliştirmek istediğini ve bu yüzden deneyimli profesyonellere ihtiyaç duyulacağı için iyimser olduğunu söylüyor."
+    },
+    {
+      "t": "mc",
+      "video": "https://www.youtube.com/watch?v=am9jTBARa-o",
+      "vlabel": "Voces 3 U5 – Nuestro futuro (SGEL ELE)",
+      "q": "¿A dónde deciden ir los amigos al final de la conversación para seguir preparándose?",
+      "o": [
+        "A la biblioteca",
+        "A un hotel",
+        "A sus países de origen",
+        "A un videoblog"
+      ],
+      "a": 0,
+      "exp": "[02:07] Gençler, şu an hala öğrenci olduklarını ve en iyisinin ders çalışmak olduğunu kabul ederek kütüphaneye (\"entramos a la biblioteca\") girmeye karar veriyorlar."
+    },
+    {
+      "t": "mc",
+      "video": "https://www.youtube.com/watch?v=tcNyVyK1Beg",
+      "vlabel": "Compañeros – El futuro del planeta – Voluntarios (SGEL ELE)",
+      "q": "¿Qué buscarán los jóvenes para realizar durante sus vacaciones?",
+      "o": [
+        "Un hotel para descansar",
+        "Un trabajo con salario",
+        "Un campamento de voluntarios",
+        "Una academia de baile"
+      ],
+      "a": 2,
+      "exp": "Karakterler yaz tatili planı olarak bir gönüllü kampına (campamento de voluntarios) yazılma fikrini tartışıyorlar."
+    },
+    {
+      "t": "mc",
+      "video": "https://www.youtube.com/watch?v=tcNyVyK1Beg",
+      "vlabel": "Compañeros – El futuro del planeta – Voluntarios (SGEL ELE)",
+      "q": "¿A qué región de España viajarán los chicos si eligen el proyecto del oso pardo?",
+      "o": [
+        "A Andalucía",
+        "A Asturias",
+        "A Madrid",
+        "A las Islas Baleares"
+      ],
+      "a": 1,
+      "exp": "Videoda boz ayıları (oso pardo) koruma projesinin Asturias bölgesinde olduğu belirtiliyor."
+    },
+    {
+      "t": "mc",
+      "video": "https://www.youtube.com/watch?v=tcNyVyK1Beg",
+      "vlabel": "Compañeros – El futuro del planeta – Voluntarios (SGEL ELE)",
+      "q": "¿Qué animal protegerán los voluntarios en el campamento de Costa Rica?",
+      "o": [
+        "Los osos",
+        "Las tortugas",
+        "Los pájaros",
+        "Los perros"
+      ],
+      "a": 1,
+      "exp": "Costa Rica'daki kampın kaplumbağaların (tortugas) korunmasına adandığı söyleniyor."
+    },
+    {
+      "t": "mc",
+      "video": "https://www.youtube.com/watch?v=tcNyVyK1Beg",
+      "vlabel": "Compañeros – El futuro del planeta – Voluntarios (SGEL ELE)",
+      "q": "¿En qué zona geográfica se ubica el país de Costa Rica según el video?",
+      "o": [
+        "En Europa",
+        "En el Mediterráneo",
+        "En el Caribe",
+        "En el Pacífico Sur"
+      ],
+      "a": 2,
+      "exp": "Karakterlerden biri Costa Rica'nın Karayipler'de (el Caribe) olduğunu ifade ediyor."
+    },
+    {
+      "t": "mc",
+      "video": "https://www.youtube.com/watch?v=tcNyVyK1Beg",
+      "vlabel": "Compañeros – El futuro del planeta – Voluntarios (SGEL ELE)",
+      "q": "¿Qué aprenderán a producir de manera sostenible en las Islas Canarias?",
+      "o": [
+        "Frutas y verduras",
+        "Ropa reciclada",
+        "Casas de madera",
+        "Energía de manera sostenible"
+      ],
+      "a": 3,
+      "exp": "Kanarya Adaları'ndaki projenin sürdürülebilir enerji (energía de manera sostenible) üretmeyi öğrenmekle ilgili olduğu belirtiliyor."
+    },
+    {
+      "t": "mc",
+      "video": "https://www.youtube.com/watch?v=tcNyVyK1Beg",
+      "vlabel": "Compañeros – El futuro del planeta – Voluntarios (SGEL ELE)",
+      "q": "¿Quién quiere ser ingeniero en su vida profesional futura?",
+      "o": [
+        "El chico de la chaqueta roja",
+        "El otro chico",
+        "Los hermanos de los dos",
+        "Las madres de las dos"
+      ],
+      "a": 0,
+      "exp": "Soldaki çocuk, kırmızı ceketli diğer arkadaşına \"sen mühendis (ingeniero) olmak istediğin için bu senin ilgini çekiyor\" diyerek onun meslek hayalini belirtiyor."
+    },
+    {
+      "t": "mc",
+      "video": "https://www.youtube.com/watch?v=tcNyVyK1Beg",
+      "vlabel": "Compañeros – El futuro del planeta – Voluntarios (SGEL ELE)",
+      "q": "¿A quién ayudará con su elección de voluntariado?",
+      "o": [
+        "A la gente",
+        "A las tortugas",
+        "A los osos",
+        "A los ingenieros"
+      ],
+      "a": 0,
+      "exp": "Teknik projeler yerine insanlara yardım etmeyi (ayudar a la gente) tercih ettiğini söylüyor."
+    },
+    {
+      "t": "mc",
+      "video": "https://www.youtube.com/watch?v=tcNyVyK1Beg",
+      "vlabel": "Compañeros – El futuro del planeta – Voluntarios (SGEL ELE)",
+      "q": "¿Qué actividad harán específicamente con los niños en el voluntariado social?",
+      "o": [
+        "Limpiar los parques",
+        "Cocinar comida sana",
+        "Jugar al fútbol",
+        "Dar clases"
+      ],
+      "a": 3,
+      "exp": "Sosyal gönüllülük kapsamında çocuklara ders verme (dar clases a niños) fikri üzerinde duruluyor."
+    },
+    {
+      "t": "mc",
+      "video": "https://www.youtube.com/watch?v=tcNyVyK1Beg",
+      "vlabel": "Compañeros – El futuro del planeta – Voluntarios (SGEL ELE)",
+      "q": "¿Con quién hablarán los jóvenes para recibir consejos sobre las ONGs?",
+      "o": [
+        "Con el director",
+        "Con la madre",
+        "Con el tío Luis",
+        "Con el vecino"
+      ],
+      "a": 2,
+      "exp": "Gönüllülük konusunda tecrübeli olan Luis amcayı/dayıyı (tío Luis) görmeye gitmeye karar veriyorlar."
+    },
+    {
+      "t": "mc",
+      "video": "https://www.youtube.com/watch?v=tcNyVyK1Beg",
+      "vlabel": "Compañeros – El futuro del planeta – Voluntarios (SGEL ELE)",
+      "q": "¿En qué tipo de organización trabajará el tío Luis?",
+      "o": [
+        "En un banco internacional",
+        "En una ONG",
+        "En una escuela primaria",
+        "En un hospital grande"
+      ],
+      "a": 1,
+      "exp": "Luis'in bir ONG'de çalıştığı videoda açıkça ifade ediliyor."
+    },
+    {
+      "t": "mc",
+      "video": "https://www.youtube.com/watch?v=tcNyVyK1Beg",
+      "vlabel": "Compañeros – El futuro del planeta – Voluntarios (SGEL ELE)",
+      "q": "¿Cómo se sentirán los padres al saber que el tío Luis acompañará a los chicos?",
+      "o": [
+        "Enojados",
+        "Convencidos",
+        "Sorprendidos",
+        "Asustados"
+      ],
+      "a": 1,
+      "exp": "Bir akrabanın onlarla gidecek olması tüm ebeveynleri ikna ediyor (los ha convencido)."
+    },
+    {
+      "t": "mc",
+      "video": "https://www.youtube.com/watch?v=tcNyVyK1Beg",
+      "vlabel": "Compañeros – El futuro del planeta – Voluntarios (SGEL ELE)",
+      "q": "¿A qué destino irán finalmente los voluntarios para su proyecto?",
+      "o": [
+        "Al Sáhara",
+        "A Costa Rica",
+        "A Asturias",
+        "A las Islas Canarias"
+      ],
+      "a": 0,
+      "exp": "Videonun sonunda \"Sáhara'ya gitmeye hazır mısın?\" sorusuyla nihai varış yeri belli oluyor."
+    },
+    {
+      "t": "mc",
+      "video": "https://www.youtube.com/watch?v=tcNyVyK1Beg",
+      "vlabel": "Compañeros – El futuro del planeta – Voluntarios (SGEL ELE)",
+      "q": "¿Qué dispositivo usará el chico para investigar más sobre los campamentos?",
+      "o": [
+        "Un periódico",
+        "Un ordenador viejo",
+        "Un teléfono móvil",
+        "Una tablet"
+      ],
+      "a": 3,
+      "exp": "Erkek karakter, kamp seçeneklerine bakmak için tableti (tablet) kullanacağını söylüyor."
+    },
+    {
+      "t": "mc",
+      "video": "https://www.youtube.com/watch?v=tcNyVyK1Beg",
+      "vlabel": "Compañeros – El futuro del planeta – Voluntarios (SGEL ELE)",
+      "q": "¿Qué trae el chico después de visitar algunas ONGs?",
+      "o": [
+        "Fotos de los animales",
+        "Libros de geografía",
+        "Folletos",
+        "Mapas del mundo"
+      ],
+      "a": 2,
+      "exp": "Çocuk, bazı kurumlardan broşürler/el ilanları (folletos) getirdiğini belirtiyor."
+    },
+    {
+      "t": "mc",
+      "video": "https://www.youtube.com/watch?v=tcNyVyK1Beg",
+      "vlabel": "Compañeros – El futuro del planeta – Voluntarios (SGEL ELE)",
+      "q": "¿En qué estación del año estarán los jóvenes cuando realicen el viaje?",
+      "o": [
+        "En invierno",
+        "En otoño",
+        "En verano",
+        "En primavera"
+      ],
+      "a": 2,
+      "exp": "Diyalog \"bu yaz (verano) ne yapacaksın?\" sorusuyla başlayarak tatil planına odaklanıyor."
+    },
+    {
+      "t": "mc",
+      "video": "https://www.youtube.com/watch?v=tcNyVyK1Beg",
+      "vlabel": "Compañeros – El futuro del planeta – Voluntarios (SGEL ELE)",
+      "q": "¿Qué significará la sigla \"ONG\" para la organización donde trabajará el tío Luis?",
+      "o": [
+        "Oficina de Negocios Grandes",
+        "Operación Nacional Global",
+        "Organización No Gubernamental",
+        "Objetivo de Noticia General"
+      ],
+      "a": 2,
+      "exp": "Luis amcanın/dayısının bir \"ONG\" bünyesinde çalıştığı belirtilir; bu kısaltma İspanyolcada sivil toplum kuruluşu (Organización No Gubernamental) anlamına gelmektedir."
+    },
+    {
+      "t": "mc",
+      "badge": "lectura",
+      "lectura": "El teletrabajo ha transformado profundamente la rutina de millones de personas en todo el mundo. Hoy en día, muchas empresas permiten que sus empleados realicen sus tareas desde casa de manera permanente. Esta modalidad ayuda a los trabajadores a ahorrar mucho tiempo en desplazamientos diarios por la ciudad. Además, se observa una reducción considerable en el estrés relacionado con el tráfico matutino. Sin embargo, trabajar a distancia también presenta desafíos importantes para la salud mental y social. El aislamiento puede afectar la motivación si no hay contacto físico con los compañeros de oficina. La comunicación virtual a veces es menos eficiente que las conversaciones cara a cara. Es fundamental establecer límites claros entre el tiempo profesional y el espacio personal en casa. Muchas personas prefieren ir a la oficina al menos dos días por semana para socializar. La flexibilidad horaria permite organizar mejor las tareas domésticas y el cuidado de la familia. Se puede trabajar desde cualquier lugar del mundo si se tiene una buena conexión a internet. Esto ha fomentado el surgimiento de los llamados nómadas digitales en diversos países. Las reuniones por videoconferencia se han convertido en una herramienta indispensable para el éxito empresarial. Se requiere mucha disciplina propia para mantener la productividad sin una supervisión directa y constante. El equilibrio emocional es la clave para disfrutar de los beneficios reales de esta nueva era laboral.",
+      "q": "El impacto del teletrabajo en la sociedad moderna\n\n¿Cuál de las siguientes afirmaciones NO se puede extraer del texto?",
+      "o": [
+        "El teletrabajo reduce el estrés causado por el tráfico en las ciudades.",
+        "Es necesario separar el horario de trabajo de la vida personal en el hogar.",
+        "El contacto físico con los colegas ayuda a mantener la motivación laboral.",
+        "Todas las empresas del mundo han eliminado obligatoriamente sus oficinas físicas."
+      ],
+      "a": 3,
+      "exp": "Metinde teleçalışmanın faydaları ve zorlukları anlatılmaktadır. Ancak tüm dünya şirketlerinin ofislerini zorunlu olarak kapattığına dair bir bilgi yoktur. Bu yüzden doğru cevap D şıkkıdır."
+    },
+    {
+      "t": "mc",
+      "badge": "lectura",
+      "lectura": "El turismo es una de las industrias más potentes y dinámicas del planeta actualmente. Muchos países dependen económicamente de la llegada constante de visitantes extranjeros cada temporada. No obstante, el turismo de masas puede causar daños irreparables en los ecosistemas locales. El turismo sostenible surge como una alternativa para proteger el medio ambiente y la cultura. Esta forma de viajar busca minimizar el impacto negativo en los recursos naturales preciosos. Los viajeros responsables eligen alojamientos que utilizan energías renovables y reciclan sus residuos. También es vital consumir productos locales para apoyar directamente la economía de la comunidad. El respeto por las tradiciones y costumbres de los habitantes es un pilar fundamental. Muchas reservas naturales ahora limitan el número de personas que pueden entrar cada día. La educación ambiental ayuda a los turistas a entender la fragilidad de ciertos paisajes únicos. Se recomienda evitar el uso de plásticos de un solo uso durante las excursiones largas. El agua es un recurso escaso en muchas zonas turísticas y debe usarse con prudencia. Los guías locales ofrecen una perspectiva auténtica y enriquecedora sobre la historia del lugar. Viajar de forma consciente permite que las futuras generaciones también disfruten de estos destinos hermosos. El compromiso colectivo es necesario para transformar la industria del viaje en algo positivo.",
+      "q": "La importancia del turismo sostenible\n\n¿Cuál de las siguientes afirmaciones NO se puede extraer del texto?",
+      "o": [
+        "El turismo de masas es la única forma de salvar la economía de los países pobres.",
+        "El turismo sostenible intenta reducir el daño en la naturaleza y en la cultura local.",
+        "Es importante comprar productos de la zona para ayudar a los habitantes locales.",
+        "Algunos lugares naturales restringen la cantidad de visitantes para proteger el paisaje."
+      ],
+      "a": 0,
+      "exp": "Metin, kitle turizminin zararlarından ve sürdürülebilirliğin öneminden bahsetmektedir. Kitle turizminin ekonomiyi kurtaracak tek yol olduğu ifadesi metinle çelişmektedir. Bu yüzden doğru cevap A şıkkıdır."
+    },
+    {
+      "t": "mc",
+      "badge": "lectura",
+      "lectura": "La dieta mediterránea es reconocida mundialmente por ser un modelo de alimentación muy saludable. Se basa principalmente en el consumo de frutas frescas, verduras de temporada y legumbres variadas. El aceite de oliva es la principal fuente de grasa y aporta muchos beneficios cardiovasculares. El pescado azul y los frutos secos también son componentes esenciales en este estilo de vida. El consumo de carne roja se mantiene en niveles muy bajos durante todo el año. Los expertos aseguran que esta dieta ayuda a prevenir enfermedades crónicas de forma natural. Además de la comida, la actividad física diaria es parte fundamental del bienestar general. Compartir las comidas con amigos y familiares mejora la salud emocional y reduce el estrés. Las especias naturales sustituyen a menudo el uso excesivo de sal en las recetas tradicionales. Beber agua en abundancia es vital para mantener el cuerpo hidratado y con energía. Muchos países del sur de Europa siguen estos hábitos desde hace varios siglos atrás. La calidad de los ingredientes es más importante que la cantidad de alimentos ingeridos. Las personas que siguen esta dieta suelen tener una esperanza de vida más alta. No se trata solo de un plan temporal, sino de una filosofía de vida equilibrada. La Organización Mundial de la Salud recomienda estos patrones para mejorar la salud pública global.",
+      "q": "Los beneficios de la dieta mediterránea\n\n¿Cuál de las siguientes afirmaciones NO se puede extraer del texto?",
+      "o": [
+        "El aceite de oliva es un ingrediente clave que ayuda a proteger el corazón.",
+        "La dieta mediterránea prohíbe estrictamente comer cualquier tipo de pescado.",
+        "Comer en compañía de otras personas es beneficioso para el equilibrio emocional.",
+        "La dieta se centra en la calidad de los productos y no solo en cuánto se come."
+      ],
+      "a": 1,
+      "exp": "Metinde balığın (pescado) bu diyetin temel bileşenlerinden biri olduğu belirtilmektedir. Balığın yasaklandığı çıkarımı yapılamaz. Bu yüzden doğru cevap B şıkkıdır."
+    },
+    {
+      "t": "mc",
+      "badge": "lectura",
+      "lectura": "Aprender un idioma nuevo después de los treinta años es una experiencia muy enriquecedora. Aunque muchos piensan que solo los niños pueden aprender rápido, los adultos tienen ventajas. La disciplina y la capacidad de organización son herramientas poderosas para el estudio constante. Los adultos suelen tener una motivación más clara, como el trabajo o los viajes. El cerebro humano mantiene su plasticidad durante toda la vida si se ejercita adecuadamente. Estudiar una lengua extranjera ayuda a retrasar el envejecimiento cognitivo y mejora la memoria. Es importante practicar la conversación desde el primer día para ganar confianza real. Las aplicaciones móviles y los cursos en línea facilitan el acceso al conocimiento gratuito. Sin embargo, asistir a clases presenciales permite interactuar con otros estudiantes en situaciones reales. El error es una parte necesaria del proceso y no debe causar vergüenza. Escuchar música y ver películas en versión original mejora la comprensión auditiva rápidamente. La constancia es mucho más efectiva que estudiar muchas horas un solo día. Conocer otra lengua abre puertas a nuevas oportunidades profesionales en un mercado globalizado. También permite entender mejor otras culturas y ampliar la visión personal del mundo actual. El aprendizaje constante mantiene la mente joven, curiosa y abierta a nuevos retos interesantes.",
+      "q": "El aprendizaje de idiomas en la edad adulta\n\n¿Cuál de las siguientes afirmaciones NO se puede extraer del texto?",
+      "o": [
+        "Los adultos tienen capacidades como la disciplina que les ayudan a estudiar idiomas.",
+        "Es imposible que una persona adulta aprenda un idioma de manera fluida y correcta.",
+        "Ver películas en el idioma original es un método útil para mejorar el oído.",
+        "La motivación por motivos laborales es común entre los estudiantes adultos de lenguas."
+      ],
+      "a": 1,
+      "exp": "Metin yetişkinlerin dil öğrenme avantajlarını ve yeteneklerini savunmaktadır. Yetişkinlerin dil öğrenmesinin imkansız olduğu ifadesi metnin ruhuna aykırıdır. Bu yüzden doğru cevap B şıkkıdır."
+    },
+    {
+      "t": "mc",
+      "badge": "lectura",
+      "lectura": "Las ciudades modernas están invirtiendo cada vez más en la creación de parques públicos. Los espacios verdes son esenciales para mejorar la calidad del aire en los centros urbanos. Los árboles absorben el dióxido de carbono y ayudan a reducir las temperaturas extremas. Caminar por un parque después del trabajo disminuye notablemente los niveles de ansiedad diaria. Muchas familias utilizan estos lugares para hacer deporte y disfrutar del tiempo libre juntos. La biodiversidad urbana aumenta cuando hay suficientes plantas y flores en las avenidas principales. Los arquitectos ahora diseñan edificios con jardines verticales integrados en sus fachadas exteriores. Estos proyectos innovadores buscan crear una armonía entre el cemento y la naturaleza viva. La falta de vegetación en las ciudades puede provocar problemas de salud respiratoria graves. Los ciudadanos demandan más zonas peatonales libres de ruidos y de humos tóxicos. El diseño de estas áreas debe ser inclusivo para personas de todas las edades. Los huertos urbanos permiten que los vecinos cultiven sus propios alimentos de forma ecológica. Es una excelente manera de fomentar la cohesión social y el sentido de comunidad. La protección de los entornos naturales dentro de la ciudad es una responsabilidad política. El futuro de la vida urbana depende de nuestra capacidad para integrar el verde.",
+      "q": "El futuro de los espacios verdes urbanos\n\n¿Cuál de las siguientes afirmaciones NO se puede extraer del texto?",
+      "o": [
+        "Los parques en la ciudad contribuyen a que el aire sea más limpio y sano.",
+        "Los jardines verticales son una tendencia moderna en la arquitectura de los edificios.",
+        "La vegetación en las ciudades aumenta el ruido y empeora la salud de los niños.",
+        "Los huertos urbanos ayudan a que los vecinos tengan una relación más estrecha."
+      ],
+      "a": 2,
+      "exp": "Metinde bitki örtüsünün gürültüyü azalttığı ve sağlığı iyileştirdiği vurgulanmaktadır. Ses kirliliğini artırdığı bilgisi metinden çıkarılamaz. Bu yüzden doğru cevap C şıkkıdır."
+    },
+    {
+      "t": "mc",
+      "badge": "lectura",
+      "lectura": "La inteligencia emocional se ha convertido en una competencia clave para el éxito profesional. No basta con tener conocimientos técnicos para liderar un equipo de trabajo eficiente. La capacidad de reconocer y gestionar las propias emociones es fundamental en las reuniones. La empatía permite entender las preocupaciones de los compañeros y mejorar el ambiente grupal. Un líder emocionalmente inteligente sabe cómo motivar a los demás en momentos difíciles. La resolución de conflictos es más sencilla cuando las personas mantienen la calma interna. El autocontrol evita reacciones impulsivas que podrían dañar las relaciones laborales a largo plazo. Las empresas ahora valoran estas habilidades tanto como la experiencia o los títulos. Es posible desarrollar la inteligencia emocional mediante la práctica constante y la reflexión personal. Escuchar activamente a los otros es el primer paso para una comunicación clara. La retroalimentación positiva ayuda a que los empleados se sientan valorados y respetados siempre. El manejo del estrés laboral es más efectivo si conocemos nuestros límites emocionales propios. La colaboración aumenta cuando existe confianza y respeto mutuo dentro de la organización empresarial. Los equipos diversos necesitan altos niveles de comprensión para alcanzar sus objetivos comunes anuales. El crecimiento personal influye directamente en el rendimiento y en la felicidad en el trabajo.",
+      "q": "La inteligencia emocional en el entorno laboral\n\n¿Cuál de las siguientes afirmaciones NO se puede extraer del texto?",
+      "o": [
+        "La empatía es una herramienta útil para que el ambiente en la oficina sea mejor.",
+        "Las habilidades emocionales son tan importantes hoy en día como los títulos académicos.",
+        "Es posible mejorar nuestra inteligencia emocional si practicamos y reflexionamos sobre ello.",
+        "El conocimiento técnico es lo único que una persona necesita para ser un buen líder."
+      ],
+      "a": 3,
+      "exp": "Metin, liderlik için teknik bilginin (conocimiento técnico) tek başına yeterli olmadığını, duygusal zekanın şart olduğunu savunur. Bu yüzden doğru cevap D şıkkıdır."
+    },
+    {
+      "t": "mc",
+      "badge": "lectura",
+      "lectura": "España es famosa en todo el mundo por su vibrante y diversa oferta cultural. Cada año se celebran miles de festivales que atraen a turistas de todos los continentes. Estos eventos son una oportunidad excelente para conocer las tradiciones más antiguas del país. La música, la danza y la gastronomía local son los protagonistas de estas fiestas. Muchos festivales tienen lugar en pueblos pequeños que conservan un encanto histórico muy especial. La participación de los vecinos es fundamental para mantener viva la esencia del evento. La organización de estas celebraciones requiere muchos meses de trabajo duro y coordinación grupal. Los festivales de cine y teatro también gozan de un gran prestigio internacional actualmente. La economía local se beneficia enormemente gracias al gasto que realizan los visitantes extranjeros. Es un momento ideal para descubrir la diversidad lingüística y artística de las regiones. Algunos eventos están declarados Patrimonio Inmaterial de la Humanidad por la UNESCO por su valor. La alegría y la hospitalidad de la gente hacen que la experiencia sea inolvidable. Es recomendable reservar el alojamiento con mucha antelación si se desea asistir a ellos. Los jóvenes participan activamente para asegurar que las tradiciones no se pierdan con el tiempo. El intercambio cultural en estos festivales enriquece tanto a locales como a turistas extranjeros.",
+      "q": "La importancia de los festivales culturales en España\n\n¿Cuál de las siguientes afirmaciones NO se puede extraer del texto?",
+      "o": [
+        "Los festivales culturales en España solo interesan a las personas de edad avanzada.",
+        "La economía de los pueblos mejora cuando reciben turistas durante sus celebraciones.",
+        "Algunos de estos eventos culturales tienen un reconocimiento especial por parte de la UNESCO.",
+        "Es necesario trabajar durante mucho tiempo para organizar correctamente estos festivales."
+      ],
+      "a": 0,
+      "exp": "Metinde gençlerin de bu festivallere aktif olarak katıldığı ve gelenekleri sürdürdüğü belirtilmektedir. Sadece yaşlıların ilgisini çektiği bilgisi yanlıştır. Bu yüzden doğru cevap A şıkkıdır."
+    },
+    {
+      "t": "mc",
+      "badge": "lectura",
+      "lectura": "La lucha contra el cambio climático es el mayor reto de nuestra generación presente. El uso de combustibles fósiles ha provocado un aumento peligroso de las temperaturas globales. Las energías renovables ofrecen una solución limpia para producir electricidad sin contaminar el aire. La energía solar y la eólica han crecido exponencialmente en la última década reciente. Muchos países están cerrando sus centrales de carbón para proteger la salud de todos. Los paneles solares en los tejados de las casas permiten ahorrar mucho dinero mensual. La tecnología ha avanzado tanto que ahora estas energías son mucho más baratas. Es necesario modernizar la red eléctrica para integrar estas fuentes de energía variables. La inversión en proyectos verdes genera miles de nuevos puestos de trabajo especializados anualmente. La cooperación internacional es vital para reducir las emisiones de gases de efecto invernadero. Las baterías modernas permiten almacenar la energía para usarla durante las noches sin viento. El transporte eléctrico también depende del crecimiento de la energía limpia en las ciudades. Los ciudadanos están cada vez más concienciados sobre la necesidad de este cambio urgente. El sol y el viento son recursos inagotables que debemos aprovechar al máximo siempre. La transición energética es el camino hacia un planeta más sostenible y equilibrado.",
+      "q": "Las energías renovables y el cambio climático\n\n¿Cuál de las siguientes afirmaciones NO se puede extraer del texto?",
+      "o": [
+        "Las energías renovables son actualmente más caras que el carbón y el petróleo.",
+        "La energía solar permite que las familias gasten menos dinero en sus facturas eléctricas.",
+        "El uso de carbón está disminuyendo en muchos países para cuidar el medio ambiente.",
+        "Es posible guardar la energía que se produce para utilizarla cuando no hay sol o viento."
+      ],
+      "a": 0,
+      "exp": "Metinde teknolojinin ilerlediği ve yenilenebilir enerjilerin artık çok daha ucuz (más baratas) olduğu belirtilmiştir. Pahalı oldukları bilgisi metinden çıkarılamaz. Bu yüzden doğru cevap A şıkkıdır."
+    },
+    {
+      "t": "mc",
+      "badge": "lectura",
+      "lectura": "La inteligencia artificial ya forma parte de nuestras vidas de una manera muy integrada. Usamos algoritmos inteligentes cada vez que buscamos información en nuestros teléfonos móviles personales. Estos sistemas aprenden de nuestros gustos para ofrecernos recomendaciones personalizadas de música y cine. Los asistentes de voz nos ayudan a organizar nuestra agenda diaria con mucha rapidez. En la medicina, la inteligencia artificial permite detectar enfermedades con una precisión asombrosa hoy. Las máquinas pueden analizar miles de datos en pocos segundos para ayudar a los médicos. Sin embargo, existen debates éticos sobre la privacidad y el uso de los datos. Es importante que los humanos mantengan siempre el control final sobre las decisiones cruciales. Muchos empleos están cambiando debido a la automatización de las tareas más repetitivas y mecánicas. Los estudiantes utilizan herramientas inteligentes para aprender idiomas o matemáticas de forma interactiva y dinámica. La creatividad humana sigue siendo un valor único que las máquinas no pueden replicar. El futuro de la tecnología promete avances que todavía no podemos imaginar totalmente en este momento. Debemos aprender a convivir con estas herramientas para mejorar nuestra productividad y calidad de vida. La educación digital es necesaria para que todas las personas entiendan cómo funcionan estos sistemas. El progreso tecnológico debe estar siempre al servicio de la humanidad y del bien común.",
+      "q": "La inteligencia artificial en la vida cotidiana\n\n¿Cuál de las siguientes afirmaciones NO se puede extraer del texto?",
+      "o": [
+        "La inteligencia artificial ayuda a los médicos a identificar problemas de salud más rápido.",
+        "Las máquinas analizan nuestros hábitos para recomendarnos canciones que nos podrían gustar.",
+        "Las máquinas inteligentes ya pueden imitar perfectamente la creatividad emocional de los humanos.",
+        "Existe una preocupación por cómo se utilizan los datos privados en la tecnología actual."
+      ],
+      "a": 2,
+      "exp": "Metinde insan yaratıcılığının (creatividad humana) makinelerin taklit edemeyeceği benzersiz bir değer olduğu vurgulanmaktadır. Bu yüzden doğru cevap C şıkkıdır."
+    },
+    {
+      "t": "mc",
+      "badge": "lectura",
+      "lectura": "El voluntariado es una forma generosa de dedicar nuestro tiempo libre a los demás. Muchas personas deciden ayudar en comedores sociales o en refugios de animales los fines de semana. Esta actividad ofrece beneficios tanto a la comunidad como a los propios voluntarios siempre. Ayudar a otros mejora nuestra autoestima y nos da un propósito de vida claro. Los jóvenes ganan experiencia y aprenden valores fundamentales como la solidaridad y el respeto. No se necesita tener mucho dinero para colaborar con una causa social importante hoy. Lo más valioso que podemos ofrecer es nuestro tiempo, energía y conocimientos específicos personales. El voluntariado internacional permite conocer realidades muy diferentes y aprender de otras culturas lejanas. Muchas organizaciones dependen totalmente del trabajo gratuito de personas comprometidas con el bienestar común. Es una oportunidad excelente para desarrollar nuevas habilidades sociales y trabajar en equipo constantemente. Los lazos de amistad que se crean durante estos proyectos suelen durar muchos años. La sociedad se vuelve más justa y humana gracias a la labor de estos ciudadanos. El apoyo emocional a las personas mayores es una de las tareas más gratificantes. Cualquier pequeña acción puede marcar una gran diferencia en la vida de alguien necesitado. El compromiso social es el motor que impulsa los cambios positivos en el mundo.",
+      "q": "El valor del voluntariado en la sociedad\n\n¿Cuál de las siguientes afirmaciones NO se puede extraer del texto?",
+      "o": [
+        "Ser voluntario ayuda a que las personas se sientan mejor consigo mismas y tengan un propósito.",
+        "Solo las personas con mucho dinero pueden participar en proyectos de ayuda social.",
+        "El voluntariado es una buena manera de que los jóvenes aprendan sobre la solidaridad.",
+        "Las amistades formadas en el voluntariado a menudo se mantienen durante mucho tiempo."
+      ],
+      "a": 1,
+      "exp": "Metinde sosyal yardım için çok paraya ihtiyaç olmadığı (no se necesita tener mucho dinero), en değerlisinin zaman olduğu belirtilmektedir. Bu yüzden doğru cevap B şıkkıdır."
+    },
+    {
+      "t": "mc",
+      "badge": "dialog",
+      "escenario": "En una agencia de viajes",
+      "dialog": "— Cliente: \"Busco un destino que no sea muy caro, pero que tenga mucha historia y buena comida.\"\n— Agente: \"_________________________________________________\".",
+      "q": "¿Cuál es la respuesta más adecuada para el agente?",
+      "o": [
+        "Mañana cerraremos la oficina a las ocho de la tarde.",
+        "El pasaporte es un documento necesario para viajar fuera de Europa.",
+        "Te recomiendo visitar el sur de España, cumple con todo lo que pides.",
+        "No me gusta cocinar cuando estoy de vacaciones en la playa."
+      ],
+      "a": 2,
+      "exp": "Müşteri tarih, uygun fiyat ve yemek odaklı bir yer sormaktadır. Acentenin buna uygun bir öneride bulunması beklenir. Doğru cevap C şıkkıdır."
+    },
+    {
+      "t": "mc",
+      "badge": "dialog",
+      "escenario": "Planes para el futuro profesional",
+      "dialog": "— Lucas: \"¿Qué piensas hacer cuando termines tus estudios de arquitectura?\"\n— María: \"_________________________________________________\".",
+      "q": "¿Cuál es la respuesta más adecuada para María?",
+      "o": [
+        "Ayer terminé de leer un libro sobre la historia de Madrid.",
+        "Mi padre trabajó en una oficina de correos durante treinta años.",
+        "Los edificios modernos usan mucha energía eléctrica hoy en día.",
+        "Probablemente buscaré unas prácticas en una empresa internacional."
+      ],
+      "a": 3,
+      "exp": "Gelecek planları (Futuro) hakkında sorulan bir soruya, olasılık belirten \"probablemente\" ve gelecek zaman yapısıyla cevap verilmesi uygundur. Doğru cevap D şıkkıdır."
+    },
+    {
+      "t": "mc",
+      "badge": "dialog",
+      "escenario": "Expresar una opinión sobre una película",
+      "dialog": "— Amigo A: \"¿Te gustó la película que vimos anoche en el cine?\"\n— Amigo B: \"_________________________________________________\".",
+      "q": "¿Cuál es la respuesta más adecuada para el Amigo B?",
+      "o": [
+        "Sinceramente, me pareció un poco lenta y el final fue muy predecible.",
+        "El cine de mi barrio vende palomitas de maíz muy baratas.",
+        "Mañana iremos a ver otra película de acción con mis primos.",
+        "Las entradas para el teatro son más caras que las del cine."
+      ],
+      "a": 0,
+      "exp": "İzlenen film hakkında kişisel bir görüş (opinión) sorulmaktadır. \"Me pareció...\" yapısı bir görüş belirtmek için kullanılır. Doğru cevap A şıkkıdır."
+    },
+    {
+      "t": "mc",
+      "badge": "dialog",
+      "escenario": "Pidiendo indicaciones en la calle",
+      "dialog": "— Turista: \"Disculpe, ¿sabe si hay alguna farmacia cerca de aquí?\"\n— Transeúnte: \"_________________________________________________\".",
+      "q": "¿Cuál es la respuesta más adecuada para el transeúnte?",
+      "o": [
+        "Las farmacias venden medicamentos para el dolor de cabeza.",
+        "Sí, siga todo recto y gire en la segunda calle a la derecha.",
+        "No tengo dinero en efectivo para pagar la cuenta ahora.",
+        "Me duele mucho la garganta desde que llegué a esta ciudad."
+      ],
+      "a": 1,
+      "exp": "Yer tarifi isteyen birine yön bildiren ifadelerle (siga, gire) cevap verilmelidir. Doğru cevap B şıkkıdır."
+    },
+    {
+      "t": "mc",
+      "badge": "dialog",
+      "escenario": "Dando consejos de salud",
+      "dialog": "— Pablo: \"Últimamente me siento muy cansado y no puedo concentrarme.\"\n— Elena: \"_________________________________________________\".",
+      "q": "¿Cuál es la respuesta más adecuada para Elena?",
+      "o": [
+        "Mi hermano mayor también es médico en un hospital grande.",
+        "Deberías dormir más horas y tratar de comer de forma más saludable.",
+        "El cansancio es un síntoma común en las personas que trabajan mucho.",
+        "Mañana compraré una agenda nueva para organizar mis tareas."
+      ],
+      "a": 1,
+      "exp": "Bir sorun bildiren kişiye \"Deberías...\" (Yapmalısın) kalıbıyla tavsiye verilmektedir. Doğru cevap B şıkkıdır."
+    },
+    {
+      "t": "mc",
+      "badge": "dialog",
+      "escenario": "Hablando de una experiencia pasada",
+      "dialog": "— Sofía: \"¿Cómo fue tu primer día de trabajo en la nueva oficina?\"\n— Luis: \"_________________________________________________\".",
+      "q": "¿Cuál es la respuesta más adecuada para Luis?",
+      "o": [
+        "Fue un poco caótico al principio, pero mis compañeros me ayudaron mucho.",
+        "Mañana tendré mi primera reunión con el director de la empresa.",
+        "El trabajo de oficina puede ser muy aburrido si no hay retos.",
+        "Me gustaría trabajar en una empresa que proteja el medio ambiente."
+      ],
+      "a": 0,
+      "exp": "Geçmişte yaşanmış bir olay (Pretérito Indefinido) sorulduğu için cevap da geçmiş zaman yapısında olmalıdır. Doğru cevap A şıkkıdır."
+    },
+    {
+      "t": "mc",
+      "badge": "dialog",
+      "escenario": "En una entrevista de trabajo",
+      "dialog": "— Entrevistador: \"¿Por qué cree que usted es la persona adecuada para este puesto?\"\n— Candidato: \"_________________________________________________\".",
+      "q": "¿Cuál es la respuesta más adecuada para el candidato?",
+      "o": [
+        "Porque el sueldo que ofrecen es muy alto para mi país.",
+        "Porque vivo muy cerca de la oficina y puedo venir caminando.",
+        "Porque tengo experiencia previa y me adapto rápido a los cambios.",
+        "Porque el año pasado estudié un curso de cocina mediterránea."
+      ],
+      "a": 2,
+      "exp": "İş mülakatında yetkinlik ve deneyim vurgusu yapan profesyonel bir cevap beklenmektedir. Doğru cevap C şıkkıdır."
+    },
+    {
+      "t": "mc",
+      "badge": "dialog",
+      "escenario": "Expresar deseos con el subjuntivo",
+      "dialog": "— Madre: \"¿Qué quieres que te compre por tu cumpleaños?\"\n— Hijo: \"_________________________________________________\".",
+      "q": "¿Cuál es la respuesta más adecuada para el hijo?",
+      "o": [
+        "Me compraste una bicicleta azul el año pasado en junio.",
+        "El cumpleaños es un día especial para celebrar con la familia.",
+        "Quiero comprar un regalo para mi mejor amigo de la escuela.",
+        "Quiero que me compres un ordenador nuevo para mis estudios."
+      ],
+      "a": 3,
+      "exp": "\"Quiero que...\" yapısından sonra Subjuntivo kullanımı (compres) gerektiren bir istek cümlesi gelmelidir. Doğru cevap D şıkkıdır."
+    },
+    {
+      "t": "mc",
+      "badge": "dialog",
+      "escenario": "Problemas ambientales en la ciudad",
+      "dialog": "— Periodista: \"¿Cuál es el principal problema ecológico de esta ciudad?\"\n— Alcalde: \"_________________________________________________\".",
+      "q": "¿Cuál es la respuesta más adecuada para el alcalde?",
+      "o": [
+        "Los parques son lugares hermosos para caminar con los perros.",
+        "El transporte público es gratuito para las personas mayores de sesenta años.",
+        "Mañana plantaremos diez árboles nuevos en la avenida principal.",
+        "Sin duda, es la alta contaminación causada por el tráfico excesivo."
+      ],
+      "a": 3,
+      "exp": "Şehrin ekolojik sorunu sorulduğunda doğrudan bir sorun tespiti (contaminación) yapılmalıdır. Doğru cevap D şıkkıdır."
+    },
+    {
+      "t": "mc",
+      "badge": "dialog",
+      "escenario": "Uso de la tecnología",
+      "dialog": "— Abuela: \"No entiendo cómo funciona esta aplicación de mensajes.\"\n— Nieto: \"_________________________________________________\".",
+      "q": "¿Cuál es la respuesta más adecuada para el nieto?",
+      "o": [
+        "Las aplicaciones modernas son muy difíciles de usar para todos.",
+        "Mi teléfono móvil tiene una cámara de alta resolución.",
+        "No te preocupes, abuela, yo te enseñaré a usarla en un momento.",
+        "El internet es una herramienta que cambió el mundo para siempre."
+      ],
+      "a": 2,
+      "exp": "Yardım isteyen birine yönelik çözüm sunan ve yardım teklif eden bir cevap verilmiştir. Doğru cevap C şıkkıdır."
+    },
+    {
+      "t": "mc",
+      "badge": "dialog",
+      "escenario": "Pidiendo comida en un restaurante",
+      "dialog": "— Camarero: \"¿Qué van a tomar de segundo plato?\"\n— Cliente: \"_________________________________________________\".",
+      "q": "¿Cuál es la respuesta más adecuada para el cliente?",
+      "o": [
+        "La cuenta, por favor, queremos pagar con tarjeta de crédito.",
+        "Para mí, el pescado a la plancha con una ensalada mixta.",
+        "El menú del día incluye un postre y una bebida fría.",
+        "No nos gusta esperar mucho tiempo cuando tenemos hambre."
+      ],
+      "a": 1,
+      "exp": "Garsonun yemek siparişi sorusuna bir yemek tercihiyle cevap verilmelidir. Doğru cevap B şıkkıdır."
+    },
+    {
+      "t": "mc",
+      "badge": "dialog",
+      "escenario": "Reclamación en una tienda",
+      "dialog": "— Cliente: \"Compré estos zapatos ayer, pero me quedan muy pequeños.\"\n— Dependienta: \"_________________________________________________\".",
+      "q": "¿Cuál es la respuesta más adecuada para la dependienta?",
+      "o": [
+        "No hay problema, si tiene el ticket, podemos cambiarlos por otros.",
+        "Los zapatos rojos son los más vendidos en esta temporada de invierno.",
+        "Debería comprar unos zapatos más caros si quiere que duren mucho.",
+        "La tienda abre a las diez de la mañana y cierra a las nueve de la noche."
+      ],
+      "a": 0,
+      "exp": "Bir şikayet veya değişim talebine mağaza görevlisinin çözüm odaklı cevabı gelmelidir. Doğru cevap A şıkkıdır."
+    },
+    {
+      "t": "mc",
+      "badge": "dialog",
+      "escenario": "Hablando de tradiciones culturales",
+      "dialog": "— Turista: \"¿Qué se celebra exactamente durante la fiesta de la Tomatina?\"\n— Guía: \"_________________________________________________\".",
+      "q": "¿Cuál es la respuesta más adecuada para el guía?",
+      "o": [
+        "Es una batalla pacífica donde la gente se lanza tomates por diversión.",
+        "Los tomates son ingredientes esenciales en la cocina española.",
+        "El festival de cine de San Sebastián es muy famoso en todo el mundo.",
+        "La semana pasada fuimos al mercado a comprar verduras frescas."
+      ],
+      "a": 0,
+      "exp": "Belirli bir kültürel festivalin (La Tomatina) içeriği sorulmaktadır. Doğru cevap A şıkkıdır."
+    },
+    {
+      "t": "mc",
+      "badge": "dialog",
+      "escenario": "Describiendo la personalidad de alguien",
+      "dialog": "— Marta: \"¿Cómo es tu nuevo jefe en el departamento de ventas?\"\n— Carlos: \"_________________________________________________\".",
+      "q": "¿Cuál es la respuesta más adecuada para Carlos?",
+      "o": [
+        "Tiene el pelo corto, es alto y siempre lleva camisas blancas.",
+        "Es una persona muy seria y exigente, pero también es muy justo.",
+        "Trabaja en la oficina que está al final del pasillo, a la izquierda.",
+        "Ganó un premio importante por su trabajo en la empresa anterior."
+      ],
+      "a": 1,
+      "exp": "\"Sıfat/Karakter\" odaklı bir soruya kişinin kişilik özellikleriyle (seria, exigente, justo) cevap verilmelidir. Doğru cevap B şıkkıdır."
+    }
+  ],
+  "SCRIPT_URL": "https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec",
+  "ODEV_ADI": "H3 – 9-10.Ders",
+  "GROUPS": {
+    "Ceylin Öz": "B1.1",
+    "Deneme Öğrencisi": "B1.1",
+    "Esra Özçeşmeci": "B1.1",
+    "Gencay Agocuk": "B1.1",
+    "Kayhan Açan": "B1.1",
+    "Kübra Bulut": "B1.1",
+    "Nihan Karagedik": "B1.1",
+    "Nur O. Demirci": "B1.1",
+    "Pelinsu Damgacı": "B1.1",
+    "Simge Güler": "B1.1",
+    "Ufuk Aydın": "B1.1",
+    "Umre Gül": "B1.1"
+  },
+  "V1": "https://www.youtube.com/watch?v=am9jTBARa-o",
+  "V2": "https://www.youtube.com/watch?v=tcNyVyK1Beg",
+  "V1_LABEL": "Voces 3 U5 – Nuestro futuro (SGEL ELE)",
+  "V2_LABEL": "Compañeros – El futuro del planeta – Voluntarios (SGEL ELE)"
+}

@@ -1,0 +1,1437 @@
+{
+  "topic": "topic",
+  "title": "title",
+  "sentences": [
+    {
+      "id": "topic",
+      "tr": "Basit gelecek zaman",
+      "chunks": [
+        {
+          "text": "Futuro simple",
+          "role": "İsim grubu · başlık veya etkinlik konusu"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "title",
+      "tr": "Geleceğin Reklamı",
+      "chunks": [
+        {
+          "text": "Anuncio del Futuro",
+          "role": "İsim grubu · başlık veya etkinlik konusu"
+        }
+      ],
+      "note": "Anuncio = reklam; del = de + el. Geleceğe ait bir projeyi tanıtan reklam hazırlayacaksınız."
+    },
+    {
+      "id": "group-1",
+      "tr": "Sınıfı 3–4 kişilik gruplara ayır.",
+      "chunks": [
+        {
+          "text": "Divide",
+          "role": "Olumlu emir · tú; dividir fiili"
+        },
+        {
+          "text": "la clase",
+          "role": "Eylemi tamamlayan nesne grubu"
+        },
+        {
+          "text": "en grupos de 3–4 estudiantes.",
+          "role": "Oluşturulacak grupları belirten tamamlayıcı"
+        }
+      ],
+      "note": "Divide, bu yönergede öğretmene yöneltilen olumlu emirdir."
+    },
+    {
+      "id": "group-2",
+      "tr": "Her grup hayali bir gelecek projesi üzerinde çalışacak.",
+      "chunks": [
+        {
+          "text": "Cada grupo",
+          "role": "Özne · eylemi yapan kişi / grup"
+        },
+        {
+          "text": "trabajará",
+          "role": "Futuro simple · gelecekte yapılacak eylem"
+        },
+        {
+          "text": "en un proyecto futuro imaginario.",
+          "role": "Trabajar en yapısının tamamlayıcısı"
+        }
+      ],
+      "note": "Cada grupo tekildir; trabajar → trabajará, üçüncü tekil futuro simple."
+    },
+    {
+      "id": "step-title-1",
+      "tr": "Grup oluşturma",
+      "chunks": [
+        {
+          "text": "Formación de grupos",
+          "role": "İsim grubu · başlık veya etkinlik konusu"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "develop-1",
+      "tr": "Gruplar, gelecekte gerçekleştirmek istedikleri bir proje planlayacak.",
+      "chunks": [
+        {
+          "text": "Los grupos",
+          "role": "Özne · eylemi yapan kişi / grup"
+        },
+        {
+          "text": "deben planear",
+          "role": "Deber + mastar · yapılması gereken eylem"
+        },
+        {
+          "text": "un proyecto futuro.",
+          "role": "Eylemi tamamlayan nesne grubu"
+        }
+      ],
+      "note": "Deber, bu cümlede presente çekimindedir; ardından planear mastarı gelir."
+    },
+    {
+      "id": "types",
+      "tr": "Proje türleri",
+      "chunks": [
+        {
+          "text": "Tipos de proyectos:",
+          "role": "İsim grubu · başlık veya etkinlik konusu"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "creative",
+      "tr": "Yaratıcı iş fikirleri: kafeler, çevreci mağazalar.",
+      "chunks": [
+        {
+          "text": "Negocios creativos:",
+          "role": "Proje kategorisi · isim ve sıfat grubu"
+        },
+        {
+          "text": "cafeterías, tiendas ecológicas.",
+          "role": "Kategoriye örnek olan isim grupları"
+        }
+      ],
+      "note": "Ecológicas, tiendas ismiyle dişil çoğul uyumludur."
+    },
+    {
+      "id": "social",
+      "tr": "Sosyal projeler: çevre temizliği, eğitim kampanyaları.",
+      "chunks": [
+        {
+          "text": "Proyectos sociales:",
+          "role": "İsim grubu · başlık veya etkinlik konusu"
+        },
+        {
+          "text": "limpieza del medio ambiente, campañas educativas.",
+          "role": "Kategoriye örnek olan isim grupları"
+        }
+      ],
+      "note": "Medio ambiente bir bütün olarak çevre demektir."
+    },
+    {
+      "id": "cultural",
+      "tr": "Kültürel fikirler: festivaller, tiyatro grupları.",
+      "chunks": [
+        {
+          "text": "Ideas culturales:",
+          "role": "İsim grubu · başlık veya etkinlik konusu"
+        },
+        {
+          "text": "festivales, grupos de teatro.",
+          "role": "Kategoriye örnek olan isim grupları"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "step-title-2",
+      "tr": "Proje geliştirme",
+      "chunks": [
+        {
+          "text": "Desarrollo del proyecto",
+          "role": "İsim grubu · başlık veya etkinlik konusu"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "prepare-1",
+      "tr": "Gruplar, projelerini kısa ve etkileyici bir şekilde tanıtan bir reklam hazırlayacak.",
+      "chunks": [
+        {
+          "text": "Los grupos",
+          "role": "Özne · eylemi yapan kişi / grup"
+        },
+        {
+          "text": "crearán",
+          "role": "Futuro simple · gelecekte yapılacak eylem"
+        },
+        {
+          "text": "un anuncio breve y atractivo",
+          "role": "Eylemi tamamlayan nesne grubu"
+        },
+        {
+          "text": "para su proyecto.",
+          "role": "Reklamın ilgili olduğu projeyi bildiren grup"
+        }
+      ],
+      "note": "Crear → crearán: üçüncü çoğul futuro simple. Breve y atractivo, anuncio sözcüğünü niteler."
+    },
+    {
+      "id": "prepare-2",
+      "tr": "Şu soruları yanıtlamalılar:",
+      "chunks": [
+        {
+          "text": "Deberán responder",
+          "role": "Deber fiilinin futuro simple çekimi + responder mastarı"
+        },
+        {
+          "text": "a estas preguntas:",
+          "role": "Responder a yapısının tamamlayıcısı"
+        }
+      ],
+      "note": "Deberán, bu yönergede gelecekte yerine getirilecek bir gerekliliği ifade eder."
+    },
+    {
+      "id": "question-1",
+      "tr": "Gelecekte ne yapacaklar?",
+      "chunks": [
+        {
+          "text": "¿Qué",
+          "role": "Soru sözcüğü · yapılacak şeyi sorar"
+        },
+        {
+          "text": "harán",
+          "role": "Futuro simple · gelecekte yapılacak eylem · hacer fiilinin düzensiz har- kökü"
+        },
+        {
+          "text": "en el futuro?",
+          "role": "Zaman bildiren grup"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "question-2",
+      "tr": "Projeleri dünyayı nasıl değiştirecek?",
+      "chunks": [
+        {
+          "text": "¿Cómo",
+          "role": "Soru zarfı · nasıl?"
+        },
+        {
+          "text": "cambiará",
+          "role": "Futuro simple · gelecekte yapılacak eylem"
+        },
+        {
+          "text": "el mundo",
+          "role": "Doğrudan nesne · değişecek olan dünya"
+        },
+        {
+          "text": "su proyecto?",
+          "role": "Özne · dünyayı değiştirecek proje"
+        }
+      ],
+      "note": "Bu cümlede özne su proyecto, fiilden ve nesneden sonra gelir."
+    },
+    {
+      "id": "question-3",
+      "tr": "Projeden kimler faydalanacak?",
+      "chunks": [
+        {
+          "text": "¿Quiénes",
+          "role": "Özne görevi taşıyan soru zamiri · kimler?"
+        },
+        {
+          "text": "se beneficiarán?",
+          "role": "Beneficiarse fiilinin üçüncü çoğul futuro simple çekimi; se fiilden önce"
+        }
+      ],
+      "note": "Beneficiarse de algo = bir şeyden faydalanmak."
+    },
+    {
+      "id": "step-title-3",
+      "tr": "Reklam hazırlama",
+      "chunks": [
+        {
+          "text": "Preparar el anuncio",
+          "role": "İsim grubu · başlık veya etkinlik konusu"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "present-1",
+      "tr": "Her grup projesini sınıfta sunacak.",
+      "chunks": [
+        {
+          "text": "Cada grupo",
+          "role": "Özne · eylemi yapan kişi / grup"
+        },
+        {
+          "text": "presentará",
+          "role": "Futuro simple · gelecekte yapılacak eylem"
+        },
+        {
+          "text": "su proyecto",
+          "role": "Eylemi tamamlayan nesne grubu"
+        },
+        {
+          "text": "a la clase.",
+          "role": "Sunumun yöneltildiği grubu bildiren tamamlayıcı"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "present-2",
+      "tr": "Öğrenciler sunum sırasında futuro simple kipini doğru kullanmalı.",
+      "chunks": [
+        {
+          "text": "Los estudiantes",
+          "role": "Özne · eylemi yapan kişi / grup"
+        },
+        {
+          "text": "deben usar",
+          "role": "Deber + mastar · gereklilik"
+        },
+        {
+          "text": "futuro simple",
+          "role": "Eylemi tamamlayan nesne grubu"
+        },
+        {
+          "text": "correctamente",
+          "role": "Tarz zarfı · doğru biçimde"
+        },
+        {
+          "text": "durante la presentación.",
+          "role": "Zaman bildiren grup"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "step-title-4",
+      "tr": "Sunum",
+      "chunks": [
+        {
+          "text": "Presentación",
+          "role": "İsim grubu · başlık veya etkinlik konusu"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "vote-1",
+      "tr": "Sunumlar tamamlandıktan sonra öğrenciler en iyi proje için oy kullanacak.",
+      "chunks": [
+        {
+          "text": "Al final,",
+          "role": "Zaman bildiren grup · sonunda"
+        },
+        {
+          "text": "los estudiantes",
+          "role": "Özne · eylemi yapan kişi / grup"
+        },
+        {
+          "text": "votarán",
+          "role": "Futuro simple · gelecekte yapılacak eylem"
+        },
+        {
+          "text": "por el mejor proyecto.",
+          "role": "Votar por yapısının tamamlayıcısı"
+        }
+      ],
+      "note": "Votar por = birine / bir şeye oy vermek."
+    },
+    {
+      "id": "step-title-5",
+      "tr": "Oylama",
+      "chunks": [
+        {
+          "text": "Votación",
+          "role": "İsim grubu · başlık veya etkinlik konusu"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "crit-title-1",
+      "tr": "Yaratıcılık",
+      "chunks": [
+        {
+          "text": "Creatividad",
+          "role": "İsim grubu · başlık veya etkinlik konusu"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "crit-1",
+      "tr": "Fikir özgün ve etkileyici mi?",
+      "chunks": [
+        {
+          "text": "La idea",
+          "role": "Özne · eylemi yapan kişi / grup"
+        },
+        {
+          "text": "es",
+          "role": "Ser · presente çekimi"
+        },
+        {
+          "text": "original y única.",
+          "role": "Öznenin niteliklerini bildiren sıfat grubu"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "crit-title-2",
+      "tr": "Dil kullanımı",
+      "chunks": [
+        {
+          "text": "Uso del idioma",
+          "role": "İsim grubu · başlık veya etkinlik konusu"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "crit-2",
+      "tr": "Futuro simple doğru kullanılıyor mu?",
+      "chunks": [
+        {
+          "text": "Utilizan",
+          "role": "Presente · üçüncü çoğul kişi"
+        },
+        {
+          "text": "correctamente",
+          "role": "Tarz zarfı"
+        },
+        {
+          "text": "el futuro simple.",
+          "role": "Eylemi tamamlayan nesne grubu"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "crit-title-3",
+      "tr": "İkna yeteneği",
+      "chunks": [
+        {
+          "text": "Capacidad de persuasión",
+          "role": "İsim grubu · başlık veya etkinlik konusu"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "crit-3",
+      "tr": "Proje ne kadar inandırıcı?",
+      "chunks": [
+        {
+          "text": "El proyecto",
+          "role": "Özne · eylemi yapan kişi / grup"
+        },
+        {
+          "text": "es",
+          "role": "Ser · presente çekimi"
+        },
+        {
+          "text": "convincente.",
+          "role": "Öznenin niteliğini bildiren sıfat"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "crit-title-4",
+      "tr": "Sözlü sunum",
+      "chunks": [
+        {
+          "text": "Presentación oral",
+          "role": "İsim grubu · başlık veya etkinlik konusu"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "crit-4",
+      "tr": "Sunumları ne kadar akıcı ve güven verici?",
+      "chunks": [
+        {
+          "text": "Hablan",
+          "role": "Presente · üçüncü çoğul kişi"
+        },
+        {
+          "text": "con claridad y seguridad.",
+          "role": "Eylemin nasıl yapıldığını bildiren grup"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "extra-title-1",
+      "tr": "Yaratıcı afişler",
+      "chunks": [
+        {
+          "text": "Pósters creativos",
+          "role": "İsim grubu · başlık veya etkinlik konusu"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "extra-1",
+      "tr": "Öğrenciler, reklamlarını desteklemek için afişler hazırlayabilir.",
+      "chunks": [
+        {
+          "text": "Los estudiantes",
+          "role": "Özne · eylemi yapan kişi / grup"
+        },
+        {
+          "text": "pueden crear",
+          "role": "Poder + mastar · imkân / seçenek"
+        },
+        {
+          "text": "pósters",
+          "role": "Eylemi tamamlayan nesne grubu"
+        },
+        {
+          "text": "para complementar sus anuncios.",
+          "role": "Amaç bildiren para + mastar / isim grubu"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "extra-title-2",
+      "tr": "Soru-cevap bölümü",
+      "chunks": [
+        {
+          "text": "Preguntas y respuestas",
+          "role": "İsim grubu · başlık veya etkinlik konusu"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "extra-2",
+      "tr": "Sunumlardan sonra diğer öğrenciler yatırımcı rolünde sorular sorabilir.",
+      "chunks": [
+        {
+          "text": "Después de las presentaciones,",
+          "role": "Zaman bildiren grup"
+        },
+        {
+          "text": "otros estudiantes",
+          "role": "Özne · eylemi yapan kişi / grup"
+        },
+        {
+          "text": "pueden hacer",
+          "role": "Poder + mastar · imkân / seçenek"
+        },
+        {
+          "text": "preguntas",
+          "role": "Eylemi tamamlayan nesne grubu"
+        },
+        {
+          "text": "como inversores.",
+          "role": "Üstlenilen rolü bildiren grup"
+        }
+      ],
+      "note": ""
+    }
+  ],
+  "steps": [
+    {
+      "number": 1,
+      "title": "step-title-1",
+      "items": [
+        "group-1",
+        "group-2"
+      ]
+    },
+    {
+      "number": 2,
+      "title": "step-title-2",
+      "items": [
+        "develop-1",
+        "types",
+        "creative",
+        "social",
+        "cultural"
+      ]
+    },
+    {
+      "number": 3,
+      "title": "step-title-3",
+      "items": [
+        "prepare-1",
+        "prepare-2",
+        "question-1",
+        "question-2",
+        "question-3"
+      ]
+    },
+    {
+      "number": 4,
+      "title": "step-title-4",
+      "items": [
+        "present-1",
+        "present-2"
+      ]
+    },
+    {
+      "number": 5,
+      "title": "step-title-5",
+      "items": [
+        "vote-1"
+      ]
+    }
+  ],
+  "criteria": [
+    {
+      "title": "crit-title-1",
+      "body": "crit-1"
+    },
+    {
+      "title": "crit-title-2",
+      "body": "crit-2"
+    },
+    {
+      "title": "crit-title-3",
+      "body": "crit-3"
+    },
+    {
+      "title": "crit-title-4",
+      "body": "crit-4"
+    }
+  ],
+  "extras": [
+    {
+      "title": "extra-title-1",
+      "body": "extra-1"
+    },
+    {
+      "title": "extra-title-2",
+      "body": "extra-2"
+    }
+  ],
+  "dictionary": {
+    "a": {
+      "lemma": "a",
+      "tr": "-a/-e; yönelme veya kişi nesnesi işareti",
+      "en": "to; at; personal a",
+      "type": "Edat",
+      "note": "A casa yönelme; ayudar a alguien içinde kişi nesnesini başlatır.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "al": {
+      "lemma": "al",
+      "tr": "-a/-e + belirli eril isim",
+      "en": "to/at the",
+      "type": "Edat + artikel birleşmesi",
+      "note": "A + el → al. A + él birleşmez.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "ambiente": {
+      "lemma": "ambiente",
+      "tr": "çevre; medio ambiente: doğal çevre",
+      "en": "environment",
+      "type": "İsim",
+      "form": "El ambiente · eril tekil",
+      "note": ""
+    },
+    "anuncio": {
+      "lemma": "anuncio",
+      "tr": "reklam, ilan",
+      "en": "advertisement",
+      "type": "İsim",
+      "form": "El anuncio · eril tekil",
+      "note": ""
+    },
+    "anuncios": {
+      "lemma": "anuncio",
+      "tr": "reklamlar, ilanlar",
+      "en": "advertisements",
+      "type": "İsim",
+      "form": "El anuncio · çoğul",
+      "note": ""
+    },
+    "atractivo": {
+      "lemma": "atractivo",
+      "tr": "etkileyici, çekici",
+      "en": "attractive, appealing",
+      "type": "Sıfat",
+      "form": "Eril tekil sıfat; anuncio ile uyumlu",
+      "note": ""
+    },
+    "beneficiarán": {
+      "lemma": "beneficiarse",
+      "tr": "faydalanmak, yararlanmak",
+      "en": "benefit",
+      "type": "Fiil",
+      "form": "Futuro simple · üçüncü çoğul kişi; se zamiriyle",
+      "note": "Beneficiarse de algo = bir şeyden yararlanmak. Se, çekimli fiilden önce gelir."
+    },
+    "breve": {
+      "lemma": "breve",
+      "tr": "kısa",
+      "en": "brief, short",
+      "type": "Sıfat",
+      "form": "Tekil sıfat; anuncio sözcüğünü niteler",
+      "note": ""
+    },
+    "cada": {
+      "lemma": "cada",
+      "tr": "her",
+      "en": "each",
+      "type": "Belirleyici",
+      "form": "Belirleyici",
+      "note": ""
+    },
+    "cafeterías": {
+      "lemma": "cafetería",
+      "tr": "kafeler",
+      "en": "cafés",
+      "type": "İsim",
+      "form": "La cafetería · çoğul",
+      "note": ""
+    },
+    "cambiará": {
+      "lemma": "cambiar",
+      "tr": "değiştirmek",
+      "en": "change",
+      "type": "Fiil",
+      "form": "Futuro simple · üçüncü tekil kişi",
+      "note": "Cambiar + -á; cambiará = değiştirecek."
+    },
+    "campañas": {
+      "lemma": "campaña",
+      "tr": "kampanyalar",
+      "en": "campaigns",
+      "type": "İsim",
+      "form": "La campaña · çoğul",
+      "note": ""
+    },
+    "capacidad": {
+      "lemma": "capacidad",
+      "tr": "yetenek, kapasite",
+      "en": "ability, capacity",
+      "type": "İsim",
+      "form": "La capacidad · dişil tekil",
+      "note": ""
+    },
+    "claridad": {
+      "lemma": "claridad",
+      "tr": "açıklık, anlaşılırlık",
+      "en": "clarity",
+      "type": "İsim",
+      "form": "La claridad · dişil tekil",
+      "note": ""
+    },
+    "clase": {
+      "lemma": "clase",
+      "tr": "ders",
+      "en": "class; lesson",
+      "type": "İsim",
+      "note": "La clase: dişil isim.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "como": {
+      "lemma": "como",
+      "tr": "gibi; rolünde",
+      "en": "as, like",
+      "type": "Edat / karşılaştırma sözcüğü",
+      "form": "Burada como inversores = yatırımcı olarak",
+      "note": ""
+    },
+    "complementar": {
+      "lemma": "complementar",
+      "tr": "tamamlamak, desteklemek",
+      "en": "complement, support",
+      "type": "Fiil",
+      "form": "Mastar",
+      "note": "Afişler reklamın etkisini destekleyen ek bir unsur olur."
+    },
+    "con": {
+      "lemma": "con",
+      "tr": "ile, beraber",
+      "en": "with",
+      "type": "Edat",
+      "note": "Araç, eşlik veya tarz ilişkisi kurar.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "convincente": {
+      "lemma": "convincente",
+      "tr": "inandırıcı, ikna edici",
+      "en": "convincing",
+      "type": "Sıfat",
+      "form": "Tekil sıfat; proyecto sözcüğünü niteler",
+      "note": ""
+    },
+    "correctamente": {
+      "lemma": "correctamente",
+      "tr": "doğru biçimde",
+      "en": "correctly",
+      "type": "Zarf",
+      "form": "Tarz zarfı; -mente ekiyle oluşur",
+      "note": ""
+    },
+    "crear": {
+      "lemma": "crear",
+      "tr": "yaratmak, oluşturmak",
+      "en": "create",
+      "type": "Fiil",
+      "form": "Mastar",
+      "note": ""
+    },
+    "crearán": {
+      "lemma": "crear",
+      "tr": "yaratmak, oluşturmak",
+      "en": "create",
+      "type": "Fiil",
+      "form": "Futuro simple · üçüncü çoğul kişi",
+      "note": "Crear + -án = crearán."
+    },
+    "creatividad": {
+      "lemma": "creatividad",
+      "tr": "yaratıcılık",
+      "en": "creativity",
+      "type": "İsim",
+      "form": "La creatividad · dişil tekil",
+      "note": ""
+    },
+    "creativos": {
+      "lemma": "creativo",
+      "tr": "yaratıcı",
+      "en": "creative",
+      "type": "Sıfat",
+      "form": "Eril çoğul sıfat; negocios / pósters ile uyumlu",
+      "note": ""
+    },
+    "culturales": {
+      "lemma": "cultural",
+      "tr": "kültürel",
+      "en": "cultural",
+      "type": "Sıfat",
+      "form": "Çoğul sıfat; ideas sözcüğünü niteler",
+      "note": ""
+    },
+    "cómo": {
+      "lemma": "cómo",
+      "tr": "nasıl",
+      "en": "how",
+      "type": "Soru zarfı",
+      "note": "Soru kullanımında aksanlıdır.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "de": {
+      "lemma": "de",
+      "tr": "-ın/-in; -dan/-den; aitlik",
+      "en": "of; from",
+      "type": "Edat",
+      "note": "Anlamı kurduğu gruba göre değişir. Del = de + el.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "deben": {
+      "lemma": "deber",
+      "tr": "yapması gerekmek",
+      "en": "must, should",
+      "type": "Fiil",
+      "form": "Presente · üçüncü çoğul kişi",
+      "note": "Deber + mastar, gereklilik bildirir."
+    },
+    "deberán": {
+      "lemma": "deber",
+      "tr": "yapması gerekecek",
+      "en": "will have to",
+      "type": "Fiil",
+      "form": "Futuro simple · üçüncü çoğul kişi",
+      "note": "Deberán + mastar, gelecekte yerine getirilecek gerekliliği anlatır."
+    },
+    "del": {
+      "lemma": "del",
+      "tr": "-ın/-in + belirli eril isim",
+      "en": "of/from the",
+      "type": "Edat + artikel birleşmesi",
+      "note": "De + el → del. De + él birleşmez.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "desarrollo": {
+      "lemma": "desarrollo",
+      "tr": "geliştirme, gelişim",
+      "en": "development",
+      "type": "İsim",
+      "form": "El desarrollo · eril tekil",
+      "note": ""
+    },
+    "después": {
+      "lemma": "después",
+      "tr": "sonra",
+      "en": "later; afterwards",
+      "type": "Zaman zarfı",
+      "note": "Media hora después = yarım saat sonra.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "divide": {
+      "lemma": "dividir",
+      "tr": "bölmek, ayırmak",
+      "en": "divide",
+      "type": "Fiil",
+      "form": "Olumlu emir · tú",
+      "note": "Dividir fiilinden gelen tú olumlu emridir; burada sınıfı gruplara ayırma yönergesidir."
+    },
+    "durante": {
+      "lemma": "durante",
+      "tr": "boyunca, sırasında",
+      "en": "during",
+      "type": "Edat",
+      "form": "Ardından süre / olay bildiren isim grubu gelir",
+      "note": ""
+    },
+    "ecológicas": {
+      "lemma": "ecológico",
+      "tr": "çevreci, ekolojik",
+      "en": "eco-friendly",
+      "type": "Sıfat",
+      "form": "Dişil çoğul sıfat; tiendas ile uyumlu",
+      "note": ""
+    },
+    "educativas": {
+      "lemma": "educativo",
+      "tr": "eğitici, eğitimle ilgili",
+      "en": "educational",
+      "type": "Sıfat",
+      "form": "Dişil çoğul sıfat; campañas ile uyumlu",
+      "note": ""
+    },
+    "el": {
+      "lemma": "el",
+      "tr": "belirli artikel (eril tekil)",
+      "en": "the",
+      "type": "Artikel",
+      "note": "Bir ismi belirli hâle getirir. Zamir olan él ile karıştırma.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "en": {
+      "lemma": "en",
+      "tr": "-da/-de, içinde",
+      "en": "in; on; at",
+      "type": "Edat",
+      "note": "Yer veya bir eylemin ortamını belirtir.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "es": {
+      "lemma": "ser",
+      "tr": "...dır; olmak",
+      "en": "is",
+      "type": "Fiil",
+      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
+      "form": "Presente de indicativo, 3. tekil kişi."
+    },
+    "estas": {
+      "lemma": "este",
+      "tr": "bu",
+      "en": "these",
+      "type": "Belirleyici",
+      "form": "Dişil çoğul işaret belirleyicisi; preguntas ile uyumlu",
+      "note": ""
+    },
+    "estudiantes": {
+      "lemma": "estudiante",
+      "tr": "öğrenci",
+      "en": "student",
+      "type": "İsim",
+      "note": "Kişiye göre eril veya dişil artikel alabilir.",
+      "form": "Çoğul isim. Tekili: estudiante."
+    },
+    "festivales": {
+      "lemma": "festival",
+      "tr": "festivaller",
+      "en": "festivals",
+      "type": "İsim",
+      "form": "El festival · çoğul",
+      "note": ""
+    },
+    "final": {
+      "lemma": "final",
+      "tr": "son",
+      "en": "end",
+      "type": "İsim",
+      "note": "Al final = sonunda.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "formación": {
+      "lemma": "formación",
+      "tr": "oluşturma",
+      "en": "formation",
+      "type": "İsim",
+      "form": "La formación · dişil tekil",
+      "note": ""
+    },
+    "futuro": {
+      "lemma": "futuro",
+      "tr": "gelecek; gelecek zaman",
+      "en": "future",
+      "type": "İsim / sıfat",
+      "form": "El futuro; proyecto futuro ifadesinde eril tekil sıfat",
+      "note": "Futuro simple, basit gelecek zamanın adıdır."
+    },
+    "grupo": {
+      "lemma": "grupo",
+      "tr": "grup",
+      "en": "group",
+      "type": "İsim",
+      "form": "el grupo",
+      "note": ""
+    },
+    "grupos": {
+      "lemma": "grupo",
+      "tr": "gruplar",
+      "en": "groups",
+      "type": "İsim",
+      "form": "El grupo · çoğul",
+      "note": ""
+    },
+    "hablan": {
+      "lemma": "hablar",
+      "tr": "konuşmak",
+      "en": "speak",
+      "type": "Fiil",
+      "form": "Presente · üçüncü çoğul kişi",
+      "note": ""
+    },
+    "hacer": {
+      "lemma": "hacer",
+      "tr": "yapmak",
+      "en": "do; make",
+      "type": "Fiil",
+      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "harán": {
+      "lemma": "hacer",
+      "tr": "yapmak",
+      "en": "do, make",
+      "type": "Fiil",
+      "form": "Futuro simple · üçüncü çoğul kişi; düzensiz har- kökü",
+      "note": "Hacer → har- + -án = harán."
+    },
+    "idea": {
+      "lemma": "idea",
+      "tr": "fikir",
+      "en": "idea",
+      "type": "İsim",
+      "form": "La idea · dişil tekil",
+      "note": ""
+    },
+    "ideas": {
+      "lemma": "idea",
+      "tr": "fikirler",
+      "en": "ideas",
+      "type": "İsim",
+      "form": "La idea · çoğul",
+      "note": ""
+    },
+    "idioma": {
+      "lemma": "idioma",
+      "tr": "dil",
+      "en": "language",
+      "type": "İsim",
+      "form": "El idioma · eril tekil",
+      "note": ""
+    },
+    "imaginario": {
+      "lemma": "imaginario",
+      "tr": "hayali",
+      "en": "imaginary",
+      "type": "Sıfat",
+      "form": "Eril tekil sıfat; proyecto ile uyumlu",
+      "note": ""
+    },
+    "inversores": {
+      "lemma": "inversor",
+      "tr": "yatırımcılar",
+      "en": "investors",
+      "type": "İsim",
+      "form": "El inversor / la inversora · çoğul",
+      "note": ""
+    },
+    "la": {
+      "lemma": "la",
+      "tr": "belirli artikel (dişil tekil)",
+      "en": "the",
+      "type": "Artikel",
+      "note": "Burada bir dişil ismi belirli hâle getiriyor.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "las": {
+      "lemma": "las",
+      "tr": "belirli artikel (dişil çoğul)",
+      "en": "the",
+      "type": "Artikel",
+      "note": "Dişil çoğul isim grubunu belirler.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "limpieza": {
+      "lemma": "limpieza",
+      "tr": "temizlik",
+      "en": "cleaning, cleanup",
+      "type": "İsim",
+      "form": "La limpieza · dişil tekil",
+      "note": ""
+    },
+    "los": {
+      "lemma": "los",
+      "tr": "belirli artikel (eril/karma çoğul)",
+      "en": "the",
+      "type": "Artikel",
+      "note": "Çoğul isim grubunu belirler.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "medio": {
+      "lemma": "medio",
+      "tr": "medio ambiente: çevre",
+      "en": "environment (in medio ambiente)",
+      "type": "İsim",
+      "form": "El medio · eril tekil; medio ambiente kalıbında",
+      "note": ""
+    },
+    "mejor": {
+      "lemma": "mejor",
+      "tr": "daha iyi",
+      "en": "better",
+      "type": "Zarf",
+      "note": "Bu cümlede conocer eyleminin derecesini anlatıyor. Sıfat olarak da kullanılabilir.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "mundo": {
+      "lemma": "mundo",
+      "tr": "dünya",
+      "en": "world",
+      "type": "İsim",
+      "form": "El mundo · eril tekil",
+      "note": ""
+    },
+    "negocios": {
+      "lemma": "negocio",
+      "tr": "iş fikirleri, işletmeler",
+      "en": "businesses",
+      "type": "İsim",
+      "form": "El negocio · çoğul",
+      "note": ""
+    },
+    "oral": {
+      "lemma": "oral",
+      "tr": "sözlü",
+      "en": "oral",
+      "type": "Sıfat",
+      "form": "Tekil sıfat; presentación sözcüğünü niteler",
+      "note": ""
+    },
+    "original": {
+      "lemma": "original",
+      "tr": "özgün",
+      "en": "original",
+      "type": "Sıfat",
+      "form": "Tekil sıfat; idea sözcüğünü niteler",
+      "note": ""
+    },
+    "otros": {
+      "lemma": "otro",
+      "tr": "diğer, başka",
+      "en": "other",
+      "type": "Belirleyici",
+      "form": "Eril çoğul belirleyici",
+      "note": ""
+    },
+    "para": {
+      "lemma": "para",
+      "tr": "için; amacıyla",
+      "en": "for; in order to",
+      "type": "Edat",
+      "note": "Para + mastar amaç bildirebilir.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "persuasión": {
+      "lemma": "persuasión",
+      "tr": "ikna",
+      "en": "persuasion",
+      "type": "İsim",
+      "form": "La persuasión · dişil tekil",
+      "note": ""
+    },
+    "planear": {
+      "lemma": "planear",
+      "tr": "planlamak",
+      "en": "plan",
+      "type": "Fiil",
+      "form": "Mastar",
+      "note": ""
+    },
+    "por": {
+      "lemma": "por",
+      "tr": "için; aracılığıyla",
+      "en": "for; by",
+      "type": "Edat",
+      "note": "Por qué = neden; por teléfono = telefonla.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "preguntas": {
+      "lemma": "pregunta",
+      "tr": "sorular",
+      "en": "questions",
+      "type": "İsim",
+      "form": "La pregunta · çoğul",
+      "note": ""
+    },
+    "preparar": {
+      "lemma": "preparar",
+      "tr": "hazırlamak",
+      "en": "prepare",
+      "type": "Fiil",
+      "form": "Mastar",
+      "note": ""
+    },
+    "presentaciones": {
+      "lemma": "presentación",
+      "tr": "sunumlar",
+      "en": "presentations",
+      "type": "İsim",
+      "form": "La presentación · çoğul",
+      "note": ""
+    },
+    "presentación": {
+      "lemma": "presentación",
+      "tr": "sunum",
+      "en": "presentation",
+      "type": "İsim",
+      "form": "La presentación · dişil tekil",
+      "note": ""
+    },
+    "presentará": {
+      "lemma": "presentar",
+      "tr": "sunmak, tanıtmak",
+      "en": "present",
+      "type": "Fiil",
+      "form": "Futuro simple · üçüncü tekil kişi",
+      "note": "Cada grupo tekil olduğu için presentará kullanılır."
+    },
+    "proyecto": {
+      "lemma": "proyecto",
+      "tr": "proje",
+      "en": "project",
+      "type": "İsim",
+      "form": "El proyecto · eril tekil",
+      "note": ""
+    },
+    "proyectos": {
+      "lemma": "proyecto",
+      "tr": "projeler",
+      "en": "projects",
+      "type": "İsim",
+      "form": "El proyecto · çoğul",
+      "note": ""
+    },
+    "pueden": {
+      "lemma": "poder",
+      "tr": "yapabilmek",
+      "en": "can, be able to",
+      "type": "Fiil",
+      "form": "Presente · üçüncü çoğul kişi; o → ue",
+      "note": ""
+    },
+    "pósters": {
+      "lemma": "póster",
+      "tr": "afişler",
+      "en": "posters",
+      "type": "İsim",
+      "form": "El póster · çoğul",
+      "note": ""
+    },
+    "quiénes": {
+      "lemma": "quién",
+      "tr": "kimler",
+      "en": "who",
+      "type": "Soru zamiri",
+      "form": "Çoğul; soru kullanımında tilde alır",
+      "note": ""
+    },
+    "qué": {
+      "lemma": "qué",
+      "tr": "ne",
+      "en": "what",
+      "type": "Soru zamiri",
+      "form": "Tildeli soru sözcüğü.",
+      "note": ""
+    },
+    "responder": {
+      "lemma": "responder",
+      "tr": "yanıtlamak",
+      "en": "answer, respond",
+      "type": "Fiil",
+      "form": "Mastar",
+      "note": "Responder a una pregunta = bir soruyu yanıtlamak."
+    },
+    "respuestas": {
+      "lemma": "respuesta",
+      "tr": "cevap",
+      "en": "answer",
+      "type": "İsim",
+      "note": "La respuesta: dişil isim.",
+      "form": "Çoğul isim. Tekili: respuesta."
+    },
+    "se": {
+      "lemma": "se",
+      "tr": "zamirli fiilin öznesiyle uyumlu zamir",
+      "en": "pronominal marker",
+      "type": "Zamir",
+      "form": "Üçüncü kişi zamiri; çekimli fiilden önce veya gerundioya bitişik gelebilir.",
+      "note": ""
+    },
+    "seguridad": {
+      "lemma": "seguridad",
+      "tr": "güven; burada kendinden emin olma",
+      "en": "confidence; security",
+      "type": "İsim",
+      "form": "La seguridad · dişil tekil",
+      "note": ""
+    },
+    "simple": {
+      "lemma": "simple",
+      "tr": "basit",
+      "en": "simple",
+      "type": "Sıfat",
+      "form": "Tekil sıfat; futuro simple zamanının adı içinde",
+      "note": ""
+    },
+    "sociales": {
+      "lemma": "social",
+      "tr": "sosyal, toplumsal",
+      "en": "social",
+      "type": "Sıfat",
+      "form": "Çoğul sıfat; proyectos sözcüğünü niteler",
+      "note": ""
+    },
+    "su": {
+      "lemma": "su",
+      "tr": "onun; sizin (resmî)",
+      "en": "his; her; your",
+      "type": "İyelik belirleyicisi",
+      "note": "Sahibin cinsiyetini göstermez; bağlam kimin olduğunu açıklar.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "sus": {
+      "lemma": "su",
+      "tr": "onun/onların/sizin (çoğul isimle)",
+      "en": "his; her; their; your",
+      "type": "İyelik belirleyicisi",
+      "note": "Su’nun çoğulu; sahip olunan şey çoğul.",
+      "form": "Çoğul iyelik belirleyicisi."
+    },
+    "teatro": {
+      "lemma": "teatro",
+      "tr": "tiyatro",
+      "en": "theatre",
+      "type": "İsim",
+      "form": "El teatro · eril tekil",
+      "note": ""
+    },
+    "tiendas": {
+      "lemma": "tienda",
+      "tr": "dükkânlar, mağazalar",
+      "en": "shops",
+      "type": "İsim",
+      "form": "la tienda · çoğul",
+      "note": ""
+    },
+    "tipos": {
+      "lemma": "tipo",
+      "tr": "türler",
+      "en": "types",
+      "type": "İsim",
+      "form": "El tipo · çoğul",
+      "note": ""
+    },
+    "trabajará": {
+      "lemma": "trabajar",
+      "tr": "çalışmak",
+      "en": "work",
+      "type": "Fiil",
+      "form": "Futuro simple · üçüncü tekil kişi",
+      "note": "Trabajar + -á = trabajará."
+    },
+    "un": {
+      "lemma": "un",
+      "tr": "bir (eril)",
+      "en": "a; an",
+      "type": "Belirsiz artikel",
+      "note": "Eril tekil isimden önce.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "usar": {
+      "lemma": "usar",
+      "tr": "kullanmak",
+      "en": "use",
+      "type": "Fiil",
+      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "uso": {
+      "lemma": "uso",
+      "tr": "kullanım",
+      "en": "use",
+      "type": "İsim",
+      "form": "El uso · eril tekil; burada isim",
+      "note": ""
+    },
+    "utilizan": {
+      "lemma": "utilizar",
+      "tr": "kullanmak",
+      "en": "use",
+      "type": "Fiil",
+      "form": "Presente · üçüncü çoğul kişi",
+      "note": ""
+    },
+    "votación": {
+      "lemma": "votación",
+      "tr": "oylama",
+      "en": "vote, voting",
+      "type": "İsim",
+      "form": "La votación · dişil tekil",
+      "note": ""
+    },
+    "votarán": {
+      "lemma": "votar",
+      "tr": "oy kullanmak",
+      "en": "vote",
+      "type": "Fiil",
+      "form": "Futuro simple · üçüncü çoğul kişi",
+      "note": "Votar por = birine / bir şeye oy vermek."
+    },
+    "y": {
+      "lemma": "y",
+      "tr": "ve",
+      "en": "and",
+      "type": "Bağlaç",
+      "note": "Sözcükleri veya cümleleri birbirine bağlar.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "única": {
+      "lemma": "único",
+      "tr": "benzersiz, tek",
+      "en": "unique",
+      "type": "Sıfat",
+      "form": "Dişil tekil sıfat; idea ile uyumlu",
+      "note": ""
+    }
+  }
+}
