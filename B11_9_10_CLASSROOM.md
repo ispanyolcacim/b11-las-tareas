@@ -1,6 +1,6 @@
 # B1.1 · 9+10
 
-Classroom activity: `b11-9-10-ders-ici.html`.
+Classroom activity: `09-10-ders-ici-ispanyolcacim-b11.html`.
 
 1. Futuro simple structure. Regular infinitive + ending formula; six-person tables for hablar/comer/vivir; twelve irregular stems; negation, questions, pronominal placement and impersonal habrá; seven usage contexts with exactly one annotated original example each.
 2. Wordwall. The user-supplied embed is https://wordwall.net/es/embed/7d624eb22b12417f8b9c366192204db9?themeId=65&templateId=3&fontStackId=0 . The external link opens the same resource. The former assignment/sign-in note is removed.
