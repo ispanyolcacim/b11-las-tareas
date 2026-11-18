@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#526cc6">
+  <title>B1.1 (13+14) · Ders İçi Etkinlik | Condicional simple</title>
+  <link rel="canonical" href="https://ispanyolcacim.github.io/b11-las-tareas/13-14-ders-ici-ispanyolcacim-b11.html">
+  <link rel="stylesheet" href="assets/b11-9-10/classroom.css?v=3">
+  <style>
+    .lesson-nav { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:14px; margin-bottom:20px; padding-bottom:16px; border-bottom:1px solid var(--line) }
+    .lesson-nav .tabs { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; border:0; margin:0; padding:0 }
+    .lesson-nav .tab { text-align:left; min-width:0; padding:10px 12px; line-height:1.35 }
+    .lesson-nav .homework-button { align-self:start; margin:0 }
+    .lesson-panel[hidden], .gap [hidden], .word-popover[hidden] { display:none }
+    .hero { padding-bottom:16px }
+    .role-legend { display:flex; align-items:center; flex-wrap:wrap; gap:6px; margin:0 0 22px; font-size:12px }
+    .role-legend b { margin-right:4px }
+    .grammar-chunk, .role-chip { border-radius:5px; box-decoration-break:clone; -webkit-box-decoration-break:clone }
+    .role-chip { padding:3px 8px; background:var(--role-color); color:#29334e }
+    .lesson-line .grammar-chunk, .grammar-chunk.example { background:var(--role-color); padding-block:2px }
+    .lesson-line:hover .grammar-chunk, .lesson-line:focus-within .grammar-chunk { box-shadow:0 0 0 1px var(--role-color) }
+    .subject { --role-color:#deebff }
+    .verb { --role-color:#e9dfff }
+    .object { --role-color:#ffe4ed }
+    .indirect { --role-color:#ddf3eb }
+    .complement { --role-color:#fff0cc }
+    .attribute { --role-color:#fce6d6 }
+    .participle { --role-color:#dceff6 }
+    .connector { --role-color:#e9edf5 }
+    .agent { --role-color:#fce0ef }
+    .lesson-panel { display:grid; gap:16px }
+    .section-heading { margin:0 }
+    .section-heading p { margin-bottom:0 }
+    .lesson-line { margin:0; font-size:clamp(16px,2vw,19px); line-height:2.05; overflow-wrap:anywhere }
+    .lesson-line .word-token, [lang=es] .word-token { text-decoration:underline dotted #6376a875; text-underline-offset:3px }
+    .lesson-line .word-token:hover, [lang=es] .word-token:hover { text-decoration-color:currentColor }
+    .word-token:focus-visible,.lock:focus-visible,.tab:focus-visible { outline:2px solid #3b59b2; outline-offset:2px }
+    .word-note { margin-top:7px }
+    .audio-card { padding:12px 14px; border:1px solid var(--line); background:#fff; border-radius:18px }
+    .audio-card iframe { display:block; width:100%; min-width:0; border:0; border-radius:8px }
+    .audio-card .video-link { display:inline-block; margin:5px 2px 0 }
+    .exercise-list,.dialogue-grid,.advice-grid,.literature-grid { display:grid; gap:12px; margin:0; padding:0 }
+    .exercise-list { list-style:none }
+    .exercise-list > li { display:grid; grid-template-columns:auto minmax(0,1fr); align-items:baseline; gap:11px }
+    .item-badge { display:grid; min-width:28px; height:28px; align-items:center; padding:0 6px; border-radius:10px; background:#e7eeff; color:#3658a7; font-weight:900; text-align:center }
+    .gap { display:inline-flex; gap:4px; align-items:center; max-width:100%; vertical-align:middle; background:#f9f7ff; border-radius:8px; padding:0 3px }
+    .gap input, .gap-answer { display:inline-block; width:clamp(74px,12vw,112px); min-width:0; max-width:100%; border:0; border-bottom:1px dashed #7757ad; background:transparent; color:#3c3261; padding:2px 4px; line-height:1.45; font:inherit; font-size:.9em }
+    .gap-answer { width:auto; min-width:64px; color:#4e3387; font-weight:800 }
+    .gap .lock { width:31px; height:30px; font-size:14px; margin:0; flex-shrink:0; border-radius:8px }
+    .gap-number { color:#526cc6; font-weight:900; padding-right:4px }
+    .dialogue-grid,.literature-grid { grid-template-columns:1fr 1fr; align-items:start }
+    .dialogue-card { border-top:4px solid #8195dc }
+    .dialogue-card:nth-child(2) { border-top-color:#61ad9c }
+    .dialogue-card h3 { display:flex; align-items:center; gap:9px; margin-bottom:10px }
+    .dialogue-card .lesson-line:nth-of-type(n+2), .theater-dialogue .lesson-line:nth-of-type(n+2) { margin-top:8px }
+    .speaker { color:#3f5592; font-weight:900 }
+    .table-card,.advice-group,.literature-card { background:#fff; border:1px solid var(--line); border-radius:20px; padding:clamp(13px,2.3vw,23px) }
+    .table-card h3,.advice-group h3,.literature-card h3 { margin-bottom:9px }
+    .table-wrapper { overflow:auto }
+    .grammar-table { width:100%; border-collapse:collapse; text-align:left }
+    .grammar-table th,.grammar-table td { border-bottom:1px solid var(--line); padding:9px 8px; vertical-align:top }
+    .grammar-table thead { background:var(--soft); color:#38538e }
+    .grammar-table tr:last-child td,.grammar-table tr:last-child th { border-bottom:0 }
+    .grammar-table .lesson-line { font-size:16px }
+    .ending { color:#653d9b; font-weight:900 }
+    .formula-table th { width:26% }
+    .grammar-table .tr-line { margin:3px 0 0; font-size:14px; color:#54617b }
+    .stem { display:inline-block; margin-right:11px; white-space:nowrap }
+    .advice-grid { grid-template-columns:1fr 1fr }
+    .advice-group { border-top:4px solid #728bdb }
+    .advice-group.give { border-top-color:#59a894 }
+    .advice-group.alternate { border-top-color:#d19a5c; grid-column:1/-1 }
+    .advice-group .translated-title { margin-bottom:13px; color:#53617a; font-size:14px }
+    .advice-items { display:grid; gap:9px }
+    .advice-group.alternate .advice-items { grid-template-columns:1fr 1fr }
+    .advice-item { border:1px solid #e3e9f7; background:#fafbff; padding:9px 12px; border-radius:13px }
+    .advice-item p:last-child { margin:2px 0 0; font-size:14px; color:#53617a }
+    .grammar-tag { display:inline-block; border-radius:20px; padding:2px 8px; color:#51418e; background:#ece7ff; font-weight:800; font-size:12px }
+    .grammar-tag.present { background:#ddf3eb; color:#245b51 }
+    .grammar-tag.imperative { background:#fff0d5; color:#714d28 }
+    .literature-card { border-top:4px solid #839ade }
+    .literature-card:nth-child(2) { border-top-color:#af91d4 }
+    .literature-card .lesson-line { font-size:clamp(15px,1.8vw,17px) }
+    .theater-verse .lesson-line { line-height:1.85 }
+    .match-list { display:grid; grid-template-columns:1fr 1fr; gap:12px }
+    .match-card { background:#f5f7ff; padding:12px; border-radius:13px }
+    .match-card h4 { margin:0 0 5px }
+    .match-card .gap input { width:54px }
+    .match-card .gap-answer { min-width:42px }
+    .response { display:block; margin-top:4px }
+    .response .gap { display:flex; width:max-content; max-width:100% }
+    .response input { width:min(280px,62vw) }
+    .response .gap-answer { white-space:normal }
+    .homework-open .word-popover { z-index:2 }
+    @media (max-width:880px) {
+      .lesson-nav { grid-template-columns:1fr }
+      .lesson-nav .homework-button { justify-self:start; grid-column:auto }
+      .dialogue-grid,.literature-grid { grid-template-columns:1fr }
+    }
+    @media (max-width:590px) {
+      .lesson-nav .tabs,.advice-grid,.advice-group.alternate .advice-items,.match-list { grid-template-columns:1fr 1fr }
+      .advice-grid,.advice-group.alternate .advice-items,.match-list { grid-template-columns:1fr }
+      .lesson-nav .tab { padding:9px 8px }
+      .grammar-table th,.grammar-table td { padding:6px 4px; font-size:13px }
+      .formula-table th { width:27% }
+      .grammar-table .lesson-line { font-size:14px }
+      .dictation-card { padding:12px }
+      .exercise-list > li { gap:7px }
+    }
+    @media print {
+      body { print-color-adjust:exact; -webkit-print-color-adjust:exact }
+      .lesson-nav,.audio-card { display:none!important }
+      body:not(.homework-open) .lesson-panel[hidden], body:not(.homework-open) .lesson-panel { display:grid }
+      .lesson-panel + .lesson-panel { margin-top:20px }
+      .lesson-line .word-token,[lang=es] .word-token { text-decoration:none }
+      .table-card,.literature-card { break-inside:auto }
+      .table-card tr,.advice-item,.match-card,.dialogue-card,.exercise-list li { break-inside:avoid }
+      .lesson-line { font-size:14px }
+      .grammar-table .lesson-line { font-size:13px }
+      .gap input { width:70px }
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <header>
+    <div class="masthead">
+      <a class="brand" href="https://www.ispanyolcacim.com/">ESPAÑOL CON PROFE HAZEL</a>
+      <div class="masthead-right"><span>B1.1 · 13+14. DERS</span><button class="small-button" id="printButton" type="button">🖨️ Yazdır / PDF</button></div>
+    </div>
+    <img class="logo" src="https://ispanyolcacim.github.io/a1.1-tareas/assets/a11-profe-hazel-logo-transparent.png" alt="İspanyolcacım Dil Akademisi · Profe Hazel" width="2174" height="723">
+    <div class="hero">
+      <p class="eyebrow">DERS İÇİ ETKİNLİK · (13+14) B1.1</p>
+      <h1 data-vocab lang="es">Condicional simple</h1>
+    </div>
+  </header>
+  <div class="lesson-nav">
+    <nav class="tabs" role="tablist" aria-label="Etkinlik bölümleri">
+      <button type="button" class="tab active" id="tab-dictado" role="tab" aria-selected="true" aria-controls="dictado"><span>01</span>🎧 Dikte</button>
+      <button type="button" class="tab" id="tab-condicional" role="tab" aria-selected="false" aria-controls="condicional" tabindex="-1"><span>02</span>📘 Condicional simple</button>
+      <button type="button" class="tab" id="tab-consejos" role="tab" aria-selected="false" aria-controls="consejos" tabindex="-1"><span>03</span>💬 Tavsiye Kalıpları</button>
+      <button type="button" class="tab" id="tab-maruchi" role="tab" aria-selected="false" aria-controls="maruchi" tabindex="-1"><span>04</span>🎙️ Maruchi</button>
+      <button type="button" class="tab" id="tab-lorca" role="tab" aria-selected="false" aria-controls="lorca" tabindex="-1"><span>05</span>🎭 Lorca</button>
+    </nav>
+    <button type="button" id="homeworkButton" class="homework-button" aria-haspopup="dialog" aria-controls="homeworkDialog">📚 13–14. Ders Ödevleri</button>
+  </div>
+  <div class="role-legend" aria-label="Cümle ögelerinin renkleri"><b>Cümle ögeleri</b> <span class="role-chip subject">Özne</span> <span class="role-chip verb">Fiil</span> <span class="role-chip object">Doğrudan nesne</span> <span class="role-chip indirect">Dolaylı tümleç</span> <span class="role-chip complement">Diğer tümleç</span> <span class="role-chip attribute">Nitelik</span> <span class="role-chip participle">Ortaç</span> <span class="role-chip connector">Bağlayıcı</span> <span class="role-chip agent">Eylemi yapan</span></div>
+  <main>
+    <section id="dictado" class="lesson-panel" role="tabpanel" aria-labelledby="tab-dictado">
+      <div class="section-heading">
+        <h2 data-vocab lang="es">🎧 Dictado de palabras homófonas</h2>
+        <p>Kaydı dinle ve boşlukları duyduğun kelimelerle doldur. Her cevabı kendi 🔒 düğmesiyle kontrol et.</p>
+      </div>
+      <div class="audio-card">
+        <iframe title="Dictado de palabras homófonas · SoundCloud" loading="lazy" height="105" allow="autoplay; encrypted-media"
+          src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F2017054103&amp;color=%236495ed&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_reposts=false&amp;show_teaser=false&amp;show_artwork=false&amp;visual=false"></iframe>
+        <a class="video-link" href="https://soundcloud.com/profe-hazel/b11-1314-sayfa-2" target="_blank" rel="noopener noreferrer">SoundCloud’da aç ↗</a>
+      </div>
+      <ol class="exercise-list" type="a"><li class="dictation-card"><span class="item-badge" aria-hidden="true">a</span><p class="lesson-line" lang="es"><span class="grammar-chunk subject" data-role="Özne">Mónica </span><span class="grammar-chunk verb" data-role="Fiil"><span class="gap" data-gap="d1"><input id="in-d1" type="text" autocomplete="off" spellcheck="false" lang="es" aria-label="1. boşluk"><span id="answer-d1" class="gap-answer" lang="es" hidden>ha</span><button class="lock" type="button" aria-controls="answer-d1" aria-expanded="false" aria-label="1. boşluk · cevap göster">🔒</button></span> </span><span class="grammar-chunk participle" data-role="Ortaç">vuelto </span><span class="grammar-chunk complement" data-role="Diğer tümleç"><span class="gap" data-gap="d2"><input id="in-d2" type="text" autocomplete="off" spellcheck="false" lang="es" aria-label="2. boşluk"><span id="answer-d2" class="gap-answer" lang="es" hidden>a</span><button class="lock" type="button" aria-controls="answer-d2" aria-expanded="false" aria-label="2. boşluk · cevap göster">🔒</button></span> Madrid.</span></p></li>
+<li class="dictation-card"><span class="item-badge" aria-hidden="true">b</span><p class="lesson-line" lang="es"><span class="grammar-chunk verb" data-role="Fiil">Ven <span class="gap" data-gap="d3"><input id="in-d3" type="text" autocomplete="off" spellcheck="false" lang="es" aria-label="3. boşluk"><span id="answer-d3" class="gap-answer" lang="es" hidden>a ver</span><button class="lock" type="button" aria-controls="answer-d3" aria-expanded="false" aria-label="3. boşluk · cevap göster">🔒</button></span> </span><span class="grammar-chunk object" data-role="Doğrudan nesne">estos libros de cine tan chulos, </span><span class="grammar-chunk verb" data-role="Fiil">creo </span><span class="grammar-chunk connector" data-role="Bağlayıcı">que </span><span class="grammar-chunk object" data-role="Doğrudan nesne">los </span><span class="grammar-chunk verb" data-role="Fiil">van <span class="gap" data-gap="d4"><input id="in-d4" type="text" autocomplete="off" spellcheck="false" lang="es" aria-label="4. boşluk"><span id="answer-d4" class="gap-answer" lang="es" hidden>a</span><button class="lock" type="button" aria-controls="answer-d4" aria-expanded="false" aria-label="4. boşluk · cevap göster">🔒</button></span> vender </span><span class="grammar-chunk object" data-role="Doğrudan nesne">todos </span><span class="grammar-chunk connector" data-role="Bağlayıcı">y </span><span class="grammar-chunk verb" data-role="Fiil">no va <span class="gap" data-gap="d5"><input id="in-d5" type="text" autocomplete="off" spellcheck="false" lang="es" aria-label="5. boşluk"><span id="answer-d5" class="gap-answer" lang="es" hidden>a haber</span><button class="lock" type="button" aria-controls="answer-d5" aria-expanded="false" aria-label="5. boşluk · cevap göster">🔒</button></span> </span><span class="grammar-chunk object" data-role="Doğrudan nesne">más </span><span class="grammar-chunk complement" data-role="Diğer tümleç">hasta el próximo mes.</span></p></li>
+<li class="dictation-card"><span class="item-badge" aria-hidden="true">c</span><p class="lesson-line" lang="es">¡<span class="gap" data-gap="d6"><input id="in-d6" type="text" autocomplete="off" spellcheck="false" lang="es" aria-label="6. boşluk"><span id="answer-d6" class="gap-answer" lang="es" hidden>Ay</span><button class="lock" type="button" aria-controls="answer-d6" aria-expanded="false" aria-label="6. boşluk · cevap göster">🔒</button></span>, Isaac! <span class="grammar-chunk verb" data-role="Fiil">Quita </span><span class="grammar-chunk object" data-role="Doğrudan nesne">el portátil </span><span class="grammar-chunk complement" data-role="Diğer tümleç">de <span class="gap" data-gap="d7"><input id="in-d7" type="text" autocomplete="off" spellcheck="false" lang="es" aria-label="7. boşluk"><span id="answer-d7" class="gap-answer" lang="es" hidden>ahí</span><button class="lock" type="button" aria-controls="answer-d7" aria-expanded="false" aria-label="7. boşluk · cevap göster">🔒</button></span>, </span>¿<span class="grammar-chunk verb" data-role="Fiil">no ves </span><span class="grammar-chunk connector" data-role="Bağlayıcı">que </span><span class="grammar-chunk verb" data-role="Fiil">no <span class="gap" data-gap="d8"><input id="in-d8" type="text" autocomplete="off" spellcheck="false" lang="es" aria-label="8. boşluk"><span id="answer-d8" class="gap-answer" lang="es" hidden>hay</span><button class="lock" type="button" aria-controls="answer-d8" aria-expanded="false" aria-label="8. boşluk · cevap göster">🔒</button></span> </span><span class="grammar-chunk object" data-role="Doğrudan nesne">espacio suficiente?</span></p></li>
+<li class="dictation-card"><span class="item-badge" aria-hidden="true">d</span><p class="lesson-line" lang="es">¡<span class="gap" data-gap="d9"><input id="in-d9" type="text" autocomplete="off" spellcheck="false" lang="es" aria-label="9. boşluk"><span id="answer-d9" class="gap-answer" lang="es" hidden>Hola</span><button class="lock" type="button" aria-controls="answer-d9" aria-expanded="false" aria-label="9. boşluk · cevap göster">🔒</button></span>, Sergio! ¿<span class="grammar-chunk verb" data-role="Fiil">Has </span><span class="grammar-chunk participle" data-role="Ortaç">visto </span><span class="grammar-chunk object" data-role="Doğrudan nesne">qué <span class="gap" data-gap="d10"><input id="in-d10" type="text" autocomplete="off" spellcheck="false" lang="es" aria-label="10. boşluk"><span id="answer-d10" class="gap-answer" lang="es" hidden>olas</span><button class="lock" type="button" aria-controls="answer-d10" aria-expanded="false" aria-label="10. boşluk · cevap göster">🔒</button></span> tan buenas </span><span class="grammar-chunk verb" data-role="Fiil"><span class="gap" data-gap="d11"><input id="in-d11" type="text" autocomplete="off" spellcheck="false" lang="es" aria-label="11. boşluk"><span id="answer-d11" class="gap-answer" lang="es" hidden>hay</span><button class="lock" type="button" aria-controls="answer-d11" aria-expanded="false" aria-label="11. boşluk · cevap göster">🔒</button></span> </span><span class="grammar-chunk complement" data-role="Diğer tümleç">hoy para hacer surf?</span></p></li>
+<li class="dictation-card"><span class="item-badge" aria-hidden="true">e</span><p class="lesson-line" lang="es"><span class="grammar-chunk complement" data-role="Diğer tümleç">Otra vez </span><span class="grammar-chunk verb" data-role="Fiil">he </span><span class="grammar-chunk participle" data-role="Ortaç"><span class="gap" data-gap="d12"><input id="in-d12" type="text" autocomplete="off" spellcheck="false" lang="es" aria-label="12. boşluk"><span id="answer-d12" class="gap-answer" lang="es" hidden>hecho</span><button class="lock" type="button" aria-controls="answer-d12" aria-expanded="false" aria-label="12. boşluk · cevap göster">🔒</button></span> </span><span class="grammar-chunk object" data-role="Doğrudan nesne">una tortilla horrible, </span><span class="grammar-chunk complement" data-role="Diğer tümleç">siempre </span><span class="grammar-chunk indirect" data-role="Dolaylı tümleç">le </span><span class="grammar-chunk verb" data-role="Fiil"><span class="gap" data-gap="d13"><input id="in-d13" type="text" autocomplete="off" spellcheck="false" lang="es" aria-label="13. boşluk"><span id="answer-d13" class="gap-answer" lang="es" hidden>echo</span><button class="lock" type="button" aria-controls="answer-d13" aria-expanded="false" aria-label="13. boşluk · cevap göster">🔒</button></span> </span><span class="grammar-chunk object" data-role="Doğrudan nesne">demasiada sal.</span></p></li></ol>
+    </section>
+    <section id="condicional" class="lesson-panel" role="tabpanel" aria-labelledby="tab-condicional" hidden>
+      <div class="section-heading"><h2 data-vocab lang="es">📘 Condicional simple</h2></div>
+      <article class="table-card">
+        <h3>Yapı</h3>
+        <table class="grammar-table formula-table">
+          <tbody>
+            <tr><th scope="row">Düzenli</th><td>Tam mastar + kişi eki</td><td lang="es" data-vocab>hablar + ía → hablaría</td></tr>
+            <tr><th scope="row">Düzensiz</th><td>Değişen kök + aynı kişi eki</td><td lang="es" data-vocab>tener → tendr- + ía → tendría</td></tr>
+          </tbody>
+        </table>
+      </article>
+      <article class="table-card">
+        <h3>Düzenli fiiller ve ortak ekler</h3>
+        <div class="table-wrapper">
+          <table class="grammar-table">
+            <thead><tr><th scope="col">Kişi</th><th scope="col">Ek</th><th scope="col" data-vocab lang="es">hablar</th><th scope="col" data-vocab lang="es">comer</th><th scope="col" data-vocab lang="es">vivir</th></tr></thead>
+            <tbody><tr><th scope="row" data-vocab lang="es">yo</th><td data-vocab lang="es" class="ending">-ía</td><td><span data-vocab data-ending="2" lang="es" class="grammar-chunk example verb">hablaría</span></td><td><span data-vocab data-ending="2" lang="es" class="grammar-chunk example verb">comería</span></td><td><span data-vocab data-ending="2" lang="es" class="grammar-chunk example verb">viviría</span></td></tr>
+<tr><th scope="row" data-vocab lang="es">tú</th><td data-vocab lang="es" class="ending">-ías</td><td><span data-vocab data-ending="3" lang="es" class="grammar-chunk example verb">hablarías</span></td><td><span data-vocab data-ending="3" lang="es" class="grammar-chunk example verb">comerías</span></td><td><span data-vocab data-ending="3" lang="es" class="grammar-chunk example verb">vivirías</span></td></tr>
+<tr><th scope="row" data-vocab lang="es">él / ella / usted</th><td data-vocab lang="es" class="ending">-ía</td><td><span data-vocab data-ending="2" lang="es" class="grammar-chunk example verb">hablaría</span></td><td><span data-vocab data-ending="2" lang="es" class="grammar-chunk example verb">comería</span></td><td><span data-vocab data-ending="2" lang="es" class="grammar-chunk example verb">viviría</span></td></tr>
+<tr><th scope="row" data-vocab lang="es">nosotros / nosotras</th><td data-vocab lang="es" class="ending">-íamos</td><td><span data-vocab data-ending="5" lang="es" class="grammar-chunk example verb">hablaríamos</span></td><td><span data-vocab data-ending="5" lang="es" class="grammar-chunk example verb">comeríamos</span></td><td><span data-vocab data-ending="5" lang="es" class="grammar-chunk example verb">viviríamos</span></td></tr>
+<tr><th scope="row" data-vocab lang="es">vosotros / vosotras</th><td data-vocab lang="es" class="ending">-íais</td><td><span data-vocab data-ending="4" lang="es" class="grammar-chunk example verb">hablaríais</span></td><td><span data-vocab data-ending="4" lang="es" class="grammar-chunk example verb">comeríais</span></td><td><span data-vocab data-ending="4" lang="es" class="grammar-chunk example verb">viviríais</span></td></tr>
+<tr><th scope="row" data-vocab lang="es">ellos / ellas / ustedes</th><td data-vocab lang="es" class="ending">-ían</td><td><span data-vocab data-ending="3" lang="es" class="grammar-chunk example verb">hablarían</span></td><td><span data-vocab data-ending="3" lang="es" class="grammar-chunk example verb">comerían</span></td><td><span data-vocab data-ending="3" lang="es" class="grammar-chunk example verb">vivirían</span></td></tr></tbody>
+          </table>
+        </div>
+      </article>
+      <article class="table-card">
+        <h3>Düzensiz kökler</h3>
+        <table class="grammar-table formula-table">
+          <thead><tr><th scope="col">Değişim</th><th scope="col">Mastar → kök</th></tr></thead>
+          <tbody><tr><th scope="row">Bir ünlü düşer</th><td><span class="stem" data-vocab lang="es">caber → <strong class="ending">cabr-</strong></span><span class="stem" data-vocab lang="es">haber → <strong class="ending">habr-</strong></span><span class="stem" data-vocab lang="es">poder → <strong class="ending">podr-</strong></span><span class="stem" data-vocab lang="es">querer → <strong class="ending">querr-</strong></span><span class="stem" data-vocab lang="es">saber → <strong class="ending">sabr-</strong></span></td></tr>
+<tr><th scope="row">Köke d girer</th><td><span class="stem" data-vocab lang="es">poner → <strong class="ending">pondr-</strong></span><span class="stem" data-vocab lang="es">salir → <strong class="ending">saldr-</strong></span><span class="stem" data-vocab lang="es">tener → <strong class="ending">tendr-</strong></span><span class="stem" data-vocab lang="es">valer → <strong class="ending">valdr-</strong></span><span class="stem" data-vocab lang="es">venir → <strong class="ending">vendr-</strong></span></td></tr>
+<tr><th scope="row">Kök belirgin biçimde kısalır</th><td><span class="stem" data-vocab lang="es">decir → <strong class="ending">dir-</strong></span><span class="stem" data-vocab lang="es">hacer → <strong class="ending">har-</strong></span></td></tr></tbody>
+        </table>
+      </article>
+      <article class="table-card">
+        <h3>Kullanım alanları</h3>
+        <table class="grammar-table formula-table">
+          <thead><tr><th scope="col">Kullanım</th><th scope="col">Örnek</th></tr></thead>
+          <tbody><tr><th scope="row">Tavsiye verme</th><td><p class="lesson-line" lang="es"><span class="grammar-chunk complement" data-role="Diğer tümleç">Yo en tu lugar, </span><span class="grammar-chunk verb" data-role="Fiil">hablaría </span><span class="grammar-chunk complement" data-role="Diğer tümleç">con ella.</span></p><p class="tr-line">Senin yerinde olsam onunla konuşurdum.</p></td></tr>
+<tr><th scope="row">Kibar rica</th><td><p class="lesson-line" lang="es">¿<span class="grammar-chunk verb" data-role="Fiil">Podría decirme </span><span class="grammar-chunk object" data-role="Doğrudan nesne">el precio?</span></p><p class="tr-line">Bana fiyatı söyleyebilir misiniz?</p></td></tr>
+<tr><th scope="row">İstek ifade etme</th><td><p class="lesson-line" lang="es"><span class="grammar-chunk indirect" data-role="Dolaylı tümleç">Me </span><span class="grammar-chunk verb" data-role="Fiil">gustaría </span><span class="grammar-chunk subject" data-role="Özne">vivir cerca del mar.</span></p><p class="tr-line">Denize yakın yaşamak isterdim.</p></td></tr>
+<tr><th scope="row">Varsayımsal sonuç</th><td><p class="lesson-line" lang="es"><span class="grammar-chunk connector" data-role="Bağlayıcı">Si </span><span class="grammar-chunk verb" data-role="Fiil">tuviera </span><span class="grammar-chunk object" data-role="Doğrudan nesne">tiempo, </span><span class="grammar-chunk verb" data-role="Fiil">viajaría </span><span class="grammar-chunk complement" data-role="Diğer tümleç">más.</span></p><p class="tr-line">Zamanım olsaydı daha çok seyahat ederdim.</p></td></tr>
+<tr><th scope="row">Geçmişten bakılan gelecek</th><td><p class="lesson-line" lang="es"><span class="grammar-chunk verb" data-role="Fiil">Dijo </span><span class="grammar-chunk connector" data-role="Bağlayıcı">que </span><span class="grammar-chunk verb" data-role="Fiil">vendría </span><span class="grammar-chunk complement" data-role="Diğer tümleç">al día siguiente.</span></p><p class="tr-line">Ertesi gün geleceğini söyledi.</p></td></tr>
+<tr><th scope="row">Geçmişe dair tahmin</th><td><p class="lesson-line" lang="es"><span class="grammar-chunk verb" data-role="Fiil">Serían </span><span class="grammar-chunk attribute" data-role="Nitelik">las diez </span><span class="grammar-chunk connector" data-role="Bağlayıcı">cuando </span><span class="grammar-chunk verb" data-role="Fiil">llegó.</span></p><p class="tr-line">Geldiğinde saat on civarıydı.</p></td></tr></tbody>
+        </table>
+      </article>
+    </section>
+    <section id="consejos" class="lesson-panel" role="tabpanel" aria-labelledby="tab-consejos" hidden>
+      <div class="section-heading"><h2 data-vocab lang="es">💬 Pedir y dar consejos</h2></div>
+      <div class="advice-grid"><section class="advice-group ask">
+      <h3 data-vocab lang="es">Pedir consejos</h3><p class="translated-title">Tavsiye isteme</p>
+      <div class="advice-items"><article class="advice-item"><p class="lesson-line" lang="es">¿<span class="grammar-chunk object" data-role="Doğrudan nesne">Qué </span><span class="grammar-chunk verb" data-role="Fiil">puedo hacer?</span></p><span class="grammar-tag present" data-vocab lang="es">Presente de indicativo</span><p>Ne yapabilirim?</p></article><article class="advice-item"><p class="lesson-line" lang="es">¿<span class="grammar-chunk verb" data-role="Fiil">Podrías aconsejarme?</span></p><span class="grammar-tag " data-vocab lang="es">Condicional simple</span><p>Bana tavsiye verebilir misin?</p></article><article class="advice-item"><p class="lesson-line" lang="es">¿<span class="grammar-chunk subject" data-role="Özne">Tú </span><span class="grammar-chunk object" data-role="Doğrudan nesne">qué </span><span class="grammar-chunk verb" data-role="Fiil">harías?</span></p><span class="grammar-tag " data-vocab lang="es">Condicional simple</span><p>Sen ne yapardın?</p></article></div></section>
+<section class="advice-group give">
+      <h3 data-vocab lang="es">Dar consejos o recomendaciones</h3><p class="translated-title">Tavsiye ve öneri verme</p>
+      <div class="advice-items"><article class="advice-item"><p class="lesson-line" lang="es"><span class="grammar-chunk complement" data-role="Diğer tümleç">Yo / Yo que tú / Yo en tu lugar, </span><span class="grammar-chunk verb" data-role="Fiil">comería </span><span class="grammar-chunk complement" data-role="Diğer tümleç">de una manera más saludable.</span></p><span class="grammar-tag " data-vocab lang="es">Condicional simple</span><p>Ben olsam daha sağlıklı beslenirdim.</p></article><article class="advice-item"><p class="lesson-line" lang="es"><span class="grammar-chunk verb" data-role="Fiil">Deberías / Podrías acostarte. </span><span class="grammar-chunk verb" data-role="Fiil">Es </span><span class="grammar-chunk attribute" data-role="Nitelik">tarde.</span></p><span class="grammar-tag " data-vocab lang="es">Condicional simple</span><p>Yatmalısın / Yatabilirsin. Geç oldu.</p></article></div></section>
+<section class="advice-group alternate">
+      <h3 data-vocab lang="es">Otras formas</h3><p class="translated-title">Diğer tavsiye kalıpları</p>
+      <div class="advice-items"><article class="advice-item"><p class="lesson-line" lang="es">¿<span class="grammar-chunk connector" data-role="Bağlayıcı">Y si </span><span class="grammar-chunk verb" data-role="Fiil">comes </span><span class="grammar-chunk object" data-role="Doğrudan nesne">menos fritos?</span></p><span class="grammar-tag present" data-vocab lang="es">Presente de indicativo</span><p>Daha az kızartma yesen?</p></article><article class="advice-item"><p class="lesson-line" lang="es">¿<span class="grammar-chunk complement" data-role="Diğer tümleç">Por qué </span><span class="grammar-chunk verb" data-role="Fiil">no vas </span><span class="grammar-chunk complement" data-role="Diğer tümleç">al médico?</span></p><span class="grammar-tag present" data-vocab lang="es">Presente de indicativo</span><p>Neden doktora gitmiyorsun?</p></article><article class="advice-item"><p class="lesson-line" lang="es"><span class="grammar-chunk verb" data-role="Fiil">Coge </span><span class="grammar-chunk object" data-role="Doğrudan nesne">un taxi, </span><span class="grammar-chunk verb" data-role="Fiil">llegarás </span><span class="grammar-chunk complement" data-role="Diğer tümleç">más rápido.</span></p><span class="grammar-tag imperative" data-vocab lang="es">Imperativo afirmativo</span><p>Taksiye bin, daha hızlı varırsın.</p></article><article class="advice-item"><p class="lesson-line" lang="es"><span class="grammar-chunk verb" data-role="Fiil">No fumes. </span><span class="grammar-chunk indirect" data-role="Dolaylı tümleç">Te </span><span class="grammar-chunk verb" data-role="Fiil">hace </span><span class="grammar-chunk object" data-role="Doğrudan nesne">daño.</span></p><span class="grammar-tag imperative" data-vocab lang="es">Imperativo negativo</span><p>Sigara içme. Sana zarar veriyor.</p></article><article class="advice-item"><p class="lesson-line" lang="es"><span class="grammar-chunk subject" data-role="Özne">Juan y tú </span><span class="grammar-chunk verb" data-role="Fiil">tenéis que ir a ver </span><span class="grammar-chunk object" data-role="Doğrudan nesne">esa película. </span><span class="grammar-chunk verb" data-role="Fiil">Es </span><span class="grammar-chunk attribute" data-role="Nitelik">preciosa.</span></p><span class="grammar-tag present" data-vocab lang="es">Presente de indicativo</span><p>Juan’la sen o filmi mutlaka izlemelisiniz. Çok güzel.</p></article></div></section></div>
+    </section>
+    <section id="maruchi" class="lesson-panel" role="tabpanel" aria-labelledby="tab-maruchi" hidden>
+      <div class="section-heading">
+        <h2 data-vocab lang="es">🎙️ La cocinera Maruchi</h2>
+        <p>Isabel ve Alicia’nın konuşmalarını dinle. Sekiz boşluğu duyduğun fiil çekimleriyle doldur.</p>
+      </div>
+      <div class="audio-card">
+        <iframe title="La cocinera Maruchi · SoundCloud" loading="lazy" height="105" allow="autoplay; encrypted-media"
+          src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F2017055751&amp;color=%236495ed&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_reposts=false&amp;show_teaser=false&amp;show_artwork=false&amp;visual=false"></iframe>
+        <a class="video-link" href="https://soundcloud.com/profe-hazel/la-cocinera-maruchi" target="_blank" rel="noopener noreferrer">SoundCloud’da aç ↗</a>
+      </div>
+      <div class="dialogue-grid"><article class="dictation-card dialogue-card"><h3><span class="item-badge">A</span> <span data-vocab lang="es">Isabel y Maruchi</span></h3><p class="lesson-line" lang="es"><b class="speaker" lang="es">Isabel</b> Maruchi, <span class="grammar-chunk object" data-role="Doğrudan nesne">te </span><span class="grammar-chunk verb" data-role="Fiil">veo </span><span class="grammar-chunk complement" data-role="Diğer tümleç">todos los días, </span><span class="grammar-chunk subject" data-role="Özne">mi problema </span><span class="grammar-chunk verb" data-role="Fiil">es </span><span class="grammar-chunk connector" data-role="Bağlayıcı">que </span><span class="grammar-chunk complement" data-role="Diğer tümleç">últimamente </span><span class="grammar-chunk verb" data-role="Fiil">estoy engordando </span><span class="grammar-chunk complement" data-role="Diğer tümleç">mucho, </span>¿<span class="grammar-chunk subject" data-role="Özne">tú </span><span class="grammar-chunk object" data-role="Doğrudan nesne">qué </span><span class="grammar-chunk verb" data-role="Fiil"><sup class="gap-number" aria-hidden="true">1</sup><span class="gap" data-gap="m1"><input id="in-m1" type="text" autocomplete="off" spellcheck="false" lang="es" aria-label="1. boşluk"><span id="answer-m1" class="gap-answer" lang="es" hidden>harías</span><button class="lock" type="button" aria-controls="answer-m1" aria-expanded="false" aria-label="1. boşluk · cevap göster">🔒</button></span> </span><span class="grammar-chunk complement" data-role="Diğer tümleç">para adelgazar?</span></p>
+<p class="lesson-line" lang="es"><b class="speaker" lang="es">Maruchi</b> <span class="grammar-chunk complement" data-role="Diğer tümleç">Yo que tú, </span><span class="grammar-chunk verb" data-role="Fiil"><sup class="gap-number" aria-hidden="true">2</sup><span class="gap" data-gap="m2"><input id="in-m2" type="text" autocomplete="off" spellcheck="false" lang="es" aria-label="2. boşluk"><span id="answer-m2" class="gap-answer" lang="es" hidden>comería</span><button class="lock" type="button" aria-controls="answer-m2" aria-expanded="false" aria-label="2. boşluk · cevap göster">🔒</button></span> </span><span class="grammar-chunk complement" data-role="Diğer tümleç">con moderación </span><span class="grammar-chunk connector" data-role="Bağlayıcı">y </span><span class="grammar-chunk verb" data-role="Fiil"><sup class="gap-number" aria-hidden="true">3</sup><span class="gap" data-gap="m3"><input id="in-m3" type="text" autocomplete="off" spellcheck="false" lang="es" aria-label="3. boşluk"><span id="answer-m3" class="gap-answer" lang="es" hidden>prepararía</span><button class="lock" type="button" aria-controls="answer-m3" aria-expanded="false" aria-label="3. boşluk · cevap göster">🔒</button></span> </span><span class="grammar-chunk object" data-role="Doğrudan nesne">las comidas </span><span class="grammar-chunk complement" data-role="Diğer tümleç">con aceite, preferentemente crudo. </span><span class="grammar-chunk complement" data-role="Diğer tümleç">También </span><span class="grammar-chunk verb" data-role="Fiil"><sup class="gap-number" aria-hidden="true">4</sup><span class="gap" data-gap="m4"><input id="in-m4" type="text" autocomplete="off" spellcheck="false" lang="es" aria-label="4. boşluk"><span id="answer-m4" class="gap-answer" lang="es" hidden>disminuiría</span><button class="lock" type="button" aria-controls="answer-m4" aria-expanded="false" aria-label="4. boşluk · cevap göster">🔒</button></span> </span><span class="grammar-chunk object" data-role="Doğrudan nesne">el consumo de azúcar y de sal.</span></p>
+<p class="lesson-line" lang="es"><b class="speaker" lang="es">Isabel</b> Uf... <span class="grammar-chunk object" data-role="Doğrudan nesne">todo eso </span><span class="grammar-chunk complement" data-role="Diğer tümleç">ya </span><span class="grammar-chunk object" data-role="Doğrudan nesne">lo </span><span class="grammar-chunk verb" data-role="Fiil">hago, </span><span class="grammar-chunk connector" data-role="Bağlayıcı">pero </span><span class="grammar-chunk verb" data-role="Fiil">engordo...</span></p>
+<p class="lesson-line" lang="es"><b class="speaker" lang="es">Maruchi</b> <span class="grammar-chunk complement" data-role="Diğer tümleç">A lo mejor </span><span class="grammar-chunk verb" data-role="Fiil">consumes </span><span class="grammar-chunk object" data-role="Doğrudan nesne">más calorías </span><span class="grammar-chunk complement" data-role="Diğer tümleç">de las que necesitas. En ese caso, yo en tu lugar, </span><span class="grammar-chunk verb" data-role="Fiil"><sup class="gap-number" aria-hidden="true">5</sup><span class="gap" data-gap="m5"><input id="in-m5" type="text" autocomplete="off" spellcheck="false" lang="es" aria-label="5. boşluk"><span id="answer-m5" class="gap-answer" lang="es" hidden>practicaría</span><button class="lock" type="button" aria-controls="answer-m5" aria-expanded="false" aria-label="5. boşluk · cevap göster">🔒</button></span> </span><span class="grammar-chunk object" data-role="Doğrudan nesne">ejercicio </span><span class="grammar-chunk complement" data-role="Diğer tümleç">diariamente.</span></p></article>
+<article class="dictation-card dialogue-card"><h3><span class="item-badge">B</span> <span data-vocab lang="es">Alicia y Maruchi</span></h3><p class="lesson-line" lang="es"><b class="speaker" lang="es">Alicia</b> Hola, Maruchi, <span class="grammar-chunk indirect" data-role="Dolaylı tümleç">me </span><span class="grammar-chunk verb" data-role="Fiil">encanta </span><span class="grammar-chunk subject" data-role="Özne">tu programa. </span><span class="grammar-chunk verb" data-role="Fiil">Mira, </span><span class="grammar-chunk subject" data-role="Özne">mi problema </span><span class="grammar-chunk verb" data-role="Fiil">es </span><span class="grammar-chunk connector" data-role="Bağlayıcı">que </span><span class="grammar-chunk complement" data-role="Diğer tümleç">últimamente </span><span class="grammar-chunk verb" data-role="Fiil">me encuentro </span><span class="grammar-chunk attribute" data-role="Nitelik">muy cansada </span><span class="grammar-chunk connector" data-role="Bağlayıcı">y, </span><span class="grammar-chunk complement" data-role="Diğer tümleç">a veces, </span><span class="grammar-chunk indirect" data-role="Dolaylı tümleç">me </span><span class="grammar-chunk verb" data-role="Fiil">duele </span><span class="grammar-chunk subject" data-role="Özne">la cabeza.</span></p>
+<p class="lesson-line" lang="es"><span class="grammar-chunk subject" data-role="Özne">El médico </span><span class="grammar-chunk verb" data-role="Fiil">dice </span><span class="grammar-chunk connector" data-role="Bağlayıcı">que </span><span class="grammar-chunk verb" data-role="Fiil">estoy </span><span class="grammar-chunk attribute" data-role="Nitelik">sanísima, </span><span class="grammar-chunk connector" data-role="Bağlayıcı">pero </span><span class="grammar-chunk subject" data-role="Özne">yo </span><span class="grammar-chunk verb" data-role="Fiil">me siento </span><span class="grammar-chunk complement" data-role="Diğer tümleç">sin energías, </span>¿<span class="grammar-chunk verb" data-role="Fiil"><sup class="gap-number" aria-hidden="true">6</sup><span class="gap" data-gap="m6"><input id="in-m6" type="text" autocomplete="off" spellcheck="false" lang="es" aria-label="6. boşluk"><span id="answer-m6" class="gap-answer" lang="es" hidden>podrías</span><button class="lock" type="button" aria-controls="answer-m6" aria-expanded="false" aria-label="6. boşluk · cevap göster">🔒</button></span> darme </span><span class="grammar-chunk object" data-role="Doğrudan nesne">algunos consejos?</span></p>
+<p class="lesson-line" lang="es"><b class="speaker" lang="es">Maruchi</b> Alicia, querida. ¿<span class="grammar-chunk attribute" data-role="Nitelik">Seguro </span><span class="grammar-chunk connector" data-role="Bağlayıcı">que </span><span class="grammar-chunk verb" data-role="Fiil">te alimentas </span><span class="grammar-chunk complement" data-role="Diğer tümleç">bien? </span><span class="grammar-chunk complement" data-role="Diğer tümleç">En primer lugar, </span><span class="grammar-chunk verb" data-role="Fiil"><sup class="gap-number" aria-hidden="true">7</sup><span class="gap" data-gap="m7"><input id="in-m7" type="text" autocomplete="off" spellcheck="false" lang="es" aria-label="7. boşluk"><span id="answer-m7" class="gap-answer" lang="es" hidden>deberías</span><button class="lock" type="button" aria-controls="answer-m7" aria-expanded="false" aria-label="7. boşluk · cevap göster">🔒</button></span> incluir </span><span class="grammar-chunk object" data-role="Doğrudan nesne">legumbres y frutos secos </span><span class="grammar-chunk complement" data-role="Diğer tümleç">en tu dieta.</span></p>
+<p class="lesson-line" lang="es"><span class="grammar-chunk complement" data-role="Diğer tümleç">Para el dolor de cabeza, yo que tú, </span><span class="grammar-chunk verb" data-role="Fiil"><sup class="gap-number" aria-hidden="true">8</sup><span class="gap" data-gap="m8"><input id="in-m8" type="text" autocomplete="off" spellcheck="false" lang="es" aria-label="8. boşluk"><span id="answer-m8" class="gap-answer" lang="es" hidden>tomaría</span><button class="lock" type="button" aria-controls="answer-m8" aria-expanded="false" aria-label="8. boşluk · cevap göster">🔒</button></span> </span><span class="grammar-chunk object" data-role="Doğrudan nesne">abundante cantidad de agua </span><span class="grammar-chunk complement" data-role="Diğer tümleç">durante todo el día.</span></p></article></div>
+    </section>
+    <section id="lorca" class="lesson-panel" role="tabpanel" aria-labelledby="tab-lorca" hidden>
+      <div class="section-heading">
+        <h2 data-vocab lang="es">🎭 Yerma y La casa de Bernarda Alba</h2>
+        <p>Federico García Lorca’nın iki tiyatro metnini dinle. A ve B parçalarını eserlerle eşleştir, ardından soruları cevapla.</p>
+      </div>
+      <div class="audio-card">
+        <iframe title="Yerma y La casa de Bernarda Alba · SoundCloud" loading="lazy" height="105" allow="autoplay; encrypted-media"
+          src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F2017057635&amp;color=%236495ed&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_reposts=false&amp;show_teaser=false&amp;show_artwork=false&amp;visual=false"></iframe>
+        <a class="video-link" href="https://soundcloud.com/profe-hazel/b11-1314-sayfa-4-yerma-la-casa-de-bernarda-alba" target="_blank" rel="noopener noreferrer">SoundCloud’da aç ↗</a>
+      </div>
+      <div class="literature-grid">
+        <article class="literature-card theater-dialogue">
+          <h3><span class="item-badge">A</span></h3>
+          <p class="lesson-line" lang="es"><b class="speaker" lang="es">Señora</b> Niña, <span class="grammar-chunk verb" data-role="Fiil">dame </span><span class="grammar-chunk object" data-role="Doğrudan nesne">un abanico.</span></p>
+<p class="lesson-line" lang="es"><b class="speaker" lang="es">Amelia</b> <span class="grammar-chunk verb" data-role="Fiil">Tome </span><span class="grammar-chunk subject" data-role="Özne">usted. </span>(<span class="grammar-chunk indirect" data-role="Dolaylı tümleç">Le </span><span class="grammar-chunk verb" data-role="Fiil">da </span><span class="grammar-chunk object" data-role="Doğrudan nesne">un abanico redondo </span><span class="grammar-chunk complement" data-role="Diğer tümleç">con flores rojas y verdes.)</span></p>
+<p class="lesson-line" lang="es"><b class="speaker" lang="es">Señora</b> (<span class="grammar-chunk verb" data-role="Fiil">Tirando </span><span class="grammar-chunk object" data-role="Doğrudan nesne">el abanico </span><span class="grammar-chunk complement" data-role="Diğer tümleç">al suelo</span>) ¿<span class="grammar-chunk verb" data-role="Fiil">Es </span><span class="grammar-chunk subject" data-role="Özne">este </span><span class="grammar-chunk attribute" data-role="Nitelik">el abanico </span><span class="grammar-chunk connector" data-role="Bağlayıcı">que </span><span class="grammar-chunk verb" data-role="Fiil">se da </span><span class="grammar-chunk indirect" data-role="Dolaylı tümleç">a una viuda? </span><span class="grammar-chunk verb" data-role="Fiil">Dame </span><span class="grammar-chunk object" data-role="Doğrudan nesne">uno negro </span><span class="grammar-chunk connector" data-role="Bağlayıcı">y </span><span class="grammar-chunk verb" data-role="Fiil">aprende a respetar </span><span class="grammar-chunk object" data-role="Doğrudan nesne">el luto de tu padre.</span></p>
+<p class="lesson-line" lang="es"><b class="speaker" lang="es">Martirio</b> <span class="grammar-chunk verb" data-role="Fiil">Tome </span><span class="grammar-chunk subject" data-role="Özne">usted </span><span class="grammar-chunk object" data-role="Doğrudan nesne">el mío.</span></p>
+<p class="lesson-line" lang="es"><b class="speaker" lang="es">Señora</b> ¿<span class="grammar-chunk connector" data-role="Bağlayıcı">Y </span><span class="grammar-chunk subject" data-role="Özne">tú?</span></p>
+<p class="lesson-line" lang="es"><b class="speaker" lang="es">Martirio</b> <span class="grammar-chunk subject" data-role="Özne">Yo </span><span class="grammar-chunk verb" data-role="Fiil">no tengo </span><span class="grammar-chunk object" data-role="Doğrudan nesne">calor.</span></p>
+<p class="lesson-line" lang="es"><b class="speaker" lang="es">Señora</b> <span class="grammar-chunk connector" data-role="Bağlayıcı">Pues </span><span class="grammar-chunk verb" data-role="Fiil">busca </span><span class="grammar-chunk object" data-role="Doğrudan nesne">otro, </span><span class="grammar-chunk connector" data-role="Bağlayıcı">que </span><span class="grammar-chunk indirect" data-role="Dolaylı tümleç">te </span><span class="grammar-chunk verb" data-role="Fiil">hará falta.</span></p>
+<p class="lesson-line" lang="es"><span class="grammar-chunk complement" data-role="Diğer tümleç">En ocho años que dure el luto </span><span class="grammar-chunk verb" data-role="Fiil">no ha de entrar </span><span class="grammar-chunk complement" data-role="Diğer tümleç">en esta casa </span><span class="grammar-chunk subject" data-role="Özne">el viento de la calle.</span></p>
+<p class="lesson-line" lang="es"><span class="grammar-chunk verb" data-role="Fiil">Haceros cuenta </span><span class="grammar-chunk connector" data-role="Bağlayıcı">que </span><span class="grammar-chunk verb" data-role="Fiil">hemos </span><span class="grammar-chunk participle" data-role="Ortaç">tapiado </span><span class="grammar-chunk complement" data-role="Diğer tümleç">con ladrillos </span><span class="grammar-chunk object" data-role="Doğrudan nesne">puertas y ventanas. </span><span class="grammar-chunk complement" data-role="Diğer tümleç">Así </span><span class="grammar-chunk verb" data-role="Fiil">pasó </span><span class="grammar-chunk complement" data-role="Diğer tümleç">en casa de mi padre y en casa de mi abuelo.</span></p>
+        </article>
+        <article class="literature-card theater-verse">
+          <h3 lang="es" data-vocab><span class="item-badge" data-no-vocab>B</span> <span class="speaker">Chica joven y guapa</span></h3>
+          <p class="lesson-line" lang="es">¡<span class="grammar-chunk complement" data-role="Diğer tümleç">Ay, </span><span class="grammar-chunk attribute" data-role="Nitelik">qué prado de pena!</span></p>
+<p class="lesson-line" lang="es">¡<span class="grammar-chunk complement" data-role="Diğer tümleç">Ay, </span><span class="grammar-chunk attribute" data-role="Nitelik">qué puerta cerrada a la hermosura,</span></p>
+<p class="lesson-line" lang="es"><span class="grammar-chunk connector" data-role="Bağlayıcı">que </span><span class="grammar-chunk verb" data-role="Fiil">pido </span><span class="grammar-chunk object" data-role="Doğrudan nesne">un hijo que sufrir, </span><span class="grammar-chunk connector" data-role="Bağlayıcı">y </span><span class="grammar-chunk subject" data-role="Özne">el aire</span></p>
+<p class="lesson-line" lang="es"><span class="grammar-chunk indirect" data-role="Dolaylı tümleç">me </span><span class="grammar-chunk verb" data-role="Fiil">ofrece </span><span class="grammar-chunk object" data-role="Doğrudan nesne">dalias de dormida luna.</span></p>
+<p class="lesson-line" lang="es"><span class="grammar-chunk subject" data-role="Özne">Estos dos manantiales que yo tengo</span></p>
+<p class="lesson-line" lang="es"><span class="grammar-chunk subject" data-role="Özne">de leche tibia, </span><span class="grammar-chunk verb" data-role="Fiil">son </span><span class="grammar-chunk complement" data-role="Diğer tümleç">en la espesura</span></p>
+<p class="lesson-line" lang="es"><span class="grammar-chunk complement" data-role="Diğer tümleç">de mi carne, </span><span class="grammar-chunk attribute" data-role="Nitelik">dos golpes de caballo</span></p>
+<p class="lesson-line" lang="es"><span class="grammar-chunk connector" data-role="Bağlayıcı">que </span><span class="grammar-chunk verb" data-role="Fiil">hacen latir </span><span class="grammar-chunk object" data-role="Doğrudan nesne">la rama de mi angustia.</span></p>
+<p class="lesson-line" lang="es">¡<span class="grammar-chunk complement" data-role="Diğer tümleç">Ay, </span><span class="grammar-chunk attribute" data-role="Nitelik">pechos ciegos </span><span class="grammar-chunk complement" data-role="Diğer tümleç">bajo mi vestido!</span></p>
+<p class="lesson-line" lang="es">¡<span class="grammar-chunk complement" data-role="Diğer tümleç">Ay, </span><span class="grammar-chunk attribute" data-role="Nitelik">palomas sin ojos ni blancura!</span></p>
+<p class="lesson-line" lang="es">¡<span class="grammar-chunk complement" data-role="Diğer tümleç">Ay, </span><span class="grammar-chunk subject" data-role="Özne">qué dolor de sangre prisionera</span></p>
+<p class="lesson-line" lang="es"><span class="grammar-chunk indirect" data-role="Dolaylı tümleç">me </span><span class="grammar-chunk verb" data-role="Fiil">está clavando </span><span class="grammar-chunk object" data-role="Doğrudan nesne">avispas </span><span class="grammar-chunk complement" data-role="Diğer tümleç">en la nuca!</span></p>
+<p class="lesson-line" lang="es"><span class="grammar-chunk connector" data-role="Bağlayıcı">Pero </span><span class="grammar-chunk subject" data-role="Özne">tú </span><span class="grammar-chunk verb" data-role="Fiil">has de venir, </span>amor, mi niño,</p>
+<p class="lesson-line" lang="es"><span class="grammar-chunk connector" data-role="Bağlayıcı">porque </span><span class="grammar-chunk subject" data-role="Özne">el agua </span><span class="grammar-chunk verb" data-role="Fiil">da </span><span class="grammar-chunk object" data-role="Doğrudan nesne">sal, </span><span class="grammar-chunk subject" data-role="Özne">la tierra </span><span class="grammar-chunk verb" data-role="Fiil">fruta,</span></p>
+<p class="lesson-line" lang="es"><span class="grammar-chunk connector" data-role="Bağlayıcı">y </span><span class="grammar-chunk subject" data-role="Özne">nuestro vientre </span><span class="grammar-chunk verb" data-role="Fiil">guarda </span><span class="grammar-chunk object" data-role="Doğrudan nesne">tiernos hijos</span></p>
+<p class="lesson-line" lang="es"><span class="grammar-chunk connector" data-role="Bağlayıcı">como </span><span class="grammar-chunk subject" data-role="Özne">la nube </span><span class="grammar-chunk verb" data-role="Fiil">lleva </span><span class="grammar-chunk object" data-role="Doğrudan nesne">dulce lluvia.</span></p>
+        </article>
+      </div>
+      <article class="table-card">
+        <h3 data-vocab lang="es">Relaciona cada fragmento con su obra</h3>
+        <div class="match-list"><div class="match-card"><h4><span data-vocab lang="es">Yerma</span> <span class="gap" data-gap="l1"><input id="in-l1" type="text" maxlength="1" autocomplete="off" spellcheck="false" lang="es" aria-label="1. boşluk"><span id="answer-l1" class="gap-answer" hidden>b</span><button class="lock" type="button" aria-controls="answer-l1" aria-expanded="false" aria-label="1. boşluk · cevap göster">🔒</button></span></h4><p class="lesson-line" lang="es"><span class="grammar-chunk subject" data-role="Özne">Esta obra de Federico García Lorca </span><span class="grammar-chunk verb" data-role="Fiil">cuenta </span><span class="grammar-chunk object" data-role="Doğrudan nesne">la historia de Yerma, una joven campesina que desea tener un hijo. </span><span class="grammar-chunk subject" data-role="Özne">Pilar Távora </span><span class="grammar-chunk verb" data-role="Fiil">adaptó </span><span class="grammar-chunk object" data-role="Doğrudan nesne">la obra </span><span class="grammar-chunk connector" data-role="Bağlayıcı">y </span><span class="grammar-chunk verb" data-role="Fiil">se estrenó </span><span class="grammar-chunk complement" data-role="Diğer tümleç">en el cine en 1999.</span></p></div>
+<div class="match-card"><h4><span data-vocab lang="es">La casa de Bernarda Alba</span> <span class="gap" data-gap="l2"><input id="in-l2" type="text" maxlength="1" autocomplete="off" spellcheck="false" lang="es" aria-label="2. boşluk"><span id="answer-l2" class="gap-answer" hidden>a</span><button class="lock" type="button" aria-controls="answer-l2" aria-expanded="false" aria-label="2. boşluk · cevap göster">🔒</button></span></h4><p class="lesson-line" lang="es"><span class="grammar-chunk verb" data-role="Fiil">Fue </span><span class="grammar-chunk attribute" data-role="Nitelik">la última obra de teatro de Lorca. </span><span class="grammar-chunk complement" data-role="Diğer tümleç">Tras la muerte de su marido, </span><span class="grammar-chunk subject" data-role="Özne">Bernarda </span><span class="grammar-chunk verb" data-role="Fiil">encierra </span><span class="grammar-chunk object" data-role="Doğrudan nesne">a sus hijas </span><span class="grammar-chunk complement" data-role="Diğer tümleç">en casa. </span><span class="grammar-chunk subject" data-role="Özne">Mario Camus </span><span class="grammar-chunk verb" data-role="Fiil">llevó </span><span class="grammar-chunk object" data-role="Doğrudan nesne">la obra </span><span class="grammar-chunk complement" data-role="Diğer tümleç">al cine en 1987.</span></p></div></div>
+      </article>
+      <article class="table-card">
+        <h3 data-vocab lang="es">Contesta a estas preguntas</h3>
+        <ol class="exercise-list"><li><span class="item-badge" aria-hidden="true">1</span><div><p class="lesson-line" lang="es">¿<span class="grammar-chunk complement" data-role="Diğer tümleç">Por qué </span><span class="grammar-chunk verb" data-role="Fiil">rechaza </span><span class="grammar-chunk subject" data-role="Özne">la señora </span><span class="grammar-chunk object" data-role="Doğrudan nesne">el abanico de colores?</span></p><div class="response"><span class="gap" data-gap="l3"><input id="in-l3" type="text" autocomplete="off" spellcheck="false" lang="es" aria-label="3. boşluk"><span id="answer-l3" class="gap-answer" lang="es" hidden>Rechaza el abanico de colores porque está de luto.</span><button class="lock" type="button" aria-controls="answer-l3" aria-expanded="false" aria-label="3. boşluk · örnek cevap göster">🔒</button></span></div></div></li>
+<li><span class="item-badge" aria-hidden="true">2</span><div><p class="lesson-line" lang="es">¿<span class="grammar-chunk complement" data-role="Diğer tümleç">Cuánto tiempo </span><span class="grammar-chunk verb" data-role="Fiil">durará </span><span class="grammar-chunk subject" data-role="Özne">el luto?</span></p><div class="response"><span class="gap" data-gap="l4"><input id="in-l4" type="text" autocomplete="off" spellcheck="false" lang="es" aria-label="4. boşluk"><span id="answer-l4" class="gap-answer" lang="es" hidden>El luto durará ocho años.</span><button class="lock" type="button" aria-controls="answer-l4" aria-expanded="false" aria-label="4. boşluk · örnek cevap göster">🔒</button></span></div></div></li>
+<li><span class="item-badge" aria-hidden="true">3</span><div><p class="lesson-line" lang="es">¿<span class="grammar-chunk object" data-role="Doğrudan nesne">Qué </span><span class="grammar-chunk verb" data-role="Fiil">desea </span><span class="grammar-chunk subject" data-role="Özne">la joven </span><span class="grammar-chunk complement" data-role="Diğer tümleç">en el fragmento B?</span></p><div class="response"><span class="gap" data-gap="l5"><input id="in-l5" type="text" autocomplete="off" spellcheck="false" lang="es" aria-label="5. boşluk"><span id="answer-l5" class="gap-answer" lang="es" hidden>Desea tener un hijo.</span><button class="lock" type="button" aria-controls="answer-l5" aria-expanded="false" aria-label="5. boşluk · örnek cevap göster">🔒</button></span></div></div></li></ol>
+      </article>
+    </section>
+  </main>
+</div>
+<dialog id="homeworkDialog" class="homework-dialog" aria-labelledby="homeworkTitle">
+  <div class="homework-top">
+    <p class="eyebrow">DERS SONRASI · B1.1 · 13+14</p>
+    <div><button type="button" class="small-button" id="homeworkPrint">🖨️ Yazdır / PDF</button> <button type="button" class="small-button" id="homeworkClose">← Etkinliğe dön</button></div>
+  </div>
+  <h2 id="homeworkTitle">📚 13–14. Ders Ödevleri</h2>
+  <article class="homework-card">
+    <h3>✍️ 13–14. Ders Yazma Ödevi</h3>
+    <p>Bir dil okuluna resmî bir e-posta yaz. İlgilendiğin kursu ve seviyeni belirt, başlangıç tarihini, ücreti ve çevrim içi seçenekleri sor. Acil başlamak istediğini ve bütçenin sınırlı olduğunu ekle.</p>
+    <a class="homework-link" href="https://ispanyolcacim.github.io/b11-las-tareas/b11-13-14-ida-yazma-odevi.html" target="_blank" rel="noopener noreferrer">Yazma ödevini aç ↗</a>
+  </article>
+</dialog>
+<div id="wordPopover" class="word-popover" role="dialog" aria-labelledby="wordTitle" hidden>
+  <div class="word-head"><h2 id="wordTitle" lang="es"></h2><button id="wordClose" type="button" aria-label="Kelime bilgisini kapat">×</button></div>
+  <div class="meaning-grid">
+    <div><small>Türkçe</small><strong id="wordTr"></strong></div>
+    <div><small>English</small><strong id="wordEn" lang="en"></strong></div>
+  </div>
+  <dl><dt>Sözlük biçimi</dt><dd id="wordLemma" lang="es"></dd></dl>
+  <div class="word-note" id="wordRole" hidden></div>
+  <details id="contextDetail" hidden><summary>İçinde geçtiği cümle</summary><p lang="es" id="wordContext"></p></details>
+</div>
+<script id="lesson-lexicon" type="application/json">{"a":["a","…e, …a","to, at","edat"],"abanico":["abanico","yelpaze","fan",""],"abuelo":["abuelo","dede","grandfather",""],"abundante":["abundante","bol","plentiful",""],"aceite":["aceite","yağ","oil",""],"aconsejarme":["aconsejar","bana tavsiye vermek","to advise me","Mastar + me"],"acostarte":["acostarse","yatmak","to go to bed","Mastar + te"],"adaptó":["adaptar","uyarlamak","to adapt",""],"adelgazar":["adelgazar","kilo vermek","to lose weight",""],"afirmativo":["afirmativo","olumlu","affirmative",""],"agua":["agua","su","water",""],"ahí":["ahí","orada","there","zarf"],"aire":["aire","hava","air",""],"al":["al","a + el","to/at the","edat + artikel"],"alba":["Alba","Özel ad","Proper name",""],"algunos":["alguno","bazı","some",""],"alicia":["Alicia","Özel ad","Proper name",""],"alimentas":["alimentarse","beslenmek","to eat, to nourish oneself",""],"amelia":["Amelia","Özel ad","Proper name",""],"amor":["amor","aşk, sevgilim","love, my love",""],"angustia":["angustia","acı, derin sıkıntı","anguish",""],"aprende":["aprender","öğrenmek","to learn",""],"así":["así","böylece","thus; in this way",""],"avispas":["avispa","yaban arısı","wasp",""],"ay":["ay","ah, ay","oh, ow",""],"azúcar":["azúcar","şeker","sugar",""],"años":["año","yıl","year",""],"b":["B","B parçası","Excerpt B",""],"bajo":["bajo","altında","under",""],"bernarda":["Bernarda","Özel ad","Proper name",""],"bien":["bien","iyi, yolunda","well",""],"blancura":["blancura","beyazlık","whiteness",""],"buenas":["bueno","iyi","good",""],"busca":["buscar","aramak, bulmaya çalışmak","to look for",""],"caballo":["caballo","at","horse",""],"caber":["caber","sığmak","to fit",""],"cabeza":["cabeza","baş","head",""],"cabr":["caber","Düzensiz kök · caber","Irregular stem of caber","Condicional simple / Futuro simple"],"cada":["cada","her","each, every","belirleyici"],"calle":["calle","sokak","street",""],"calor":["calor","sıcaklık, sıcak","heat",""],"calorías":["caloría","kalori","calorie",""],"campesina":["campesina","köylü, kırsalda yaşayan kadın","peasant woman",""],"camus":["Camus","Özel ad","Proper name",""],"cansada":["cansado","yorgun","tired",""],"cantidad":["cantidad","miktar","quantity",""],"carne":["carne","et, beden","flesh",""],"casa":["la casa","ev","house","isim"],"caso":["caso","durum","case",""],"cerca":["cerca","yakın","near",""],"cerrada":["cerrado","kapalı","closed",""],"chica":["chica","genç kadın","young woman",""],"chulos":["chulo","havalı, çok güzel","cool",""],"ciegos":["ciego","kör, görmeyen","blind",""],"cine":["cine","sinema","cinema",""],"clavando":["clavar","saplamak, batırmak","to drive in, to stick",""],"cocinera":["cocinera","aşçı kadın","cook",""],"coge":["coger","almak, binmek","to take, to catch",""],"colores":["color","renk","color",""],"comer":["comer","yemek yemek","to eat",""],"comería":["comer","yemek","to eat","Condicional simple · él / ella / usted"],"comeríais":["comer","yemek","to eat","Condicional simple · vosotros / vosotras"],"comeríamos":["comer","yemek","to eat","Condicional simple · nosotros / nosotras"],"comerían":["comer","yemek","to eat","Condicional simple · ellos / ellas / ustedes"],"comerías":["comer","yemek","to eat","Condicional simple · tú"],"comes":["comer","yemek yemek","to eat",""],"comidas":["comida","yemek","meal, food",""],"como":["como","-dığı için / gibi","as; since / such as",""],"con":["con","…ile","with","edat"],"condicional":["condicional","koşul kipi","conditional",""],"consejos":["consejo","tavsiye","advice, tip",""],"consumes":["consumir","tüketmek","to consume",""],"consumo":["consumo","tüketim","consumption",""],"contesta":["contestar","yanıtlamak","to answer",""],"creo":["creer","inanmak, düşünmek","to believe; to think",""],"crudo":["crudo","çiğ, pişmemiş","raw",""],"cuando":["cuando","-dığında","when",""],"cuenta":["cuenta / contar","hesap, düşünce / anlatır","account, idea / tells",""],"cuánto":["cuánto","ne kadar","how much",""],"da":["dar","vermek","to give",""],"dalias":["dalia","yıldız çiçeği","dahlia",""],"dame":["dar","bana ver","give me","Tú emri + me"],"dar":["dar","vermek","to give",""],"darme":["dar","bana vermek","to give me","Mastar + me"],"daño":["daño","zarar","harm",""],"de":["de","…in, …den","of, from","edat"],"deberías":["deber","yapmalısın","you should","Condicional simple · tú"],"decir":["decir","söylemek","to say, to tell",""],"decirme":["decir","bana söylemek","to tell me","Mastar + me"],"del":["del","de + el","of/from the","edat + artikel"],"demasiada":["demasiado","gereğinden fazla","too much",""],"desea":["desear","istemek, arzulamak","to wish, to desire",""],"diariamente":["diariamente","her gün","daily",""],"dice":["decir","söylemek","to say, to tell",""],"dictado":["dictado","dikte","dictation",""],"dieta":["dieta","beslenme düzeni","diet",""],"diez":["diez","on","ten",""],"dijo":["decir","söylemek","to say, to tell",""],"dir":["decir","Düzensiz kök · decir","Irregular stem of decir","Condicional simple / Futuro simple"],"disminuiría":["disminuir","azaltırdım","I would reduce","Condicional simple"],"dolor":["dolor","ağrı, acı","pain",""],"dormida":["dormido","uyuyan, uykuya dalmış","asleep, sleeping",""],"dos":["dos","iki","two",""],"duele":["doler","ağrımak","to hurt, to ache",""],"dulce":["dulce","tatlı","sweet",""],"durante":["durante","boyunca","during",""],"durará":["durar","sürmek","to last",""],"dure":["durar","sürmek","to last",""],"día":["el día","gün","day","isim"],"días":["día","gün","day",""],"echo":["echar","katıyorum, koyuyorum","I add, I put","Presente · yo"],"ejercicio":["ejercicio","egzersiz","exercise",""],"el":["el","belirli artikel (eril tekil)","the","artikel"],"ella":["ella","o (kadın)","she",""],"ellas":["ellas","onlar (dişil)","they (feminine)",""],"ellos":["ellos","onlar (eril veya karma)","they (masculine or mixed)",""],"en":["en","…de, …da","in, on, at","edat"],"encanta":["encantar","çok sevmek, bayılmak","to love","fiil"],"encierra":["encerrar","kapatmak, içeride tutmak","to lock in, to confine",""],"encuentro":["encontrar","bulmak","to find","fiil"],"energías":["energía","enerji","energy",""],"engordando":["engordar","kilo almak","to gain weight",""],"engordo":["engordar","kilo almak","to gain weight",""],"entrar":["entrar","girmek","to enter",""],"es":["ser","...dır; olmak","is",""],"esa":["ese","şu, o","that",""],"ese":["ese","şu, o","that",""],"eso":["eso","bu, o","that","isim"],"espacio":["espacio","alan, yer","space",""],"espesura":["espesura","sıklık, yoğunluk","thickness, depths",""],"esta":["este","bu","this",""],"estas":["este","bu","this",""],"este":["este","bu","this",""],"estos":["este","bu","this",""],"estoy":["estar","olmak, bulunmak","to be; to be located",""],"estrenó":["estrenar","ilk kez gösterime sokmak","to premiere, to release",""],"está":["estar","olmak, bulunmak","to be","fiil"],"falta":["falta","eksiklik, ihtiyaç","lack, need",""],"federico":["Federico","Özel ad","Proper name",""],"flores":["la flor","çiçek","flower","isim"],"formas":["forma","biçim, yol","form; way",""],"fragmento":["fragmento","parça, alıntı","excerpt, fragment",""],"fritos":["frito","kızartma, kızarmış","fried food, fried",""],"fruta":["fruta","meyve","fruit",""],"frutos":["fruto","meyve, yemiş","fruit, nut",""],"fue":["ser","olmak","to be",""],"fumes":["fumar","sigara içmek","to smoke",""],"garcía":["García","Özel ad","Proper name",""],"golpes":["golpe","darbe, vuruş","blow, beat",""],"guapa":["guapo","güzel, yakışıklı","pretty, handsome",""],"guarda":["guardar","saklamak, içinde barındırmak","to keep, to hold",""],"gustaría":["gustar","isterdim, hoşuma giderdi","I would like, would be pleasing","Condicional simple"],"ha":["haber","-dı/-di (yardımcı fiil)","has (auxiliary)","Pretérito perfecto · él / ella / usted"],"haber":["haber","yardımcı fiil veya var olmak","auxiliary to have, or there to be",""],"hablar":["hablar","konuşmak","to speak",""],"hablaría":["hablar","konuşmak","to speak","Condicional simple · él / ella / usted"],"hablaríais":["hablar","konuşmak","to speak","Condicional simple · vosotros / vosotras"],"hablaríamos":["hablar","konuşmak","to speak","Condicional simple · nosotros / nosotras"],"hablarían":["hablar","konuşmak","to speak","Condicional simple · ellos / ellas / ustedes"],"hablarías":["hablar","konuşmak","to speak","Condicional simple · tú"],"habr":["haber","Düzensiz kök · haber","Irregular stem of haber","Condicional simple / Futuro simple"],"hace":["hacer","yapmak","to do, to make",""],"hacen":["hacer","yapmak","to do, to make",""],"hacer":["hacer","yapmak","to do, to make",""],"haceros":["hacer","yapmak","to do, to make",""],"hago":["hacer","yapmak","to do, to make",""],"har":["hacer","Düzensiz kök · hacer","Irregular stem of hacer","Condicional simple / Futuro simple"],"hará":["hacer","yapmak","to do, to make",""],"harías":["hacer","yapardın","you would do","Condicional simple · tú"],"has":["haber","yardımcı fiil veya var olmak","auxiliary to have, or there to be",""],"hasta":["hasta","-e kadar","until, up to",""],"hay":["haber","var","there is, there are","Kişisiz kullanım"],"he":["haber","-dım/-dim (yardımcı fiil)","have (auxiliary)","Pretérito perfecto · yo"],"hecho":["hacer","yapmış, yapılmış","done, made","Düzensiz ortaç"],"hemos":["haber","yardımcı fiil veya var olmak","auxiliary to have, or there to be",""],"hermosura":["hermosura","güzellik","beauty",""],"hijas":["hijo","evlat, çocuk","child, son",""],"hijo":["hijo","evlat, çocuk","child, son",""],"hijos":["hijo","evlat, çocuk","child, son",""],"historia":["historia","hikâye","story",""],"hola":["hola","merhaba","hello",""],"homófonas":["homófono","eş sesli","homophone, homophonous",""],"horrible":["horrible","berbat","horrible, awful",""],"hoy":["hoy","bugün","today",""],"imperativo":["imperativo","emir kipi","imperative",""],"incluir":["incluir","dahil etmek","to include","fiil"],"indicativo":["indicativo","bildirme kipi","indicative",""],"ir":["ir","gitmek","to go",""],"isaac":["Isaac","Özel ad","Proper name",""],"isabel":["Isabel","Özel ad","Proper name",""],"joven":["joven","genç","young, young person",""],"juan":["Juan","Özel ad","Proper name",""],"la":["la","belirli artikel (dişil tekil)","the","artikel"],"ladrillos":["ladrillo","tuğla","brick",""],"las":["las","belirli artikel (dişil çoğul)","the","artikel"],"latir":["latir","atmak, çarpmak","to beat, to throb",""],"le":["le","ona","to him/her","dolaylı nesne zamiri"],"leche":["leche","süt","milk",""],"legumbres":["legumbre","baklagil","legume, pulse",""],"libros":["libro","kitap","book",""],"llegarás":["llegar","varmak","to arrive",""],"llegó":["llegar","varmak","to arrive",""],"lleva":["llevar","taşımak, götürmek","to carry, to take",""],"llevó":["llevar","taşımak, götürmek","to carry, to take",""],"lluvia":["lluvia","yağmur","rain",""],"lo":["lo","…olan","that which","yansız artikel"],"lorca":["Lorca","Özel ad","Proper name",""],"los":["los","belirli artikel (eril çoğul)","the","artikel"],"lugar":["lugar","yer","place",""],"luna":["luna","ay","moon",""],"luto":["luto","yas","mourning",""],"madrid":["Madrid","Özel ad","Proper name",""],"manantiales":["manantial","su kaynağı, pınar","spring of water",""],"manera":["manera","biçim, tarz","way, manner",""],"mar":["mar","deniz","sea",""],"marido":["marido","koca, eş","husband",""],"mario":["Mario","Özel ad","Proper name",""],"martirio":["Martirio","Özel ad","Proper name",""],"maruchi":["Maruchi","Özel ad","Proper name",""],"me":["me","bana","to me",""],"mejor":["mejor","daha iyi","better",""],"menos":["menos","daha az","less, fewer",""],"mes":["mes","ay","month",""],"mi":["mi","benim","my","iyelik belirleyicisi"],"mira":["mirar","bakmak","to look",""],"moderación":["moderación","ölçülülük","moderation",""],"mucho":["mucho","çok","a lot; much",""],"muerte":["muerte","ölüm","death",""],"muy":["muy","çok","very",""],"más":["más","daha","more","zarf"],"médico":["médico","doktor","doctor",""],"mío":["mío","benimki","mine",""],"mónica":["Mónica","Özel ad","Proper name",""],"necesitas":["necesitar","ihtiyacı olmak","to need",""],"negativo":["negativo","olumsuz","negative",""],"negro":["negro","siyah","black",""],"ni":["ni","ne de","nor",""],"niña":["niña","kız çocuğu, kızım","girl, child",""],"niño":["niño","çocuk, oğlum","child, boy",""],"no":["no","hayır; değil, -me/-ma","no; not",""],"nosotras":["nosotros","biz","we",""],"nosotros":["nosotros","biz","we",""],"nube":["nube","bulut","cloud",""],"nuca":["nuca","ense","nape of the neck",""],"nuestro":["nuestro","bizim","our",""],"o":["o","veya","or","bağlaç"],"obra":["obra","eser, yapıt","work, play",""],"ocho":["ocho","sekiz","eight",""],"ofrece":["ofrecer","sunmak","to offer",""],"ojos":["ojo","göz","eye",""],"olas":["ola","dalga","wave",""],"otra":["otro","başka, diğer","other, another",""],"otras":["otro","başka, diğer","other, another",""],"otro":["otro","başka, diğer","other, another",""],"padre":["el padre","baba","father","isim"],"palabras":["palabra","kelime","word",""],"palomas":["paloma","güvercin","dove, pigeon",""],"para":["para","…için","for, in order to","edat"],"pasó":["pasar","olmak, gerçekleşmek","to happen",""],"pechos":["pecho","göğüs","breast, chest",""],"pedir":["pedir","istemek; rica etmek; sipariş vermek","to ask for; to order","fiil"],"película":["película","film","film; movie",""],"pena":["pena","keder, üzüntü","sorrow",""],"pero":["pero","ama","but","bağlaç"],"pido":["pedir","istemek; rica etmek; sipariş vermek","to ask for; to order","fiil"],"pilar":["Pilar","Özel ad","Proper name",""],"poder":["poder","-ebilmek","can, to be able to",""],"podr":["poder","Düzensiz kök · poder","Irregular stem of poder","Condicional simple / Futuro simple"],"podría":["poder","yapabilirdi, yapabilir mi?","could","Condicional simple"],"podrías":["poder","yapabilirdin, yapabilir misin?","you could, could you?","Condicional simple · tú"],"pondr":["poner","Düzensiz kök · poner","Irregular stem of poner","Condicional simple / Futuro simple"],"poner":["poner","koymak","to put",""],"por":["por","boyunca, tarafından","by, through","edat"],"porque":["porque","çünkü","because",""],"portátil":["portátil","dizüstü bilgisayar","laptop",""],"practicaría":["practicar","yapardım","I would practice","Condicional simple"],"prado":["prado","çayır","meadow",""],"precio":["precio","fiyat","price",""],"preciosa":["precioso","çok güzel","lovely",""],"preferentemente":["preferentemente","tercihen","preferably",""],"preguntas":["pregunta","soru","question",""],"prepararía":["preparar","hazırlardım","I would prepare","Condicional simple"],"presente":["presente","şimdiki veya geniş zaman","present tense",""],"primer":["primero","ilk, birinci","first",""],"prisionera":["prisionero","tutsak","imprisoned, captive",""],"problema":["problema","sorun","problem",""],"programa":["programa","program","program, show",""],"próximo":["próximo","gelecek, bir sonraki","next",""],"puedo":["poder","-ebilmek","can; to be able to","fiil"],"puerta":["puerta","kapı","door",""],"puertas":["puerta","kapı","door",""],"pues":["pues","öyleyse, peki","well, then",""],"que":["que","…ki, …mesi","that","bağlaç"],"querer":["querer","istemek; sevmek","to want; to love","fiil"],"querida":["querido","sevgili, canım","dear",""],"querr":["querer","Düzensiz kök · querer","Irregular stem of querer","Condicional simple / Futuro simple"],"quita":["quitar","kaldırmak, çekmek","to remove, to move aside",""],"qué":["qué","ne","what","soru sözcüğü"],"rama":["rama","dal","branch",""],"rechaza":["rechazar","geri çevirmek, reddetmek","to reject",""],"recomendaciones":["recomendación","öneri","recommendation",""],"redondo":["redondo","yuvarlak","round",""],"relaciona":["relacionar","ilişkilendirmek, eşleştirmek","to match, to relate",""],"respetar":["respetar","saygı duymak","to respect","fiil"],"rojas":["rojo","kırmızı","red",""],"rápido":["rápido","hızlı","fast, quickly",""],"saber":["saber","bilmek","to know",""],"sabr":["saber","Düzensiz kök · saber","Irregular stem of saber","Condicional simple / Futuro simple"],"sal":["sal","tuz","salt",""],"saldr":["salir","Düzensiz kök · salir","Irregular stem of salir","Condicional simple / Futuro simple"],"salir":["salir","çıkmak","to go out","fiil"],"saludable":["saludable","sağlıklı","healthy","sıfat"],"sangre":["sangre","kan","blood",""],"sanísima":["sano","sağlıklı, sapasağlam","healthy, perfectly healthy",""],"se":["se","dönüşlü / karşılıklı fiil zamiri","reflexive/reciprocal pronoun","zamir"],"secos":["seco","kuru","dried, dry",""],"seguro":["seguro","emin","sure",""],"sergio":["Sergio","Özel ad","Proper name",""],"serían":["ser","olurdu, olmalıydı","would be, must have been","Condicional simple"],"señora":["señora","hanımefendi","lady, ma’am",""],"si":["si","eğer, -se/-sa","if",""],"siempre":["siempre","her zaman","always","zarf"],"siento":["sentir","hissetmek","to feel","fiil"],"siguiente":["siguiente","sonraki","following, next",""],"simple":["simple","basit, tek fiilli biçim","simple",""],"sin":["sin","-sız/-siz; olmadan","without",""],"son":["ser","olmak","to be",""],"su":["su","onun, onların","s/your, his, her, their","iyelik belirleyicisi"],"suelo":["suelo","zemin, yer","floor, ground",""],"suficiente":["suficiente","yeterli","enough, sufficient",""],"sufrir":["sufrir","acı çekmek, çekmek","to suffer, to endure",""],"surf":["surf","sörf","surfing",""],"sus":["sus","onun, onların (çoğul isimle)","his, her, their, your","iyelik belirleyicisi"],"también":["también","de, da; ayrıca","also; too",""],"tan":["tan","bu kadar, öyle","so",""],"tapiado":["tapiar","örerek kapatmak","to brick up",""],"tarde":["tarde","geç","late",""],"taxi":["taxi","taksi","taxi",""],"te":["te","kendini/kendine; seni/sana","yourself; you",""],"teatro":["teatro","tiyatro","theatre",""],"tendr":["tener","Düzensiz kök · tener","Irregular stem of tener","Condicional simple / Futuro simple"],"tendría":["tener","sahip olurdu","would have","Condicional simple · yo / él / ella / usted"],"tener":["tener","sahip olmak","to have",""],"tengo":["tener","sahip olmak","to have",""],"tenéis":["tener","sahip olmak","to have",""],"tibia":["tibio","ılık","lukewarm",""],"tiempo":["el tiempo","zaman","time","isim"],"tiernos":["tierno","körpe, narin","tender",""],"tierra":["tierra","toprak","earth, soil",""],"tirando":["tirar","fırlatmak, atmak","to throw",""],"todo":["todo","bütün, her","all, every","belirleyici"],"todos":["todos","herkes","everyone","isim"],"tomaría":["tomar","içerdim","I would drink","Condicional simple"],"tome":["tomar","almak, içmek","to take, to drink",""],"tortilla":["tortilla","omlet","omelette",""],"tras":["tras","ardından, sonra","after, following",""],"tu":["tu","senin","your",""],"tuviera":["tener","sahip olmak","to have",""],"távora":["Távora","Özel ad","Proper name",""],"tú":["tú","sen","you (informal singular)",""],"uf":["uf","of","ugh",""],"un":["un","bir (eril)","a, one","belirsiz artikel"],"una":["una","bir (dişil)","a, one","belirsiz artikel"],"uno":["uno","biri","one","zamir"],"usted":["usted","siz (tekil, resmî)","you (formal singular)",""],"ustedes":["ustedes","siz (çoğul)","you (plural)","Kişi zamiri"],"va":["ir","gitmek","to go","fiil"],"valdr":["valer","Düzensiz kök · valer","Irregular stem of valer","Condicional simple / Futuro simple"],"valer":["valer","değmek, değerinde olmak","to be worth",""],"van":["irse","giderler","leave","fiil"],"vas":["ir","gitmek","to go",""],"veces":["vez","kez, defa","time, occasion",""],"ven":["venir","gelmek","to come",""],"vender":["vender","satmak","to sell",""],"vendr":["venir","Düzensiz kök · venir","Irregular stem of venir","Condicional simple / Futuro simple"],"vendría":["venir","gelecekti","would come","Condicional simple"],"venir":["venir","gelmek","to come",""],"ventanas":["ventana","pencere","window",""],"veo":["ver","görmek, izlemek","to see, to watch",""],"ver":["ver","görmek, izlemek","to see, to watch",""],"verdes":["verde","yeşil","green",""],"ves":["ver","görmek, izlemek","to see, to watch",""],"vestido":["vestido","elbise","dress",""],"vez":["vez","kez, defa","time, occasion",""],"viajaría":["viajar","seyahat ederdim","I would travel","Condicional simple"],"viento":["viento","rüzgâr","wind",""],"vientre":["vientre","karın, rahim","belly, womb",""],"visto":["ver","görmek, izlemek","to see, to watch",""],"viuda":["viuda","dul kadın","widow",""],"vivir":["vivir","yaşamak","to live","fiil"],"viviría":["vivir","yaşamak","to live","Condicional simple · él / ella / usted"],"viviríais":["vivir","yaşamak","to live","Condicional simple · vosotros / vosotras"],"viviríamos":["vivir","yaşamak","to live","Condicional simple · nosotros / nosotras"],"vivirían":["vivir","yaşamak","to live","Condicional simple · ellos / ellas / ustedes"],"vivirías":["vivir","yaşamak","to live","Condicional simple · tú"],"vosotras":["vosotros","siz (çoğul, samimi)","you (informal plural, Spain)",""],"vosotros":["vosotros","siz (çoğul, samimi)","you (informal plural, Spain)",""],"vuelto":["volver","dönmüş, geri dönmüş","returned","Düzensiz ortaç"],"y":["y","ve","and","bağlaç"],"ya":["ya","artık, zaten; «ya que» içinde sebep bildirir","already; used in «since»",""],"yerma":["Yerma","Özel ad","Proper name",""],"yo":["yo","ben","I",""],"él":["él","o (erkek)","he",""],"ía":["-ía","Ortak kişi eki · él / ella / usted","Conditional person ending · él / ella / usted","Condicional simple"],"íais":["-íais","Ortak kişi eki · vosotros / vosotras","Conditional person ending · vosotros / vosotras","Condicional simple"],"íamos":["-íamos","Ortak kişi eki · nosotros / nosotras","Conditional person ending · nosotros / nosotras","Condicional simple"],"ían":["-ían","Ortak kişi eki · ellos / ellas / ustedes","Conditional person ending · ellos / ellas / ustedes","Condicional simple"],"ías":["-ías","Ortak kişi eki · tú","Conditional person ending · tú","Condicional simple"],"última":["último","son","last",""],"últimamente":["últimamente","son zamanlarda","lately",""]}</script>
+<script>
+const get = id => document.getElementById(id);
+const glossary = JSON.parse(get('lesson-lexicon').textContent);
+const wordPattern = /[\p{L}]+/gu;
+const panelTabs = [...document.querySelectorAll('.lesson-nav [role="tab"]')];
+const homework = get('homeworkDialog');
+const popover = get('wordPopover');
+let activeWord;
+
+function addWordButtons(element) {
+  const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, {
+    acceptNode(node) {
+      return node.parentElement.closest('button, input, [data-no-vocab], .gap-number, .gap-answer:not([lang])')
+        ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+    }
+  });
+  const textNodes = [];
+  while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+  for (const node of textNodes) {
+    const fragment = document.createDocumentFragment();
+    const suffix = Number(node.parentElement.dataset.ending);
+    let next = 0;
+    for (const match of node.textContent.matchAll(wordPattern)) {
+      const word = match[0];
+      const key = word.toLowerCase();
+      if (!Object.hasOwn(glossary, key)) continue;
+      fragment.append(node.textContent.slice(next, match.index));
+      const button = document.createElement('button');
+      button.className = 'word-token';
+      button.type = 'button';
+      button.dataset.word = key;
+      button.setAttribute('aria-haspopup', 'dialog');
+      button.setAttribute('aria-expanded', 'false');
+      if (suffix) {
+        const ending = document.createElement('span');
+        ending.className = 'ending';
+        ending.textContent = word.slice(-suffix);
+        button.append(word.slice(0, -suffix), ending);
+      } else {
+        button.textContent = word;
+      }
+      fragment.append(button);
+      next = match.index + word.length;
+    }
+    if (next) {
+      fragment.append(node.textContent.slice(next));
+      node.replaceWith(fragment);
+    }
+  }
+}
+document.querySelectorAll('[data-vocab], .lesson-line, .response .gap-answer[lang="es"]').forEach(addWordButtons);
+
+function openPanel(index, focus = false) {
+  closeWord();
+  for (const [i, tab] of panelTabs.entries()) {
+    const selected = i === index;
+    tab.classList.toggle('active', selected);
+    tab.setAttribute('aria-selected', String(selected));
+    tab.tabIndex = selected ? 0 : -1;
+    get(tab.getAttribute('aria-controls')).hidden = !selected;
+  }
+  if (focus) panelTabs[index].focus();
+}
+
+for (const [index, tab] of panelTabs.entries()) {
+  tab.addEventListener('click', () => openPanel(index));
+  tab.addEventListener('keydown', event => {
+    const next = {
+      ArrowLeft: (index + panelTabs.length - 1) % panelTabs.length,
+      ArrowRight: (index + 1) % panelTabs.length,
+      Home: 0,
+      End: panelTabs.length - 1,
+    };
+    if (!Object.hasOwn(next, event.key)) return;
+    event.preventDefault();
+    openPanel(next[event.key], true);
+  });
+}
+
+if (location.hash) {
+  const old = location.hash.slice(1);
+  const index = panelTabs.findIndex(tab => tab.getAttribute('aria-controls') === old);
+  if (index >= 0) openPanel(index);
+  history.replaceState(history.state, '', location.pathname + location.search);
+}
+
+function closeWord(restoreFocus = false) {
+  if (!activeWord) return;
+  const previousWord = activeWord;
+  activeWord = null;
+  previousWord.classList.remove('selected');
+  previousWord.setAttribute('aria-expanded', 'false');
+  popover.hidden = true;
+  if (restoreFocus) previousWord.focus({preventScroll:true});
+}
+
+function positionWord() {
+  if (!activeWord) return;
+  const box = activeWord.getBoundingClientRect();
+  const rightEdge = Math.max(10, innerWidth - popover.offsetWidth - 10);
+  const below = box.bottom + 8;
+  popover.style.left = Math.max(10, Math.min(rightEdge, box.left)) + 'px';
+  popover.style.top = Math.max(10, below + popover.offsetHeight <= innerHeight - 10
+    ? below : box.top - popover.offsetHeight - 8) + 'px';
+}
+
+const phrases = [
+  {text:'a ver', words:['a','ver'], tr:'bakmaya, görmeye', en:'to see, to have a look'},
+  {text:'a haber', words:['a','haber'], tr:'olacak, bulunacak', en:'there is going to be'},
+  {text:'yo que tú', words:['yo','que','tú'], tr:'ben senin yerinde olsam', en:'if I were you'},
+  {text:'yo en tu lugar', words:['yo','en','tu','lugar'], tr:'ben senin yerinde olsam', en:'if I were in your shoes'},
+  {text:'con moderación', words:['con','moderación'], tr:'ölçülü bir şekilde', en:'in moderation'},
+  {text:'a lo mejor', words:['a','lo','mejor'], tr:'belki, muhtemelen', en:'maybe, perhaps'},
+  {text:'hará falta', words:['hará','falta'], tr:'gerekecek', en:'will be needed'},
+  {text:'haceros cuenta', words:['haceros','cuenta'], tr:'varsayın, öyle düşünün', en:'imagine, suppose'},
+  {text:'de luto', words:['de','luto'], tr:'yasta', en:'in mourning'},
+  {text:'ha de entrar', words:['ha','de','entrar'], tr:'girecek', en:'is to enter'},
+  {text:'has de venir', words:['has','de','venir'], tr:'gelmelisin, geleceksin', en:'you must come, you shall come'},
+];
+
+function sentenceText(line) {
+  const copy = line.cloneNode(true);
+  for (const gap of copy.querySelectorAll('.gap')) {
+    const answer = gap.querySelector('.gap-answer');
+    gap.replaceWith(answer.hidden ? '___' : answer.textContent);
+  }
+  copy.querySelectorAll('.gap-number').forEach(node => node.remove());
+  return copy.textContent.trim().replace(/\s+/g,' ');
+}
+
+function openWord(word) {
+  if (word === activeWord) return closeWord(true);
+  closeWord();
+  const [lemma, tr, en, note] = glossary[word.dataset.word];
+  const line = word.closest('.lesson-line') || word.closest('.response')?.previousElementSibling;
+  const chunk = word.closest('[data-role]');
+  const chunkText = chunk ? sentenceText(chunk).toLowerCase() : '';
+  const sentence = line ? sentenceText(line) : '';
+  const phrase = phrases.find(item => item.words.includes(word.dataset.word)
+    && (chunkText.includes(item.text) || word.closest('.gap-answer')?.textContent.toLowerCase() === item.text));
+  const context = get('contextDetail');
+  get('wordTitle').textContent = word.textContent;
+  get('wordTr').textContent = tr;
+  get('wordEn').textContent = en;
+  get('wordLemma').textContent = lemma;
+  get('wordRole').textContent = [chunk?.dataset.role, note, phrase ? phrase.text + ' · ' + phrase.tr + ' / ' + phrase.en : ''].filter(Boolean).join(' · ');
+  get('wordRole').hidden = !get('wordRole').textContent;
+  get('wordContext').textContent = sentence;
+  context.hidden = !sentence;
+  context.open = false;
+
+  activeWord = word;
+  word.classList.add('selected');
+  word.setAttribute('aria-expanded','true');
+  popover.hidden = false;
+  positionWord();
+  get('wordClose').focus({preventScroll:true});
+}
+
+document.addEventListener('click', event => {
+  const word = event.target.closest('.word-token');
+  if (word) return openWord(word);
+  if (!popover.contains(event.target)) closeWord();
+  const lock = event.target.closest('.gap .lock');
+  if (!lock) return;
+  const gap = lock.closest('.gap');
+  const answer = get(lock.getAttribute('aria-controls'));
+  const visible = answer.hidden;
+  gap.querySelector('input').hidden = visible;
+  answer.hidden = !visible;
+  lock.textContent = visible ? '🔓' : '🔒';
+  lock.setAttribute('aria-expanded', String(visible));
+  lock.setAttribute('aria-label', lock.getAttribute('aria-label').replace(/göster$|gizle$/, visible ? 'gizle' : 'göster'));
+});
+
+get('wordClose').addEventListener('click', () => closeWord(true));
+get('contextDetail').addEventListener('toggle', positionWord);
+window.addEventListener('resize', positionWord);
+window.addEventListener('scroll', positionWord, {passive:true});
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && activeWord) closeWord(true);
+});
+
+get('homeworkButton').addEventListener('click', () => {
+  closeWord();
+  homework.showModal();
+  document.body.classList.add('homework-open');
+});
+get('homeworkClose').addEventListener('click', () => homework.close());
+homework.addEventListener('close', () => {
+  document.body.classList.remove('homework-open');
+  get('homeworkButton').focus();
+});
+for (const id of ['printButton', 'homeworkPrint']) {
+  get(id).addEventListener('click', () => window.print());
+}
+</script>
+</body>
+</html>
