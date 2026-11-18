@@ -14,33 +14,23 @@
     .lesson-nav .homework-button { align-self:start; margin:0 }
     .lesson-panel[hidden], .gap [hidden], .word-popover[hidden] { display:none }
     .hero { padding-bottom:16px }
-    .role-legend { display:flex; align-items:center; flex-wrap:wrap; gap:6px; margin:0 0 22px; font-size:12px }
-    .role-legend b { margin-right:4px }
-    .grammar-chunk, .role-chip { border-radius:5px; box-decoration-break:clone; -webkit-box-decoration-break:clone }
-    .role-chip { padding:3px 8px; background:var(--role-color); color:#29334e }
-    .grammar-chunk { padding-block:2px }
+    .grammar-chunk {
+      --chunk-color:hsl(calc(43deg + var(--chunk-index, 0) * 137.5deg) 80% 88%);
+      border-radius:5px; padding-block:2px;
+      box-decoration-break:clone; -webkit-box-decoration-break:clone;
+    }
     @media screen {
       .lesson-sentence:has(:focus-visible) .grammar-chunk,
-      .grammar-chunk.example:has(:focus-visible) { background:var(--role-color) }
+      .grammar-chunk.example:has(:focus-visible) { background:var(--chunk-color) }
     }
     @media screen and (hover:hover) {
       .lesson-sentence:hover .grammar-chunk,
-      .grammar-chunk.example:hover { background:var(--role-color) }
+      .grammar-chunk.example:hover { background:var(--chunk-color) }
     }
     @media screen and (hover:none) {
       .lesson-sentence:has(.word-token.selected) .grammar-chunk,
-      .grammar-chunk.example:has(.word-token.selected) { background:var(--role-color) }
+      .grammar-chunk.example:has(.word-token.selected) { background:var(--chunk-color) }
     }
-    .subject { --role-color:#deebff }
-    .verb { --role-color:#e9dfff }
-    .object { --role-color:#ffe4ed }
-    .indirect { --role-color:#ddf3eb }
-    .complement { --role-color:#fff0cc }
-    .attribute { --role-color:#fce6d6 }
-    .participle { --role-color:#dceff6 }
-    .connector { --role-color:#e9edf5 }
-    .agent { --role-color:#fce0ef }
-    .vocative { --role-color:#f2e3f2 }
     .lesson-panel { display:grid; gap:16px }
     .section-heading { margin:0 }
     .section-heading p { margin-bottom:0 }
@@ -157,7 +147,6 @@
     </nav>
     <button type="button" id="homeworkButton" class="homework-button" aria-haspopup="dialog" aria-controls="homeworkDialog">📚 13–14. Ders Ödevleri</button>
   </div>
-  <div class="role-legend" aria-label="Cümle ögelerinin renkleri"><b>Cümle ögeleri</b> <span class="role-chip subject">Özne</span> <span class="role-chip verb">Fiil</span> <span class="role-chip object">Doğrudan nesne</span> <span class="role-chip indirect">Dolaylı tümleç</span> <span class="role-chip complement">Diğer tümleç</span> <span class="role-chip attribute">Nitelik</span> <span class="role-chip participle">Ortaç</span> <span class="role-chip connector">Bağlayıcı</span> <span class="role-chip agent">Eylemi yapan</span> <span class="role-chip vocative">Hitap / ünlem</span></div>
   <main>
     <section id="dictado" class="lesson-panel" role="tabpanel" aria-labelledby="tab-dictado">
       <div class="section-heading">
@@ -376,6 +365,10 @@ function addWordButtons(element) {
   }
 }
 document.querySelectorAll('[data-vocab], .lesson-line, .response .gap-answer[lang="es"]').forEach(addWordButtons);
+for (const sentence of document.querySelectorAll('.lesson-sentence')) {
+  const chunks = sentence.querySelectorAll(':scope > .grammar-chunk');
+  chunks.forEach((chunk, index) => chunk.style.setProperty('--chunk-index', index));
+}
 
 function openPanel(index, focus = false) {
   closeWord();
