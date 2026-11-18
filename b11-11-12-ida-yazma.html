@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#526cc6">
+<title>B1.1 (11+12) · Yazma Ödevi | Los conectores</title>
+<link rel="stylesheet" href="b11-theme.css">
+<script src="student-roster.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js" defer></script>
+<style>
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:radial-gradient(ellipse at 0 0,#e2eaff,transparent 48%),#f7f9fe;color:#2e3449;font:16px/1.65 'Nunito Sans',system-ui,sans-serif}
+h1,h2,h3,button{font-family:Nunito,system-ui,sans-serif}h1,h2,h3{line-height:1.25;margin:0 0 12px}
+h1{font-size:clamp(30px,5vw,46px)}h2{font-size:24px}p{margin:0 0 12px}
+.writing-shell{width:min(780px,calc(100% - 28px));margin:30px auto}
+.panel{padding:clamp(18px,4vw,30px);background:#fff;border:1px solid #dce4f4;border-radius:20px;margin-bottom:18px;box-shadow:0 6px 24px #526cc610}
+.cover{border-top:5px solid #526cc6}.cover p:last-child,.hint{color:#596580}
+.eyebrow{font-weight:900;color:#405ead;font-size:12px;letter-spacing:.09em}
+label{font-weight:800}select,textarea{display:block;width:100%;border:1px solid #bdcae8;border-radius:12px;color:inherit;background:#fff;font:inherit;padding:10px 13px;margin:7px 0 14px}
+textarea{min-height:280px;resize:vertical;line-height:1.75}
+button{border:0;border-radius:12px;padding:11px 17px;background:linear-gradient(135deg,#3159c1,#4568d0);color:white;font-size:15px;font-weight:850;cursor:pointer}
+button:disabled{opacity:.5;cursor:not-allowed}
+button.secondary{background:#eef3ff;color:#3159a8}
+button:focus-visible,select:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid #5979d0;outline-offset:3px}
+.note{background:#eef3ff;border:1px solid #d8e4fc;border-radius:14px;padding:14px 16px;margin:14px 0}
+.note ul{margin:0;padding-left:20px}.note li+li{margin-top:6px}
+.counter{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;color:#596580;margin:-7px 0 14px}
+.counter strong{color:#3159a8}.rubric{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:18px}
+.rubric th,.rubric td{padding:8px 11px;border-bottom:1px solid #dfe7f7;text-align:left}
+.rubric th{background:#edf2ff;color:#2f4f9f}.rubric td:last-child,.rubric th:last-child{text-align:right}
+.rubric tfoot td{font-weight:900;color:#3159a8}
+.copy-confirm{display:flex;gap:10px;align-items:flex-start;padding:11px 13px;background:#eef3ff;border-radius:12px;margin:14px 0}
+.copy-confirm input{margin:5px 0 0;accent-color:#3159c1;width:17px;height:17px;flex:none}
+.actions{display:flex;gap:10px;flex-wrap:wrap}.status{color:#4d5d7c;margin:12px 0 0}
+.status.error{color:#a52b42}.success{color:#285a43}
+@media(max-width:460px){.writing-shell{margin-top:15px}.actions button{width:100%}.rubric th,.rubric td{padding:7px 5px}}
+</style>
+</head>
+<body>
+<main class="writing-shell">
+  <header class="panel cover">
+    <p class="eyebrow">3. HAFTA · B1.1 · 11–12. DERS · YAZMA ÖDEVİ</p>
+    <h1 lang="es">Los conectores</h1>
+    <p>450 kelime · En az 30 bağlaç kullanımı · 100 puan</p>
+  </header>
+  <section class="panel" id="intro" aria-labelledby="startTitle">
+    <h2 id="startTitle">👤 Adını seç</h2>
+    <label for="introName">Ad Soyad</label>
+    <select id="introName"><option value="">— Adını seç —</option></select>
+    <button id="startWriting" type="button">Yazmaya Başla →</button>
+    <p class="status" id="introStatus" role="status"></p>
+  </section>
+  <section class="panel" id="writing" aria-labelledby="topic" hidden>
+    <p class="eyebrow" id="studentLabel"></p>
+    <h2 id="topic" lang="es">¿Deberían prohibirse los móviles en clase?</h2>
+    <p>Bir okul dergisi için İspanyolca bir görüş yazısı yaz. Derste telefon kullanımına dair açık bir görüş ortaya koy ve okul için uygulanabilir bir öneriyle bitir.</p>
+    <div class="note">
+      <ul>
+        <li><strong>Giriş:</strong> Konuyu tanıt ve görüşünü belirt.</li>
+        <li><strong>Gelişme:</strong> Görüşünü iki gerekçe ve somut örneklerle destekle. Karşı görüşü de ele al ve yanıtla.</li>
+        <li><strong>Sonuç:</strong> Önerdiğin kuralı, amacını ve beklediğin sonucu açıkla.</li>
+        <li><strong>450 kelime ve en az 30 bağlaç kullanımı:</strong> Görüş, ekleme, zıtlık, sebep, sonuç, amaç, örnekleme, zaman ve sıralama ifadelerinden yararlan. Tekrara düşmeden bağlama uygun ifadeler seç.</li>
+      </ul>
+    </div>
+    <div class="note"><strong>Bağlaç örnekleri</strong><p lang="es">en mi opinión · además · sin embargo · aunque · puesto que · por lo tanto · para que · por ejemplo · mientras · a continuación · por último</p></div>
+    <label for="writingText">✏️ Yazma metnin</label>
+    <textarea id="writingText" lang="es" placeholder="Yazını burada yaz…"></textarea>
+    <div class="counter"><strong id="wordCount" aria-live="polite">0 / 450 kelime</strong><span>Bağlaçlar öğretmen tarafından bağlam içinde değerlendirilir.</span></div>
+    <h3>📊 Puanlama Cetveli</h3>
+    <table class="rubric">
+      <thead><tr><th scope="col">Kriter</th><th scope="col">Puan</th></tr></thead>
+      <tbody>
+        <tr><td>Konuya uygunluk ve görevi yerine getirme</td><td>10</td></tr>
+        <tr><td>450 kelime ve en az 30 bağlaç kullanımı</td><td>15</td></tr>
+        <tr><td>Bağlaçların bağlama uygun ve doğru kullanımı</td><td>25</td></tr>
+        <tr><td>Bağlaç çeşitliliği ve metnin akıcılığı</td><td>15</td></tr>
+        <tr><td>Gerekçeler, örnekler ve karşı görüşe verilen yanıt</td><td>15</td></tr>
+        <tr><td>Giriş, gelişme ve sonuç bütünlüğü</td><td>10</td></tr>
+        <tr><td>B1.1 düzeyine uygun dil bilgisi ve kelime seçimi</td><td>5</td></tr>
+        <tr><td>Yazım, noktalama ve tilde kullanımı</td><td>5</td></tr>
+      </tbody>
+      <tfoot><tr><td>TOPLAM</td><td>100</td></tr></tfoot>
+    </table>
+    <label class="copy-confirm" for="copyConfirm"><input type="checkbox" id="copyConfirm"><span>📋 Yazımın bir kopyasını aldım, göndermeye hazırım.</span></label>
+    <button id="writingSubmitBtn" type="button" disabled>✔ Yazıyı Tamamladım, Teslim Et</button>
+  </section>
+  <section class="panel" id="confirmation" aria-labelledby="confirmTitle" hidden>
+    <h2 id="confirmTitle">Yazma Ödevi Teslimi</h2>
+    <p id="confirmMessage">Adını onayladığında yazın e-posta ile Profe Hazel’e gönderilecek.</p>
+    <label for="studentName">Ad Soyad</label>
+    <select id="studentName"><option value="">— Adını seç —</option></select>
+    <div class="actions"><button id="confirmBtn" type="button">📬 Ödevi Teslim Et</button><button class="secondary" id="goBack" type="button">← Yazıya Dön</button></div>
+    <p class="status" id="sendStatus" role="status"></p>
+  </section>
+  <section class="panel" id="result" aria-labelledby="resultTitle" hidden>
+    <h2 id="resultTitle" class="success">✅ Yazın teslim edildi!</h2>
+    <p id="summaryName"></p>
+    <p>Yazın Profe Hazel’e e-posta ile gönderildi. Yazma ödevin 100 puan üzerinden değerlendirilecek.</p>
+    <a href="https://www.ispanyolcacim.com/ogrenci-portali.html">Öğrenci portalına dön ↗</a>
+  </section>
+</main>
+<script>
+const EMAILJS_PUBLIC_KEY = 'xNYEbUQNiWJPvbyoJ';
+const EMAILJS_SERVICE = 'service_4ee1wh7';
+const EMAILJS_TEMPLATE = 'template_xjyyxhf';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
+const TASK_COLUMN = '11-12.Ders (Yazma Ödevi)';
+const TOPIC = 'Los conectores — ¿Deberían prohibirse los móviles en clase?';
+const WORD_GOAL = 450;
+const get = id => document.getElementById(id);
+const writer = get('writingText');
+const copy = get('copyConfirm');
+const submit = get('writingSubmitBtn');
+const confirm = get('confirmBtn');
+const back = get('goBack');
+const status = get('sendStatus');
+let student = '';
+let sentEmail = false;
+let sending = false;
+
+function show(id) {
+  for (const screen of ['intro','writing','confirmation','result']) get(screen).hidden = screen !== id;
+  window.scrollTo(0,0);
+}
+function countWords(text) {
+  return (text.match(/[\p{L}\p{N}][\p{L}\p{N}\p{M}]*(?:[-’'][\p{L}\p{N}\p{M}]+)*/gu) || []).length;
+}
+function updateWritingState() {
+  const words = countWords(writer.value);
+  get('wordCount').textContent = words + ' / ' + WORD_GOAL + ' kelime';
+  submit.disabled = words !== WORD_GOAL || !copy.checked;
+}
+get('startWriting').addEventListener('click', () => {
+  student = get('introName').value;
+  if (!student) {
+    get('introStatus').textContent = 'Lütfen listeden adını seç.';
+    get('introName').focus();
+    return;
+  }
+  get('studentLabel').textContent = student;
+  show('writing');
+  writer.focus();
+});
+writer.addEventListener('input',updateWritingState);
+copy.addEventListener('change',updateWritingState);
+submit.addEventListener('click', () => {
+  if (countWords(writer.value) !== WORD_GOAL || !copy.checked) return;
+  get('studentName').value = student;
+  status.textContent = '';
+  show('confirmation');
+});
+back.addEventListener('click', () => show('writing'));
+confirm.addEventListener('click', async () => {
+  if (sending) return;
+  const select = get('studentName');
+  if (select.value !== student) {
+    status.className = 'status error';
+    status.textContent = 'Yazıya başladığın öğrenci adını seç.';
+    select.focus();
+    return;
+  }
+  if (countWords(writer.value) !== WORD_GOAL || !copy.checked) return;
+  sending = true;
+  confirm.disabled = true;
+  back.disabled = true;
+  select.disabled = true;
+  status.className = 'status';
+  status.textContent = sentEmail ? 'Teslim kaydı gönderiliyor…' : 'Yazın e-posta ile gönderiliyor…';
+  try {
+    if (!sentEmail) {
+      const date = new Intl.DateTimeFormat('tr-TR',{
+        timeZone:'Europe/Istanbul',dateStyle:'short',timeStyle:'medium'
+      }).format(new Date());
+      emailjs.init(EMAILJS_PUBLIC_KEY);
+      await emailjs.send(EMAILJS_SERVICE,EMAILJS_TEMPLATE,{
+        student_name:student,
+        lesson:'B1.1 · H3 11–12. Ders · Yazma Ödevi (Los conectores)',
+        submit_date:date,
+        writing_text:'=== BAŞLIK BİLGİLERİ ===\nAd Soyad: '+student+'\nÖdev No: B1.1 11+12\nKonu: '+TOPIC+'\nKelime sayısı: '+WORD_GOAL+'\n\n=== YAZMA METNİ ===\n'+writer.value.trim()
+      });
+      sentEmail = true;
+      back.hidden = true;
+      get('confirmMessage').textContent = 'E-posta gönderildi. Teslim kaydı portala iletiliyor.';
+    }
+    await fetch(SCRIPT_URL,{
+      method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=UTF-8'},
+      body:JSON.stringify({ogrenci:student,grup:'B1.1',odev:TASK_COLUMN,
+        puan:'Yazma (öğretmen değerlendirecek)',dogru:'',yanlis:''})
+    });
+    get('summaryName').textContent = student + ' · B1.1 · 11–12. Ders Yazma Ödevi';
+    show('result');
+  } catch {
+    status.className = 'status error';
+    status.textContent = sentEmail ? 'E-posta gönderildi. Portal kaydını yeniden deneyebilirsin.' : 'E-posta gönderilemedi. Yazın korunuyor, tekrar deneyebilirsin.';
+    confirm.textContent = sentEmail ? 'Portal Kaydını Yeniden Gönder' : '📬 Yeniden Gönder';
+    confirm.disabled = false;
+    back.disabled = sentEmail;
+    select.disabled = sentEmail;
+  } finally {
+    sending = false;
+  }
+});
+</script>
+</body>
+</html>
