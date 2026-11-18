@@ -44,25 +44,16 @@ textarea:focus{border-color:#6c4eb8}
 .btn-teslim{width:100%;padding:.9rem;background:#2e9e6b;color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:.9rem}
 .btn-teslim:hover:not(:disabled){background:#257a55}
 .btn-teslim:disabled{background:#a8d5bf;cursor:not-allowed}
-.loading-wrap{text-align:center;padding:3rem 0}
-.spinner{width:52px;height:52px;border:5px solid #e8e0f8;border-top-color:#6c4eb8;border-radius:50%;animation:spin .9s linear infinite;margin:0 auto 1.2rem}
-@keyframes spin{to{transform:rotate(360deg)}}
-.loading-msg{color:#666;font-size:.92rem}
-.result-top{display:flex;align-items:center;gap:1.2rem;margin-bottom:1.3rem;flex-wrap:wrap}
-.puan-daire{width:100px;height:100px;border-radius:50%;border:5px solid #6c4eb8;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0}
-.puan-sayi{font-size:2.2rem;font-weight:800;color:#6c4eb8;line-height:1}
-.puan-100{font-size:.65rem;color:#aaa}
-.result-isim{font-weight:700;color:#333;font-size:.95rem;margin-bottom:.3rem}
-.result-yorum{font-size:.85rem;color:#666;line-height:1.5}
-.fb-blok{margin-bottom:.9rem}
-.fb-baslik{display:inline-flex;align-items:center;gap:.35rem;font-size:.78rem;font-weight:700;padding:.25rem .7rem;border-radius:5px;margin-bottom:.45rem}
-.fb-baslik.iyi{background:#e6f9f0;color:#2e9e6b}
-.fb-baslik.gelistir{background:#fff3cd;color:#856404}
-.fb-baslik.hata{background:#fde8e8;color:#d94040}
-.fb-icerik{font-size:.87rem;color:#444;line-height:1.7;border:1px solid #ede9f8;border-radius:8px;padding:.75rem 1rem;background:#fdfcff;white-space:pre-wrap}
 .detail-toggle{background:none;border:none;cursor:pointer;font-size:.78rem;color:#aaa;padding:.2rem 0;display:block;margin-bottom:.4rem;text-align:left;width:100%}
 .ogrenci-yazi-kutu{background:#fafafa;border:1px solid #ede9f8;border-radius:8px;padding:.8rem 1rem;font-size:.83rem;color:#555;line-height:1.7;white-space:pre-wrap;max-height:200px;overflow-y:auto;margin-bottom:1rem}
-.kayit-mesaj{padding:.7rem 1rem;border-radius:8px;font-size:.84rem;text-align:center;display:none;margin-top:.5rem}
+.kayit-mesaj{padding:.7rem 1rem;border-radius:8px;font-size:.84rem;text-align:center;margin-top:.5rem}
+.kayit-mesaj:empty{display:none}
+.delivery-note{margin:.65rem 0 1rem;line-height:1.55}
+#s-confirm label,#s-result summary{font-weight:700}
+#s-confirm select{margin:.4rem 0 0}
+#s-result details{margin:1rem 0}
+#s-result summary{cursor:pointer}
+.portal-link{display:inline-block;margin-top:.4rem;color:var(--theme-primary)}
 .kayit-mesaj.ok{background:#e6f9f0;color:#1a5c3a}
 .kayit-mesaj.err{background:#fde8e8;color:#8b1a1a}
 
@@ -72,6 +63,7 @@ textarea:focus{border-color:#6c4eb8}
 .writing-copy-confirm small{display:block;font-size:12px;font-weight:400}
 </style>
 <script src="student-roster.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js" defer></script>
 <link rel="stylesheet" href="b11-theme.css?v=20261103-vivid">
 </head>
 <body>
@@ -84,8 +76,8 @@ textarea:focus{border-color:#6c4eb8}
       <span class="badge badge-hafta">4. Hafta</span>
       <span class="badge badge-yazi">YAZMA</span>
     </div>
-    <p style="font-size:.88rem;color:#666;margin-bottom:1rem">Ad&#305;n&#305; se&#231; ve &#246;deve ba&#351;la. Yazman&#305; teslim etti&#287;inde an&#305;nda geri bildirim alacaks&#305;n.</p>
-    <select id="ogrenciSec">
+    <p style="font-size:.88rem;color:#666;margin-bottom:1rem">Adını seç ve ödeve başla. Teslim ettiğinde yazın değerlendirilmek üzere Profe Hazel’e e-posta ile gönderilecek.</p>
+    <select id="ogrenciSec" aria-label="Ad soyad">
       <option value="">&#8212; Ad&#305;n&#305; se&#231; &#8212;</option>
       <option>Gencay Agocuk</option>
       <option>Ufuk Ayd&#305;n</option>
@@ -100,7 +92,8 @@ textarea:focus{border-color:#6c4eb8}
       <option>Nihan Karagedik</option>
       <option>Deneme &#214;&#287;rencisi</option>
     </select>
-    <button class="btn-start" onclick="baslat()">&#214;deve Ba&#351;la &#8594;</button>
+    <button class="btn-start" id="startWriting" type="button">Ödeve Başla →</button>
+    <p id="introStatus" class="kayit-mesaj err" role="status"></p>
   </div>
 
   <div class="screen" id="s-yazma">
@@ -134,156 +127,182 @@ textarea:focus{border-color:#6c4eb8}
       <span class="kelime-label">Kelime say&#305;s&#305;</span>
       <span class="kelime-sayac" id="kSayac">0 / 350&#8211;400</span>
     </div>
-    <textarea id="yaziAlani" placeholder="E-postan&#305; buraya yaz..." oninput="kelimeGuncelle()"></textarea>
-    <div class="kelime-hint" id="kHint"></div>
+    <textarea id="yaziAlani" placeholder="E-postan&#305; buraya yaz..."></textarea>
+    <div class="kelime-hint" id="kHint" aria-live="polite"></div>
     <label class="writing-copy-confirm" for="writing-copy-confirm">
-      <input type="checkbox" id="writing-copy-confirm" onchange="updateWritingCopyGate()">
+      <input type="checkbox" id="writing-copy-confirm">
       <span><strong>Ödevimin fotoğrafını çektim / yazımın bir kopyasını aldım.</strong><small>Bu kutucuğu işaretlemeden yazma ödevinizi teslim edemezsiniz.</small></span>
     </label>
-    <button class="btn-teslim" id="btnTeslim" onclick="teslimEt()" disabled>De&#287;erlendirmeye G&#246;nder &#10003;</button>
+    <button class="btn-teslim" id="btnTeslim" type="button" aria-describedby="kHint" disabled>✔ Yazıyı Tamamladım, Teslim Et</button>
   </div>
 
-  <div class="screen" id="s-loading">
-    <div class="loading-wrap">
-      <div class="spinner"></div>
-      <div class="loading-msg" id="loadingMsg">Yaz&#305;n okunuyor...</div>
-    </div>
-  </div>
 
-  <div class="screen" id="s-result">
-    <div class="result-top">
-      <div class="puan-daire">
-        <div class="puan-sayi" id="resPuan">&#8212;</div>
-        <div class="puan-100">/ 100</div>
-      </div>
-      <div>
-        <div class="result-isim" id="resIsim"></div>
-        <div class="result-yorum" id="resYorum"></div>
-      </div>
-    </div>
-    <div class="fb-blok" id="fbIyiBlok" style="display:none">
-      <div class="fb-baslik iyi">&#10003; &#304;yi Yapt&#305;klar&#305;n</div>
-      <div class="fb-icerik" id="fbIyi"></div>
-    </div>
-    <div class="fb-blok" id="fbGelistirBlok" style="display:none">
-      <div class="fb-baslik gelistir">&#128161; Genel De&#287;erlendirme</div>
-      <div class="fb-icerik" id="fbGelistir"></div>
-    </div>
-    <div class="fb-blok" id="fbHataBlok" style="display:none">
-      <div class="fb-baslik hata">&#10060; D&#252;zeltilmesi Gerekenler</div>
-      <div class="fb-icerik" id="fbHata"></div>
-    </div>
-    <button class="detail-toggle" onclick="toggleYazi(this)">&#9656; Yazd&#305;&#287;&#305;n metni g&#246;r</button>
-    <div class="ogrenci-yazi-kutu" id="resYaziKutu" style="display:none"></div>
-    <div class="kayit-mesaj" id="kayitMsg"></div>
-  </div>
+  <section class="screen" id="s-confirm" aria-labelledby="confirmTitle">
+    <h2 id="confirmTitle">Yazma Ödevi Teslimi</h2>
+    <p class="delivery-note">Adını onayladığında yazın Profe Hazel’e e-posta ile gönderilecek.</p>
+    <label for="studentName">Ad soyad</label>
+    <select id="studentName"><option value="">— Adını seç —</option></select>
+    <button class="btn-teslim" id="confirmSubmission" type="button">📬 Ödevi Teslim Et</button>
+    <button class="detail-toggle" id="backToWriting" type="button">← Yazıya Dön</button>
+    <p class="kayit-mesaj" id="deliveryStatus" role="status"></p>
+  </section>
+
+  <section class="screen" id="s-result" aria-labelledby="resultTitle">
+    <h2 id="resultTitle" tabindex="-1">✅ Yazın teslim edildi!</h2>
+    <p class="delivery-note" id="resultStudent"></p>
+    <p class="kayit-mesaj ok" id="resultStatus"></p>
+    <details>
+      <summary>Yazdığın metni gör</summary>
+      <div class="ogrenci-yazi-kutu" id="resultWriting"></div>
+    </details>
+    <a class="portal-link" href="https://www.ispanyolcacim.com/ogrenci-portali.html">Öğrenci portalına dön ↗</a>
+  </section>
 </div>
 <script>
-var SCRIPT_URL='https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
-var API_KEY='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';
-var ODEV_ADI='H4 \u2013 13-14.Ders';
-var GRUP='B1.1';
-var MIN_KEL=350,MAX_KEL=420;
-var ogrenciAdi='',sonPuan=0,sonYazi='';
+const EMAILJS_SERVICE = 'service_4ee1wh7';
+const EMAILJS_TEMPLATE = 'template_xjyyxhf';
+const EMAILJS_PUBLIC_KEY = 'xNYEbUQNiWJPvbyoJ';
+const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbw-BwEhVOhO6GkkQHNWJA8LQLMkEGwNCtJ3BXSqik1RnzqZLl4a_a3HmYEoIlJAgY4Wkg/exec';
+const SPREADSHEET_ID = '1wziyxdRdIGL7OEq4yRib0i_CaCWJGI14fwDyMKB4abw';
+const LEVEL = 'B1.1';
+const ASSIGNMENT = 'H4 – 13-14.Ders';
+const REVIEW_STATUS = 'Yazınız Profe Hazel’e iletildi, kontrol edilecek.';
+const MIN_WORDS = 350;
+const MAX_WORDS = 420;
+const get = id => document.getElementById(id);
+const writer = get('yaziAlani');
+const copy = get('writing-copy-confirm');
+const submit = get('btnTeslim');
+const studentSelect = get('studentName');
+const confirm = get('confirmSubmission');
+const back = get('backToWriting');
+const status = get('deliveryStatus');
+const dateTime = new Intl.DateTimeFormat('tr-TR', {
+  timeZone:'Europe/Istanbul', dateStyle:'short', timeStyle:'medium'
+});
+let student = '';
+let sending = false;
+let emailAccepted = false;
 
-function baslat(){
-  var ad=document.getElementById('ogrenciSec').value;
-  if(!ad){alert('L\u00fctfen ad\u0131n\u0131 se\u00e7.');return;}
-  ogrenciAdi=ad;goster('s-yazma');
+function show(id) {
+  document.querySelectorAll('.screen').forEach(screen => screen.classList.toggle('active', screen.id === id));
+  window.scrollTo(0, 0);
 }
 
-function kelimeGuncelle(){
-  var txt=document.getElementById('yaziAlani').value.trim();
-  var n=txt?txt.split(/\s+/).length:0;
-  var s=document.getElementById('kSayac'),h=document.getElementById('kHint');
-  s.textContent=n+' / 350\u2013400';s.className='kelime-sayac';h.className='kelime-hint';
-  if(n<MIN_KEL){s.classList.add('az');h.classList.add('az');h.textContent='Daha '+(MIN_KEL-n)+' kelime ekle.';}
-  else if(n>MAX_KEL){s.classList.add('cok');h.classList.add('cok');h.textContent=(n-MAX_KEL)+' kelime fazla.';}
-  else{s.classList.add('iyi');h.classList.add('iyi');h.textContent='\u2713 Kelime say\u0131s\u0131 uygun!';}
-  document.getElementById('btnTeslim').disabled=(n<MIN_KEL||n>MAX_KEL||!document.getElementById('writing-copy-confirm').checked);
+function wordCount(text) {
+  return text ? text.split(/\s+/).length : 0;
 }
 
-function teslimEt(){
-  if(!requireWritingCopy()) return;
-  sonYazi=document.getElementById('yaziAlani').value.trim();
-  if(!sonYazi)return;
-  goster('s-loading');degerlendir();
+function wordCountIssue(count) {
+  if (count < MIN_WORDS) return 'Daha ' + (MIN_WORDS - count) + ' kelime ekle.';
+  if (count > MAX_WORDS) return (count - MAX_WORDS) + ' kelime fazla.';
+  return '';
 }
 
-var msgs=['Yaz\u0131n okunuyor...','Format kontrol ediliyor...','Gramer analizi...','Puan hesaplan\u0131yor...'];
-var li=0,lt;
-
-function degerlendir(){
-  li=0;clearInterval(lt);
-  lt=setInterval(function(){document.getElementById('loadingMsg').textContent=msgs[li++%msgs.length];},2000);
-  fetch('https://api.anthropic.com/v1/messages',{
-    method:'POST',
-    headers:{'Content-Type':'application/json','x-api-key':API_KEY,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
-    body:JSON.stringify({
-      model:'claude-haiku-4-5-20251001',max_tokens:1200,
-      system:'Eres un profesor de espanol para estudiantes turcos de nivel B1.1. Evalua el correo electronico formal. La tarea: correo a escuela de idiomas con saludo formal, introduccion, preguntas sobre cursos/nivel/fechas/precios/online, urgencia y presupuesto limitado, 350-400 palabras. Criterios: Formato(25)+Contenido(25)+Registro(20)+Gramatica(20)+Longitud(10)=100. SOLO JSON puro: {"toplam":numero,"dogru_kullanimlar":[{"ornek":"x","aciklama":"Turkce"}],"hatalar":[{"yanlis":"x","dogru":"x","aciklama":"Turkce"}],"genel_yorum":"Turkce 3-4 cumle"}',
-      messages:[{role:'user',content:'Ogrenci: '+ogrenciAdi+'\n\n'+sonYazi}]
-    })
-  })
-  .then(function(r){return r.json();})
-  .then(function(data){
-    clearInterval(lt);
-    if(!data.content){gosterSonuc({puan:0,iyi:"",gelistir:"API yaniti: "+JSON.stringify(data).substring(0,200),hatalar:""});return;}
-    var raw=data.content[0].text.trim();
-    sonPuan=d.toplam||0;
-    var iyi=(d.dogru_kullanimlar||[]).map(function(x){return '\u2713 '+x.ornek+'\n   '+x.aciklama;}).join('\n\n');
-    var hata=(d.hatalar||[]).map(function(x){return '\u274c '+x.yanlis+' \u2192 '+x.dogru+'\n   '+x.aciklama;}).join('\n\n');
-    gosterSonuc({puan:sonPuan,iyi:iyi,gelistir:d.genel_yorum||'',hatalar:hata});
-    fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},
-      body:JSON.stringify({tip:'yazma',ogrenci:ogrenciAdi,odev:ODEV_ADI,grup:GRUP,puan:sonPuan,yazi:sonYazi,
-        tarih:new Date().toLocaleDateString('tr-TR'),saat:new Date().toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'})})});
-  })
-  .catch(function(err){clearInterval(lt);gosterSonuc({puan:0,iyi:'',gelistir:'Hata: '+err.message,hatalar:''}); });
+function updateWritingState() {
+  const count = wordCount(writer.value.trim());
+  const issue = wordCountIssue(count);
+  const hint = get('kHint');
+  const counter = get('kSayac');
+  counter.textContent = count + ' / 350–400';
+  counter.className = 'kelime-sayac ' + (issue ? 'az' : 'iyi');
+  hint.className = 'kelime-hint ' + (issue ? 'az' : 'iyi');
+  hint.textContent = issue || (copy.checked ? '✓ Teslime hazır.' : 'Teslimi açmak için kopya kutusunu işaretle.');
+  submit.disabled = Boolean(issue) || !copy.checked;
 }
 
-function gosterSonuc(r){
-  document.getElementById('resPuan').textContent=r.puan;
-  document.getElementById('resIsim').textContent=ogrenciAdi;
-  var y=r.puan>=90?'M\u00fckemmel! \uD83C\uDF89':r.puan>=75?'\u00c7ok iyi! \uD83D\uDC4F':r.puan>=60?'\u0130yi \u00e7al\u0131\u015fma! \uD83D\uDCAA':'Devam et! \uD83C\uDF31';
-  document.getElementById('resYorum').textContent=y;
-  setFb('fbIyiBlok','fbIyi',r.iyi);
-  setFb('fbGelistirBlok','fbGelistir',r.gelistir);
-  setFb('fbHataBlok','fbHata',r.hatalar);
-  document.getElementById('resYaziKutu').textContent=sonYazi;
-  var km=document.getElementById('kayitMsg');
-  km.style.display='block';
-  km.className=r.puan>0?'kayit-mesaj ok':'kayit-mesaj err';
-  km.textContent=r.puan>0?'\u2705 '+ogrenciAdi+' \u2013 Puan: '+r.puan+'/100 \u2014 Sheets\u2019e kaydedildi.':'\u26a0\ufe0f De\u011ferlendirme tamamlanamad\u0131.';
-  goster('s-result');
-}
+get('startWriting').addEventListener('click', () => {
+  student = get('ogrenciSec').value;
+  if (!student) {
+    get('introStatus').textContent = 'Lütfen listeden adını seç.';
+    get('ogrenciSec').focus();
+    return;
+  }
+  show('s-yazma');
+  updateWritingState();
+  writer.focus();
+});
 
-function setFb(b,t,ic){if(ic&&ic.trim()){document.getElementById(t).textContent=ic;document.getElementById(b).style.display='block';}}
+writer.addEventListener('input', updateWritingState);
+copy.addEventListener('change', updateWritingState);
+submit.addEventListener('click', () => {
+  updateWritingState();
+  if (submit.disabled) return;
+  studentSelect.value = student;
+  status.textContent = '';
+  show('s-confirm');
+  studentSelect.focus();
+});
+back.addEventListener('click', () => {
+  show('s-yazma');
+  submit.focus();
+});
 
-function toggleYazi(btn){
-  var k=document.getElementById('resYaziKutu'),a=k.style.display!=='none';
-  k.style.display=a?'none':'block';
-  btn.textContent=a?'\u25b8 Yazd\u0131\u011f\u0131n metni g\u00f6r':'\u25be Yazd\u0131\u011f\u0131n metni gizle';
-}
+confirm.addEventListener('click', async () => {
+  if (sending) return;
+  if (studentSelect.value !== student || !student) {
+    status.className = 'kayit-mesaj err';
+    status.textContent = 'Yazıya başladığın öğrenci adını seç.';
+    studentSelect.focus();
+    return;
+  }
+  const text = writer.value.trim();
+  const words = wordCount(text);
+  if (wordCountIssue(words) || !copy.checked) {
+    show('s-yazma');
+    updateWritingState();
+    return;
+  }
 
-function goster(id){
-  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
-  document.getElementById(id).classList.add('active');
-}
+  sending = true;
+  confirm.disabled = back.disabled = studentSelect.disabled = true;
+  status.className = 'kayit-mesaj';
+  status.textContent = emailAccepted ? 'Teslim kaydı gönderiliyor…' : 'Yazın e-posta ile gönderiliyor…';
 
-function updateWritingCopyGate(){
-  kelimeGuncelle();
-}
-function requireWritingCopy(){
-  if(document.getElementById('writing-copy-confirm').checked) return true;
-  alert('Lütfen önce ödevinizin fotoğrafını çekin veya yazınızın bir kopyasını alın ve kutucuğu işaretleyin.');
-  return false;
-}
-function resetWritingCopy(){
-  const checkbox=document.getElementById('writing-copy-confirm');
-  checkbox.checked=false;
-  checkbox.disabled=false;
-  updateWritingCopyGate();
-}
+  try {
+    if (!emailAccepted) {
+      await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, {
+        student_name: student,
+        lesson: 'B1.1 · H4 13–14. Ders · Yazma Ödevi (Resmî e-posta)',
+        submit_date: dateTime.format(new Date()),
+        writing_text: '=== BAŞLIK BİLGİLERİ ===\nAd Soyad: ' + student + '\nÖdev No: B1.1 13+14\nKonu: Resmî e-posta\nKelime sayısı: ' + words + '\n\n=== YAZMA METNİ ===\n' + text
+      }, EMAILJS_PUBLIC_KEY);
+      emailAccepted = true;
+      back.hidden = true;
+      status.textContent = 'E-posta gönderildi. Teslim kaydı gönderiliyor…';
+    }
+
+    await fetch(SHEETS_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {'Content-Type':'text/plain;charset=UTF-8'},
+      body: JSON.stringify({
+        spreadsheetId: SPREADSHEET_ID,
+        sheetName: LEVEL,
+        studentName: student,
+        taskColumn: ASSIGNMENT,
+        score: null,
+        formatted: REVIEW_STATUS
+      })
+    });
+
+    get('resultStudent').textContent = student + ' · B1.1 · 13–14. Ders Yazma Ödevi';
+    get('resultStatus').textContent = REVIEW_STATUS;
+    get('resultWriting').textContent = text;
+    show('s-result');
+    get('resultTitle').focus();
+  } catch {
+    status.className = 'kayit-mesaj err';
+    status.textContent = emailAccepted
+      ? 'E-posta gönderildi. Teslim kaydını yeniden deneyebilirsin.'
+      : 'E-posta gönderilemedi. Yazın bu ekranda duruyor, tekrar deneyebilirsin.';
+    confirm.textContent = emailAccepted ? 'Teslim Kaydını Yeniden Gönder' : '📬 Yeniden Gönder';
+    confirm.disabled = false;
+    back.disabled = studentSelect.disabled = emailAccepted;
+  } finally {
+    sending = false;
+  }
+});
 </script>
 </body>
 </html>
