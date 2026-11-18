@@ -123,7 +123,8 @@ button:focus-visible,select:focus-visible,textarea:focus-visible,input:focus-vis
       <tfoot><tr><td>TOPLAM</td><td>100</td></tr></tfoot>
     </table>
     <label class="copy-confirm" for="copyConfirm"><input type="checkbox" id="copyConfirm"><span>📋 Yazımın bir kopyasını aldım, göndermeye hazırım.</span></label>
-    <button id="writingSubmitBtn" type="button" disabled>✔ Yazıyı Tamamladım, Teslim Et</button>
+    <button id="writingSubmitBtn" type="button" aria-describedby="writingSubmitHint" disabled>✔ Yazıyı Tamamladım, Teslim Et</button>
+    <p class="status" id="writingSubmitHint" role="status">Teslim etmek için yazma alanına metnini yaz.</p>
   </section>
   <section class="panel" id="confirmation" aria-labelledby="confirmTitle" hidden>
     <h2 id="confirmTitle">Yazma Ödevi Teslimi</h2>
@@ -166,10 +167,18 @@ function show(id) {
 function countWords(text) {
   return (text.match(/[\p{L}\p{N}][\p{L}\p{N}\p{M}]*(?:[-’'][\p{L}\p{N}\p{M}]+)*/gu) || []).length;
 }
+function submissionIssue(words = countWords(writer.value)) {
+  if (!words) return 'Teslim etmek için yazma alanına metnini yaz.';
+  if (!copy.checked) return 'Teslimi açmak için kopya onay kutusunu işaretle.';
+  return '';
+}
 function updateWritingState() {
   const words = countWords(writer.value);
+  const issue = submissionIssue(words);
+  const hint = get('writingSubmitHint');
   get('wordCount').textContent = words + ' / ' + WORD_GOAL + ' kelime';
-  submit.disabled = words !== WORD_GOAL || !copy.checked;
+  submit.disabled = Boolean(issue);
+  if (hint.textContent !== issue) hint.textContent = issue;
 }
 get('startWriting').addEventListener('click', () => {
   student = get('introName').value;
@@ -180,12 +189,13 @@ get('startWriting').addEventListener('click', () => {
   }
   get('studentLabel').textContent = student;
   show('writing');
+  updateWritingState();
   writer.focus();
 });
 writer.addEventListener('input',updateWritingState);
 copy.addEventListener('change',updateWritingState);
 submit.addEventListener('click', () => {
-  if (countWords(writer.value) !== WORD_GOAL || !copy.checked) return;
+  if (submissionIssue()) return;
   get('studentName').value = student;
   status.textContent = '';
   show('confirmation');
@@ -200,7 +210,13 @@ confirm.addEventListener('click', async () => {
     select.focus();
     return;
   }
-  if (countWords(writer.value) !== WORD_GOAL || !copy.checked) return;
+  const words = countWords(writer.value);
+  const issue = submissionIssue(words);
+  if (issue) {
+    status.className = 'status error';
+    status.textContent = issue;
+    return;
+  }
   sending = true;
   confirm.disabled = true;
   back.disabled = true;
@@ -217,7 +233,7 @@ confirm.addEventListener('click', async () => {
         student_name:student,
         lesson:'B1.1 · H3 11–12. Ders · Yazma Ödevi (Los conectores)',
         submit_date:date,
-        writing_text:'=== BAŞLIK BİLGİLERİ ===\nAd Soyad: '+student+'\nÖdev No: B1.1 11+12\nKonu: '+TOPIC+'\nKelime sayısı: '+WORD_GOAL+'\n\n=== YAZMA METNİ ===\n'+writer.value.trim()
+        writing_text:'=== BAŞLIK BİLGİLERİ ===\nAd Soyad: '+student+'\nÖdev No: B1.1 11+12\nKonu: '+TOPIC+'\nKelime sayısı: '+words+'\n\n=== YAZMA METNİ ===\n'+writer.value.trim()
       });
       sentEmail = true;
       back.hidden = true;
