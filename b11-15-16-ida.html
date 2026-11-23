@@ -153,7 +153,7 @@ body>.card.lesson-app{width:100%;max-width:720px;min-width:0;margin:0 auto;paddi
     </aside>
     <div class="intro-title">📚 Adınızı seçin</div>
     <div class="intro-sub">50 soru · DELE tarzında okuma anlama, çoktan seçmeli, boşluk doldurma, sürükle-bırak ve doğru-yanlış · 100 puan</div>
-    <div class="cover-note">📖 <strong>1–10</strong> Okuma anlama · 🧠 <strong>11–25</strong> Çoktan seçmeli · ✍️ <strong>26–40</strong> Boşluk doldurma · 🧩 <strong>41–45</strong> Sürükle-bırak · ✅ <strong>46–50</strong> Doğru-yanlış.<br>Her soruda cevabınızı kontrol ederek açıklamayı okuyun. Boşluklarda tildeleri doğru kullanın.</div>
+    <div class="cover-note">📖 <strong>1–10</strong> Okuma anlama · 🧠 <strong>11–25</strong> Çoktan seçmeli · ✍️ <strong>26–40</strong> Boşluk doldurma · 🧩 <strong>41–45</strong> Sürükle-bırak · ✅ <strong>46–50</strong> Doğru-yanlış.<br>Çoktan seçmeli, sürükle-bırak ve doğru-yanlış sorularında seçtiğin şık anında kaydedilir ve açıklama açılır. Boşluk doldurmada yanıtını yazıp Enter’a bas veya kutudan çık; tildeleri doğru kullan.</div>
     <select id="introName" aria-label="Öğrenci adını seç"><option value="">Adını seç</option><option>Aysen Gurkan</option><option>Begum Senturk</option><option>Didem Dundar</option><option>Ebru Ozgen</option><option>Ece Turhanoglu</option><option>Kardelen Kuscu</option><option>Selin Selvi</option><option>Zumeyra Dogan</option></select>
     <button id="begin" type="button" class="btn-start">▶ Quize Başla</button>
     <p id="startError" class="tiny error" role="alert"></p>
@@ -174,7 +174,7 @@ body>.card.lesson-app{width:100%;max-width:720px;min-width:0;margin:0 auto;paddi
       <div id="response"></div>
       <div id="feedback" class="feedback hidden" aria-live="polite"></div>
     </div>
-    <div class="nav"><button type="button" class="btn-back" id="back">← Geri</button><button type="button" class="btn-skip" id="check">🔍 Cevabı Kontrol Et</button><button type="button" class="btn-next" id="next">İleri →</button></div>
+    <div class="nav"><button type="button" class="btn-back" id="back">← Geri</button><button type="button" class="btn-next" id="next">İleri →</button></div>
     <p class="tiny" id="saved"></p>
   </div>
   <div id="end" class="screen">
@@ -206,26 +206,29 @@ function answerLabel(i){var q=Q[i];return q.t==="fill"?q.a:q.t==="tf"?(q.a?"Verd
 function section(i){return i<10?"01 · Comprensión lectora":i<25?"02 · Estilo indirecto · Selección múltiple":i<40?"03 · Completa la transformación":i<45?"04 · Arrastra y completa": "05 · Verdadero o falso"}
 function total(){return state.checked.filter(Boolean).length}
 function show(idName){["start","exam","end"].forEach(function(n){id(n).classList.toggle("active",n===idName)});window.scrollTo({top:0,behavior:"smooth"})}
-function setAnswer(value){if(state.checked[state.i])return;state.answers[state.i]=value;render()}
+function setAnswer(value){if(state.checked[state.i])return;state.answers[state.i]=value;state.checked[state.i]=true;render()}
+function finishFill(i){if(Q[i].t!=="fill"||state.checked[i]||!norm(state.answers[i]))return;state.checked[i]=true;if(i===state.i)render()}
 function makeChoices(q,tfMode){var c=el("div","choices");var opts=tfMode?["Verdadero","Falso"]:q.o;opts.forEach(function(label,j){var value=tfMode?(j===0):j;var b=el("button","choice");b.type="button";var index=el("span","letter",tfMode?(j===0?"V":"F"):"ABCD"[j]);b.appendChild(index);b.appendChild(el("span","",label));if(state.answers[state.i]===value)b.classList.add("selected");if(state.checked[state.i]){b.disabled=true;if(value===q.a)b.classList.add("correct");else if(state.answers[state.i]===value)b.classList.add("wrong")}b.addEventListener("click",function(){setAnswer(value)});c.appendChild(b)});return c}
 function render(){
-var i=state.i,q=Q[i];id("meta").textContent="Soru "+(i+1)+" / 50 · Kontrol: "+total()+"/50";id("progressbar").style.width=(total()*2)+"%";id("category").textContent=section(i);var ok=Q.reduce(function(n,_,j){return n+(state.checked[j]&&correct(j)?1:0)},0);id("countOk").textContent="✓ "+ok;id("countErr").textContent="✗ "+(total()-ok);
+var i=state.i,q=Q[i];id("meta").textContent="Soru "+(i+1)+" / 50 · Yanıtlanan: "+total()+"/50";id("progressbar").style.width=(total()*2)+"%";id("category").textContent=section(i);var ok=Q.reduce(function(n,_,j){return n+(state.checked[j]&&correct(j)?1:0)},0);id("countOk").textContent="✓ "+ok;id("countErr").textContent="✗ "+(total()-ok);
 id("question").textContent=q.q;
 var reading=id("reading");reading.replaceChildren();
 if(i<10){var p=D.readings[i<5?0:1];var d=el("div","passage");d.appendChild(el("h3","",p.title));d.appendChild(el("small","",p.intro));d.appendChild(el("p","",p.body));reading.appendChild(d)}
 var root=id("response");root.replaceChildren();
 if(q.t==="mc"||q.t==="tf")root.appendChild(makeChoices(q,q.t==="tf"));
-else if(q.t==="fill"){var input=el("input","fill-input");input.type="text";input.autocomplete="off";input.spellcheck=false;input.placeholder="Eksik kelimeyi yaz";input.setAttribute("aria-label","Eksik kelime");input.value=state.answers[i]||"";input.disabled=state.checked[i];input.addEventListener("input",function(){state.answers[i]=input.value});root.appendChild(input);
+else if(q.t==="fill"){var input=el("input","fill-input");input.type="text";input.autocomplete="off";input.spellcheck=false;input.placeholder="Eksik kelimeyi yaz";input.setAttribute("aria-label","Eksik kelime");input.value=state.answers[i]||"";input.disabled=state.checked[i];input.addEventListener("input",function(){state.answers[i]=input.value});
+input.addEventListener("keydown",function(ev){if(ev.key==="Enter"){ev.preventDefault();finishFill(i)}});
+input.addEventListener("blur",function(ev){if(ev.relatedTarget&&ev.relatedTarget.closest(".keyboard"))return;finishFill(i)});
+root.appendChild(input);
 var kb=el("div","keyboard");"á é í ó ú ü ñ ¿ ¡".split(" ").forEach(function(letter){var b=el("button","",letter);b.type="button";b.disabled=state.checked[i];b.addEventListener("click",function(){var pos=input.selectionStart||input.value.length;input.value=input.value.slice(0,pos)+letter+input.value.slice(pos);state.answers[i]=input.value;input.focus();input.setSelectionRange(pos+1,pos+1)});kb.appendChild(b)});root.appendChild(kb)}
 else if(q.t==="drag"){var drop=el("div","drop"+(state.answers[i]!=null?" filled":""),state.answers[i]==null?"Cevabı buraya sürükle veya aşağıdan seç":q.o[state.answers[i]]);drop.addEventListener("dragover",function(ev){ev.preventDefault()});drop.addEventListener("drop",function(ev){ev.preventDefault();var index=Number(ev.dataTransfer.getData("text/plain"));if(Number.isInteger(index)&&index>=0&&index<4)setAnswer(index)});root.appendChild(drop);var tiles=el("div","tiles");q.o.forEach(function(s,j){var b=el("button","tile"+(state.answers[i]===j?" selected":""),s);b.type="button";b.draggable=!state.checked[i];b.disabled=state.checked[i];b.addEventListener("dragstart",function(ev){ev.dataTransfer.setData("text/plain",String(j))});b.addEventListener("click",function(){setAnswer(j)});tiles.appendChild(b)});root.appendChild(tiles)}
 var f=id("feedback");f.classList.toggle("hidden",!state.checked[i]);if(state.checked[i]){var ok=correct(i);f.className="feedback"+(ok?"":" bad");f.replaceChildren();f.appendChild(el("h3","",ok?"✅ Doğru cevap!":"❌ Doğru cevabı birlikte inceleyelim."));f.appendChild(el("p","", "Doğru cevap: "+answerLabel(i)));f.appendChild(el("p","",q.why))}
-id("back").disabled=i===0;id("check").disabled=state.checked[i];id("check").textContent=state.checked[i]?"✓ Kontrol Edildi":"🔍 Cevabı Kontrol Et";id("next").textContent=i===49?"🎯 Sonuç Ekranına Git":"Sonraki →";id("saved").textContent=state.checked[i]?"Bu sorudan "+(correct(i)?2:0)+" / 2 puan aldın.":"Seçimini değiştirebilirsin; kontrol edince kilitlenir."
+id("back").disabled=i===0;id("next").textContent=i===49?"🎯 Sonuç Ekranına Git":"Sonraki →";id("saved").textContent=state.checked[i]?"Yanıt kaydedildi · "+(correct(i)?2:0)+" / 2 puan.":q.t==="fill"?"Yanıtını yaz, Enter’a bas veya kutudan çık; açıklama açılır.":"Şıklardan birine dokunduğunda yanıtın hemen kaydedilir ve açıklama açılır."
 }
 id("begin").addEventListener("click",function(){var v=id("introName").value.trim();if(!v){id("startError").textContent="Lütfen adını seç.";return}state.name=v;id("resName").value=v;render();show("exam")});
-id("back").addEventListener("click",function(){if(state.i){state.i--;render();window.scrollTo({top:0,behavior:"smooth"})}});
-id("next").addEventListener("click",function(){if(state.i===49){finish();return}state.i++;render();window.scrollTo({top:0,behavior:"smooth"})});
-id("check").addEventListener("click",function(){var q=Q[state.i],ans=state.answers[state.i];if(ans==null||(q.t==="fill"&&!norm(ans))){alert("Önce cevabını yaz veya seç.");return}state.checked[state.i]=true;render()});
-function finish(){var missing=50-total();if(missing&&!confirm(missing+" soruyu kontrol etmedin. Kontrol edilmeyen sorular 0 puan sayılacak. Sonuç ekranına geçilsin mi?"))return;
+id("back").addEventListener("click",function(){finishFill(state.i);if(state.i){state.i--;render();window.scrollTo({top:0,behavior:"smooth"})}});
+id("next").addEventListener("click",function(){finishFill(state.i);if(state.i===49){finish();return}state.i++;render();window.scrollTo({top:0,behavior:"smooth"})});
+function finish(){finishFill(state.i);var missing=50-total();if(missing&&!confirm(missing+" soruyu yanıtlamadın. Yanıtlanmayan sorular 0 puan sayılacak. Sonuç ekranına geçilsin mi?"))return;
 var right=Q.reduce(function(n,_,i){return n+(state.checked[i]&&correct(i)?1:0)},0);
 var result=id("result");result.replaceChildren();var s=el("div","stats");
 [["Puan",right*2+"/100"],["Doğru",String(right)],["Yanlış / boş",String(50-right)]].forEach(function(pair){var d=el("div","stat");d.appendChild(el("b","",pair[1]));d.appendChild(el("small","",pair[0]));s.appendChild(d)});result.appendChild(s);
@@ -234,7 +237,7 @@ var summary=el("p","legend");sections.forEach(function(range){var n=0;for(var j=
 var review=id("review");review.replaceChildren();Q.forEach(function(q,i){var ok=state.checked[i]&&correct(i);var d=el("div","rev-item");d.appendChild(el("div","rev-q",(ok?"✅ ":"❌ ")+(i+1)+". "+q.q));d.appendChild(el("div","rev-correct","Doğru: "+answerLabel(i)));d.appendChild(el("div","rev-exp",q.why));review.appendChild(d)});
 show("end")}
 id("edit").addEventListener("click",function(){show("exam");render()});
-id("toggleReview").addEventListener("click",function(){var r=id("review");r.hidden=!r.hidden;this.textContent=r.hidden?"🔎 Cevap Anahtarı ve Açıklamalar":"🔎 Cevap Anahtarını Gizle"});id("finishEarly").addEventListener("click",finish);id("submit").addEventListener("click",async function(){if(state.sent)return;var name=id("resName").value;if(!name||name!==state.name){id("sendStatus").textContent="Ödeve başladığın adla aynı öğrenciyi seçmelisin.";return}var checked=total();if(checked<50&&!confirm("Kontrol edilmemiş "+(50-checked)+" soru 0 puan sayılacak. Sonucu yine de gönder?"))return;
+id("toggleReview").addEventListener("click",function(){var r=id("review");r.hidden=!r.hidden;this.textContent=r.hidden?"🔎 Cevap Anahtarı ve Açıklamalar":"🔎 Cevap Anahtarını Gizle"});id("finishEarly").addEventListener("click",finish);id("submit").addEventListener("click",async function(){if(state.sent)return;var name=id("resName").value;if(!name||name!==state.name){id("sendStatus").textContent="Ödeve başladığın adla aynı öğrenciyi seçmelisin.";return}var checked=total();if(checked<50&&!confirm("Yanıtlanmamış "+(50-checked)+" soru 0 puan sayılacak. Sonucu yine de gönder?"))return;
 var right=Q.reduce(function(n,_,i){return n+(state.checked[i]&&correct(i)?1:0)},0);var payload={ogrenci:name,odev:LESSON,grup:"B1.1",puan:right*2,dogru:right,yanlis:50-right,tarih:new Date().toLocaleDateString("tr-TR"),saat:new Date().toLocaleTimeString("tr-TR")};
 var button=this;button.disabled=true;id("sendStatus").textContent="Gönderim isteği hazırlanıyor…";try{await fetch(ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=UTF-8"},body:JSON.stringify(payload)});state.sent=true;button.textContent="✓ Gönderim isteği iletildi";id("sendStatus").textContent="✅ "+right*2+"/100 · ✓"+right+" ✗"+(50-right)+" · "+new Date().toLocaleString("tr-TR")+". Gönderim isteği yollandı. Kaydını Öğrenci Ödev Takip Merkezi'nden kontrol et. (Tarayıcı, sunucunun kayıt yanıtını doğrulayamıyor.)"}catch(e){button.disabled=false;id("sendStatus").textContent="Gönderim sırasında bağlantı hatası oluştu. Tekrar dene."}});
 })();
