@@ -100,8 +100,8 @@ dialog::backdrop{background:#0d2046a0;backdrop-filter:blur(3px)}dialog h2{margin
 <section class="lesson-panel" id="s5" role="tabpanel" aria-labelledby="t5" tabindex="0" hidden>
 <div class="section-heading"><h2>05 · 🎲 ¡Lanza el dado!</h2><p>Bir öğrenci belirleyin, zar atın. Gelen kişinin sözünü dolaylı anlatımla, <strong>geçmişteki bir aktarım fiilini kullanarak</strong> anlatmasını isteyin.</p></div>
 <article class="card dice-layout">
-<div><div class="dice" id="dice" aria-label="Zar sonucu">⚄</div><p style="text-align:center;color:#6d7894;font-size:13px;font-weight:800">20 farklı konuşma kartı</p></div>
-<div><p class="speaker" id="speaker">Tu mejor amigo</p><blockquote class="dice-quote" id="quote" lang="es" data-es>¿A qué hora quedamos el viernes?</blockquote><p class="mini-note">Önce aktarım fiilini seç: <span lang="es" data-es><b class="report">dijo</b> / <b class="report">preguntó</b> / <b class="report">informó</b></span>. Sonra kişi, fiil zamanı ve gerekirse zaman / yer ifadesini değiştir.</p>
+<div><div class="dice" id="dice" aria-label="Zar sonucu">⚄</div><p style="text-align:center;color:#6d7894;font-size:13px;font-weight:800">40 farklı konuşma kartı</p></div>
+<div><p class="speaker">KONUŞAN → HİTAP EDİLEN</p><p class="speaker" id="speaker" lang="es" style="font-size:17px;color:#263f78;text-transform:none;letter-spacing:0">Tu padre → a tu madre</p><blockquote class="dice-quote" id="quote" lang="es" data-es>«¿Has terminado el libro?»</blockquote><div class="mini-note" style="border-left-color:#d42240"><b>ESTILO INDIRECTO · CÜMLEYE BÖYLE BAŞLA</b><p id="starter" class="sentence" lang="es" data-es style="margin:5px 0;font-weight:850">Mi padre le <b class="report">preguntó</b> a mi madre…</p><small>Cümlenin kalanını sen tamamla, sonra kilidi açıp kontrol et.</small></div><p class="mini-note">Önce aktarım fiilini seç: <span lang="es" data-es><b class="report">dijo</b> / <b class="report">preguntó</b> / <b class="report">informó</b></span>. Sonra kişi, fiil zamanı ve gerekirse zaman / yer ifadesini değiştir.</p>
 <div class="dice-buttons"><button class="primary" type="button" id="rollButton">🎲 Zar at · Yeni kart</button><button class="outline" type="button" id="nextCard">Sonraki kart →</button></div>
 <button class="lock" id="reveal" type="button" aria-controls="diceAnswer" aria-expanded="false">🔒 Örnek cevabı aç</button>
 <div id="diceAnswer" class="answer sentence" lang="es" data-es hidden></div><p class="tr">Örnek cevap tek olasılık değildir. Bağlamı doğru kuran diğer cevaplar da kabul edilebilir.</p>
@@ -152,28 +152,7 @@ const TIME=[
 ['el próximo año','al año siguiente'],['esta tarde','esa tarde'],['esta noche','esa noche'],['hace un rato','un rato antes']
 ];
 const PLACE=[['aquí','allí'],['acá','allá'],['este lugar','ese lugar / aquel lugar'],['venir','ir (anlatıcının konumuna bağlı)']];
-const CARDS=[
-['Tu mejor amigo','¿A qué hora quedamos el viernes?','Mi mejor amigo me <b class="report">preguntó</b> a qué hora quedábamos ese viernes.'],
-['La profesora','Entregad las tareas mañana.','La profesora nos <b class="report">dijo</b> que entregáramos las tareas al día siguiente.'],
-['Tu hermana','Hoy estoy muy cansada.','Mi hermana <b class="report">dijo</b> que ese día estaba muy cansada.'],
-['Tu padre','Ayer compré pan.','Mi padre <b class="report">dijo</b> que el día anterior había comprado pan.'],
-['Una amiga','No he visto esa película.','Una amiga <b class="report">dijo</b> que no había visto esa película.'],
-['Carmen','Iré de compras mañana.','Carmen <b class="report">dijo</b> que iría de compras al día siguiente.'],
-['Pedro','Cuando era niño, vivía en Madrid.','Pedro <b class="report">dijo</b> que cuando era niño vivía en Madrid.'],
-['El testigo','Ya había cerrado la puerta.','El testigo <b class="report">dijo</b> que ya había cerrado la puerta.'],
-['Tu compañero','No entiendo la pregunta.','Mi compañero <b class="report">dijo</b> que no entendía la pregunta.'],
-['Tu madre','Llama a tu abuela.','Mi madre me <b class="report">dijo</b> que llamara a mi abuela.'],
-['El médico','Bebe más agua.','El médico me <b class="report">dijo</b> que bebiera más agua.'],
-['Una turista','¿Dónde está la estación?','Una turista <b class="report">preguntó</b> dónde estaba la estación.'],
-['Tu amiga','¿Has terminado el libro?','Mi amiga me <b class="report">preguntó</b> si había terminado el libro.'],
-['El director','La reunión empieza ahora.','El director <b class="report">informó</b> de que la reunión empezaba en ese momento.'],
-['Una compañera','La semana pasada conocí a Laura.','Una compañera <b class="report">dijo</b> que la semana anterior había conocido a Laura.'],
-['Tu primo','Este verano viajaré a Chile.','Mi primo <b class="report">dijo</b> que aquel verano viajaría a Chile.'],
-['Tu vecino','Aquí hace mucho frío.','Mi vecino <b class="report">dijo</b> que allí hacía mucho frío.'],
-['El niño','No quiero ir al colegio.','El niño <b class="report">dijo</b> que no quería ir al colegio.'],
-['Laura','Te llamaré esta noche.','Laura me <b class="report">dijo</b> que me llamaría esa noche.'],
-['Tu amigo','¿Por qué no vienes conmigo?','Mi amigo me <b class="report">preguntó</b> por qué no iba con él.']
-];
+const CARDS=[["Tu padre","a tu madre","¿Has terminado el libro?","Mi padre le preguntó a mi madre","si había terminado el libro."],["Tu mejor amigo","a ti","¿A qué hora quedamos el viernes?","Mi mejor amigo me preguntó","a qué hora quedábamos ese viernes."],["Tu profesora","a vosotros","Entregad los trabajos mañana.","Mi profesora nos dijo","que entregáramos los trabajos al día siguiente."],["Tu madre","a ti","Llama a tu abuela esta tarde.","Mi madre me dijo","que llamara a mi abuela esa tarde."],["Tu hermana","a tu padre","Hoy estoy muy cansada.","Mi hermana le dijo a mi padre","que ese día estaba muy cansada."],["Tu padre","a tu hermano","Ayer compré pan.","Mi padre le dijo a mi hermano","que el día anterior había comprado pan."],["Tu amiga Laura","a ti","No he visto esa película.","Mi amiga Laura me dijo","que no había visto esa película."],["Carmen","a Elena","Iré de compras mañana.","Carmen le dijo a Elena","que iría de compras al día siguiente."],["Pedro","a su primo","Cuando era niño, vivía en Madrid.","Pedro le contó a su primo","que cuando era niño vivía en Madrid."],["El testigo","al juez","Ya había cerrado la puerta cuando entraron.","El testigo le dijo al juez","que ya había cerrado la puerta cuando entraron."],["Tu compañero","a la profesora","No entiendo la pregunta.","Mi compañero le dijo a la profesora","que no entendía la pregunta."],["El médico","a ti","Bebe más agua.","El médico me aconsejó","que bebiera más agua."],["Una turista","a un policía","¿Dónde está la estación?","Una turista le preguntó a un policía","dónde estaba la estación."],["Tu amiga","a ti","¿Has terminado el libro?","Mi amiga me preguntó","si había terminado el libro."],["El director","a los empleados","La reunión empieza ahora.","El director informó a los empleados","de que la reunión empezaba en ese momento."],["Una compañera","a ti","La semana pasada conocí a Laura.","Una compañera me dijo","que la semana anterior había conocido a Laura."],["Tu primo","a su madre","Este verano viajaré a Chile.","Mi primo le dijo a su madre","que ese verano viajaría a Chile."],["Tu vecino","a tu padre","Aquí hace mucho frío.","Mi vecino le dijo a mi padre","que allí hacía mucho frío."],["Un niño","a su madre","No quiero ir al colegio.","El niño le dijo a su madre","que no quería ir al colegio."],["Laura","a ti","Te llamaré esta noche.","Laura me prometió","que me llamaría esa noche."],["Tu profesora","a una alumna","¿Por qué llegaste tarde ayer?","Mi profesora le preguntó a una alumna","por qué había llegado tarde el día anterior."],["Tu hermano","a ti","He perdido mis llaves.","Mi hermano me contó","que había perdido sus llaves."],["Tu madre","a tus hermanos","No hagáis ruido.","Mi madre les pidió a mis hermanos","que no hicieran ruido."],["Tu jefe","a ti","Necesito el informe hoy.","Mi jefe me dijo","que necesitaba el informe ese día."],["Un policía","a un conductor","¿Dónde aparcó el coche?","Un policía le preguntó a un conductor","dónde había aparcado el coche."],["Tu abuela","a ti","Cuando era joven, cocinaba todos los días.","Mi abuela me contó","que cuando era joven cocinaba todos los días."],["Elena","a sus amigas","Ya habíamos reservado una mesa.","Elena les dijo a sus amigas","que ya habían reservado una mesa."],["Tu amigo","a ti","Ven aquí mañana.","Mi amigo me pidió","que fuera allí al día siguiente."],["Tu amiga","a su hermana","Te prestaré mi bicicleta.","Mi amiga le prometió a su hermana","que le prestaría su bicicleta."],["Tu padre","a ti","Estoy preparando la cena.","Mi padre me dijo","que estaba preparando la cena."],["Tus vecinos","a ti","Nos mudaremos el próximo mes.","Mis vecinos me informaron","de que se mudarían al mes siguiente."],["Tu profesora","a la clase","¿Habéis entendido la explicación?","Mi profesora nos preguntó","si habíamos entendido la explicación."],["Tu compañera","a ti","No pude venir ayer.","Mi compañera me explicó","que no había podido venir el día anterior."],["Un camarero","a una clienta","¿Quiere usted otro café?","El camarero le preguntó a la clienta","si quería otro café."],["Tu abuelo","a ti","Mi padre trabajaba en el campo.","Mi abuelo me contó","que su padre trabajaba en el campo."],["Tu hermana","a tus padres","Voy a estudiar en el extranjero.","Mi hermana les dijo a mis padres","que iba a estudiar en el extranjero."],["La directora","al equipo","Terminaremos el proyecto el viernes.","La directora le anunció al equipo","que terminarían el proyecto ese viernes."],["Tu amiga","a ti","¿Me puedes ayudar con este ejercicio?","Mi amiga me preguntó","si podía ayudarla con ese ejercicio."],["Un estudiante","al profesor","He hecho los deberes.","Un estudiante le dijo al profesor","que había hecho los deberes."],["Tu padre","a tu madre","No olvides comprar leche mañana.","Mi padre le pidió a mi madre","que no olvidara comprar leche al día siguiente."]];
 const VOC={
 'estilo':['estilo','anlatım biçimi','style','isim'],'directo':['directo','doğrudan','direct','sıfat'],'indirecto':['indirecto','dolaylı','indirect','sıfat'],'e':['y','ve','and','bağlaç'],
 'maría':['María','María','Maria','özel isim'],'pedro':['Pedro','Pedro','Pedro','özel isim'],'josé':['José','José','Jose','özel isim'],'eva':['Eva','Eva','Eva','özel isim'],
@@ -233,7 +212,27 @@ const reminder=document.getElementById('reminder');document.querySelectorAll('[d
 document.getElementById('printButton').addEventListener('click',()=>window.print());
 let cardIndex=0,deck=[...CARDS.keys()];
 function shuffle(){for(let i=deck.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[deck[i],deck[j]]=[deck[j],deck[i]];}cardIndex=0;}
-function draw(){if(cardIndex>=deck.length)shuffle();const c=CARDS[deck[cardIndex++]];document.getElementById('speaker').textContent=c[0];document.getElementById('quote').textContent='«'+c[1]+'»';document.getElementById('diceAnswer').innerHTML=c[2];document.getElementById('diceAnswer').hidden=true;document.getElementById('reveal').textContent='🔒 Örnek cevabı aç';document.getElementById('reveal').setAttribute('aria-expanded','false');document.getElementById('dice').textContent=['⚀','⚁','⚂','⚃','⚄','⚅'][Math.floor(Math.random()*6)];colorizeSentences();applyWords(document.getElementById('quote'));applyWords(document.getElementById('diceAnswer'));}
+function highlightReport(starter){
+ const pattern=/\b(preguntó|dijo|contó|aconsejó|informó|prometió|pidió|explicó|anunció)\b/gu;
+ return starter.replace(pattern,'<b class="report">$1</b>');
+}
+function draw(){
+ if(cardIndex>=deck.length)shuffle();
+ const c=CARDS[deck[cardIndex++]];
+ document.getElementById('speaker').textContent=c[0]+' → '+c[1];
+ document.getElementById('quote').textContent='«'+c[2]+'»';
+ document.getElementById('starter').innerHTML=highlightReport(c[3])+'…';
+ document.getElementById('diceAnswer').innerHTML=highlightReport(c[3])+' '+c[4];
+ document.getElementById('diceAnswer').hidden=true;
+ document.getElementById('reveal').textContent='🔒 Örnek cevabı aç';
+ document.getElementById('reveal').setAttribute('aria-expanded','false');
+ document.getElementById('dice').textContent=['⚀','⚁','⚂','⚃','⚄','⚅'][Math.floor(Math.random()*6)];
+ colorizeSentences();
+ applyWords(document.getElementById('speaker'));
+ applyWords(document.getElementById('quote'));
+ applyWords(document.getElementById('starter'));
+ applyWords(document.getElementById('diceAnswer'));
+}
 document.getElementById('rollButton').addEventListener('click',()=>{const d=document.getElementById('dice');d.classList.add('roll');draw();setTimeout(()=>d.classList.remove('roll'),180)});
 document.getElementById('nextCard').addEventListener('click',draw);
 document.getElementById('reveal').addEventListener('click',e=>{const a=document.getElementById('diceAnswer');a.hidden=!a.hidden;e.currentTarget.setAttribute('aria-expanded',String(!a.hidden));e.currentTarget.textContent=a.hidden?'🔒 Örnek cevabı aç':'🔓 Örnek cevabı gizle'});
