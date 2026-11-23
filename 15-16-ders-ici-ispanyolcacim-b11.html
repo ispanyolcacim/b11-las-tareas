@@ -226,6 +226,29 @@ function draw(){if(cardIndex>=deck.length)shuffle();const c=CARDS[deck[cardIndex
 document.getElementById('rollButton').addEventListener('click',()=>{const d=document.getElementById('dice');d.classList.add('roll');draw();setTimeout(()=>d.classList.remove('roll'),180)});
 document.getElementById('nextCard').addEventListener('click',draw);
 document.getElementById('reveal').addEventListener('click',e=>{const a=document.getElementById('diceAnswer');a.hidden=!a.hidden;e.currentTarget.setAttribute('aria-expanded',String(!a.hidden));e.currentTarget.textContent=a.hidden?'🔒 Örnek cevabı aç':'🔓 Örnek cevabı gizle'});
+const GROUP_RULES=[
+ {cls:'time',rx:/\b(?:la semana anterior|la semana pasada|el día anterior|al día siguiente|ese día|este año|ese año|la otra semana|la semana anterior|cuando era joven|aquel verano|esta noche|esa noche|la noche anterior|en ese momento|ese viernes|el viernes|esta mañana|ayer|hoy|mañana|ahora)\b/giu},
+ {cls:'pred',rx:/\b(?:se habían acostado|se encontraba|se encuentra|habían acostado|había comprado|había conocido|había cerrado|había visto|había terminado|había ido|no había ido|no ha ido|no he ido|habíamos acostado|se habian acostado|trabajaba|estudiaba|vivía|vivían|entendía|empezaba|quedábamos|llamaría|viajaría|encontraba|encontró|entraron|fuimos|fui|fue|irá|iré|iría|haga|hiciera|entregáramos|llamara|bebiera)\b/giu},
+ {cls:'place',rx:/\b(?:en Estambul|en Madrid|a Chile|aquí|allí|acá|allá)\b/giu},
+ {cls:'sub',rx:/\b(?:Mi padre|El testigo|La madre|El director|El médico|Tu mejor amigo|Una amiga|Mi amiga|Tu amigo|Mi amigo|Una compañera|El niño|Mi vecino|Mi compañero|Mi hermana|Mi primo|María|Pedro|José|Eva|Pilar|Carmen|Laura|Lucía|Ana)\b/giu}
+];
+function colorizeSentences(){
+ document.querySelectorAll('.sentence').forEach(line=>{
+  const walk=document.createTreeWalker(line,NodeFilter.SHOW_TEXT,{acceptNode(n){return n.parentElement.closest('.report,.chunk,.word-token')?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT}});
+  const nodes=[];while(walk.nextNode())nodes.push(walk.currentNode);
+  nodes.forEach(node=>{
+   const str=node.textContent,found=[];
+   GROUP_RULES.forEach((r,prio)=>{for(const m of str.matchAll(r.rx))found.push({start:m.index,end:m.index+m[0].length,cls:r.cls,prio});});
+   found.sort((a,b)=>a.start-b.start||a.prio-b.prio||b.end-a.end);
+   const chosen=[];let right=0;found.forEach(m=>{if(m.start>=right){chosen.push(m);right=m.end;}});
+   if(!chosen.length)return;
+   const frag=document.createDocumentFragment();let offset=0;
+   chosen.forEach(m=>{frag.append(document.createTextNode(str.slice(offset,m.start)));const span=document.createElement('span');span.className='chunk '+m.cls;span.textContent=str.slice(m.start,m.end);frag.append(span);offset=m.end;});
+   frag.append(document.createTextNode(str.slice(offset)));node.replaceWith(frag);
+  });
+ });
+}
+colorizeSentences();
 const wordPopover=document.getElementById('wordPopover');
 function closestSentence(el){return el.closest('.sentence,.dice-quote,td,.example,[data-es]')?.textContent.trim().slice(0,250)||''}
 function applyWords(root){
