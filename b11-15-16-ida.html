@@ -129,6 +129,8 @@ body>.card.lesson-app{width:100%;max-width:720px;min-width:0;margin:0 auto;paddi
 .lesson-app .btn-submit{width:100%;padding:14px 18px;border:none;border-radius:12px;font-size:15px}
 .lesson-app .btn-review{width:100%;margin:12px 0;border:none;padding:12px 18px;border-radius:11px}
 .lesson-app .review-list{margin:15px 0 0;max-height:540px;overflow:auto}
+.lesson-app #review[hidden]{display:none!important}
+.lesson-app #review:not([hidden]){display:flex;flex-direction:column;gap:10px}
 .lesson-app .rev-item{background:#fafbff;border:1px solid #dce5ff;border-radius:10px;padding:12px;margin-bottom:10px}
 .lesson-app .rev-q{font-weight:800;font-size:13px;line-height:1.6;white-space:pre-wrap}
 .lesson-app .rev-correct{color:#27956c;font-weight:800;font-size:12px;margin:5px 0}
