@@ -213,7 +213,7 @@ document.getElementById('printButton').addEventListener('click',()=>window.print
 let cardIndex=0,deck=[...CARDS.keys()];
 function shuffle(){for(let i=deck.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[deck[i],deck[j]]=[deck[j],deck[i]];}cardIndex=0;}
 function highlightReport(starter){
- const pattern=/\b(preguntó|dijo|contó|aconsejó|informó|prometió|pidió|explicó|anunció)\b/gu;
+ const pattern=/(?<![\p{L}])(preguntó|dijo|contó|aconsejó|informó|prometió|pidió|explicó|anunció)(?![\p{L}])/gu;
  return starter.replace(pattern,'<b class="report">$1</b>');
 }
 function draw(){
@@ -237,7 +237,7 @@ document.getElementById('rollButton').addEventListener('click',()=>{const d=docu
 document.getElementById('nextCard').addEventListener('click',draw);
 document.getElementById('reveal').addEventListener('click',e=>{const a=document.getElementById('diceAnswer');a.hidden=!a.hidden;e.currentTarget.setAttribute('aria-expanded',String(!a.hidden));e.currentTarget.textContent=a.hidden?'🔒 Örnek cevabı aç':'🔓 Örnek cevabı gizle'});
 const GROUP_RULES=[
- {cls:'report',rx:/\b(?:dijo|dijeron|dice|preguntó|pensó|informó)\b/giu},
+ {cls:'report',rx:/(?<![\p{L}])(?:dijo|dijeron|dice|preguntó|pensó|informó)(?![\p{L}])/giu},
  {cls:'time',rx:/\b(?:la semana anterior|la semana pasada|el día anterior|al día siguiente|ese día|este año|ese año|la otra semana|la semana anterior|cuando era joven|aquel verano|esta noche|esa noche|la noche anterior|en ese momento|ese viernes|el viernes|esta mañana|ayer|hoy|mañana|ahora)\b/giu},
  {cls:'pred',rx:/\b(?:se habían acostado|se encontraba|se encuentra|habían acostado|había comprado|había conocido|había cerrado|había visto|había terminado|había ido|no había ido|no ha ido|no he ido|habíamos acostado|se habian acostado|trabajaba|estudiaba|vivía|vivían|entendía|empezaba|quedábamos|llamaría|viajaría|encontraba|encontró|entraron|fuimos|fui|fue|irá|iré|iría|haga|hiciera|entregáramos|llamara|bebiera)\b/giu},
  {cls:'place',rx:/\b(?:en Estambul|en Madrid|a Chile|aquí|allí|acá|allá)\b/giu},
