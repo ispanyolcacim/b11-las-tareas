@@ -14,7 +14,7 @@
 .lesson-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.lesson-tabs .tab{font-weight:850;text-align:left;line-height:1.4;min-height:58px;min-width:0;padding:10px 12px;border:1px solid #cbd8f7;border-radius:14px;background:#fff;color:#2d467c;cursor:pointer}
 .lesson-tabs .tab.active,.lesson-tabs .tab[aria-selected="true"]{background:var(--b1);color:#fff;border-color:var(--b1);box-shadow:0 6px 16px #3959a433}
 .nav-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}.nav-actions button{border:1px solid #d9e1f4;border-radius:100px;background:white;color:#3454a0;padding:10px 15px;font:inherit;font-weight:850;cursor:pointer}.nav-actions .hw-nav{background:#eaf0ff}
-.lesson-panel[hidden],.word-popover[hidden],.answer[hidden]{display:none!important}
+.lesson-panel[hidden],.page-footer[hidden],.word-popover[hidden],.answer[hidden]{display:none!important}
 .lesson-panel{animation:fade .18s ease both;outline:0}@keyframes fade{from{opacity:.35;transform:translateY(4px)}}
 .section-heading{margin:0 0 18px}.section-heading h2{font-size:clamp(22px,3.5vw,31px);margin:0 0 7px;color:#2d4c95}.section-heading p{margin:0;color:#586881;line-height:1.7}
 .card,.lesson-card{background:#fff;border:1px solid #dce4f5;border-radius:21px;padding:clamp(16px,3vw,25px);box-shadow:0 7px 28px #2d467c0b}
@@ -67,10 +67,8 @@ dialog::backdrop{background:#0d2046a0;backdrop-filter:blur(3px)}dialog h2{margin
 <button class="tab" role="tab" type="button" aria-selected="false" aria-controls="s3" id="t3"><span>03</span> 🔄 Zaman dönüşümleri II</button>
 <button class="tab" role="tab" type="button" aria-selected="false" aria-controls="s4" id="t4"><span>04</span> 📍 Zamirler ve ifadeler</button>
 <button class="tab" role="tab" type="button" aria-selected="false" aria-controls="s5" id="t5"><span>05</span> 🎲 Zar oyunu</button>
-<button class="tab" role="tab" type="button" aria-selected="false" aria-controls="s6" id="t6"><span>06</span> 📣 Hatırlatma</button>
-<button class="tab" role="tab" type="button" aria-selected="false" aria-controls="s7" id="t7"><span>07</span> 📚 15–16. Ders Ödevleri</button>
 </div>
-
+<div class="nav-actions"><button type="button" class="pill-action" data-reminder aria-haspopup="dialog" aria-controls="reminder">📣 Önemli hatırlatma</button><button type="button" class="pill-action hw-nav" id="homeworkButton" aria-controls="s7" aria-expanded="false">📚 15–16. Ders Ödevleri</button></div>
 </nav>
 <main>
 <section class="lesson-panel" id="s1" role="tabpanel" aria-labelledby="t1" tabindex="0">
@@ -107,19 +105,13 @@ dialog::backdrop{background:#0d2046a0;backdrop-filter:blur(3px)}dialog h2{margin
 <div id="diceAnswer" class="answer sentence" lang="es" data-es hidden></div><p class="tr">Örnek cevap tek olasılık değildir. Bağlamı doğru kuran diğer cevaplar da kabul edilebilir.</p>
 </div></article>
 </section>
-<section class="lesson-panel" id="s6" role="tabpanel" aria-labelledby="t6" tabindex="0" hidden>
-<div class="section-heading"><h2>06 · Önemli hatırlatma</h2><p>Dördüncü haftanın sonunda küçük bir kontrol ve kutlama zamanı.</p></div>
-<article class="card reminder-preview"><p class="big">🎉</p><h3>Yolun yarısına geldik!</h3><p>15–16. dersle birlikte sekiz haftalık yolculuğumuzun ilk yarısını tamamlıyoruz.</p><button class="primary" type="button" data-reminder>📣 Hatırlatmayı aç</button></article>
-</section>
-<section class="lesson-panel" id="s7" role="tabpanel" aria-labelledby="t7" tabindex="0" hidden>
-<div class="section-heading"><h2>📚 15–16. Ders Ödevleri</h2><p>DERS SONRASI · B1.1 · 4. hafta</p></div>
+<section class="lesson-panel homework-panel" id="s7" aria-labelledby="homeworkTitle" tabindex="0" hidden>
+<div class="section-heading"><h2 id="homeworkTitle">📚 15–16. Ders Ödevleri</h2><p>DERS SONRASI · B1.1 · 4. hafta</p><button type="button" class="outline" id="returnToLesson" style="margin-top:12px">← Etkinliğe dön</button></div>
 <article class="card"><span class="tag">DERS ÖDEVİ · 50 SORU · 100 PUAN</span><h3>🧠 Estilo directo e indirecto · DELE tarzında</h3><p>İki okuma metni ve 5 farklı etkinlik türü: 10 okuma-anlama, 15 çoktan seçmeli, 15 boşluk doldurma, 5 sürükle-bırak, 5 doğru-yanlış. Zaman, kişi, yer ve soru/emir dönüşümlerini açıklamalarla pekiştir.</p><p><a class="primary" href="b11-15-16-ida.html" target="_blank" rel="noopener noreferrer">📚 15–16. Ders Ödevini Aç ↗</a></p><p class="muted">B1.1 · 4. hafta · 50 × 2 puan · Sonuç 100 üzerinden değerlendirilir.</p></article>
 <article class="card"><span class="tag">BİR SONRAKİ DERSE HAZIRLIK</span><h3>📘 Quizlet · B1.1 17+18. Ders Hazırlık Seti</h3><p>108 terimlik kart setini çalışarak bir sonraki derse hazırlan.</p><p><a class="primary" href="https://quizlet.com/tr/1238793456/b11-1718-ders-hazirlik-seti-flash-cards?funnelUUID=b5828a71-261b-4a0d-aeef-c761dd9e4b13" target="_blank" rel="noopener noreferrer">📘 Quizlet Kartlarını Aç ↗</a></p></article>
-<article class="card"><span class="tag">DERS NOTUNDAKİ EK ÇALIŞMA</span><h3>📄 B1.1 (15+16) · DEBER</h3><p>Ders notunun 9. sayfasında yer alan Word ve dinleme çalışması, dosya paylaşıldığında ayrıca tamamlanabilir.</p></article>
-<article class="card"><h3>📝 Dersten önce</h3><p>Ödev Takip Merkezi'nden eksik teslimlerini kontrol et; genel tekrar dosyalarını gözden geçir ve sorularını not al.</p></article>
 </section>
 </main>
-<footer class="page-footer"><button type="button" class="outline" id="back">← Önceki bölüm</button><span class="page-count" id="pageCount">1 / 7</span><button type="button" class="outline" id="forward">Sonraki bölüm →</button></footer>
+<footer class="page-footer"><button type="button" class="outline" id="back">← Önceki bölüm</button><span class="page-count" id="pageCount">1 / 5</span><button type="button" class="outline" id="forward">Sonraki bölüm →</button></footer>
 </div>
 <dialog id="reminder" aria-labelledby="reminderTitle"><button type="button" class="close" data-close aria-label="Kapat">×</button><h2 id="reminderTitle">🎉 Yolun yarısına geldik!</h2><p>15–16. dersle birlikte bugün <strong>8 haftalık yolculuğumuzun ilk yarısını tamamlıyoruz.</strong> Dört haftada öğrendiklerinizi kutlamak için bir an durun. 💛</p><p>📝 Ödev Takip Merkezi’ne uğrayıp eksik ödevlerinizi tamamlayın. 📚 Genel tekrar dosyalarınızı bir kez daha gözden geçirin ve aklınıza takılan yerleri not alın.</p><p>✨ Kalan dört haftaya eksiklerimizi kapatıp aynı merakla devam edelim.</p><button type="button" class="primary" data-close>Kapat</button></dialog>
 <div class="word-popover" role="dialog" aria-label="Kelime bilgisi" id="wordPopover" hidden><button type="button" id="wordClose" aria-label="Kelime kutusunu kapat">×</button><h3 id="wordTitle" lang="es"></h3><div class="meaning-grid"><div><small>Türkçe</small><strong id="wordTr"></strong></div><div><small>English</small><strong id="wordEn"></strong></div></div><p class="footnote">Sözlük biçimi: <b lang="es" id="wordLemma"></b></p><p class="footnote" id="wordRole"></p><details><summary>İçinde geçtiği cümle</summary><p lang="es" id="wordContext"></p></details></div>
@@ -204,11 +196,14 @@ document.getElementById('tenseTwo').innerHTML=TENSE_2.map(tenseCard).join('');
 document.getElementById('personRows').innerHTML=PEOPLE.map(r=>'<tr><td>'+richSentence(r[0])+'</td><td>'+richSentence(r[1].replace(/\b(dijo|dijeron)\b/g,'<b class="report">$1</b>'))+'</td><td>'+r[2]+'</td></tr>').join('');
 document.getElementById('timeRows').innerHTML=TIME.map(r=>'<tr><td lang="es" data-es>'+r[0]+'</td><td lang="es" data-es>'+r[1]+'</td></tr>').join('');
 document.getElementById('placeRows').innerHTML=PLACE.map(r=>'<tr><td lang="es" data-es>'+r[0]+'</td><td lang="es" data-es>'+r[1]+'</td></tr>').join('');
-const tabs=[...document.querySelectorAll('[role="tab"]')],sections=[...document.querySelectorAll('.lesson-panel')];
-let current=0;
-function go(n,focus=false){current=Math.max(0,Math.min(sections.length-1,n));tabs.forEach((t,i)=>{const yes=i===current;t.classList.toggle('active',yes);t.setAttribute('aria-selected',String(yes));t.tabIndex=yes?0:-1;sections[i].hidden=!yes});document.getElementById('pageCount').textContent=(current+1)+' / '+sections.length;document.getElementById('back').disabled=current===0;document.getElementById('forward').disabled=current===sections.length-1;if(focus)sections[current].focus({preventScroll:true});}
+const tabs=[...document.querySelectorAll('.lesson-tabs [role="tab"]')],sections=tabs.map(t=>document.getElementById(t.getAttribute('aria-controls')));
+const hw=document.getElementById('s7'),hwButton=document.getElementById('homeworkButton'),pager=document.querySelector('.page-footer');
+let current=0,homeworkOpen=false;
+function go(n,focus=false){homeworkOpen=false;hw.hidden=true;hwButton.setAttribute('aria-expanded','false');pager.hidden=false;current=Math.max(0,Math.min(sections.length-1,n));tabs.forEach((t,i)=>{const yes=i===current;t.classList.toggle('active',yes);t.setAttribute('aria-selected',String(yes));t.tabIndex=yes?0:-1;sections[i].hidden=!yes});document.getElementById('pageCount').textContent=(current+1)+' / '+sections.length;document.getElementById('back').disabled=current===0;document.getElementById('forward').disabled=current===sections.length-1;if(focus)sections[current].focus({preventScroll:true});}
+function openHomework(){homeworkOpen=true;sections.forEach(x=>x.hidden=true);tabs.forEach(t=>{t.classList.remove('active');t.setAttribute('aria-selected','false');t.tabIndex=-1});hw.hidden=false;hwButton.setAttribute('aria-expanded','true');pager.hidden=true;hw.focus({preventScroll:true});}
 tabs.forEach((t,i)=>t.addEventListener('click',()=>go(i)));document.getElementById('back').addEventListener('click',()=>go(current-1,true));document.getElementById('forward').addEventListener('click',()=>go(current+1,true));
-document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(Number(b.dataset.go)-1,true)));
+hwButton.addEventListener('click',()=>homeworkOpen?go(current,true):openHomework());
+document.getElementById('returnToLesson').addEventListener('click',()=>go(current,true));
 document.querySelector('[role="tablist"]').addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const i=e.key==='Home'?0:e.key==='End'?tabs.length-1:Math.max(0,Math.min(tabs.length-1,current+(e.key==='ArrowRight'?1:-1)));go(i);tabs[i].focus()});
 const reminder=document.getElementById('reminder');document.querySelectorAll('[data-reminder]').forEach(b=>b.addEventListener('click',()=>reminder.showModal()));document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>reminder.close()));
 document.getElementById('printButton').addEventListener('click',()=>window.print());
@@ -274,7 +269,7 @@ function showWord(button){const k=button.dataset.key,entry=VOC[k];const lemma=en
 document.addEventListener('click',e=>{const b=e.target.closest('.word-token');if(b){showWord(b);return}if(!wordPopover.contains(e.target)&&!e.target.closest('#wordClose'))wordPopover.hidden=true});
 document.getElementById('wordClose').addEventListener('click',()=>{wordPopover.hidden=true;if(window.lastWord)window.lastWord.focus()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')wordPopover.hidden=true});
-const legacy=decodeURIComponent(location.hash.slice(1));if(/^s[1-7]$/.test(legacy))go(Number(legacy.slice(1))-1);else go(0);if(location.hash)history.replaceState(history.state,'',location.pathname+location.search);
+const legacy=decodeURIComponent(location.hash.slice(1));if(/^s[1-5]$/.test(legacy))go(Number(legacy.slice(1))-1);else if(legacy==="s7"){go(0);openHomework();}else go(0);if(location.hash)history.replaceState(history.state,'',location.pathname+location.search);
 shuffle();draw();
 </script>
 </body>
