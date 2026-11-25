@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>B1.1 – H5 17-18. Ders Quiz</title>
+<title>B1.1 – H5 17-18. Ders (1. KISIM) Quiz</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f0eef8;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem}
@@ -68,13 +68,13 @@ select:focus{border-color:#6c4eb8}
 <body>
 <div class="card">
   <div style="text-align:center">
-    <div class="pill">5. HAFTA ODEVI | B1.1 (17-18. DERS)</div>
+    <div class="pill">5. HAFTA ÖDEVİ | B1.1 (17-18. DERS) · 1. KISIM</div>
   </div>
-  <h1>&#127466;&#127480; B1.1 &ndash; H5 17-18. Ders &ndash; Estilo Indirecto</h1>
+  <h1>&#127466;&#127480; B1.1 &ndash; H5 17-18. Ders (1. KISIM) &ndash; Estilo Indirecto</h1>
 
   <div id="introScreen" class="screen active">
     <div class="intro-title">&#128218; Adinizi secin</div>
-    <div class="intro-sub">100 soru &bull; Coktan secmeli</div>
+    <div class="intro-sub">50 soru &bull; Çoktan seçmeli &bull; 100 puan</div>
     <div class="intro-teacher">@ispanyolcacim &bull; Profe Hazel</div>
     <select id="introName">
       <option value="">-- Adinizi Secin --</option>
@@ -99,7 +99,7 @@ select:focus{border-color:#6c4eb8}
     <div class="theme-status">
     <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
     <div class="q-meta">
-      <span id="qMeta">Soru 1 / 100</span>
+      <span id="qMeta">Soru 1 / 50</span>
       <span>
         <span class="cnt cnt-ok" id="cntOk">&#10003; 0</span>&nbsp;
         <span class="cnt cnt-err" id="cntErr">&#10007; 0</span>
@@ -115,7 +115,7 @@ select:focus{border-color:#6c4eb8}
 
   <div id="resultScreen" class="screen">
     <input type="hidden" id="resName" value="">
-    <div class="res-title">B1.1 &ndash; H5 17-18. Ders &ndash; Estilo Indirecto</div>
+    <div class="res-title">B1.1 &ndash; H5 17-18. Ders (1. KISIM) &ndash; Estilo Indirecto</div>
     <div class="res-score"><span id="resScore">0</span>/100</div>
     <div class="res-stats">
       <span class="res-stat" style="background:#e6f9f0;color:#2e9e6b" id="resOk"></span>
@@ -161,7 +161,7 @@ select:focus{border-color:#6c4eb8}
 
 <script>
 var SCRIPT_URL='https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
-var ODEV_ADI='H5 \u2013 17-18.Ders';
+var ODEV_ADI='H5 – 17-18.Ders (1. KISIM)';
 var Q=[
 {q:"1. Marta: \u00abEstoy cansada hoy.\u00bb\nMarta me dijo que\u2026",o:["est\u00e1 cansada hoy","estaba cansada ese d\u00eda","estar\u00e1 cansada hoy","estuvo cansada ayer"],a:1,exp:"Presente \u2192 Pret\u00e9rito imperfecto, hoy \u2192 ese d\u00eda"},
 {q:"2. Luis: \u00abVoy a estudiar ma\u00f1ana.\u00bb\nLuis me dijo que\u2026",o:["iba a estudiar al d\u00eda siguiente","va a estudiar ma\u00f1ana","estudiar\u00e1 ma\u00f1ana","estudi\u00f3 ma\u00f1ana"],a:0,exp:"Ir a + infinitivo \u2192 iba a + infinitivo, ma\u00f1ana \u2192 al d\u00eda siguiente"},
@@ -208,61 +208,11 @@ var Q=[
 {q:"43. Ana: \u00abHaz los deberes.\u00bb\nAna me dijo que\u2026",o:["hiciera los deberes","hace los deberes","hac\u00eda los deberes","har\u00e1 los deberes"],a:0,exp:"Imperativo \u2192 Imperfecto de subjuntivo (ana fiil ge\u00e7mi\u015f)"},
 {q:"44. Pedro: \u00abEstoy aqu\u00ed ahora.\u00bb\nPedro me dijo que\u2026",o:["est\u00e1 aqu\u00ed ahora","estuvo all\u00ed","estar\u00e1 all\u00ed","estaba all\u00ed en ese momento"],a:3,exp:"Presente \u2192 Imperfecto, aqu\u00ed \u2192 all\u00ed, ahora \u2192 en ese momento"},
 {q:"45. Laura: \u00abHe visto a Mar\u00eda esta ma\u00f1ana.\u00bb\nLaura me dijo que\u2026",o:["hab\u00eda visto a Mar\u00eda esa ma\u00f1ana","ve a Mar\u00eda","ve\u00eda a Mar\u00eda","ver\u00e1 a Mar\u00eda"],a:0,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto, esta \u2192 esa"},
-{q:"soru 46. \nCarlos: \u00abVen ma\u00f1ana.\u00bb\nCarlos me dijo que...",o:["viene ma\u00f1ana","ven\u00eda ma\u00f1ana","vendr\u00e1 ma\u00f1ana","fuera al d\u00eda siguiente"],a:3,exp:"Imperativo \u2192 Subjuntivo, Ven (gel) \u2192 fuera (git), ma\u00f1ana \u2192 al d\u00eda siguiente."},
+{q:"46. \nCarlos: \u00abVen ma\u00f1ana.\u00bb\nCarlos me dijo que...",o:["viene ma\u00f1ana","ven\u00eda ma\u00f1ana","vendr\u00e1 ma\u00f1ana","fuera al d\u00eda siguiente"],a:3,exp:"Imperativo \u2192 Subjuntivo, Ven (gel) \u2192 fuera (git), ma\u00f1ana \u2192 al d\u00eda siguiente."},
 {q:"47. Elena: \u00abHe estudiado mucho.\u00bb\nElena me dijo que\u2026",o:["estudia mucho","estudiaba mucho","hab\u00eda estudiado mucho","estudiar\u00e1 mucho"],a:2,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto"},
 {q:"48. Juan: \u00abEstamos cansados ahora.\u00bb\nJuan me dijo que\u2026",o:["est\u00e1n cansados ahora","estaban cansados en ese momento","estuvieron cansados","estar\u00e1n cansados"],a:1,exp:"Presente \u2192 Imperfecto"},
 {q:"49. Sof\u00eda: \u00abHemos viajado mucho este a\u00f1o.\u00bb\nSof\u00eda me dijo que\u2026",o:["viajan mucho","hab\u00edan viajado mucho ese a\u00f1o","viajaron mucho","viajar\u00e1n mucho"],a:1,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto, este \u2192 ese"},
-{q:"50. Diego: \u00abEstudia m\u00e1s.\u00bb\nDiego me dijo que\u2026",o:["estudiara m\u00e1s","estudia m\u00e1s","estudiaba m\u00e1s","estudiar\u00e1 m\u00e1s"],a:0,exp:"Imperativo \u2192 Subjuntivo"},
-{q:"51. Marta: \u00abEstoy aprendiendo mucho en este curso.\u00bb\nMarta me dijo que\u2026",o:["est\u00e1 aprendiendo mucho en este curso","aprendi\u00f3 mucho en ese curso","aprender\u00e1 mucho en ese curso","estaba aprendiendo mucho en ese curso"],a:3,exp:"Presente continuo \u2192 Imperfecto continuo, este \u2192 ese"},
-{q:"52. Luis: \u00abHe le\u00eddo tres libros este mes.\u00bb\nLuis me dijo que\u2026",o:["ley\u00f3 tres libros este mes","lee tres libros","hab\u00eda le\u00eddo tres libros ese mes","leer\u00e1 tres libros"],a:2,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto, este \u2192 ese"},
-{q:"53. Ana: \u00abVoy a empezar un nuevo trabajo.\u00bb\nAna me dijo que\u2026",o:["iba a empezar un nuevo trabajo","empieza un nuevo trabajo","empez\u00f3 un nuevo trabajo","empezar\u00e1 un nuevo trabajo"],a:0,exp:"Ir a + inf \u2192 iba a + inf"},
-{q:"54. Pedro: \u00abTrabajo en una empresa internacional.\u00bb\nPedro me dijo que\u2026",o:["trabaj\u00f3 en una empresa internacional","trabajaba en una empresa internacional","trabaja en una empresa internacional","trabajar\u00e1 en una empresa internacional"],a:1,exp:"Presente \u2192 Imperfecto"},
-{q:"55. Laura: \u00abEstar\u00e9 en casa ma\u00f1ana.\u00bb\nLaura me dijo que\u2026",o:["est\u00e1 en casa","estaba en casa","estuvo en casa","estar\u00eda en casa al d\u00eda siguiente"],a:3,exp:"Futuro \u2192 Condicional, ma\u00f1ana \u2192 al d\u00eda siguiente"},
-{q:"56. Carlos: \u00abHe terminado mis deberes.\u00bb\nCarlos me dijo que\u2026",o:["termina sus deberes","termin\u00f3 sus deberes","hab\u00eda terminado sus deberes","terminar\u00e1 sus deberes"],a:2,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto"},
-{q:"57. Elena: \u00abVen conmigo ahora.\u00bb\nElena me dijo que\u2026",o:["viene conmigo ahora","fuera con ella en ese momento","iba con ella","fue con ella"],a:1,exp:"Imperativo \u2192 Subjuntivo, conmigo \u2192 con ella"},
-{q:"58. Juan: \u00abVivimos en esta ciudad.\u00bb\nJuan me dijo que\u2026",o:["viv\u00edan en esa ciudad","viven en esta ciudad","vivieron en esa ciudad","vivir\u00e1n en esa ciudad"],a:0,exp:"Presente \u2192 Imperfecto, esta \u2192 esa"},
-{q:"59. Sof\u00eda: \u00abHe hablado con mi profesor hoy.\u00bb\nSof\u00eda me dijo que\u2026",o:["habl\u00f3 con su profesor","habla con su profesor","hablar\u00e1 con su profesor","hab\u00eda hablado con su profesor ese d\u00eda"],a:3,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto, hoy \u2192 ese d\u00eda"},
-{q:"60. Diego: \u00abEstoy muy ocupado ahora.\u00bb\nDiego me dijo que\u2026",o:["est\u00e1 muy ocupado","estuvo muy ocupado","estaba muy ocupado en ese momento","estar\u00e1 muy ocupado"],a:2,exp:"Presente \u2192 Imperfecto"},
-{q:"61. Marta: \u00abHaz ejercicio todos los d\u00edas.\u00bb\nMarta me dijo que\u2026",o:["hiciera ejercicio todos los d\u00edas","hace ejercicio","hac\u00eda ejercicio","har\u00e1 ejercicio"],a:0,exp:"Imperativo \u2192 Subjuntivo"},
-{q:"62. Luis: \u00abNo salgas esta noche.\u00bb\nLuis me dijo que\u2026",o:["no sale esa noche","no sali\u00f3 esa noche","no sal\u00eda esa noche","no saliera esa noche"],a:3,exp:"Negatif imperativo \u2192 Subjuntivo, esta \u2192 esa"},
-{q:"63. Ana: \u00abHe estado muy ocupada \u00faltimamente.\u00bb\nAna me dijo que\u2026",o:["estaba muy ocupada","estuvo muy ocupada","hab\u00eda estado muy ocupada \u00faltimamente","estar\u00e1 muy ocupada"],a:2,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto"},
-{q:"64. Pedro: \u00abTrabajo desde casa hoy.\u00bb\nPedro me dijo que\u2026",o:["trabaj\u00f3 desde casa","trabajaba desde casa ese d\u00eda","trabaja desde casa hoy","trabajar\u00e1 desde casa"],a:1,exp:"Presente \u2192 Imperfecto, hoy \u2192 ese d\u00eda"},
-{q:"65. Laura: \u00abVoy a visitar a mis abuelos.\u00bb\nLaura me dijo que\u2026",o:["visit\u00f3 a sus abuelos","iba a visitar a sus abuelos","visita a sus abuelos","visitar\u00e1 a sus abuelos"],a:1,exp:"Ir a + inf \u2192 iba a + inf"},
-{q:"66. Carlos: \u00abTerminar\u00e9 el proyecto ma\u00f1ana.\u00bb\nCarlos me dijo que\u2026",o:["terminar\u00eda el proyecto al d\u00eda siguiente","termina el proyecto","termin\u00f3 el proyecto","terminar\u00e1 el proyecto"],a:0,exp:"Futuro \u2192 Condicional, ma\u00f1ana \u2192 al d\u00eda siguiente"},
-{q:"67. Elena: \u00abHe visto esa pel\u00edcula esta semana.\u00bb\nElena me dijo que\u2026",o:["ve esa pel\u00edcula","vio esa pel\u00edcula","ver\u00e1 esa pel\u00edcula","hab\u00eda visto esa pel\u00edcula esa semana"],a:3,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto"},
-{q:"68. Juan: \u00abEstamos estudiando ahora.\u00bb\nJuan me dijo que\u2026",o:["estudian ahora","estudiaron","estaban estudiando en ese momento","estudiar\u00e1n"],a:2,exp:"Presente continuo \u2192 Imperfecto continuo"},
-{q:"69. Sof\u00eda: \u00abMi hermano trabaja aqu\u00ed ahora.\u00bb\nSof\u00eda me dijo que\u2026",o:["mi hermano trabaja aqu\u00ed","su hermano trabaj\u00f3 all\u00ed","su hermano trabajaba all\u00ed en ese momento","su hermano trabajar\u00e1 all\u00ed"],a:2,exp:"Presente \u2192 Imperfecto, mi \u2192 su, aqu\u00ed \u2192 all\u00ed"},
-{q:"70. Diego: \u00abHe comprado este m\u00f3vil hoy.\u00bb\nDiego me dijo que\u2026",o:["compra ese m\u00f3vil","hab\u00eda comprado ese m\u00f3vil ese d\u00eda","compr\u00f3 ese m\u00f3vil","comprar\u00e1 ese m\u00f3vil"],a:1,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto, este \u2192 ese"},
-{q:"71. Marta: \u00abVen a mi casa ma\u00f1ana.\u00bb\nMarta me dijo que...",o:["fuera a su casa al d\u00eda siguiente","viene a su casa","fue a su casa","ir\u00e1 a su casa"],a:0,exp:"Imperativo \u2192 Subjuntivo, Ven \u2192 fuera, mi \u2192 su, ma\u00f1ana \u2192 al d\u00eda siguiente."},
-{q:"72. Luis: \u00abNo hables ahora.\u00bb\nLuis me dijo que\u2026",o:["no habla ahora","no habl\u00f3","no hablaba","no hablara en ese momento"],a:3,exp:"Negatif imperativo \u2192 Subjuntivo"},
-{q:"73. Ana: \u00abHe terminado mis tareas esta tarde.\u00bb\nAna me dijo que\u2026",o:["termina sus tareas","termin\u00f3 sus tareas","terminar\u00e1 sus tareas","hab\u00eda terminado sus tareas esa tarde"],a:3,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto"},
-{q:"74. Pedro: \u00abEstoy muy contento hoy.\u00bb\nPedro me dijo que\u2026",o:["estaba muy contento ese d\u00eda","est\u00e1 muy contento","estuvo muy contento","estar\u00e1 muy contento"],a:0,exp:"Presente \u2192 Imperfecto"},
-{q:"75. Laura: \u00abIr\u00e9 al gimnasio ma\u00f1ana.\u00bb\nLaura me dijo que\u2026",o:["va al gimnasio","ir\u00eda al gimnasio al d\u00eda siguiente","fue al gimnasio","ir\u00e1 al gimnasio"],a:1,exp:"Futuro \u2192 Condicional"},
-{q:"76. Carlos: \u00abHe trabajado mucho este a\u00f1o.\u00bb\nCarlos me dijo que\u2026",o:["trabaja mucho","trabaj\u00f3 mucho","hab\u00eda trabajado mucho ese a\u00f1o","trabajar\u00e1 mucho"],a:2,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto"},
-{q:"77. Elena: \u00abEstamos viviendo aqu\u00ed.\u00bb\nElena me dijo que\u2026",o:["viven aqu\u00ed","vivieron all\u00ed","estaban viviendo all\u00ed","vivir\u00e1n all\u00ed"],a:2,exp:"Presente continuo \u2192 Imperfecto continuo"},
-{q:"78. Juan: \u00abHaz tu trabajo ahora.\u00bb\nJuan me dijo que\u2026",o:["hiciera su trabajo en ese momento","hace su trabajo","hac\u00eda su trabajo","har\u00e1 su trabajo"],a:0,exp:"Imperativo \u2192 Subjuntivo"},
-{q:"79. Sof\u00eda: \u00abNo vengas tarde.\u00bb\nSof\u00eda me dijo que\u2026",o:["no viene tarde","no vino tarde","no ven\u00eda tarde","no viniera tarde"],a:3,exp:"Negatif imperativo \u2192 Subjuntivo"},
-{q:"80. Diego: \u00abHe comido en este restaurante.\u00bb\nDiego me dijo que\u2026",o:["come en ese restaurante","hab\u00eda comido en ese restaurante","comi\u00f3 en ese restaurante","comer\u00e1 en ese restaurante"],a:1,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto"},
-{q:"81. Marta: \u00abEstoy preparando la cena ahora.\u00bb\nMarta me dijo que\u2026",o:["prepara la cena ahora","estaba preparando la cena en ese momento","prepar\u00f3 la cena","preparar\u00e1 la cena"],a:1,exp:"Presente continuo \u2192 Imperfecto continuo"},
-{q:"82. Luis: \u00abHe viajado mucho este a\u00f1o.\u00bb\nLuis me dijo que\u2026",o:["viaja mucho","viaj\u00f3 mucho","hab\u00eda viajado mucho ese a\u00f1o","viajar\u00e1 mucho"],a:2,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto"},
-{q:"83. Ana: \u00abHaz la tarea ahora.\u00bb\nAna me dijo que\u2026",o:["hiciera la tarea en ese momento","hace la tarea","hac\u00eda la tarea","har\u00e1 la tarea"],a:0,exp:"Imperativo \u2192 Subjuntivo"},
-{q:"84. Pedro: \u00abNo llegues tarde.\u00bb\nPedro me dijo que\u2026",o:["no llega tarde","no lleg\u00f3 tarde","no llegaba tarde","no llegara tarde"],a:3,exp:"Negatif imperativo \u2192 Subjuntivo"},
-{q:"85. Laura: \u00abIr\u00e9 a la reuni\u00f3n ma\u00f1ana.\u00bb\nLaura me dijo que\u2026",o:["va a la reuni\u00f3n","fue a la reuni\u00f3n","ir\u00e1 a la reuni\u00f3n","ir\u00eda a la reuni\u00f3n al d\u00eda siguiente"],a:3,exp:"Futuro \u2192 Condicional"},
-{q:"86. Carlos: \u00abEstoy en mi oficina ahora.\u00bb\nCarlos me dijo que\u2026",o:["est\u00e1 en su oficina","estaba en su oficina en ese momento","estuvo en su oficina","estar\u00e1 en su oficina"],a:1,exp:"Presente \u2192 Imperfecto"},
-{q:"87. Elena: \u00abHe terminado el informe.\u00bb\nElena me dijo que\u2026",o:["termina el informe","termin\u00f3 el informe","hab\u00eda terminado el informe","terminar\u00e1 el informe"],a:2,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto"},
-{q:"88. Juan: \u00abVen conmigo ma\u00f1ana.\u00bb\nJuan me dijo que...",o:["fuera con \u00e9l al d\u00eda siguiente","viene con \u00e9l","fue con \u00e9l","ir\u00e1 con \u00e9l"],a:0,exp:"Imperativo \u2192 Subjuntivo, Ven \u2192 fuera, conmigo \u2192 con \u00e9l."},
-{q:"89. Sof\u00eda: \u00abMi hermana trabaja aqu\u00ed.\u00bb\nSof\u00eda me dijo que\u2026",o:["su hermana trabajaba all\u00ed","mi hermana trabaja aqu\u00ed","su hermana trabaj\u00f3 all\u00ed","su hermana trabajar\u00e1 all\u00ed"],a:0,exp:"Presente \u2192 Imperfecto"},
-{q:"90. Diego: \u00abYa he le\u00eddo este libro.\u00bb \nDiego me dijo que...",o:["lee ese libro","ley\u00f3 ese libro","ya hab\u00eda le\u00eddo ese libro","leer\u00e1 ese libro"],a:2,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto, este \u2192 ese."},
-{q:"91. Marta: \u00abNo hables ahora.\u00bb\nMarta me dijo que\u2026",o:["no habla ahora","no habl\u00f3","no hablaba","no hablara en ese momento"],a:3,exp:"Negatif imperativo \u2192 Subjuntivo"},
-{q:"92. Luis: \u00abHe comprado este libro hoy.\u00bb\nLuis me dijo que\u2026",o:["compra ese libro","hab\u00eda comprado ese libro ese d\u00eda","compr\u00f3 ese libro","comprar\u00e1 ese libro"],a:1,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto"},
-{q:"93. Ana: \u00abVoy a salir esta noche.\u00bb\nAna me dijo que\u2026",o:["sale esta noche","iba a salir esa noche","sali\u00f3 esa noche","saldr\u00e1 esa noche"],a:1,exp:"Ir a + inf \u2192 iba a + inf"},
-{q:"94. Pedro: \u00abEstar\u00e9 en casa ma\u00f1ana.\u00bb\nPedro me dijo que\u2026",o:["est\u00e1 en casa","estaba en casa","estuvo en casa","estar\u00eda en casa al d\u00eda siguiente"],a:3,exp:"Futuro \u2192 Condicional"},
-{q:"95. Laura: \u00abEstamos estudiando ahora.\u00bb\nLaura me dijo que\u2026",o:["estudian ahora","estudiaron","estaban estudiando en ese momento","estudiar\u00e1n"],a:2,exp:"Presente continuo \u2192 Imperfecto continuo"},
-{q:"96. Carlos: \u00abHaz tu trabajo.\u00bb\nCarlos me dijo que\u2026",o:["hiciera su trabajo","hace su trabajo","hac\u00eda su trabajo","har\u00e1 su trabajo"],a:0,exp:"Imperativo \u2192 Subjuntivo"},
-{q:"97. Elena: \u00abVivo aqu\u00ed ahora.\u00bb\nElena me dijo que\u2026",o:["viv\u00eda all\u00ed en ese momento","vive aqu\u00ed","vivi\u00f3 all\u00ed","vivir\u00e1 all\u00ed"],a:0,exp:"Presente \u2192 Imperfecto"},
-{q:"98. Juan: \u00abHe visto esa pel\u00edcula.\u00bb\nJuan me dijo que\u2026",o:["ve esa pel\u00edcula","hab\u00eda visto esa pel\u00edcula","vio esa pel\u00edcula","ver\u00e1 esa pel\u00edcula"],a:1,exp:"Pret\u00e9rito perfecto \u2192 Pluscuamperfecto"},
-{q:"99. Sof\u00eda: \u00abNo vengas tarde.\u00bb\nSof\u00eda me dijo que\u2026",o:["no viene tarde","no vino tarde","no ven\u00eda tarde","no viniera tarde"],a:3,exp:"Negatif imperativo \u2192 Subjuntivo"},
-{q:"100. Diego: \u00abTrabajo mucho estos d\u00edas.\u00bb\nDiego me dijo que\u2026",o:["trabaj\u00f3 mucho","trabaja mucho","trabajaba mucho esos d\u00edas","trabajar\u00e1 mucho"],a:2,exp:"Presente \u2192 Imperfecto, estos \u2192 esos"}
+{q:"50. Diego: \u00abEstudia m\u00e1s.\u00bb\nDiego me dijo que\u2026",o:["estudiara m\u00e1s","estudia m\u00e1s","estudiaba m\u00e1s","estudiar\u00e1 m\u00e1s"],a:0,exp:"Imperativo \u2192 Subjuntivo"}
 ];
 
 var state={cur:0,answered:[],scores:[],okCount:0,errCount:0};
@@ -348,7 +298,7 @@ function showResult(){
   document.getElementById('resScore').textContent=pct;
   document.getElementById('resOk').textContent='\u2713 '+state.okCount+' do\u011fru';
   document.getElementById('resErr').textContent='\u2717 '+state.errCount+' yanl\u0131\u015f';
-  document.getElementById('resNote').textContent='100 sorudan '+state.okCount+' tanesi do\u011fru';
+  document.getElementById('resNote').textContent='50 sorudan '+state.okCount+' tanesi do\u011fru';
   document.getElementById('submitWarning').style.display='block';
   document.getElementById('btnSubmit').style.display='block';
   var rev=document.getElementById('reviewList');
@@ -390,10 +340,9 @@ function submitResult(){
     document.getElementById('submitMsg').textContent=name+' \u00f6\u011frencisinin \u201c'+ODEV_ADI+'\u201d \u00f6devi teslim edildi. Puan: '+pct+'/100. Te\u015fekk\u00fcrler!';
   })
   .catch(function(){
-    submitted=true;
-    document.getElementById('submitWarning').style.display='none';
-    document.getElementById('btnSubmit').style.display='none';
-    document.getElementById('submitMsg').textContent=name+' \u00f6\u011frencisinin \u201c'+ODEV_ADI+'\u201d \u00f6devi teslim edildi. Puan: '+pct+'/100.';
+    submitted=false;
+    document.getElementById('submitMsg').textContent='Gönderim başarısız. Lütfen tekrar deneyin.';
+    document.getElementById('btnSubmit').style.display='block';
   });
 }
 </script>
