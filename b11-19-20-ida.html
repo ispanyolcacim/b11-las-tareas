@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>B1.1 – H5 19-20. Ders Quiz</title>
+<title>B1.1 – H5 19-20. Ders (1. KISIM) Quiz</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f0eef8;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem}
@@ -61,7 +61,7 @@ select:focus{border-color:#6c4eb8}
 .confirm-btns button{flex:1;padding:.7rem;border-radius:8px;border:none;font-size:.9rem;font-weight:700;cursor:pointer}
 .btn-cancel{background:#e8e0f8;color:#6c4eb8}.btn-ok{background:#e05c5c;color:#fff}
 .res-title{text-align:center;color:#6c4eb8;font-size:1.05rem;font-weight:700;margin-bottom:.5rem}
-</style>
+.fill-label{display:block;font-size:.85rem;margin:12px 0;color:#425477}.fill-input{width:100%;padding:14px;border:2px solid #b9c6ef;border-radius:10px;font:inherit;color:#24345b;margin:0 0 10px}.fill-input:focus{outline:2px solid #4969d0;outline-offset:2px}.fill-ok{background:#e6f9f0!important;border-color:#2e9e6b!important}.fill-wrong{background:#fde8e8!important;border-color:#d94040!important}.accent-row{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 14px}.accent-row button{padding:7px 12px;border:1px solid #cbd8f7;border-radius:8px;background:white;color:#3554a0;cursor:pointer}.fill-check{margin-bottom:12px}.rev-q{white-space:pre-wrap}.q-text{white-space:pre-wrap}.btn-submit:disabled{opacity:.65}</style>
 <script src="student-roster.js" defer></script>
 <link rel="stylesheet" href="b11-theme.css?v=20261103-vivid">
 
@@ -76,13 +76,14 @@ select:focus{border-color:#6c4eb8}
 </aside>
 
   <div style="text-align:center">
-    <div class="pill">5. HAFTA ODEVI | B1.1 (19-20. DERS)</div>
+    <div class="pill">5. HAFTA ÖDEVİ | B1.1 (19-20. DERS) · 1. KISIM</div>
   </div>
-  <h1>&#127466;&#127480; B1.1 &ndash; H5 19-20. Ders &ndash; Subjuntivo Maratonu</h1>
+  <h1>&#127466;&#127480; B1.1 &ndash; H5 19-20. Ders (1. KISIM) &ndash; Subjuntivo Maratonu</h1>
 
   <div id="introScreen" class="screen active">
     <div class="intro-title">&#128218; Adinizi secin</div>
-    <div class="intro-sub">100 soru &bull; Coktan secmeli</div>
+    <div class="intro-sub">50 soru · İlk 25 çoktan seçmeli · Son 25 boşluk doldurma · 100 puan</div>
+    <div class="intro-sub">Bağlamı oku. Her soru subjuntivo değildir; indicativo, infinitivo veya olumlu emir de gerekebilir. Aksi belirtilmedikçe şimdiki zaman biçimlerini kullan. Her soru 2 puan; boşluklarda aksanlar değerlendirilir.</div>
     <div class="intro-teacher">@ispanyolcacim &bull; Profe Hazel</div>
     <select id="introName">
       <option value="">-- Adinizi Secin --</option>
@@ -103,11 +104,11 @@ select:focus{border-color:#6c4eb8}
   </div>
 
   <div id="quizScreen" class="screen">
-  <header class="theme-lesson"><span aria-hidden="true">📘</span><div><h2>Subjuntivo Maratonu</h2><p>B1.1 · 19–20. Ders</p></div></header>
+  <header class="theme-lesson"><span aria-hidden="true">📘</span><div><h2>Subjuntivo Maratonu</h2><p>B1.1 · 19–20. Ders · 1. Kısım</p></div></header>
     <div class="theme-status">
     <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
     <div class="q-meta">
-      <span id="qMeta">Soru 1 / 100</span>
+      <span id="qMeta">Soru 1 / 50</span>
       <span>
         <span class="cnt cnt-ok" id="cntOk">&#10003; 0</span>&nbsp;
         <span class="cnt cnt-err" id="cntErr">&#10007; 0</span>
@@ -123,7 +124,7 @@ select:focus{border-color:#6c4eb8}
 
   <div id="resultScreen" class="screen">
     <input type="hidden" id="resName" value="">
-    <div class="res-title">B1.1 &ndash; H5 19-20. Ders &ndash; Subjuntivo Maratonu</div>
+    <div class="res-title">B1.1 &ndash; H5 19-20. Ders (1. KISIM) &ndash; Subjuntivo Maratonu</div>
     <div class="res-score"><span id="resScore">0</span>/100</div>
     <div class="res-stats">
       <span class="res-stat" style="background:#e6f9f0;color:#2e9e6b" id="resOk"></span>
@@ -169,241 +170,35 @@ select:focus{border-color:#6c4eb8}
 
 <script>
 var SCRIPT_URL='https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
-var ODEV_ADI='H5 \u2013 19-20.Ders';
-var Q=[
-{q:"1. Quiero que t\u00fa ______ a mi fiesta el s\u00e1bado.",o:["vienes","venir","vayas","vengas"],a:3,exp:"C\u00fcmlede iki farkl\u0131 \u00f6zne var (Yo quiero / t\u00fa vengas). \u0130stek bildirdi\u011fi i\u00e7in Subjuntivo kulland\u0131k."},
-{q:"2. Es necesario que nosotros ______ la verdad.",o:["sabemos","saber","sepamos","sep\u00e1is"],a:2,exp:"\"Es necesario que...\" ki\u015fisel olmayan bir gereklilik ifadesidir ve devam\u0131nda Subjuntivo gerektirir."},
-{q:"3. Mi madre me pide que ______ mi habitaci\u00f3n.",o:["limpio","limpie","limpia","limpiado"],a:1,exp:"Birinden bir \u015fey yapmas\u0131n\u0131 istemek/rica etmek (pedir que) Subjuntivo tetikler."},
-{q:"4. Te aconsejo que ______ m\u00e1s agua.",o:["bebas","bebes","beber","bebiste"],a:0,exp:"Tavsiye vermek (aconsejar que) Subjuntivo kullan\u0131m\u0131 gerektirir."},
-{q:"5. Me alegra que t\u00fa ______ bien.",o:["est\u00e9s","est\u00e1s","estar","estuviste"],a:0,exp:"\"Me alegra que...\" bir duygu ifadesidir. Farkl\u0131 \u00f6zneler oldu\u011fu i\u00e7in Subjuntivo gelir."},
-{q:"6. Es una l\u00e1stima que no ______ sol hoy.",o:["hace","haga","hacer","hizo"],a:1,exp:"\"Es una l\u00e1stima que...\" (Yaz\u0131k ki...) bir de\u011ferlendirme c\u00fcmlesidir, Subjuntivo ile devam eder."},
-{q:"7. Siento mucho que ella no ______ venir.",o:["puede","poder","pueda","podr\u00e1"],a:2,exp:"\"Siento que...\" (\u00dczül\u00fcyorum ki...) duygu belirtti\u011fi i\u00e7in Subjuntivo kullan\u0131l\u0131r."},
-{q:"8. Es importante que nosotros ______ el espa\u00f1ol.",o:["practicamos","practicar","practicaste","practiquemos"],a:3,exp:"\u00d6nem (Es importante que) belirten ifadeler Subjuntivo ister."},
-{q:"9. No creo que \u00e9l ______ raz\u00f3n.",o:["tiene","tener","tendr\u00e1","tenga"],a:3,exp:"\"Creo que\" indicativo al\u0131rken, \"No creo que\" (\u0130nanm\u0131yorum ki) \u015f\u00fcphe yaratt\u0131\u011f\u0131 i\u00e7in Subjuntivo al\u0131r."},
-{q:"10. Dudo que ellos ______ a tiempo.",o:["lleguen","llegan","llegar","llegaron"],a:0,exp:"\"Dudar que\" (\u015e\u00fcphe duymak) do\u011frudan Subjuntivo gerektiren bir fiildir."},
-{q:"11. No pienso que esta ______ una buena idea.",o:["es","ser","sea","era"],a:2,exp:"\"No pienso que...\" olumsuz d\u00fc\u015f\u00fcnce belirtti\u011fi i\u00e7in belirsizlik yaratir ve Subjuntivo ister."},
-{q:"12. Quiz\u00e1s ______ ma\u00f1ana, el cielo est\u00e1 muy gris.",o:["llueve","llueva","llover","llovi\u00f3"],a:1,exp:"\"Quiz\u00e1s\" (Belki) belirsizlik i\u00e7erdi\u011fi i\u00e7in Subjuntivo ile kullan\u0131l\u0131r."},
-{q:"13. Te lo explico para que lo ______.",o:["entiendes","entiendas","entender","entendiste"],a:1,exp:"\"Para que\" (Halsin/diye) ba\u011flac\u0131 her zaman Subjuntivo ile kullan\u0131l\u0131r."},
-{q:"14. No salgas a menos que ______ paraguas.",o:["llevas","llevar","lleves","llevaste"],a:2,exp:"\"A menos que\" (-medik\u00e7e) ba\u011flac\u0131 istisnasiz Subjuntivo gerektirir."},
-{q:"15. Puedes ir con tal de que ______ temprano.",o:["vuelves","volver","volviste","vuelvas"],a:3,exp:"\"Con tal de que\" (-\u015fart\u0131yla) ko\u015ful bildirdi\u011fi i\u00e7in Subjuntivo ile kullan\u0131l\u0131r."},
-{q:"16. Te presto el libro a condici\u00f3n de que me lo ______.",o:["devuelvas","devuelves","devolver","devolviste"],a:0,exp:"\"A condici\u00f3n de que\" (-\u015fart\u0131yla) kesinlikle Subjuntivo ister."},
-{q:"17. Cuando ______ a casa, ll\u00e1mame.",o:["llegues","llegas","llegar","llegaste"],a:0,exp:"Henüz ger\u00e7ekle\u015fmemi\u015f, gelece\u011fe dair bir \"cuando\" (oldu\u011funda) kullan\u0131m\u0131 Subjuntivo gerektirir."},
-{q:"18. En cuanto ______ las noticias, te avisar\u00e9.",o:["s\u00e9","saber","supe","sepa"],a:3,exp:"\"En cuanto\" (...olur olmaz) gelecekteki bir eylemi niteledi\u011fi i\u00e7in Subjuntivo al\u0131r."},
-{q:"19. Esperar\u00e9 hasta que t\u00fa ______ de trabajar.",o:["terminas","terminar","termines","termin\u00f3"],a:2,exp:"\"Hasta que\" (...olana kadar) gelecekteki bir s\u0131n\u0131r\u0131 belirtti\u011finde Subjuntivo ister."},
-{q:"20. Tan pronto como ______ el sol, saldremos.",o:["sale","salga","salir","sali\u00f3"],a:1,exp:"\"Tan pronto como\" (...olur olmaz) gelecekteki bir eylemi i\u015faret eder, bu y\u00fczden Subjuntivo."},
-{q:"21. No ______ (t\u00fa) tan r\u00e1pido, es peligroso.",o:["hablas","hables","hablar","habla"],a:1,exp:"Olumsuz emirlerde (t\u00fa i\u00e7in) Subjuntivo \u00e7ekimi kullan\u0131l\u0131r."},
-{q:"22. No ______ (vosotros) tarde a la clase.",o:["llegu\u00e9is","llega\u00efs","llegar","lleguen"],a:0,exp:"\"Vosotros\" i\u00e7in olumsuz emir Subjuntivo (ar -> \u00e9is) formundad\u0131r."},
-{q:"23. Por favor, no ______ (usted) la puerta.",o:["abre","abrir","abras","abra"],a:3,exp:"\"Usted\" i\u00e7in hem olumlu hem olumsuz emirlerde Subjuntivo k\u00f6k\u00fc kullan\u0131l\u0131r."},
-{q:"24. No ______ (nosotros) sin desayunar.",o:["salimos","salir","salgamos","salgan"],a:2,exp:"\"Hadi \u00e7\u0131kmayal\u0131m\" \u015feklindeki olumsuz teklif/emir yap\u0131s\u0131 Subjuntivo ister."},
-{q:"25. Quiero ______ a Espa\u00f1a este verano.",o:["que voy","vaya","ir","que vaya"],a:2,exp:"\u00d6zneler ayn\u0131 (Ben istiyorum / Ben gidece\u011fim). Bu durumda \"que\" kullan\u0131lmaz, mastar (infinitivo) gelir."},
-{q:"26. Ella espera que nosotros ______ \u00e9xito.",o:["tenemos","tener","tuvimos","tengamos"],a:3,exp:"\u00d6zneler farkl\u0131 (O umuyor / Biz ba\u015far\u0131l\u0131 olal\u0131m). Subjuntivo \u015fart."},
-{q:"27. Me alegro de ______ aqu\u00ed con vosotros.",o:["estar","est\u00e9","estoy","que est\u00e9"],a:0,exp:"Duygu ifadesinde \u00f6zneler ayn\u0131ysa \"que\" kalkar ve mastar gelir."},
-{q:"28. Es importante ______ todos los d\u00edas.",o:["estudies","estudiar","estudias","estudie"],a:1,exp:"Belirli bir ki\u015fiye hitap etmeyen genel gereklilik c\u00fcmlelerinde \"que\" yoksa mastar kullan\u0131l\u0131r."},
-{q:"29. Tal vez ______ raz\u00f3n, pero no estoy seguro.",o:["tienes","tengas","tener","tuviste"],a:1,exp:"Belirsizlik/\u015f\u00fcphe a\u011f\u0131r bast\u0131\u011f\u0131 i\u00e7in \"Tal vez\" Subjuntivo ile devam eder."},
-{q:"30. Quiz\u00e1s ______ hoy m\u00e1s tarde.",o:["viene","venir","venga","vino"],a:2,exp:"\"Quiz\u00e1s\" belirsizlik bildirdi\u011fi i\u00e7in Subjuntivo tetikler."},
-{q:"31. Posiblemente ______ fr\u00edo ma\u00f1ana.",o:["hace","hacer","hizo","haga"],a:3,exp:"\"Posiblemente\" (Muhtemelen) ihtimal belirtti\u011fi i\u00e7in Subjuntivo kullan\u0131l\u0131r."},
-{q:"32. Tal vez ______ raz\u00f3n. (Daha kesin bir ifade)",o:["tienes","tengas","tener","tuviste"],a:0,exp:"Notlardaki \"Dikkat!\" k\u0131sm\u0131na g\u00f6re; e\u011fer kesinlik/emin olma durumu fazlaysa \"Tal vez\"den sonra Indicativo gelebilir."},
-{q:"33. Lo hago sin que nadie me ______.",o:["ayude","ayuda","ayudar","ayud\u00f3"],a:0,exp:"\"Sin que\" (-maks\u0131z\u0131n / kimse yard\u0131m etmeden) her zaman Subjuntivo ister."},
-{q:"34. Aunque ______ fr\u00edo, ir\u00e9 a la playa.",o:["hace","hacer","haga","hac\u00eda"],a:2,exp:"Henüz ger\u00e7ekle\u015fmemi\u015f veya belirsiz bir durum (\"So\u011fuk olsa bile\") i\u00e7in \"Aunque\" Subjuntivo al\u0131r."},
-{q:"35. Habla de manera que todos te ______.",o:["entienden","entiendan","entender","entendieron"],a:1,exp:"Ama\u00e7 bildiren \"De manera que\" (Anlasınlar diye) yap\u0131s\u0131 Subjuntivo ister."},
-{q:"36. Sal antes de que ______ oscuro.",o:["se pone","ponerse","se puso","se ponga"],a:3,exp:"\"Antes de que\" (-meden \u00f6nce) ba\u011flac\u0131 her zaman Subjuntivo ile kullan\u0131l\u0131r."},
-{q:"37. Dudo que \u00e9l ______ la respuesta.",o:["sabe","saber","sepa","sabr\u00e1"],a:2,exp:"\"Dudar que\" \u015f\u00fcphe fiilidir. Saber -> Sepa (Irregular)."},
-{q:"38. Es mejor que nosotros ______ ahora.",o:["salimos","salir","saliste","salgamos"],a:3,exp:"\"Es mejor que\" de\u011ferlendirme yap\u0131s\u0131d\u0131r. Salir -> Salgamos."},
-{q:"39. Busco un libro que ______ interesante.",o:["sea","es","ser","era"],a:0,exp:"Belirsiz bir \u015feyi ararken (Varl\u0131\u011f\u0131 kesin de\u011fil) Subjuntivo kullan\u0131l\u0131r."},
-{q:"40. No salgas hasta que ______ de llover.",o:["para","pare","parar","par\u00f3"],a:1,exp:"Gelece\u011fe y\u00f6nelik s\u0131n\u0131r (Durana kadar) Subjuntivo gerektirir."},
-{q:"41. En caso de que ______ dinero, p\u00eddeme lo.",o:["necesitas","necesites","necesitar","necesitaste"],a:1,exp:"\"En caso de que\" (Olursa diye) ihtimal/ko\u015ful ba\u011flac\u0131d\u0131r, Subjuntivo ister."},
-{q:"42. No creo que ella ______ a la fiesta.",o:["vaya","va","ir","fue"],a:0,exp:"\"No creo que\" inan\u00e7s\u0131zl\u0131k/\u015f\u00fcphe belirtir. Ir -> Vaya."},
-{q:"43. Es una pena que no ______ buen tiempo.",o:["hace","hacer","haga","hizo"],a:2,exp:"\u00dczüntü/Duygu ifadesi Subjuntivo tetikler."},
-{q:"44. Te dar\u00e9 el regalo cuando ______ a vernos.",o:["vienes","venir","viniste","vengas"],a:3,exp:"Henüz ger\u00e7ekle\u015fmemi\u015f bir eylem (Geldi\u011finde verece\u011fim)."},
-{q:"45. \u00a1No ______ (t\u00fa) mentiras!",o:["dices","decir","di","digas"],a:3,exp:"Olumsuz emir (t\u00fa). Decir -> Digas."},
-{q:"46. Siento que t\u00fa ______ triste.",o:["est\u00e1s","estar","est\u00e9s","estuviste"],a:2,exp:"Duygu (\u00dczülüyorum ki...). Estar -> Est\u00e9s."},
-{q:"47. Es posible que ellos ______ ma\u00f1ana.",o:["vuelven","vuelvan","volver","volvieron"],a:1,exp:"\u0130htimal (Es posible que...). Volver -> Vuelvan."},
-{q:"48. Quiero que t\u00fa ______ m\u00e1s despacio.",o:["hables","hablas","hablar","hablaste"],a:0,exp:"\u0130stek (Quiero que...). Hablar -> Hables."},
-{q:"49. Te llamo para que me ______ con la tarea.",o:["ayudes","ayudas","ayudar","ayudaste"],a:0,exp:"Ama\u00e7 (Para que...). Ayudar -> Ayudes."},
-{q:"50. No quiero que \u00e9l ______ solo.",o:["come","coma","comer","comi\u00f3"],a:1,exp:"\u0130stek/Arzu (No quiero que...). Comer -> Coma."},
-{q:"51. Tan pronto como ______ el examen, celebrar\u00e9.",o:["termino","terminar","termine","termin\u00f3"],a:2,exp:"Gelecek zaman ba\u011f\u0131ml\u0131 \"as soon as\"."},
-{q:"52. No comas chocolate a menos que ______ hambre.",o:["tienes","tener","tuviste","tengas"],a:3,exp:"\"A menos que\" kural\u0131."},
-{q:"53. Es importante que nosotros ______ la basura.",o:["reciclamos","reciclar","reciclaste","reciclemos"],a:3,exp:"Gereklilik (Es importante que)."},
-{q:"54. Dudo que t\u00fa ______ cocinar paella.",o:["sabes","sepas","saber","supiste"],a:1,exp:"\u015e\u00fcphe (Dudar que)."},
-{q:"55. \u00a1No ______ (t\u00fa) ruidos en la biblioteca!",o:["hagas","haces","haz","hacer"],a:0,exp:"Olumsuz emir (Hacer -> Hagas)."},
-{q:"56. Te prestar\u00e9 mi coche siempre y cuando lo ______.",o:["cuidas","cuidar","cuides","cuidaste"],a:2,exp:"\"Siempre y cuando\" (-ko\u015fuluyla) Subjuntivo ister."},
-{q:"57. Quiz\u00e1s ella ______ la verdad alg\u00fan d\u00eda.",o:["sabe","saber","sepa","supo"],a:2,exp:"\u0130htimal (Quiz\u00e1s)."},
-{q:"58. Me alegra mucho ______ este caf\u00e9 contigo.",o:["tomar","tome","tomo","que tome"],a:0,exp:"\u00d6zne ayn\u0131 (Ben sevindim / Ben i\u00e7iyorum) -> Mastar."},
-{q:"59. Busco a alguien que ______ hablar chino.",o:["sabe","saber","supo","sepa"],a:3,exp:"Belirsiz bir \"birini\" ar\u0131yoruz."},
-{q:"60. No creo que ______ hoy.",o:["llueve","llueva","llover","llovi\u00f3"],a:1,exp:"\u0130nanm\u0131yorum ki (No creo que)."},
-{q:"61. Espero ______ pronto a casa.",o:["llegar","que llegue","llego","llegues"],a:0,exp:"\"Espero\" fiilinde \u00f6zne ayn\u0131ysa mastar gelir."},
-{q:"62. Te pido que ______ silencio.",o:["guardas","guardes","guardar","guardaste"],a:1,exp:"Rica/\u0130stek (Pedir que)."},
-{q:"63. Es necesario que ellos ______ temprano.",o:["salen","salir","salgan","salieron"],a:2,exp:"Gereklilik (Es necesario que)."},
-{q:"64. No salgas antes de que yo ______.",o:["vengo","venir","vine","venga"],a:3,exp:"\"Antes de que\" kural\u0131."},
-{q:"65. \u00bfCrees que ella ______ raz\u00f3n?",o:["tenga","tener","tuviera","tiene"],a:3,exp:"\"Soru c\u00fcmlelerinde\" veya \"Olumlu Creo que\" yap\u0131s\u0131nda Indicativo kullan\u0131l\u0131r."},
-{q:"66. No pienso que el examen ______ dif\u00edcil.",o:["es","ser","sea","era"],a:2,exp:"\"No pienso que\" -> Subjuntivo."},
-{q:"67. Trabaja duro para que su familia ______ vivir bien.",o:["puede","pueda","poder","pudo"],a:1,exp:"Ama\u00e7 (Para que)."},
-{q:"68. \u00a1No ______ (t\u00fa) eso, por favor!",o:["digas","dices","di","decir"],a:0,exp:"Olumsuz emir."},
-{q:"69. Cuando ______ mayor, quiero ser m\u00e9dico.",o:["sea","soy","ser","era"],a:0,exp:"Gelece\u011fe dair \"Cuando\"."},
-{q:"70. Es una l\u00e1stima que t\u00fa no ______ venir.",o:["puedes","poder","pod\u00edas","puedas"],a:3,exp:"De\u011ferlendirme (Yaz\u0131k ki)."},
-{q:"71. Te dar\u00e9 el dinero a no ser que ______ mucho dinero ya.",o:["tienes","tengas","tener","tuviste"],a:1,exp:"\"A no ser que\" (-olmazsa) Subjuntivo ister."},
-{q:"72. \u00a1Que ______ un buen d\u00eda!",o:["tienes","tener","tengas","ten\u00edas"],a:2,exp:"\"Que...\" ile ba\u015flayan dilek c\u00fcmleleri Subjuntivo al\u0131r."},
-{q:"73. Dudo que ellos ______ a la reuni\u00f3n.",o:["vienen","venir","vengan","vinieron"],a:2,exp:"\u015e\u00fcphe (Dudar que)."},
-{q:"74. Hablo espa\u00f1ol para ______ en Espa\u00f1a.",o:["vivir","que viva","vivo","vivas"],a:0,exp:"\"Para\" ba\u011flac\u0131ndan sonra \"que\" yoksa mastar gelir."},
-{q:"75. Tal vez ______ (nosotros) una pel\u00edcula hoy.",o:["vemos","ver","vimos","veamos"],a:3,exp:"\u0130htimal (Tal vez)."},
-{q:"76. \u00a1No ______ (ustedes) en el pasillo!",o:["corren","corran","correr","corr\u00e9is"],a:1,exp:"Olumsuz emir (Ustedes)."},
-{q:"77. Me sorprende que t\u00fa ______ eso.",o:["sabes","sepas","saber","supiste"],a:1,exp:"Duygu/\u015ea\u015f\u0131rma ifadesi."},
-{q:"78. Vamos a salir en cuanto ______ de trabajar.",o:["terminas","terminar","terminaste","termines"],a:3,exp:"Gelecek \"en cuanto\"."},
-{q:"79. Es probable que ______ ma\u00f1ana.",o:["llueva","llueve","llover","llovi\u00f3"],a:0,exp:"\u0130htimal."},
-{q:"80. No quiero ______ tarde.",o:["que llegue","llegas","llegar","llegues"],a:2,exp:"\u00d6zne ayn\u0131 (Ben istemiyorum / Ben ge\u00e7 kalmayay\u0131m) -> Mastar."},
-{q:"81. Aunque ______ (t\u00fa) mucho, no entender\u00e1s.",o:["estudias","estudiar","estudies","estudiaste"],a:2,exp:"Ko\u015ful/Belirsizlik i\u00e7eren \"Aunque\"."},
-{q:"82. Te avisar\u00e9 tan pronto como ______ resultados.",o:["haya","hay","haber","hubo"],a:0,exp:"Gelecek \"tan pronto como\" + Haber fiili Subjuntivo."},
-{q:"83. Salgo de casa antes de que ______ el sol.",o:["sale","salir","sali\u00f3","salga"],a:3,exp:"\"Antes de que\" kural\u0131."},
-{q:"84. Te traigo el libro para que lo ______.",o:["lees","leas","leer","le\u00edste"],a:1,exp:"Ama\u00e7 (Para que)."},
-{q:"85. No hagas nada sin que yo te ______.",o:["digo","diga","decir","dije"],a:1,exp:"\"Sin que\" kural\u0131."},
-{q:"86. Quiz\u00e1s ______ suerte hoy.",o:["tienes","tener","tuviste","tengas"],a:3,exp:"\u0130htimal (Quiz\u00e1s)."},
-{q:"87. Es mejor que t\u00fa ______ la verdad.",o:["dices","decir","digas","dijiste"],a:2,exp:"Gereklilik/De\u011ferlendirme."},
-{q:"88. \u00a1No ______ (t\u00fa) miedo!",o:["tengas","tienes","ten","tener"],a:0,exp:"Olumsuz emir (Tener -> Tengas)."},
-{q:"89. Cuando ______ a casa, descanso siempre. (Al\u0131\u015fkanl\u0131k)",o:["llego","llegue","llegar","lleg\u00fc\u00e9"],a:0,exp:"Notlardaki \"Dikkat!\" -> Al\u0131\u015fkanl\u0131k/Genel ger\u00e7ek bildiren \"Cuando\" Indicativo al\u0131r!"},
-{q:"90. Me alegra que ______ (vosotros) aqu\u00ed.",o:["est\u00e1is","estar","est\u00e9is","estuvisteis"],a:2,exp:"Duygu ifadesi (Vosotros \u00e7ekimi)."},
-{q:"91. Dudo que la tienda ______ abierta.",o:["est\u00e1","est\u00e9","estar","estuvo"],a:1,exp:"\u015e\u00fcphe."},
-{q:"92. No creo que \u00e9l ______ a venir.",o:["va","ir","fue","vaya"],a:3,exp:"\u0130nanm\u0131yorum ki."},
-{q:"93. Esperamos que t\u00fa ______ un buen viaje.",o:["tienes","tener","tuviste","tengas"],a:3,exp:"\u0130stek/Umut."},
-{q:"94. Salgo con tal de que ______ sol.",o:["haga","hace","hacer","hizo"],a:0,exp:"Ko\u015ful (Con tal de que)."},
-{q:"95. Te llamar\u00e9 hasta que ______ la tarea.",o:["terminas","terminar","termines","termin\u00f3"],a:2,exp:"Gelecek s\u0131n\u0131r\u0131 (Hasta que)."},
-{q:"96. Es posible que ______ ma\u00f1ana.",o:["nos vemos","nos veamos","vernos","nos vimos"],a:1,exp:"\u0130htimal."},
-{q:"97. No me gusta que t\u00fa ______ tanto.",o:["fumas","fumes","fumar","fumaste"],a:1,exp:"Duygu/Be\u011feni (Farkl\u0131 \u00f6zneler)."},
-{q:"98. Quiz\u00e1s ______ tarde hoy.",o:["es","ser","sea","era"],a:2,exp:"\u0130htimal."},
-{q:"99. Espero que ______ (nosotros) pronto.",o:["nos veamos","nos vemos","vernos","nos vimos"],a:0,exp:"\u0130stek (Espero que)."},
-{q:"100. No salgas a menos que ______ buen tiempo.",o:["hace","hacer","hizo","haga"],a:3,exp:"\"A menos que\" her zaman Subjuntivo!"}
-];
+var ODEV_ADI='H5 – 19-20.Ders (1. KISIM)';
+var Q=[{"q":"Lucía ha suspendido dos exámenes. Su madre quiere ayudarla, no estudiar por ella.\nSu madre quiere que Lucía ___ más.","kind":"mc","o":["estudia","estudiar","estudie","estudian"],"a":2,"correct":"estudie","mode":"S","exp":"Querer que + çekimli yan cümle istek bildirir. Çalışacak kişi Lucía: estudiar → estudie."},{"q":"Acabo de ver a Pablo en la biblioteca.\nSé que Pablo ___ allí ahora.","kind":"mc","o":["está","esté","estar","estás"],"a":0,"correct":"está","mode":"I","exp":"Sé que ile mevcut bir bilgiyi bildiriyoruz: estar → está, presente de indicativo."},{"q":"Mañana tengo un día libre y ya he hecho mis planes.\nQuiero ___ a Toledo.","kind":"mc","o":["viaje","viajo","viajas","viajar"],"a":3,"correct":"viajar","mode":"F","exp":"İsteyen ve seyahat edecek kişi aynı: querer + infinitivo."},{"q":"El tren suele retrasarse y no estoy convencida de que llegue a las ocho.\nDudo que el tren ___ puntual.","kind":"mc","o":["es","sea","ser","sean"],"a":1,"correct":"sea","mode":"S","exp":"Dudar que şüphe bildirir. Tekil tren için ser → sea."},{"q":"Todos los lunes sigo la misma rutina.\nCuando ___ a casa, preparo la cena. (yo)","kind":"mc","o":["llegue","llego","llegar","llegas"],"a":1,"correct":"llego","mode":"I","exp":"Cuando alışkanlık bildiriyor; llegar → llego, presente de indicativo."},{"q":"Mañana llegaré a casa a las siete. Te prometo que te llamaré entonces.\nTe llamaré cuando ___ a casa. (yo)","kind":"mc","o":["llego","llegar","llegues","llegue"],"a":3,"correct":"llegue","mode":"S","exp":"Henüz gerçekleşmemiş gelecek olayında cuando + subjuntivo. Yo: llegue."},{"q":"He leído las instrucciones y las entiendo.\nEstá claro que las instrucciones ___ sencillas.","kind":"mc","o":["son","sean","ser","es"],"a":0,"correct":"son","mode":"I","exp":"Está claro que ile bilgi doğrulanıyor. Çoğul özne: son, indicativo."},{"q":"El profesor habla directamente a un alumno y le da una orden afirmativa de tú.\n«___ la puerta, por favor». (cerrar)","kind":"mc","o":["Cierres","Cierre","Cierra","Cerrar"],"a":2,"correct":"Cierra","mode":"M","exp":"Olumlu tú emri: cierra. Cierres olumsuz emir veya subjuntivo biçimidir; cierre usted için."},{"q":"Marta está aquí. Su presencia me hace feliz.\nMe alegro de que Marta ___ aquí.","kind":"mc","o":["está","estar","estés","esté"],"a":3,"correct":"esté","mode":"S","exp":"Alegrarse de que duygusal tepki bildirir. Olay gerçek olsa da subjuntivo kullanılır."},{"q":"Me encanta la lectura y leo cada noche.\nMe gusta ___ antes de dormir.","kind":"mc","o":["leer","lea","leo","lees"],"a":0,"correct":"leer","mode":"F","exp":"Beğenilen eylemi yapan kişi benim; me gusta + infinitivo."},{"q":"Tengo su dirección y la conozco bien.\nSé que Ana ___ en Sevilla.","kind":"mc","o":["viva","vive","vivir","vives"],"a":1,"correct":"vive","mode":"I","exp":"Sé que + indicativo; Ana üçüncü tekil kişi."},{"q":"Quiero ayudarte a comprender las instrucciones.\nTe las explico para que las ___. (tú)","kind":"mc","o":["entiendes","entender","entiendas","entienda"],"a":2,"correct":"entiendas","mode":"S","exp":"Para que amaç bildirir, çekimli yan cümlede subjuntivo: tú entiendas."},{"q":"No estoy de acuerdo con Carlos.\nNo creo que él ___ razón.","kind":"mc","o":["tenga","tiene","tener","tengas"],"a":0,"correct":"tenga","mode":"S","exp":"No creo que olumsuz görüş bildirir; él tenga."},{"q":"Carlos y yo compartimos la misma opinión.\nCreo que Carlos ___ razón.","kind":"mc","o":["tenga","tener","tienes","tiene"],"a":3,"correct":"tiene","mode":"I","exp":"Creo que olumlu görüşü bildirir; bu bağlamda indicativo."},{"q":"Voy al gimnasio porque quiero mejorar mi salud.\nHago deporte para ___ mejor. (sentirse)","kind":"mc","o":["me sienta","me siento","sentirme","se sienta"],"a":2,"correct":"sentirme","mode":"F","exp":"Amaç aynı kişiye ait: para + infinitivo. Dönüşlü zamir mastara eklenir: sentirme."},{"q":"El médico quiere que descanses más.\nEs necesario que tú ___ bien.","kind":"mc","o":["duermes","duermas","dormir","durmáis"],"a":1,"correct":"duermas","mode":"S","exp":"Es necesario que gereklilik bildirir. Dormir → duermas."},{"q":"Dos amigos reciben una instrucción directa y afirmativa, en vosotros.\n«___ los libros». (abrir)","kind":"mc","o":["Abráis","Abran","Abren","Abrid"],"a":3,"correct":"Abrid","mode":"M","exp":"Olumlu vosotros emri: abrir → abrid. Abráis subjuntivo biçimidir."},{"q":"Cada vez que recibo un mensaje de mi hermana, respondo inmediatamente.\nEn cuanto ___ un mensaje suyo, respondo. (yo)","kind":"mc","o":["reciba","recibo","recibir","recibes"],"a":1,"correct":"recibo","mode":"I","exp":"En cuanto burada tekrar eden alışkanlığı anlatır: indicativo, recibo."},{"q":"La película todavía no ha terminado.\nNo salgas hasta que ___ la película. (terminar)","kind":"mc","o":["termine","termina","terminar","termines"],"a":0,"correct":"termine","mode":"S","exp":"Hasta que gelecekteki sınırı bildirir; özne la película, termine."},{"q":"Hay personas que están hablando en la biblioteca. Les pides silencio, tratándolas de ustedes.\n«No ___ tan alto». (hablar)","kind":"mc","o":["hablan","hablar","hablen","habláis"],"a":2,"correct":"hablen","mode":"S","exp":"Olumsuz emirlerde presente de subjuntivo kullanılır. Ustedes: hablen."},{"q":"El informe confirma que el museo abre a las diez todos los días.\nEl informe dice que el museo ___ a las diez.","kind":"mc","o":["abra","abre","abrir","abres"],"a":1,"correct":"abre","mode":"I","exp":"Decir que burada bilgi aktarıyor; üçüncü tekil abre."},{"q":"Tengo que terminar un informe yo mismo.\nEspero ___ el informe antes de las seis. (terminar)","kind":"mc","o":["terminar","termine","termino","termines"],"a":0,"correct":"terminar","mode":"F","exp":"Espero + infinitivo: uman ve bitirecek kişi aynı."},{"q":"No puedes usar mi coche si no prometes cuidarlo.\nTe lo presto a condición de que lo ___. (tú)","kind":"mc","o":["cuidas","cuidar","cuide","cuides"],"a":3,"correct":"cuides","mode":"S","exp":"A condición de que şart bildirir: subjuntivo, cuides."},{"q":"Ahora mismo está lloviendo, pero hemos decidido salir.\nAunque ___, salimos. Elige la forma que presenta la lluvia como un hecho actual.","kind":"mc","o":["llueva","llover","llueve","llueves"],"a":2,"correct":"llueve","mode":"I","exp":"Yağmuru mevcut gerçek olarak bildiren aunque + indicativo: llueve. Llueva da farklı bir vurgu ile mümkün; burada gerçek olarak bildirme isteniyor."},{"q":"No sabemos si mañana hará frío, pero saldremos de todas formas.\nAunque ___ frío mañana, saldremos.","kind":"mc","o":["haga","hace","hacer","hagas"],"a":0,"correct":"haga","mode":"S","exp":"Aunque burada gelecekteki olası engeli anlatır; kişisiz hacer → haga."},{"q":"Veo a mi hermano por la ventana.\nSé que ahora ___ en el jardín. (estar, él)","kind":"fill","o":[],"a":null,"correct":"está","mode":"I","exp":"Bilinen şimdiki durum: indicativo, está."},{"q":"Mi hermana tiene un examen mañana. Deseo que tenga éxito.\nEspero que ___ el examen. (aprobar, ella)","kind":"fill","o":[],"a":null,"correct":"apruebe","mode":"S","exp":"Espero que dilek/ümit bildirir. Aprobar → apruebe."},{"q":"He decidido estudiar una hora más cada día.\nQuiero ___ más español. (practicar)","kind":"fill","o":[],"a":null,"correct":"practicar","mode":"F","exp":"İsteyen ve çalışacak kişi aynı: infinitivo."},{"q":"Mi jefe me ha dado permiso con una condición.\nPuedo irme con tal de que ___ el informe. (terminar, yo)","kind":"fill","o":[],"a":null,"correct":"termine","mode":"S","exp":"Con tal de que + subjuntivo. Yo: termine."},{"q":"Es nuestra costumbre de los domingos.\nCuando ___ tiempo, visitamos a los abuelos. (tener, nosotros)","kind":"fill","o":[],"a":null,"correct":"tenemos","mode":"I","exp":"Cuando alışkanlık anlatıyor: tenemos, indicativo."},{"q":"Tu padre te pide directamente, con una orden afirmativa de tú, que hagas la cama.\n«___ la cama, por favor». (hacer)","kind":"fill","o":[],"a":null,"correct":"Haz","mode":"M","exp":"Hacer fiilinin olumlu tú emri düzensizdir: haz."},{"q":"La profesora quiere que todos participemos.\nEs importante que ___ nuestras opiniones. (expresar, nosotros)","kind":"fill","o":[],"a":null,"correct":"expresemos","mode":"S","exp":"Es importante que değerlendirme bildirir: expresemos."},{"q":"Cada día ella me avisa justo al salir del trabajo.\nEn cuanto ___ de trabajar, me escribe. (salir, ella)","kind":"fill","o":[],"a":null,"correct":"sale","mode":"I","exp":"Tekrarlanan eylem: presente de indicativo, sale."},{"q":"No sabemos a qué hora terminará la reunión.\nTe llamaré en cuanto ___ la reunión. (terminar, yo)","kind":"fill","o":[],"a":null,"correct":"termine","mode":"S","exp":"Gelecekteki eylem: en cuanto + subjuntivo."},{"q":"Voy a la biblioteca con un objetivo personal.\nVoy allí para ___ tranquilo. (estudiar)","kind":"fill","o":[],"a":null,"correct":"estudiar","mode":"F","exp":"Aynı kişinin amacı: para + infinitivo."},{"q":"Veo los documentos sobre la mesa.\nEs evidente que los documentos ___ aquí. (estar)","kind":"fill","o":[],"a":null,"correct":"están","mode":"I","exp":"Es evidente que mevcut gerçeği bildirir: están."},{"q":"Mi amigo tiene problemas de sueño.\nLe recomiendo que ___ más. (dormir, él)","kind":"fill","o":[],"a":null,"correct":"duerma","mode":"S","exp":"Tavsiye: recomendar que + subjuntivo. Dormir → duerma."},{"q":"Estás en un restaurante en España. Pides a tus dos amigos una orden afirmativa de vosotros.\n«___ aquí». (sentarse)","kind":"fill","o":[],"a":null,"correct":"sentaos","mode":"M","exp":"Olumlu vosotros emrinde sentad + os → sentaos; dönüşlü emir."},{"q":"Necesito que me escuchéis antes de tomar una decisión.\nOs pido que me ___. (oír, vosotros)","kind":"fill","o":[],"a":null,"correct":"oigáis","mode":"S","exp":"Pedir que istek bildirir. Oigo → oig- → oigáis."},{"q":"Marta me ha contado su rutina. Suelo creer lo que me dice.\nCreo que Marta ___ mucho cada día. (trabajar)","kind":"fill","o":[],"a":null,"correct":"trabaja","mode":"I","exp":"Olumlu görüş ve günlük rutin: indicativo."},{"q":"Todavía no han llegado las noticias.\nTe avisaré tan pronto como ___ noticias. (tener, yo)","kind":"fill","o":[],"a":null,"correct":"tenga","mode":"S","exp":"Tan pronto como gelecekte gerçekleşecek eylem: subjuntivo."},{"q":"Me preocupa la salud de mis hijos.\nNo quiero que ___ tanto azúcar. (comer, ellos)","kind":"fill","o":[],"a":null,"correct":"coman","mode":"S","exp":"İstek/olumsuz istek: no quiero que + subjuntivo."},{"q":"Mi pareja y yo tenemos una rutina diaria.\nEsperamos hasta que ___ el autobús y luego subimos. (llegar)","kind":"fill","o":[],"a":null,"correct":"llega","mode":"I","exp":"Hasta que burada düzenli gerçekleşen olayı bildiriyor: indicativo."},{"q":"Estoy contenta por mi propia presencia en la fiesta.\nMe alegro de ___ aquí. (estar)","kind":"fill","o":[],"a":null,"correct":"estar","mode":"F","exp":"Aynı kişinin duygusu ve durumu: alegrarse de + infinitivo."},{"q":"Tu amiga te pide una orden afirmativa de tú.\n«___ conmigo a la cocina». (venir)","kind":"fill","o":[],"a":null,"correct":"Ven","mode":"M","exp":"Venir olumlu tú emri: ven."},{"q":"El niño acaba de llegar tarde otra vez y eso me molesta.\nMe molesta que ___ tarde. (llegar, él)","kind":"fill","o":[],"a":null,"correct":"llegue","mode":"S","exp":"Duygusal tepki: olay gerçek olsa da subjuntivo."},{"q":"La pantalla muestra el resultado en este momento.\nVeo que el equipo ___ por dos puntos. (ganar)","kind":"fill","o":[],"a":null,"correct":"gana","mode":"I","exp":"Veo que burada algılanan bilgiyi bildiriyor: gana."},{"q":"No quiero que salgas sin permiso.\nNo salgas antes de que yo te ___ permiso. (dar)","kind":"fill","o":[],"a":null,"correct":"dé","mode":"S","exp":"Antes de que + subjuntivo; dar → dé, aksan gerekli."},{"q":"Todos los días, en cuanto sale el sol, empieza su jornada.\nTan pronto como ___ el sol, empieza a trabajar. (salir)","kind":"fill","o":[],"a":null,"correct":"sale","mode":"I","exp":"Alışkanlık: tan pronto como + indicativo."},{"q":"No sabemos si necesitaremos dinero. Mi padre quiere que llevemos algo por precaución.\nLlevamos dinero en caso de que lo ___. (necesitar, nosotros)","kind":"fill","o":[],"a":null,"correct":"necesitemos","mode":"S","exp":"En caso de que olası duruma karşı önlem bildirir; subjuntivo."}];
 
-var state={cur:0,answered:[],scores:[],okCount:0,errCount:0};
-
-function startQuiz(){
-  var name=document.getElementById('introName').value;
-  if(!name){alert('L\u00fctfen ad\u0131n\u0131z\u0131 se\u00e7in.');return;}
-  document.getElementById('resName').value=name;
-  document.getElementById('resName2').value=name;
-  document.getElementById('introScreen').style.display='none';
-  document.getElementById('quizScreen').style.display='block';
-  renderQ();
-}
-
-function syncResName(){
-  var v=document.getElementById('resName2').value;
-  document.getElementById('resName').value=v;
-}
-
-function esc(s){
-  if(!s)return'';
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
-}
-
-function renderQ(){
-  var i=state.cur;var q=Q[i];var html='';
-  html+='<span class="q-type-badge badge-mc">\u00c7OKTAN SE\u00c7MEL\u0130</span>';
-  html+='<div class="q-text">'+esc(q.q)+'</div>';
-  html+='<div class="opts">';
-  var L=['A','B','C','D'];
-  for(var j=0;j<q.o.length;j++){
-    var cls='opt-btn';var dis='';var ans=state.answered[i];
-    if(ans!==undefined){dis='disabled';if(j===q.a)cls+=' correct';else if(j===ans&&ans!==q.a)cls+=' wrong';}
-    html+='<button class="'+cls+'" '+dis+' onclick="checkAns('+j+')"><strong>'+L[j]+')</strong> '+esc(q.o[j])+'</button>';
-  }
-  html+='</div>';
-  html+='<div class="exp-box'+(state.answered[i]!==undefined?' show':'')+'">'+esc(q.exp)+'</div>';
-  document.getElementById('qCard').innerHTML=html;
-  var done=state.answered[i]!==undefined;
-  document.getElementById('btnBack').disabled=(i===0);
-  document.getElementById('btnNext').disabled=(!done||i===Q.length-1);
-  document.getElementById('btnSkip').disabled=(i>=Q.length-1);
-  document.getElementById('qMeta').textContent='Soru '+(i+1)+' / '+Q.length;
-  document.getElementById('progFill').style.width=((i+1)/Q.length*100)+'%';
-  document.getElementById('cntOk').textContent='\u2713 '+state.okCount;
-  document.getElementById('cntErr').textContent='\u2717 '+state.errCount;
-}
-
-function checkAns(j){
-  var i=state.cur;
-  if(state.answered[i]!==undefined)return;
-  var q=Q[i];
-  state.answered[i]=j;
-  if(j===q.a){state.okCount++;state.scores[i]=1;}
-  else{state.errCount++;state.scores[i]=0;}
-  renderQ();
-}
-
-function goNext(){if(state.cur<Q.length-1){state.cur++;renderQ();}}
-function goBack(){if(state.cur>0){state.cur--;renderQ();}}
-function skipQ(){if(state.cur<Q.length-1){state.cur++;renderQ();}}
-
-function confirmFinish(){
-  var answered=0;
-  for(var i=0;i<Q.length;i++){if(state.answered[i]!==undefined)answered++;}
-  var unanswered=Q.length-answered;
-  var msg='Toplam '+Q.length+' sorudan '+answered+' tanesini cevaplad\u0131n\u0131z.';
-  if(unanswered>0)msg+='\n\n'+unanswered+' soru cevaps\u0131z kalacak (0 puan).';
-  msg+='\n\nTesti bitirmek istedi\u011finize emin misiniz?';
-  document.getElementById('confirmMsg').textContent=msg;
-  document.getElementById('confirmOverlay').style.display='flex';
-}
-
-function closeConfirm(){document.getElementById('confirmOverlay').style.display='none';}
-function doFinish(){closeConfirm();showResult();}
-
-function showResult(){
-  document.getElementById('quizScreen').style.display='none';
-  document.getElementById('resultScreen').style.display='block';
-  var total=0;
-  for(var i=0;i<Q.length;i++){total+=(state.scores[i]||0);}
-  var pct=Math.round(total*100/Q.length);
-  document.getElementById('resScore').textContent=pct;
-  document.getElementById('resOk').textContent='\u2713 '+state.okCount+' do\u011fru';
-  document.getElementById('resErr').textContent='\u2717 '+state.errCount+' yanl\u0131\u015f';
-  document.getElementById('resNote').textContent='100 sorudan '+state.okCount+' tanesi do\u011fru';
-  document.getElementById('submitWarning').style.display='block';
-  document.getElementById('btnSubmit').style.display='block';
-  var rev=document.getElementById('reviewList');
-  var L=['A','B','C','D'];
-  var html='';
-  for(var i=0;i<Q.length;i++){
-    var ans=state.answered[i];
-    if(ans===undefined||ans===Q[i].a)continue;
-    var q=Q[i];
-    html+='<div class="rev-item"><div class="rev-q">'+esc(q.q.split('\n')[0])+'</div>';
-    html+='<div class="rev-chosen">Verdi\u011finiz cevap: '+esc(q.o[ans])+'</div>';
-    html+='<div class="rev-correct">Do\u011fru cevap: '+esc(q.o[q.a])+'</div>';
-    html+='<div class="rev-exp">'+esc(q.exp)+'</div></div>';
-  }
-  rev.innerHTML=html||'<div style="padding:.5rem;color:#666">Yanl\u0131\u015f soru bulunamad\u0131.</div>';
-}
-
-function toggleReview(){
-  var rv=document.getElementById('reviewList');
-  rv.style.display=(rv.style.display==='flex'?'none':'flex');
-}
-
-var submitted=false;
-function submitResult(){
-  if(submitted)return;
-  var name=document.getElementById('resName').value;
-  if(!name){alert('L\u00fctfen isminizi se\u00e7in.');return;}
-  var total=0;
-  for(var i=0;i<Q.length;i++){total+=(state.scores[i]||0);}
-  var pct=Math.round(total*100/Q.length);
-  var payload=JSON.stringify({ogrenci:name,odev:ODEV_ADI,grup:'B1.1',puan:pct,dogru:state.okCount,yanlis:state.errCount,tarih:new Date().toLocaleDateString('tr-TR')});
-  document.getElementById('submitMsg').style.display='block';
-  document.getElementById('submitMsg').textContent='G\u00f6nderiliyor...';
-  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:payload})
-  .then(function(){
-    submitted=true;
-    document.getElementById('submitWarning').style.display='none';
-    document.getElementById('btnSubmit').style.display='none';
-    document.getElementById('submitMsg').textContent=name+' \u00f6\u011frencisinin \u201c'+ODEV_ADI+'\u201d \u00f6devi teslim edildi. Puan: '+pct+'/100. Te\u015fekk\u00fcrler!';
-  })
-  .catch(function(){
-    submitted=true;
-    document.getElementById('submitWarning').style.display='none';
-    document.getElementById('btnSubmit').style.display='none';
-    document.getElementById('submitMsg').textContent=name+' \u00f6\u011frencisinin \u201c'+ODEV_ADI+'\u201d \u00f6devi teslim edildi. Puan: '+pct+'/100.';
-  });
-}
+var state={cur:0,answered:[],scores:[],okCount:0,errCount:0,drafts:[]};
+function by(id){return document.getElementById(id)}
+function startQuiz(){var name=by('introName').value;if(!name){alert('Lütfen adınızı seçin.');return;}by('resName').value=name;by('resName2').value=name;by('introScreen').style.display='none';by('quizScreen').style.display='block';renderQ();}
+function syncResName(){by('resName').value=by('resName2').value;}
+function esc(s){return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+function normalize(s){return String(s??'').normalize('NFC').trim().toLocaleLowerCase('es').replace(/\s+/g,' ').replace(/[.!?¡¿]+$/g,'').trim();}
+function renderQ(){var i=state.cur,q=Q[i],done=state.answered[i]!==undefined,html='';
+html+='<span class="q-type-badge badge-mc">'+(q.kind==='mc'?'ÇOKTAN SEÇMELİ · 1. BÖLÜM':'BOŞLUK DOLDURMA · 2. BÖLÜM')+'</span>';
+html+='<div class="q-text">'+esc(q.q)+'</div>';
+if(q.kind==='mc'){html+='<div class="opts">';var L=['A','B','C','D'];for(var j=0;j<q.o.length;j++){var cls='opt-btn';if(done){if(j===q.a)cls+=' correct';else if(j===state.answered[i])cls+=' wrong';}html+='<button class="'+cls+'" '+(done?'disabled':'')+' onclick="checkAns('+j+')"><strong>'+L[j]+')</strong> '+esc(q.o[j])+'</button>';}html+='</div>';}
+else {html+='<label for="fillInput" class="fill-label">Yalnızca boşluğa gelecek fiil biçimini yaz. Aksanlara dikkat et.</label><input id="fillInput" class="fill-input '+(done?(state.scores[i]?'fill-ok':'fill-wrong'):'')+'" autocomplete="off" autocapitalize="off" spellcheck="false" value="'+esc(done?state.answered[i]:state.drafts[i]||'')+'" '+(done?'disabled':'')+'>';if(!done)html+='<div class="accent-row" aria-label="İspanyolca karakterler">'+['á','é','í','ó','ú','ü','ñ'].map(ch=>'<button type="button" onclick="addAccent(this.textContent)">'+ch+'</button>').join('')+'</div><button type="button" class="btn-start fill-check" onclick="checkFill()">Cevabımı kontrol et</button>';}
+if(done){html+='<div class="exp-box show"><strong>'+(state.scores[i]?'✓ Doğru!':'✗ Doğru cevap: '+esc(q.correct))+'</strong><br>'+esc(q.exp)+'</div>';}
+by('qCard').innerHTML=html;var fi=by('fillInput');if(fi&&!done){fi.addEventListener('input',()=>state.drafts[i]=fi.value);fi.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();checkFill();}});}
+by('btnBack').disabled=i===0;by('btnNext').disabled=!done||i===Q.length-1;by('btnSkip').disabled=i===Q.length-1;by('qMeta').textContent='Soru '+(i+1)+' / '+Q.length;by('progFill').style.width=((i+1)/Q.length*100)+'%';by('cntOk').textContent='✓ '+state.okCount;by('cntErr').textContent='✗ '+state.errCount;}
+function addAccent(ch){var fi=by('fillInput');if(!fi||fi.disabled)return;var a=fi.selectionStart,b=fi.selectionEnd;fi.setRangeText(ch,a,b,'end');state.drafts[state.cur]=fi.value;fi.focus();}
+function grade(value,ok){var i=state.cur;if(state.answered[i]!==undefined)return;state.answered[i]=value;state.scores[i]=ok?1:0;if(ok)state.okCount++;else state.errCount++;renderQ();}
+function checkAns(j){var q=Q[state.cur];if(q.kind!=='mc')return;grade(j,j===q.a);}
+function checkFill(){var q=Q[state.cur],fi=by('fillInput');if(q.kind!=='fill'||!fi||!normalize(fi.value)){if(fi)fi.focus();return;}grade(fi.value,normalize(fi.value)===normalize(q.correct));}
+function goNext(){if(state.cur<Q.length-1){state.cur++;renderQ();}}function goBack(){if(state.cur>0){state.cur--;renderQ();}}function skipQ(){goNext();}
+function confirmFinish(){var answered=state.answered.filter(v=>v!==undefined).length,unanswered=Q.length-answered;by('confirmMsg').textContent='Toplam '+Q.length+' sorudan '+answered+' tanesini cevapladınız.'+(unanswered?'\n\n'+unanswered+' soru cevapsız kalacak (0 puan).':'')+'\n\nTesti bitirmek istediğinize emin misiniz?';by('confirmOverlay').style.display='flex';}
+function closeConfirm(){by('confirmOverlay').style.display='none';}function doFinish(){closeConfirm();showResult();}
+function showResult(){by('quizScreen').style.display='none';by('resultScreen').style.display='block';var blank=Q.length-state.okCount-state.errCount;by('resScore').textContent=state.okCount*2;by('resOk').textContent='✓ '+state.okCount+' doğru';by('resErr').textContent='✗ '+state.errCount+' yanlış';var mc=0,fill=0;for(var i=0;i<Q.length;i++){if(state.scores[i]){if(Q[i].kind==='mc')mc++;else fill++;}}
+by('resNote').textContent='Çoktan seçmeli: '+(mc*2)+'/50 · Boşluk doldurma: '+(fill*2)+'/50 · Boş: '+blank;by('submitWarning').style.display='block';by('btnSubmit').style.display='block';var html='';for(var i=0;i<Q.length;i++){if(state.scores[i])continue;var q=Q[i],v=state.answered[i];html+='<div class="rev-item"><div class="rev-q">'+(i+1)+'. '+esc(q.q)+'</div><div class="rev-chosen">Cevabınız: '+esc(v===undefined?'Boş':q.kind==='mc'?q.o[v]:v)+'</div><div class="rev-correct">Doğru cevap: '+esc(q.correct)+'</div><div class="rev-exp">'+esc(q.exp)+'</div></div>';}by('reviewList').innerHTML=html||'<div style="padding:.5rem">Bütün sorular doğru!</div>';}
+function toggleReview(){var rv=by('reviewList');rv.style.display=rv.style.display==='flex'?'none':'flex';}
+var submitted=false,sending=false;
+function submitResult(){if(submitted||sending)return;var name=by('resName').value;if(!name){alert('Lütfen isminizi seçin.');return;}var pct=state.okCount*2,blank=Q.length-state.okCount-state.errCount;var payload=JSON.stringify({ogrenci:name,odev:ODEV_ADI,grup:'B1.1',puan:pct,dogru:state.okCount,yanlis:state.errCount,tarih:new Date().toLocaleDateString('tr-TR')});sending=true;by('btnSubmit').disabled=true;by('submitMsg').style.display='block';by('submitMsg').textContent='Gönderiliyor...';fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:payload}).then(function(){submitted=true;by('submitWarning').style.display='none';by('btnSubmit').style.display='none';by('submitMsg').textContent=name+' · '+ODEV_ADI+' · '+pct+'/100. Teslim isteği gönderildi. Sonucun Ödev Takip Merkezi’nde göründüğünü kontrol edin.';}).catch(function(){by('submitMsg').textContent='Gönderim başarısız. Lütfen tekrar deneyin.';by('btnSubmit').disabled=false;}).finally(function(){sending=false;});}
 </script>
 </body>
 </html>
